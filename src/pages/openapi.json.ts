@@ -7,8 +7,10 @@ export const GET: APIRoute = () => {
     info: {
       title: "eggx API",
       version: "1.0.0",
-      description: "Agent-readable static API for eggx offers",
+      description:
+        "Agent-readable static API for eggx offers. Endpoints are static JSON files served from GitHub Pages; URLs include the .json extension. Query parameters on static endpoints are advisory.",
     },
+    servers: [{ url: import.meta.env.SITE }],
     paths: {
       "/api/v1/offers": {
         get: {
@@ -35,7 +37,7 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/offers/{id}": {
+      "/api/v1/offers/{id}.json": {
         get: {
           summary: "Get a single offer by ID",
           parameters: [
@@ -61,7 +63,7 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/providers/{slug}": {
+      "/api/v1/providers/{slug}.json": {
         get: {
           summary: "Get offers by provider slug",
           parameters: [
@@ -94,7 +96,7 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/daily/latest": {
+      "/api/v1/daily/latest.json": {
         get: {
           summary: "Get latest daily offers",
           responses: {
@@ -119,7 +121,7 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/snapshot": {
+      "/api/v1/snapshot.json": {
         get: {
           summary: "Get schema-versioned snapshot",
           responses: {
@@ -145,7 +147,7 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/changes": {
+      "/api/v1/changes.json": {
         get: {
           summary: "Get changes since a date",
           parameters: [

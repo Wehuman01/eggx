@@ -23,11 +23,13 @@ Anonymous, read-only, statically generated, cacheable. All responses carry `X-AP
 | Endpoint | Description |
 | --- | --- |
 | `GET /api/v1/offers` | Active offers |
-| `GET /api/v1/offers/:id` | One offer |
-| `GET /api/v1/providers/:slug` | Provider profile with its offers |
-| `GET /api/v1/daily/latest` | Latest daily changelog |
-| `GET /api/v1/snapshot` | Schema-versioned full registry (non-archived) |
-| `GET /api/v1/changes?since=ISO8601` | Change feed |
+| `GET /api/v1/offers/:id.json` | One offer |
+| `GET /api/v1/providers/:slug.json` | Provider profile with its offers |
+| `GET /api/v1/daily/latest.json` | Latest daily changelog |
+| `GET /api/v1/snapshot.json` | Schema-versioned full registry (non-archived) |
+| `GET /api/v1/changes.json?since=ISO8601` | Change feed |
+
+Endpoints are static JSON files on GitHub Pages; URLs include the `.json` extension.
 
 Also served: `/feed.xml` (RSS 2.0), `/llms.txt` (agent guide), `/openapi.json` (OpenAPI 3.1).
 

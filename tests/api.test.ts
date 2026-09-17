@@ -106,4 +106,50 @@ describe("API v1 routes exist in dist", () => {
     const content = fs.readFileSync(llmsPath, "utf-8");
     expect(content.toLowerCase()).toMatch(/verif/);
   });
+
+  it("every path documented in openapi.json resolves to a dist file", async () => {
+    const { offers } = await import("../src/content/offers");
+    const spec = JSON.parse(fs.readFileSync(joinDist("openapi.json"), "utf-8"));
+    const firstId = offers[0].id;
+    const firstSlug = offers[0].provider.toLowerCase().replace(/\s+/g, "-");
+    for (const route of Object.keys(spec.paths)) {
+      let file = route
+        .replace("{id}", firstId)
+        .replace("{slug}", firstSlug)
+        .replace(/^\//, "");
+      if (file === "api/v1/offers") {
+        file = "api/v1/offers/index.json";
+      }
+      expect({
+        route,
+        resolved: file,
+        exists: fs.existsSync(joinDist(...file.split("/"))),
+      }).toEqual({ route, resolved: file, exists: true });
+    }
+  });
+
+  it("every /api/v1 URL in llms.txt resolves to a dist file", async () => {
+    const { offers } = await import("../src/content/offers");
+    const text = fs.readFileSync(joinDist("llms.txt"), "utf-8");
+    const routes = [...text.matchAll(/\/api\/v1\/[^\s]+/g)].map((m) =>
+      m[0].replace(/\?.*$/, ""),
+    );
+    expect(routes.length).toBeGreaterThanOrEqual(6);
+    const firstId = offers[0].id;
+    const firstSlug = offers[0].provider.toLowerCase().replace(/\s+/g, "-");
+    for (const route of routes) {
+      let file = route
+        .replace(":id", firstId)
+        .replace(":slug", firstSlug)
+        .replace(/^\//, "");
+      if (file === "api/v1/offers") {
+        file = "api/v1/offers/index.json";
+      }
+      expect({
+        route,
+        resolved: file,
+        exists: fs.existsSync(joinDist(...file.split("/"))),
+      }).toEqual({ route, resolved: file, exists: true });
+    }
+  });
 });
