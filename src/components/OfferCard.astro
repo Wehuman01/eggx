@@ -2,7 +2,7 @@
 import type { Offer } from "../lib/schema";
 import type { Locale } from "../lib/i18n";
 import { UI } from "../lib/i18n";
-import { daysUntil } from "../lib/offers";
+import { daysUntil, shortUrlText } from "../lib/offers";
 
 interface Props {
   offer: Offer;
@@ -12,6 +12,7 @@ interface Props {
 const { offer, locale } = Astro.props;
 const ui = UI[locale];
 const loc = offer[locale];
+const showPageLink = Boolean(offer.url && offer.url !== offer.actionUrl && offer.url !== offer.source);
 
 let expiryBadge: string | null = null;
 if (offer.kind === "temporary" && offer.expiry) {
@@ -60,7 +61,12 @@ if (offer.kind === "temporary" && offer.expiry) {
   <footer class="offer-meta">
     {offer.source && (
       <span>
-        {ui.sourceLabel}: <a href={offer.source} rel="noopener" target="_blank">{offer.source}</a>
+        {ui.sourceLabel}: <a href={offer.source} rel="noopener" target="_blank">{shortUrlText(offer.source)}</a>
+      </span>
+    )}
+    {showPageLink && (
+      <span>
+        {ui.pageLabel}: <a href={offer.url} rel="noopener" target="_blank">{shortUrlText(offer.url!)}</a>
       </span>
     )}
     {offer.lastVerified && <span>{ui.verifiedOn(offer.lastVerified)}</span>}

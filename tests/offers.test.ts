@@ -12,7 +12,29 @@ import {
   providerLookup,
   expiryOrder,
   daysUntil,
+  shortUrlText,
 } from "../src/lib/offers";
+
+describe("shortUrlText", () => {
+  it("shows host plus path, trailing slash trimmed", () => {
+    expect(shortUrlText("https://openrouter.ai/docs/limits/")).toBe(
+      "openrouter.ai/docs/limits",
+    );
+    expect(shortUrlText("https://example.com")).toBe("example.com");
+  });
+
+  it("truncates long paths with an ellipsis", () => {
+    const text = shortUrlText(
+      "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
+    );
+    expect(text.length).toBeLessThanOrEqual(36);
+    expect(text.endsWith("…")).toBe(true);
+  });
+
+  it("falls back to the raw input for malformed URLs", () => {
+    expect(shortUrlText("not a url")).toBe("not a url");
+  });
+});
 
 describe("offer schema", () => {
   it("kind has exactly two values: temporary and long-term", () => {

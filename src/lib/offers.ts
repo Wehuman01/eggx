@@ -31,3 +31,15 @@ export function daysUntil(date: string, now = new Date()): number {
   const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   return Math.round((target.getTime() - today.getTime()) / 86_400_000);
 }
+
+/** Compact link text (host + truncated path); the href keeps the full URL. */
+export function shortUrlText(url: string, max = 36): string {
+  try {
+    const parsed = new URL(url);
+    const path = parsed.pathname.replace(/\/+$/, "");
+    const text = `${parsed.host}${path}`;
+    return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+  } catch {
+    return url;
+  }
+}

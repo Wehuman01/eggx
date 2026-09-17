@@ -201,6 +201,12 @@ h3 {
   margin: 0 auto;
 }
 
+/* Doc-style pages (agent) get a wider column for tables and step cards. */
+.main-inner-wide,
+.main-inner-wide .prose {
+  max-width: 800px;
+}
+
 @media (min-width: 768px) {
   .sidebar {
     position: sticky;
@@ -257,6 +263,13 @@ h3 {
 
   .nav-group-label {
     display: none;
+  }
+
+  /* One scrollable row: both nav lists sit side by side instead of stacking. */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    flex: none;
   }
 
   .nav-list {
@@ -468,6 +481,10 @@ h3 {
 .prose {
   max-width: var(--content-max);
   line-height: 1.75;
+}
+
+.prose section[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 .prose h1 {

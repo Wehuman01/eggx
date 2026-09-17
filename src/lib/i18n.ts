@@ -47,6 +47,7 @@ export interface UIStrings {
   claimAction: string;
   applyAction: string;
   sourceLabel: string;
+  pageLabel: string;
   verifiedOn: (date: string) => string;
   limitsLabel: string;
   expiryLabel: string;
@@ -81,6 +82,7 @@ const zh: UIStrings = {
   claimAction: "去领取",
   applyAction: "去申请",
   sourceLabel: "来源",
+  pageLabel: "页面",
   verifiedOn: (date) => `核实于 ${date}`,
   limitsLabel: "限额",
   expiryLabel: "到期",
@@ -115,6 +117,7 @@ const en: UIStrings = {
   claimAction: "Claim it",
   applyAction: "Apply",
   sourceLabel: "Source",
+  pageLabel: "Site",
   verifiedOn: (date) => `verified ${date}`,
   limitsLabel: "Limits",
   expiryLabel: "Ends",
