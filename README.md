@@ -32,8 +32,8 @@ Anonymous, read-only, statically generated, cacheable. All responses carry `X-AP
 Also served: `/feed.xml` (RSS 2.0), `/llms.txt` (agent guide), `/openapi.json` (OpenAPI 3.1).
 
 ```bash
-curl https://wehuman.github.io/eggx/api/v1/offers
-curl https://wehuman.github.io/eggx/api/v1/snapshot | jq '.data[0]'
+curl https://wehuman01.github.io/eggx/api/v1/offers
+curl https://wehuman01.github.io/eggx/api/v1/snapshot | jq '.data[0]'
 ```
 
 Static endpoints mean query parameters are advisory in `changes` (documented in OpenAPI); do full-sync via `snapshot`.
