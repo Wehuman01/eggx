@@ -18,6 +18,7 @@ export interface Offer {
   limits?: string;
   expiry?: string | null;
   caveat?: string;
+  lastVerified?: string;
 }
 
 const CATEGORIES: readonly OfferCategory[] = [
@@ -120,6 +121,12 @@ export function validateOffer(o: unknown): Offer {
       throw new Error("Offer.caveat must be a string");
     }
     offer.caveat = obj.caveat;
+  }
+  if (obj.lastVerified !== undefined) {
+    if (typeof obj.lastVerified !== "string") {
+      throw new Error("Offer.lastVerified must be a string");
+    }
+    offer.lastVerified = obj.lastVerified;
   }
 
   return offer;
