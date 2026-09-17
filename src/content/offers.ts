@@ -23,11 +23,11 @@ export const offers = validateRegistry([
     evidence: "official",
     status: "verified",
     description:
-      "Invite-only limited-time early-access offering from the OpenCode Zen Union Alpha program.",
-    source: "OpenCode official channels",
-    actionUrl: "https://opencode.dev",
-    limits: "Invite-only; limited slots",
-    expiry: "2025-12-31",
+      "OpenCode Zen's zero-price Union Alpha lane, available for a limited time with no published end date.",
+    source: "https://opencode.ai/docs/zen",
+    actionUrl: "https://opencode.ai/auth",
+    limits: "Limited time; end date not published",
+    expiry: null,
   },
   {
     id: "aihubmix",

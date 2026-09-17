@@ -16,7 +16,7 @@ export interface Offer {
   source?: string;
   actionUrl?: string;
   limits?: string;
-  expiry?: string;
+  expiry?: string | null;
   caveat?: string;
 }
 
@@ -109,9 +109,9 @@ export function validateOffer(o: unknown): Offer {
     }
     offer.limits = obj.limits;
   }
-  if (obj.expiry !== undefined) {
+  if (obj.expiry !== undefined && obj.expiry !== null) {
     if (typeof obj.expiry !== "string") {
-      throw new Error("Offer.expiry must be a string");
+      throw new Error("Offer.expiry must be a string or null");
     }
     offer.expiry = obj.expiry;
   }
