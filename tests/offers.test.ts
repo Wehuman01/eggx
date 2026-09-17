@@ -99,6 +99,37 @@ describe("registry behavior", () => {
   });
 });
 
+describe("data guards", () => {
+  it("every non-archived offer has a source URL, action URL, and lastVerified date", async () => {
+    const { offers } = await import("../src/content/offers");
+    for (const offer of offers) {
+      if (offer.status === "archived") continue;
+      expect(offer.source ?? "", `${offer.id}: source must be an http(s) URL`).toMatch(/^https?:\/\//);
+      expect(offer.actionUrl ?? "", `${offer.id}: actionUrl must be an http(s) URL`).toMatch(/^https?:\/\//);
+      expect(offer.lastVerified ?? "", `${offer.id}: lastVerified must be YYYY-MM-DD`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
+  it("limited-time offers carry an expiry date or an explicit caveat about the unpublished window", async () => {
+    const { offers } = await import("../src/content/offers");
+    for (const offer of offers) {
+      if (offer.category !== "limited-time") continue;
+      const hasExpiry = typeof offer.expiry === "string" && /^\d{4}-\d{2}-\d{2}$/.test(offer.expiry);
+      const hasCaveat = typeof offer.caveat === "string" && offer.caveat.length > 0;
+      expect(hasExpiry || hasCaveat, `${offer.id} (limited-time) must have expiry or explicit caveat`).toBe(true);
+    }
+  });
+
+  it("expiry dates are not in the past", async () => {
+    const { offers } = await import("../src/content/offers");
+    const today = new Date().toISOString().slice(0, 10);
+    for (const offer of offers) {
+      if (typeof offer.expiry !== "string") continue;
+      expect(offer.expiry >= today, `${offer.id} expiry ${offer.expiry} must not be before ${today}`).toBe(true);
+    }
+  });
+});
+
 describe("offers helpers", () => {
   const mockOffers: Offer[] = [
     {
