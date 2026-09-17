@@ -43,6 +43,14 @@ Every item has one of four states:
 - `archived`: expired, removed, or no longer valid; retained for audit but not
   recommended on the home page.
 
+Every item also has an independent evidence level:
+
+- `official`: current provider documentation or program page confirms the
+  offer.
+- `community`: multiple reproducible reports exist, but the provider's terms
+  are incomplete or ambiguous.
+- `unverified`: a useful lead whose official evidence has not yet been found.
+
 All visible limits are described conservatively. Unknown limits are presented
 as "not published" rather than inferred as unlimited.
 
