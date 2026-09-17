@@ -13,6 +13,13 @@ const evidenceLabel: Record<Offer["evidence"], string> = {
   community: "community",
   unverified: "unverified",
 };
+
+const accessLabel: Record<Offer["access"], string> = {
+  public: "public",
+  invite: "invite",
+  student: "student",
+  application: "application",
+};
 ---
 
 <article class="offer-card">
@@ -24,6 +31,10 @@ const evidenceLabel: Record<Offer["evidence"], string> = {
   <p class="offer-desc">{offer.description}</p>
 
   <ul class="offer-facts">
+    <li>
+      <span class="fact-label">Access</span>
+      {accessLabel[offer.access]}
+    </li>
     {offer.expiry && <li><span class="fact-label">Expiry</span> {offer.expiry}</li>}
     {offer.limits && <li><span class="fact-label">Limits</span> {offer.limits}</li>}
     <li>

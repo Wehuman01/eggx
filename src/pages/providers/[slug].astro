@@ -37,7 +37,7 @@ const evidenceLevels = [...new Set(providerOffers.map((o) => o.evidence))];
       <h2 class="section-title">Disclosure</h2>
       <ul class="offer-facts">
         <li>
-          <span class="fact-label">Providers</span>
+          <span class="fact-label">Access</span>
           {accessLevels.join(", ")}
         </li>
         <li>
@@ -55,6 +55,35 @@ const evidenceLevels = [...new Set(providerOffers.map((o) => o.evidence))];
       providerOffers.map((offer) => <OfferCard offer={offer} />)
     ) : (
       <p class="empty">No verified offers for this provider.</p>
+    )}
+
+    {providerOffers.filter((o) => o.source || o.actionUrl).length > 0 && (
+      <section class="provider-facts">
+        <h2 class="section-title">Official sources &amp; action links</h2>
+        <ul class="offer-facts">
+          {providerOffers.map((offer) => (
+            <li>
+              <span class="fact-label">{offer.name}</span>
+              {offer.source && (
+                <span>
+                  Source:{" "}
+                  {offer.source.startsWith("http") ? (
+                    <a href={offer.source} target="_blank" rel="noopener">{offer.source}</a>
+                  ) : (
+                    offer.source
+                  )}
+                </span>
+              )}
+              {offer.actionUrl && (
+                <span>
+                  {" "}· Action:{" "}
+                  <a href={offer.actionUrl} target="_blank" rel="noopener">Open</a>
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
     )}
   </div>
 </BaseLayout>
