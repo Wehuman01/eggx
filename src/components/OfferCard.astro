@@ -1,0 +1,45 @@
+---
+import type { Offer } from "../lib/schema";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  offer: Offer;
+}
+
+const { offer } = Astro.props;
+
+const evidenceLabel: Record<Offer["evidence"], string> = {
+  official: "official",
+  community: "community",
+  unverified: "unverified",
+};
+---
+
+<article class="offer-card">
+  <div class="offer-head">
+    <h3 class="offer-name">{offer.name}</h3>
+    <StatusBadge status={offer.status} />
+  </div>
+  <p class="offer-provider">{offer.provider}</p>
+  <p class="offer-desc">{offer.description}</p>
+
+  <ul class="offer-facts">
+    {offer.expiry && <li><span class="fact-label">Expiry</span> {offer.expiry}</li>}
+    {offer.limits && <li><span class="fact-label">Limits</span> {offer.limits}</li>}
+    <li>
+      <span class="fact-label">Evidence</span>
+      <span class:list={["evidence-tag", offer.evidence === "community" && "evidence-caution"]}>
+        {evidenceLabel[offer.evidence]}
+      </span>
+    </li>
+  </ul>
+
+  {offer.caveat && <p class="offer-note">{offer.caveat}</p>}
+  {!offer.caveat && offer.source && <p class="offer-note">Source: {offer.source}</p>}
+
+  {offer.actionUrl && (
+    <a class="btn btn-primary offer-action" href={offer.actionUrl} rel="noopener" target="_blank">
+      View offer
+    </a>
+  )}
+</article>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import OfferCard from "../components/OfferCard.astro";
+import ExpiryList from "../components/ExpiryList.astro";
+import { offers } from "../content/offers";
+import { activeOffers } from "../lib/offers";
+
+const active = activeOffers(offers);
+
+const categories: { key: "limited-time" | "platform" | "application"; label: string; blurb: string }[] = [
+  { key: "limited-time", label: "Limited-time", blurb: "Campaigns and zero-price lanes that may disappear." },
+  { key: "platform", label: "Platforms", blurb: "Recurring free model catalogs and gateways." },
+  { key: "application", label: "Applications", blurb: "Offers requiring project, student, or application status." },
+];
+---
+
+<BaseLayout title="eggx — offer directory" description="Curated free and limited-time offers for AI coding and agent workflows.">
+  <div class="container">
+    <header class="site-header">
+      <h1>eggx</h1>
+      <p>Verified free offers for AI coding and agent workflows.</p>
+    </header>
+
+    <nav class="category-scroller" aria-label="Categories">
+      <a class="category-chip" href="#limited-time">
+        Limited-time
+      </a>
+      <a class="category-chip" href="#platform">
+        Platforms
+      </a>
+      <a class="category-chip" href="#application">
+        Applications
+      </a>
+    </nav>
+
+    <div class="layout-grid">
+      <div class="main-col">
+        {categories.map((group) => {
+          const groupOffers = active.filter((o) => o.category === group.key);
+          if (!groupOffers.length) return null;
+          return (
+            <section id={group.key} class="offer-group">
+              <h2 class="section-title">{group.label}</h2>
+              <p class="group-blurb">{group.blurb}</p>
+              {groupOffers.map((offer) => <OfferCard offer={offer} />)}
+            </section>
+          );
+        })}
+      </div>
+
+      <aside class="rail-col">
+        <ExpiryList offers={active} />
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

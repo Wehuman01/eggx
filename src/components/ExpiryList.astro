@@ -1,0 +1,30 @@
+---
+import type { Offer } from "../lib/schema";
+import { expiryOrder } from "../lib/offers";
+
+interface Props {
+  offers: Offer[];
+}
+
+const { offers } = Astro.props;
+
+// Only entries with a known end date belong in the expiry list.
+const expiring = expiryOrder(offers.filter((o) => o.expiry));
+---
+
+<section class="expiry-rail" aria-label="Offers expiring soon">
+  <h3>Expiring soon</h3>
+  {expiring.length > 0 ? (
+    <ul class="expiry-list">
+      {expiring.map((offer) => (
+        <li class="expiry-item">
+          <div class="expiry-date">{offer.expiry}</div>
+          <div class="expiry-name">{offer.name}</div>
+          <div class="expiry-provider">{offer.provider}</div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="expiry-empty">No dated expirations currently tracked.</p>
+  )}
+</section>

@@ -1,0 +1,390 @@
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf8f5;
+  --moss: #4a5d23;
+  --orange: #c75b2a;
+  --muted: #6b6b6b;
+  --border: #e5e0d8;
+  --card-bg: #ffffff;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+.site-header {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.site-header h1 {
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.site-header p {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  margin-top: 0.25rem;
+}
+
+.category-scroller {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: none;
+}
+
+.category-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.category-chip {
+  flex: 0 0 auto;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  scroll-snap-align: start;
+  cursor: pointer;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+
+.category-chip:hover {
+  border-color: var(--ink);
+}
+
+.layout-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+.main-col {
+  min-width: 0;
+}
+
+.rail-col {
+  min-width: 0;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.offer-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+  color: inherit;
+}
+
+.offer-card:hover {
+  border-color: var(--ink);
+}
+
+.offer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-verified {
+  background: #e8f0e0;
+  color: var(--moss);
+}
+
+.badge-provisional {
+  background: #fff3e0;
+  color: var(--orange);
+}
+
+.badge-expiring {
+  background: #fde8e8;
+  color: #b91c1c;
+}
+
+.badge-archived {
+  background: #f3f4f6;
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #a8451d;
+  text-decoration: none;
+}
+
+.expiry-rail {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.expiry-rail h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.expiry-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.expiry-item:last-child {
+  border-bottom: none;
+}
+
+.expiry-date {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.expiry-name {
+  color: var(--muted);
+  margin-top: 0.125rem;
+}
+
+.expiry-provider {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.prose {
+  max-width: 680px;
+  line-height: 1.75;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.prose ul {
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.offer-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.offer-name {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.offer-provider {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  margin-top: 0.125rem;
+}
+
+.offer-desc {
+  color: #333;
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.offer-facts {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.offer-facts li {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.fact-label {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--ink);
+  margin-right: 0.375rem;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.03em;
+}
+
+.evidence-tag {
+  text-transform: capitalize;
+}
+
+.evidence-caution {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.offer-note {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  background: #f7f4ef;
+  border-left: 3px solid var(--orange);
+  padding: 0.5rem 0.625rem;
+  border-radius: 4px;
+}
+
+.offer-action {
+  margin-top: 1rem;
+}
+
+.offer-group {
+  margin-bottom: 2rem;
+}
+
+.group-blurb {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin: -0.5rem 0 1rem;
+}
+
+.expiry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.expiry-empty {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.empty {
+  color: var(--muted);
+}
+
+.provider-facts {
+  margin-bottom: 1.5rem;
+}

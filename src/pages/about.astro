@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="About — eggx"
+  description="How eggx verifies offers, what evidence means, and why free is not unlimited."
+>
+  <div class="container">
+    <header class="site-header">
+      <h1>About</h1>
+      <p>Editorial policy, evidence standards, and honest limits.</p>
+    </header>
+
+    <div class="prose">
+      <h2>Evidence standards</h2>
+      <p>
+        Every offer carries an evidence level that says how confident we are that
+        it currently works:
+      </p>
+      <ul>
+        <li>
+          <strong>official</strong> — current provider documentation or program
+          page confirms the offer.
+        </li>
+        <li>
+          <strong>community</strong> — multiple reproducible reports exist, but the
+          provider's terms are incomplete or ambiguous.
+        </li>
+        <li>
+          <strong>unverified</strong> — a useful lead whose official evidence has
+          not yet been found.
+        </li>
+      </ul>
+      <p>
+        A third-party source can lead to an entry, but it can never be the only
+        evidence. We mark provisional and community reports clearly instead of
+        presenting them as confirmed.
+      </p>
+
+      <h2>Free is not unlimited</h2>
+      <p>
+        A free offer rarely means an unlimited one. Unknown rate limits stay
+        unknown: we show them as <em>not published</em> rather than inferring
+        they are unlimited. Read each offer's limits and access requirements
+        before relying on it, especially for production or high-volume work.
+      </p>
+
+      <h2>Policy</h2>
+      <p>
+        eggx is a read-only directory. It collects no user data and stores no
+        secrets. Removed or expired offers are archived rather than deleted, so the
+        public audit trail is preserved. An unavailable source is shown as a prior
+        verification — never as evidence of continued availability.
+      </p>
+    </div>
+  </div>
+</BaseLayout>
