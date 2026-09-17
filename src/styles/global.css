@@ -84,6 +84,34 @@ h3 {
   margin-top: 0.25rem;
 }
 
+.sidebar-brand .brand-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-brand .brand-row:hover {
+  text-decoration: none;
+}
+
+.sidebar-brand .brand-logo {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+}
+
+.sidebar-brand .logo-egg {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+}
+
+.sidebar-brand .logo-x {
+  stroke: var(--moss);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+}
+
 .nav-group-label {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -121,10 +149,35 @@ h3 {
   font-weight: 600;
 }
 
-.lang-switch {
+.sidebar-actions {
   margin-top: auto;
-  align-self: flex-start;
-  padding: 0.4rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.github-star {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex: none;
+}
+
+.github-star:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.lang-switch {
+  padding: 0.4rem 0.625rem;
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.875rem;
@@ -218,27 +271,16 @@ h3 {
     font-size: 0.875rem;
   }
 
-.github-star {
-  margin-top: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--ink);
-}
+  .sidebar-actions {
+    display: contents;
+  }
 
-.github-star:hover {
-  border-color: var(--ink);
-  background: var(--paper);
-  text-decoration: none;
-}
+  .github-star {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+  }
 
-.lang-switch {
-    margin-top: 0;
+  .lang-switch {
     margin-left: auto;
     padding: 0.25rem 0.625rem;
     flex: none;
@@ -442,6 +484,12 @@ h3 {
 .prose p {
   margin-bottom: 1rem;
   color: #333;
+}
+
+.prose img.qrcode {
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
 }
 
 .prose ul {

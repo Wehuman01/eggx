@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import type { Locale, RouteKey } from "../lib/i18n";
-import { UI, pageUrl, altLocale } from "../lib/i18n";
+import { UI, pageUrl, altLocale, withBase } from "../lib/i18n";
 
 interface Props {
   locale: Locale;
@@ -32,6 +32,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,7 +46,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <div class="shell">
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <a class="brand-name" href={pageUrl(locale, "/")}>eggx</a>
+          <a class="brand-row" href={pageUrl(locale, "/")}>
+            <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+              <path
+                class="logo-egg"
+                d="M32 6 C 26 6 18 15.5 15.5 25 C 13 34.5 15.5 46 22 52.5 C 26.5 57 37.5 57 42 52.5 C 48.5 46 51 34.5 48.5 25 C 46 15.5 38 6 32 6 Z"
+              />
+              <line class="logo-x" x1="24" y1="24" x2="40" y2="40" />
+              <line class="logo-x" x1="40" y1="24" x2="24" y2="40" />
+            </svg>
+            <span class="brand-name">eggx</span>
+          </a>
           <p class="brand-tagline">{ui.siteTagline}</p>
         </div>
 
@@ -77,11 +88,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           </ul>
         </nav>
 
-        <a class="github-star" href="https://github.com/wehuman01/eggx" rel="noopener" target="_blank">
-          ★ {ui.githubStar}
-        </a>
-
-        <a class="lang-switch" href={langUrl}>{ui.langName}</a>
+        <div class="sidebar-actions">
+          <a class="github-star" href="https://github.com/wehuman01/eggx" rel="noopener" target="_blank">★ GitHub</a>
+          <a class="lang-switch" href={langUrl}>{ui.langName}</a>
+        </div>
       </aside>
 
       <main class="main">

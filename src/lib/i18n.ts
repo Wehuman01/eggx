@@ -48,7 +48,6 @@ export interface UIStrings {
   limitsLabel: string;
   expiryLabel: string;
   emptyList: string;
-  githubStar: string;
   langName: string;
   htmlLang: string;
 }
@@ -79,7 +78,6 @@ const zh: UIStrings = {
   limitsLabel: "限额",
   expiryLabel: "到期",
   emptyList: "这里暂时没有羊毛。",
-  githubStar: "去 GitHub 加星",
   langName: "English",
   htmlLang: "zh-CN",
 };
@@ -110,7 +108,6 @@ const en: UIStrings = {
   limitsLabel: "Limits",
   expiryLabel: "Ends",
   emptyList: "No offers here right now.",
-  githubStar: "Star on GitHub",
   langName: "中文",
   htmlLang: "en",
 };
