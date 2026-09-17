@@ -2,23 +2,23 @@
 import BaseLayout from "../../components/BaseLayout.astro";
 import OfferCard from "../../components/OfferCard.astro";
 import { offers } from "../../content/offers";
-import { activeOffers, byKind, byAccess, expiryOrder } from "../../lib/offers";
+import { activeOffers, byAccess } from "../../lib/offers";
 import { UI } from "../../lib/i18n";
 
 const ui = UI.en;
-const list = expiryOrder(byAccess(byKind(activeOffers(offers), "long-term"), "public"));
+const list = byAccess(activeOffers(offers), "application");
 ---
 
 <BaseLayout
   locale="en"
-  route="/long-term/"
-  title="Long-term offers — eggx"
-  description={ui.longTermBlurb}
+  route="/application/"
+  title="Application offers — eggx"
+  description={ui.applicationBlurb}
 >
   <div class="main-inner">
     <header class="page-head">
-      <h1>{ui.longTermTitle}</h1>
-      <p>{ui.longTermBlurb}</p>
+      <h1>{ui.applicationTitle}</h1>
+      <p>{ui.applicationBlurb}</p>
     </header>
 
     {list.length > 0 ? (

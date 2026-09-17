@@ -18,6 +18,7 @@ const langUrl = pageUrl(altLocale(locale), route);
 const navDeals = [
   { route: "/", label: ui.navTemporary },
   { route: "/long-term/", label: ui.navLongTerm },
+  { route: "/application/", label: ui.navApplication },
 ] as const;
 
 const navMore = [{ route: "/about/", label: ui.navAbout }] as const;
@@ -75,6 +76,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             })}
           </ul>
         </nav>
+
+        <a class="github-star" href="https://github.com/wehuman01/eggx" rel="noopener" target="_blank">
+          ★ {ui.githubStar}
+        </a>
 
         <a class="lang-switch" href={langUrl}>{ui.langName}</a>
       </aside>

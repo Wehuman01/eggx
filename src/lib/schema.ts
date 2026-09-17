@@ -1,5 +1,5 @@
 export type OfferKind = "temporary" | "long-term";
-export type OfferAccess = "public" | "invite" | "student" | "application";
+export type OfferAccess = "public" | "application";
 export type Locale = "zh" | "en";
 
 export interface LocalizedOffer {
@@ -26,7 +26,7 @@ export interface Offer {
 }
 
 const KINDS: readonly OfferKind[] = ["temporary", "long-term"];
-const ACCESSES: readonly OfferAccess[] = ["public", "invite", "student", "application"];
+const ACCESSES: readonly OfferAccess[] = ["public", "application"];
 const LOCALES: readonly Locale[] = ["zh", "en"];
 
 function validateLocalized(obj: Record<string, unknown>, field: string, id: string): LocalizedOffer {

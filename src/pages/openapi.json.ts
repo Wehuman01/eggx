@@ -181,7 +181,7 @@ export const GET: APIRoute = () => {
             },
             access: {
               type: "string",
-              enum: ["public", "invite", "student", "application"],
+              enum: ["public", "application"],
             },
             verified: { type: "boolean" },
             archived: { type: "boolean" },

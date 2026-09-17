@@ -1,4 +1,4 @@
-import type { Offer, OfferKind } from "./schema";
+import type { Offer, OfferKind, OfferAccess } from "./schema";
 
 export function activeOffers(offers: readonly Offer[]): Offer[] {
   return offers.filter((o) => !o.archived);
@@ -6,6 +6,10 @@ export function activeOffers(offers: readonly Offer[]): Offer[] {
 
 export function byKind(offers: readonly Offer[], kind: OfferKind): Offer[] {
   return offers.filter((o) => o.kind === kind);
+}
+
+export function byAccess(offers: readonly Offer[], access: OfferAccess): Offer[] {
+  return offers.filter((o) => o.access === access);
 }
 
 export function providerLookup(offers: readonly Offer[], provider: string): Offer[] {

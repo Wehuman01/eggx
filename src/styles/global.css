@@ -218,7 +218,26 @@ h3 {
     font-size: 0.875rem;
   }
 
-  .lang-switch {
+.github-star {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.github-star:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.lang-switch {
     margin-top: 0;
     margin-left: auto;
     padding: 0.25rem 0.625rem;
@@ -287,12 +306,6 @@ h3 {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-}
-
-.tag-access {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  color: var(--muted);
 }
 
 .tag-verified {

@@ -20,9 +20,9 @@ describe("offer schema", () => {
     expect(kinds).toHaveLength(2);
   });
 
-  it("access has exactly four values", () => {
-    const accesses: OfferAccess[] = ["public", "invite", "student", "application"];
-    expect(accesses).toHaveLength(4);
+  it("access has exactly two values: public and application", () => {
+    const accesses: OfferAccess[] = ["public", "application"];
+    expect(accesses).toHaveLength(2);
   });
 
   it("validates a well-formed offer with zh/en objects", () => {

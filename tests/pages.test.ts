@@ -8,9 +8,11 @@ describe("eggx build output pages", () => {
   const expectedPages = [
     "index.html",
     path.join("long-term", "index.html"),
+    path.join("application", "index.html"),
     path.join("about", "index.html"),
     path.join("en", "index.html"),
     path.join("en", "long-term", "index.html"),
+    path.join("en", "application", "index.html"),
     path.join("en", "about", "index.html"),
   ];
 

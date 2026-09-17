@@ -3,10 +3,11 @@ import type { APIRoute } from "astro";
 export const GET: APIRoute = () => {
   const text = `# eggx
 
-eggx is a verified free AI coding deals registry. Every entry is a real platform, model, or program you can sign up for or apply to — tracked in two tiers:
+eggx is a verified free AI coding deals registry. Every entry is a real platform, model, or program you can sign up for or apply to — tracked in three tiers:
 
 - **temporary** — limited-time campaigns with a known expiry date, or a caveat when no end date is published.
-- **long-term** — ongoing free tiers, student programs, invite-only hubs, and application-based benefits.
+- **long-term** — ongoing public free tiers and programs you can rely on.
+- **application** — benefits that require an application, verification, or invite to claim; grouped in their own section regardless of duration.
 
 ## Verification
 
@@ -29,9 +30,11 @@ Default language is Chinese (Simplified). English mirror lives under /en/.
 
 - / — temporary offers (default landing)
 - /long-term/ — long-term offers
+- /application/ — application-required offers
 - /about/ — editorial policy
 - /en/ — English temporary offers
 - /en/long-term/ — English long-term offers
+- /en/application/ — English application-required offers
 - /en/about/ — English about
 
 ## API

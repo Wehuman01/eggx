@@ -24,7 +24,6 @@ if (offer.kind === "temporary" && offer.expiry) {
   <div class="offer-head">
     <h3 class="offer-name">{loc.name}</h3>
     <div class="offer-tags">
-      <span class="tag tag-access">{ui.accessLabel[offer.access]}</span>
       <span class:list={["tag", offer.verified ? "tag-verified" : "tag-community"]}>
         {offer.verified ? ui.verifiedTag : ui.communityTag}
       </span>
@@ -54,7 +53,7 @@ if (offer.kind === "temporary" && offer.expiry) {
 
   {offer.actionUrl && (
     <a class="btn btn-primary offer-action" href={offer.actionUrl} rel="noopener" target="_blank">
-      {ui.claimAction}
+      {offer.access === "application" ? ui.applyAction : ui.claimAction}
     </a>
   )}
 
