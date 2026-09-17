@@ -60,6 +60,36 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "workbuddy-intl-free",
+    provider: "Tencent WorkBuddy",
+    kind: "temporary",
+    access: "public",
+    verified: false,
+    expiry: null,
+    url: "https://www.workbuddy.ai/",
+    source: "https://www.tencent.com/zh-cn/tencent-releases-and-open-sources-tencent-hy4-preview/",
+    actionUrl: "https://www.workbuddy.ai/",
+    lastVerified: "2026-09-17",
+    zh: {
+      name: "WorkBuddy 国际版：Hy4 preview + DeepSeek V4.1 Flash 免费",
+      description:
+        "腾讯的 AI 办公工作台，国际版（workbuddy.ai）内置 Claude、GPT、Gemini、混元、DeepSeek 等模型，免翻墙可用。社区报告称国际版当前 Hy4 preview 与 DeepSeek V4.1 Flash 两个模型免费使用：Hy4 preview 是 8 月 28 日开源的腾讯混元 770B MoE 模型（1M 上下文，Terminal Bench 2.1 得分 85.4）；DeepSeek V4.1 Flash 是 9 月 10 日发布的轻量旗舰（552B MoE）。国内版同期为限时折扣（DeepSeek 0.03 倍率、Hy4 闲时免费），国际版更宽松。",
+      limits:
+        "每日免费额度有限，触发限频需等待页面重置；Hy4 preview 不支持图像/视频等多模态任务（走其他模型正常扣积分）；国际版新用户注册送 350 积分",
+      caveat:
+        "国际版免费口径属社区消息（X / 知乎，2026-09-17 核实），官方未单独发布国际版公告，使用前自行确认计费页；GitHub 一键登录有封号报告，建议邮箱注册。",
+    },
+    en: {
+      name: "WorkBuddy International: Hy4 preview + DeepSeek V4.1 Flash Free",
+      description:
+        "Tencent's AI office workbench — the international edition (workbuddy.ai) ships Claude, GPT, Gemini, Hunyuan, and DeepSeek models. Community reports say Hy4 preview and DeepSeek V4.1 Flash are currently free there: Hy4 preview is Tencent Hunyuan's open-source 770B MoE released Aug 28 (1M context, 85.4 on Terminal Bench 2.1); DeepSeek V4.1 Flash is the lightweight flagship released Sep 10 (552B MoE). The domestic edition only discounts in the same window (0.03x DeepSeek rate, off-peak Hy4) — the international one is more generous.",
+      limits:
+        "Daily free quota is rationed; hitting the rate limit waits for the on-page reset. Hy4 preview has no multimodal support (image/video tasks switch models and burn credits normally); international new users get 350 credits",
+      caveat:
+        "The international free terms are community-reported (X / Zhihu, verified 2026-09-17); no official intl announcement — check the billing page before heavy use. GitHub one-click sign-in has ban reports; prefer email signup.",
+    },
+  },
+  {
     id: "aihubmix",
     provider: "AIHubMix",
     kind: "long-term",
@@ -112,6 +142,35 @@ export const offers = validateRegistry([
         ":free models: 20 requests/min; 50 requests/day without top-up, 1000/day after 10 lifetime credits (account-wide, shared across all free models); no limit published for stealth/union-alpha",
       caveat:
         "Daily cap is shared across every :free model on the account; stealth/union-alpha carries no :free suffix and does not count against it.",
+    },
+  },
+  {
+    id: "opencode-zen-free-rotation",
+    provider: "OpenCode",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    url: "https://opencode.ai/zen",
+    source: "https://opencode.ai/docs/zen",
+    actionUrl: "https://opencode.ai/auth",
+    lastVerified: "2026-09-17",
+    zh: {
+      name: "OpenCode Zen 免费车道（长期轮换）",
+      description:
+        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra、Big Pickle、Union Alpha 等先后免费上架，任一时刻通常都有数款模型可零价格调用，当前阵容见官方 pricing 表。限时免费的新模型下架后，车道会补上下一批。",
+      limits:
+        "注册即用，但需绑定支付信息才能取 API key（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
+      caveat:
+        "单个模型都是限时免费、到期即下架车道；免费期间数据政策各不相同——部分模型的数据可能用于改进训练，Union Alpha 例外（零留存）。",
+    },
+    en: {
+      name: "OpenCode Zen Free Lane (Rotating)",
+      description:
+        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Big Pickle, and Union Alpha have all taken a free turn — at any moment several models are callable at price zero. See the official pricing table for today's lineup; as one limited-time model leaves, the next batch lands.",
+      limits:
+        "Sign-up is instant, but billing details are required before an API key (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
+      caveat:
+        "Each model is individually limited-time free and leaves the lane when it ends; data policies vary — some models may use free-period data for training, Union Alpha excepted (zero retention).",
     },
   },
   {
@@ -244,7 +303,7 @@ export const offers = validateRegistry([
     id: "zed",
     provider: "Zed Industries",
     kind: "long-term",
-    access: "public",
+    access: "application",
     verified: true,
     url: "https://zed.dev",
     source: "https://github.com/zed-industries/zed",
