@@ -1,81 +1,54 @@
-# eggx
+<div align="center">
+  <img src="public/favicon.svg" alt="eggx logo" width="112" />
+  <h1>eggx</h1>
+  <p><strong>已核实的 AI 编码羊毛</strong></p>
+  <p>限时活动 · 长期免费层 · 申请通道 — 每条都带官方来源、限额与核实日期。</p>
+  <p>
+    <strong>简体中文</strong> ·
+    <a href="./README_en.md">English</a>
+  </p>
+  <p>
+    <a href="https://eggx.wehuman.top/"><img src="https://img.shields.io/badge/website-eggx.wehuman.top-4a5d23?style=flat-square" alt="eggx.wehuman.top"></a>
+    <img src="https://img.shields.io/badge/license-MIT-22C55E?style=flat-square" alt="License">
+    <img src="https://img.shields.io/github/stars/wehuman01/eggx?style=flat-square" alt="GitHub stars">
+  </p>
+</div>
 
-A mobile-first directory of verified free AI coding and agent offers — for humans and for agents.
+> 👉 **[eggx.wehuman.top](https://eggx.wehuman.top/)** — 羊毛来去很快。别看会过期的清单，看一直在核实的目录。
 
-eggx answers one question: **what can I claim for free right now to build with AI?** It tracks temporary campaigns and long-term free tiers — open platforms, student programs, invite-only hubs, and application-based benefits — each with honest limits, verified status, official sources, and the date it was last confirmed.
+## 为什么是 eggx
 
-## Why
+免费的 AI 编码额度每周都在出现和消失，大多数“免费资源大全”没人复查，慢慢就烂掉了。
 
-Free AI offers appear and vanish weekly. Most lists rot because nobody re-checks them. eggx treats an offer as a small claim with evidence: a source URL, a verified flag, a kind (temporary / long-term), and a `lastVerified` date. Unknown limits are shown as "not published" — never as "unlimited".
+eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度？** 每条羊毛都是一个小结论，带四样证据：官方来源链接、可信度标签、真实限额、最后核实日期。
 
-## Site
+## 三种羊毛
 
-- `/` — temporary offers (default landing, Chinese)
-- `/long-term/` — long-term offers
-- `/about/` — editorial policy
-- `/en/` — English temporary offers
-- `/en/long-term/` — English long-term offers
-- `/en/about/` — English about
+| 栏目 | 收什么 | 入口 |
+| --- | --- | --- |
+| 临时羊毛 | 公开限时活动，按到期时间排序，带倒计时 | [eggx.wehuman.top](https://eggx.wehuman.top/) |
+| 长期羊毛 | 持续供应的免费额度与计划，稳定可依赖 | [/long-term](https://eggx.wehuman.top/long-term/) |
+| 申请羊毛 | 需申请、认证或人工审核才能领取的 | [/application](https://eggx.wehuman.top/application/) |
 
-## Agent API
+## 诚实优先
 
-Anonymous, read-only, statically generated, cacheable. All JSON responses carry `X-API-Version: 2` and `schemaVersion: "2.0"`.
+- **官方核实 / 社区消息** — 每条羊毛都带可信度标签：由官方文档确认的，还是社区报告待二次确认的。第三方来源只能引导收录，永远不能作为唯一依据。
+- **免费 ≠ 无限** — 未公布的限额就一直写“未公布”，从不推测成“无限”。依赖前请先读每条的限额与获取方式。
+- **过期只归档，不删除** — 保留公开的审计轨迹。一条来源失效只代表它曾经的核实记录，绝不代表它仍然可用。
 
-| Endpoint | Description |
-| --- | --- |
-| `GET /api/v1/offers` | All active (non-archived) offers |
-| `GET /api/v1/offers/:id.json` | One offer by ID |
-| `GET /api/v1/providers/:slug.json` | Offers grouped by provider slug |
-| `GET /api/v1/snapshot.json` | Schema-versioned full registry (non-archived) |
-| `GET /api/v1/changes.json?since=ISO8601` | Change feed |
+## 人看网站，Agent 走接口
 
-Text fields (`name`, `description`, `limits`, `caveat`) are bilingual objects: `{zh: string, en: string}`. `limits` and `caveat` may also be `null`.
+eggx 同时为人类和 Agent 设计：内容双语（中文默认，[`/en/`](https://eggx.wehuman.top/en/) 英文），外加静态、免鉴权的机器接口：
 
-`kind` is one of `temporary` | `long-term`. `access` is one of `public` | `invite` | `student` | `application`. `verified` is a boolean. `archived` is a boolean (default `false`); archived entries are excluded from listings but retained in history.
+- [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — Agent 使用指南
+- [`/api/v1/offers`](https://eggx.wehuman.top/api/v1/offers) — 全部在架羊毛（JSON）
+- [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS 订阅
+- [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — 完整 API 说明
 
-Endpoints are static JSON files on GitHub Pages; URLs include the `.json` extension.
+## 参与进来
 
-Also served: `/feed.xml` (RSS 2.0, Chinese default), `/llms.txt` (agent guide), `/openapi.json` (OpenAPI 3.1).
-
-```bash
-curl https://wehuman01.github.io/eggx/api/v1/offers
-curl https://wehuman01.github.io/eggx/api/v1/snapshot | jq '.data[0]'
-```
-
-Static endpoints mean query parameters are advisory in `changes` (documented in OpenAPI); do full-sync via `snapshot`.
-
-## Content model
-
-Source of truth: `src/content/offers.ts` (validated at import time).
-
-- **kind**: `temporary` | `long-term`
-- **access**: `public` | `invite` | `student` | `application`
-- **verified**: boolean — official-channel or direct-evidence confirmation
-- **archived**: boolean — excluded from public listings, kept in history
-
-Rules enforced by tests:
-
-- every non-archived offer carries an http(s) `source`, an http(s) `actionUrl`, and a `lastVerified` date (`YYYY-MM-DD`)
-- `temporary` offers must have an `expiry` date or a non-empty `zh.caveat`
-- `expiry` dates may not be in the past
-- `zh.name` and `en.name` are non-empty strings; same for `description`
-- `archived` offers stay in history; they are never silently deleted
-
-## Develop
-
-```bash
-npm install
-npm run dev     # local dev
-npm test        # vitest (run once)
-npm run check   # astro check
-npm run build   # static build to dist/
-```
-
-Tests that assert build output assume `npm run build` has already run — same as CI.
-
-## Deploy
-
-GitHub Actions builds on push to `main` and publishes `dist/` to GitHub Pages. Pages source must be set to **GitHub Actions** (Settings → Pages → Build and deployment → Source).
+- 发现新羊毛？提 [Issue](https://github.com/wehuman01/eggx/issues) 推荐，附上官方来源链接。
+- 觉得有用？去 [GitHub 加个星](https://github.com/wehuman01/eggx) ★，让更多人看到。
 
 ## License
 
