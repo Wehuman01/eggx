@@ -8,11 +8,13 @@ export const GET: APIRoute = () => {
     .map((o) => {
       const s = serializeOffer(o);
       const link = s.url ?? s.actionUrl ?? "";
+      const title = typeof s.name === "string" ? s.name : s.name.zh;
+      const description = typeof s.description === "string" ? s.description : s.description.zh;
       return `<item>
-          <title>${escapeXml(s.name)}</title>
+          <title>${escapeXml(title)}</title>
           <link>${escapeXml(link)}</link>
           <guid isPermaLink="false">${escapeXml(s.id)}</guid>
-          <description>${escapeXml(s.description)}</description>
+          <description>${escapeXml(description)}</description>
           ${s.expiresAt ? `<expiry>${escapeXml(s.expiresAt)}</expiry>` : ""}
         </item>`;
     })
@@ -21,9 +23,9 @@ export const GET: APIRoute = () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>eggx offers</title>
+    <title>eggx 羊毛</title>
     <link>/feed.xml</link>
-    <description>eggx limited-time AI platform offers</description>
+    <description>已核实的 AI 编码羊毛与免费平台目录</description>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <generator>eggx</generator>
     ${items}
@@ -34,7 +36,7 @@ export const GET: APIRoute = () => {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
       "Cache-Control": "public, max-age=300",
-      "X-API-Version": "1",
+      "X-API-Version": "2",
     },
   });
 };

@@ -1,48 +1,57 @@
-export type OfferCategory = "limited-time" | "platform" | "application";
+export type OfferKind = "temporary" | "long-term";
 export type OfferAccess = "public" | "invite" | "student" | "application";
-export type OfferEvidence = "official" | "community" | "unverified";
-export type OfferStatus = "verified" | "provisional" | "expiring" | "archived";
+export type Locale = "zh" | "en";
+
+export interface LocalizedOffer {
+  name: string;
+  description: string;
+  limits?: string;
+  caveat?: string;
+}
 
 export interface Offer {
   id: string;
-  name: string;
   provider: string;
-  category: OfferCategory;
+  kind: OfferKind;
   access: OfferAccess;
-  evidence: OfferEvidence;
-  status: OfferStatus;
-  description: string;
+  verified: boolean;
+  archived?: boolean;
+  expiry?: string | null;
   url?: string;
   source?: string;
   actionUrl?: string;
-  limits?: string;
-  expiry?: string | null;
-  caveat?: string;
   lastVerified?: string;
+  zh: LocalizedOffer;
+  en: LocalizedOffer;
 }
 
-const CATEGORIES: readonly OfferCategory[] = [
-  "limited-time",
-  "platform",
-  "application",
-];
-const ACCESSES: readonly OfferAccess[] = [
-  "public",
-  "invite",
-  "student",
-  "application",
-];
-const EVIDENCES: readonly OfferEvidence[] = [
-  "official",
-  "community",
-  "unverified",
-];
-const STATUSES: readonly OfferStatus[] = [
-  "verified",
-  "provisional",
-  "expiring",
-  "archived",
-];
+const KINDS: readonly OfferKind[] = ["temporary", "long-term"];
+const ACCESSES: readonly OfferAccess[] = ["public", "invite", "student", "application"];
+const LOCALES: readonly Locale[] = ["zh", "en"];
+
+function validateLocalized(obj: Record<string, unknown>, field: string, id: string): LocalizedOffer {
+  const value = obj[field];
+  if (!value || typeof value !== "object") {
+    throw new Error(`Offer.${field} must be an object (${id})`);
+  }
+  const loc = value as Record<string, unknown>;
+  if (typeof loc.name !== "string" || loc.name.length === 0) {
+    throw new Error(`Offer.${field}.name must be a non-empty string (${id})`);
+  }
+  if (typeof loc.description !== "string" || loc.description.length === 0) {
+    throw new Error(`Offer.${field}.description must be a non-empty string (${id})`);
+  }
+  const result: LocalizedOffer = { name: loc.name, description: loc.description };
+  for (const key of ["limits", "caveat"] as const) {
+    if (loc[key] !== undefined) {
+      if (typeof loc[key] !== "string") {
+        throw new Error(`Offer.${field}.${key} must be a string (${id})`);
+      }
+      result[key] = loc[key] as string;
+    }
+  }
+  return result;
+}
 
 export function validateOffer(o: unknown): Offer {
   if (!o || typeof o !== "object") {
@@ -50,86 +59,48 @@ export function validateOffer(o: unknown): Offer {
   }
   const obj = o as Record<string, unknown>;
 
-  if (typeof obj.id !== "string") {
-    throw new Error("Offer.id must be a string");
+  if (typeof obj.id !== "string" || obj.id.length === 0) {
+    throw new Error("Offer.id must be a non-empty string");
   }
-  if (typeof obj.name !== "string") {
-    throw new Error("Offer.name must be a string");
+  if (typeof obj.provider !== "string" || obj.provider.length === 0) {
+    throw new Error("Offer.provider must be a non-empty string");
   }
-  if (typeof obj.provider !== "string") {
-    throw new Error("Offer.provider must be a string");
-  }
-  if (!CATEGORIES.includes(obj.category as OfferCategory)) {
-    throw new Error(`Invalid category: ${obj.category}`);
+  if (!KINDS.includes(obj.kind as OfferKind)) {
+    throw new Error(`Invalid kind: ${obj.kind}`);
   }
   if (!ACCESSES.includes(obj.access as OfferAccess)) {
     throw new Error(`Invalid access: ${obj.access}`);
   }
-  if (!EVIDENCES.includes(obj.evidence as OfferEvidence)) {
-    throw new Error(`Invalid evidence: ${obj.evidence}`);
+  if (typeof obj.verified !== "boolean") {
+    throw new Error("Offer.verified must be a boolean");
   }
-  if (!STATUSES.includes(obj.status as OfferStatus)) {
-    throw new Error(`Invalid status: ${obj.status}`);
+  if (obj.archived !== undefined && typeof obj.archived !== "boolean") {
+    throw new Error("Offer.archived must be a boolean");
   }
-  if (typeof obj.description !== "string") {
-    throw new Error("Offer.description must be a string");
+  for (const field of ["url", "source", "actionUrl", "lastVerified"] as const) {
+    if (obj[field] !== undefined && typeof obj[field] !== "string") {
+      throw new Error(`Offer.${field} must be a string`);
+    }
+  }
+  if (obj.expiry !== undefined && obj.expiry !== null && typeof obj.expiry !== "string") {
+    throw new Error("Offer.expiry must be a string or null");
   }
 
-  const offer: Offer = {
+  return {
     id: obj.id,
-    name: obj.name,
     provider: obj.provider,
-    category: obj.category as OfferCategory,
+    kind: obj.kind as OfferKind,
     access: obj.access as OfferAccess,
-    evidence: obj.evidence as OfferEvidence,
-    status: obj.status as OfferStatus,
-    description: obj.description,
+    verified: obj.verified,
+    ...(obj.archived !== undefined ? { archived: obj.archived as boolean } : {}),
+    ...(obj.expiry !== undefined ? { expiry: obj.expiry as string | null } : {}),
+    ...(obj.url !== undefined ? { url: obj.url as string } : {}),
+    ...(obj.source !== undefined ? { source: obj.source as string } : {}),
+    ...(obj.actionUrl !== undefined ? { actionUrl: obj.actionUrl as string } : {}),
+    ...(obj.lastVerified !== undefined ? { lastVerified: obj.lastVerified as string } : {}),
+    zh: validateLocalized(obj, "zh", obj.id),
+    en: validateLocalized(obj, "en", obj.id),
   };
-
-  if (obj.url !== undefined) {
-    if (typeof obj.url !== "string") {
-      throw new Error("Offer.url must be a string");
-    }
-    offer.url = obj.url;
-  }
-  if (obj.source !== undefined) {
-    if (typeof obj.source !== "string") {
-      throw new Error("Offer.source must be a string");
-    }
-    offer.source = obj.source;
-  }
-  if (obj.actionUrl !== undefined) {
-    if (typeof obj.actionUrl !== "string") {
-      throw new Error("Offer.actionUrl must be a string");
-    }
-    offer.actionUrl = obj.actionUrl;
-  }
-  if (obj.limits !== undefined) {
-    if (typeof obj.limits !== "string") {
-      throw new Error("Offer.limits must be a string");
-    }
-    offer.limits = obj.limits;
-  }
-  if (obj.expiry !== undefined && obj.expiry !== null) {
-    if (typeof obj.expiry !== "string") {
-      throw new Error("Offer.expiry must be a string or null");
-    }
-    offer.expiry = obj.expiry;
-  }
-  if (obj.caveat !== undefined) {
-    if (typeof obj.caveat !== "string") {
-      throw new Error("Offer.caveat must be a string");
-    }
-    offer.caveat = obj.caveat;
-  }
-  if (obj.lastVerified !== undefined) {
-    if (typeof obj.lastVerified !== "string") {
-      throw new Error("Offer.lastVerified must be a string");
-    }
-    offer.lastVerified = obj.lastVerified;
-  }
-
-  return offer;
 }
 
 export function validateRegistry(offers: unknown[]): Offer[] {
@@ -137,4 +108,8 @@ export function validateRegistry(offers: unknown[]): Offer[] {
     throw new Error("Registry must be an array");
   }
   return offers.map(validateOffer);
+}
+
+export function isLocale(value: string): value is Locale {
+  return LOCALES.includes(value as Locale);
 }

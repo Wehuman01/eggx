@@ -5,7 +5,7 @@ import { offers } from "../../../content/offers";
 export const GET: APIRoute = () => {
   const data = activeOnly(offers).map(serializeOffer);
   return jsonResponse({
-    schemaVersion: "1.0",
+    schemaVersion: "2.0",
     generatedAt: new Date().toISOString(),
     data,
   });

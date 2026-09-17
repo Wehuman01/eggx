@@ -9,7 +9,7 @@ export const GET: APIRoute = ({ params }) => {
     return jsonResponse({ error: "Provider not found" }, 404);
   }
   return jsonResponse({
-    schemaVersion: "1.0",
+    schemaVersion: "2.0",
     data: matched.map(serializeOffer),
   });
 };

@@ -1,57 +1,69 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
+import { UI } from "../lib/i18n";
+
+const ui = UI.zh;
 ---
 
 <BaseLayout
-  title="About — eggx"
-  description="How eggx verifies offers, what evidence means, and why free is not unlimited."
+  locale="zh"
+  route="/about/"
+  title="关于 — eggx"
+  description="eggx 的编辑准则：核实规则、免费不等于无限、只读目录。"
 >
-  <div class="container">
-    <header class="site-header">
-      <h1>About</h1>
-      <p>Editorial policy, evidence standards, and honest limits.</p>
-    </header>
-
+  <div class="main-inner">
     <div class="prose">
-      <h2>Evidence standards</h2>
+      <h1>{ui.navAbout}</h1>
+
+      <h2>两种羊毛</h2>
       <p>
-        Every offer carries an evidence level that says how confident we are that
-        it currently works:
+        这里的羊毛只分为两类：
       </p>
       <ul>
         <li>
-          <strong>official</strong> — current provider documentation or program
-          page confirms the offer.
+          <strong>临时羊毛</strong> — 限时活动，一般有截止日期，过期不候，
+          按到期时间排序。
         </li>
         <li>
-          <strong>community</strong> — multiple reproducible reports exist, but the
-          provider's terms are incomplete or ambiguous.
+          <strong>长期羊毛</strong> — 持续供应的免费额度与计划，稳定可依赖，
+          但仍有各自的使用限制。
+        </li>
+      </ul>
+
+      <h2>官方核实 vs 社区消息</h2>
+      <p>
+        每条羊毛都带一个可信度标签：
+      </p>
+      <ul>
+        <li>
+          <strong>官方核实</strong> — 由官方文档或项目页确认当前仍可领取。
         </li>
         <li>
-          <strong>unverified</strong> — a useful lead whose official evidence has
-          not yet been found.
+          <strong>社区消息</strong> — 有可复现的社区报告，但官方声明不完整或含混，
+          需要你自行二次确认。
         </li>
       </ul>
       <p>
-        A third-party source can lead to an entry, but it can never be the only
-        evidence. We mark provisional and community reports clearly instead of
-        presenting them as confirmed.
+        第三方来源可以引导我们收录，但永远不能作为唯一依据。无法确认的消息
+        会明确标注，而不是当作已核实。
       </p>
 
-      <h2>Free is not unlimited</h2>
+      <h2>免费不等于无限</h2>
       <p>
-        A free offer rarely means an unlimited one. Unknown rate limits stay
-        unknown: we show them as <em>not published</em> rather than inferring
-        they are unlimited. Read each offer's limits and access requirements
-        before relying on it, especially for production or high-volume work.
+        免费很少意味着无限。未公布的限额就一直保持未公布：我们标注为
+        “未公布”，而不是推测它没有上限。依赖前请先读每条羊毛的限额与获取方式，
+        尤其在高负载或生产环境的场景下。
       </p>
 
-      <h2>Policy</h2>
+      <h2>过期羊毛只归档，不删除</h2>
       <p>
-        eggx is a read-only directory. It collects no user data and stores no
-        secrets. Removed or expired offers are archived rather than deleted, so the
-        public audit trail is preserved. An unavailable source is shown as a prior
-        verification — never as evidence of continued availability.
+        已过期或下架的羊毛会归档保留，而不是删除，以保留公开的审计轨迹。
+        一个来源不可用只代表它曾经的核实记录，绝不代表它仍然可用。
+      </p>
+
+      <h2>只读目录</h2>
+      <p>
+        eggx 是一个只读的静态目录：不采集任何用户数据，也不存储任何密钥。
       </p>
     </div>
   </div>

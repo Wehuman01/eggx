@@ -1,56 +1,69 @@
 ---
 import type { Offer } from "../lib/schema";
-import StatusBadge from "./StatusBadge.astro";
+import type { Locale } from "../lib/i18n";
+import { UI } from "../lib/i18n";
+import { daysUntil } from "../lib/offers";
 
 interface Props {
   offer: Offer;
+  locale: Locale;
 }
 
-const { offer } = Astro.props;
+const { offer, locale } = Astro.props;
+const ui = UI[locale];
+const loc = offer[locale];
 
-const evidenceLabel: Record<Offer["evidence"], string> = {
-  official: "official",
-  community: "community",
-  unverified: "unverified",
-};
-
-const accessLabel: Record<Offer["access"], string> = {
-  public: "public",
-  invite: "invite",
-  student: "student",
-  application: "application",
-};
+let expiryBadge: string | null = null;
+if (offer.kind === "temporary" && offer.expiry) {
+  const n = daysUntil(offer.expiry);
+  expiryBadge = n <= 0 ? ui.expiringToday : ui.daysLeft(n);
+}
 ---
 
 <article class="offer-card">
   <div class="offer-head">
-    <h3 class="offer-name">{offer.name}</h3>
-    <StatusBadge status={offer.status} />
+    <h3 class="offer-name">{loc.name}</h3>
+    <div class="offer-tags">
+      <span class="tag tag-access">{ui.accessLabel[offer.access]}</span>
+      <span class:list={["tag", offer.verified ? "tag-verified" : "tag-community"]}>
+        {offer.verified ? ui.verifiedTag : ui.communityTag}
+      </span>
+    </div>
   </div>
+
   <p class="offer-provider">{offer.provider}</p>
-  <p class="offer-desc">{offer.description}</p>
+  <p class="offer-desc">{loc.description}</p>
 
   <ul class="offer-facts">
-    <li>
-      <span class="fact-label">Access</span>
-      {accessLabel[offer.access]}
-    </li>
-    {offer.expiry && <li><span class="fact-label">Expiry</span> {offer.expiry}</li>}
-    {offer.limits && <li><span class="fact-label">Limits</span> {offer.limits}</li>}
-    <li>
-      <span class="fact-label">Evidence</span>
-      <span class:list={["evidence-tag", offer.evidence === "community" && "evidence-caution"]}>
-        {evidenceLabel[offer.evidence]}
-      </span>
-    </li>
+    {offer.kind === "temporary" && (
+      <li>
+        <span class="fact-label">{ui.expiryLabel}</span>
+        {offer.expiry ?? <span>{ui.noEndDate}</span>}
+        {expiryBadge && <span class="badge badge-countdown">{expiryBadge}</span>}
+      </li>
+    )}
+    {loc.limits && (
+      <li>
+        <span class="fact-label">{ui.limitsLabel}</span>
+        {loc.limits}
+      </li>
+    )}
   </ul>
 
-  {offer.caveat && <p class="offer-note">{offer.caveat}</p>}
-  {!offer.caveat && offer.source && <p class="offer-note">Source: {offer.source}</p>}
+  {loc.caveat && <p class="offer-caveat">{loc.caveat}</p>}
 
   {offer.actionUrl && (
     <a class="btn btn-primary offer-action" href={offer.actionUrl} rel="noopener" target="_blank">
-      View offer
+      {ui.claimAction}
     </a>
   )}
+
+  <footer class="offer-meta">
+    {offer.source && (
+      <span>
+        {ui.sourceLabel}: <a href={offer.source} rel="noopener" target="_blank">{offer.source}</a>
+      </span>
+    )}
+    {offer.lastVerified && <span>{ui.verifiedOn(offer.lastVerified)}</span>}
+  </footer>
 </article>

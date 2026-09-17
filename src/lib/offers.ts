@@ -1,7 +1,11 @@
-import type { Offer } from "./schema";
+import type { Offer, OfferKind } from "./schema";
 
 export function activeOffers(offers: readonly Offer[]): Offer[] {
-  return offers.filter((o) => o.status !== "archived");
+  return offers.filter((o) => !o.archived);
+}
+
+export function byKind(offers: readonly Offer[], kind: OfferKind): Offer[] {
+  return offers.filter((o) => o.kind === kind);
 }
 
 export function providerLookup(offers: readonly Offer[], provider: string): Offer[] {
@@ -16,4 +20,10 @@ export function expiryOrder(offers: readonly Offer[]): Offer[] {
     if (!b.expiry) return -1;
     return a.expiry.localeCompare(b.expiry);
   });
+}
+
+export function daysUntil(date: string, now = new Date()): number {
+  const target = new Date(`${date}T00:00:00Z`);
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  return Math.round((target.getTime() - today.getTime()) / 86_400_000);
 }

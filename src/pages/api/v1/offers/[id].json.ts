@@ -7,7 +7,7 @@ export const GET: APIRoute = ({ params }) => {
   if (!offer) {
     return jsonResponse({ error: "Not found" }, 404);
   }
-  return jsonResponse({ schemaVersion: "1.0", data: serializeOffer(offer) });
+  return jsonResponse({ schemaVersion: "2.0", data: serializeOffer(offer) });
 };
 
 export async function getStaticPaths() {

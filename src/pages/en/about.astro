@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import { UI } from "../../lib/i18n";
+
+const ui = UI.en;
+---
+
+<BaseLayout
+  locale="en"
+  route="/about/"
+  title="About — eggx"
+  description="eggx's editorial policy, verification standards, and why free is not unlimited."
+>
+  <div class="main-inner">
+    <div class="prose">
+      <h1>{ui.navAbout}</h1>
+
+      <h2>Two kinds of offers</h2>
+      <p>Offers here fall into exactly two categories:</p>
+      <ul>
+        <li>
+          <strong>Temporary offers</strong> — limited-time campaigns, usually with an
+          end date, sorted by when they expire.
+        </li>
+        <li>
+          <strong>Long-term offers</strong> — recurring free tiers and programs you
+          can rely on, though each still has its own usage limits.
+        </li>
+      </ul>
+
+      <h2>Official vs community</h2>
+      <p>Every offer carries a trust tag:</p>
+      <ul>
+        <li>
+          <strong>official</strong> — current provider documentation or program page
+          confirms the offer.
+        </li>
+        <li>
+          <strong>community</strong> — multiple reproducible reports exist, but the
+          provider's terms are incomplete or ambiguous; treat it as a lead that needs
+          your own second confirmation.
+        </li>
+      </ul>
+      <p>
+        A third-party source can lead to an entry, but it can never be the only
+        evidence. Unconfirmed reports are clearly marked rather than presented as
+        verified.
+      </p>
+
+      <h2>Free is not unlimited</h2>
+      <p>
+        A free offer rarely means an unlimited one. Unknown limits stay unknown: we
+        mark them as <em>not published</em> instead of inferring they are unlimited.
+        Read each offer's limits and access requirements before relying on it,
+        especially for production or high-volume work.
+      </p>
+
+      <h2>Expired offers are archived, not deleted</h2>
+      <p>
+        Removed or expired offers are archived rather than deleted, so the public
+        audit trail is preserved. An unavailable source is shown as a prior
+        verification — never as evidence of continued availability.
+      </p>
+
+      <h2>A read-only directory</h2>
+      <p>
+        eggx is a read-only static directory. It collects no user data and stores no
+        secrets.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

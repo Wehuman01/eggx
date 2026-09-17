@@ -6,9 +6,9 @@ export const GET: APIRoute = () => {
     openapi: "3.1.0",
     info: {
       title: "eggx API",
-      version: "1.0.0",
+      version: "2.0.0",
       description:
-        "Agent-readable static API for eggx offers. Endpoints are static JSON files served from GitHub Pages; URLs include the .json extension. Query parameters on static endpoints are advisory.",
+        "Agent-readable static API for eggx verified AI coding deals. Endpoints are static JSON files served from GitHub Pages; URLs include the .json extension. Query parameters on static endpoints are advisory.",
     },
     servers: [{ url: import.meta.env.SITE }],
     paths: {
@@ -96,31 +96,6 @@ export const GET: APIRoute = () => {
           },
         },
       },
-      "/api/v1/daily/latest.json": {
-        get: {
-          summary: "Get latest daily offers",
-          responses: {
-            "200": {
-              description: "Daily offers",
-              content: {
-                "application/json": {
-                  schema: {
-                    type: "object",
-                    properties: {
-                      schemaVersion: { type: "string" },
-                      data: {
-                        type: "array",
-                        items: { $ref: "#/components/schemas/Offer" },
-                      },
-                    },
-                    required: ["schemaVersion", "data"],
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
       "/api/v1/snapshot.json": {
         get: {
           summary: "Get schema-versioned snapshot",
@@ -189,41 +164,63 @@ export const GET: APIRoute = () => {
           type: "object",
           required: [
             "id",
-            "name",
             "provider",
-            "category",
+            "kind",
             "access",
-            "evidence",
-            "state",
+            "verified",
+            "archived",
+            "name",
             "description",
           ],
           properties: {
             id: { type: "string" },
-            name: { type: "string" },
             provider: { type: "string" },
-            category: {
+            kind: {
               type: "string",
-              enum: ["limited-time", "platform", "application"],
+              enum: ["temporary", "long-term"],
             },
             access: {
               type: "string",
               enum: ["public", "invite", "student", "application"],
             },
-            evidence: {
-              type: "string",
-              enum: ["official", "community", "unverified"],
+            verified: { type: "boolean" },
+            archived: { type: "boolean" },
+            name: {
+              type: "object",
+              properties: {
+                zh: { type: "string" },
+                en: { type: "string" },
+              },
+              required: ["zh", "en"],
             },
-            state: {
-              type: "string",
-              enum: ["verified", "provisional", "expiring", "archived"],
+            description: {
+              type: "object",
+              properties: {
+                zh: { type: "string" },
+                en: { type: "string" },
+              },
+              required: ["zh", "en"],
             },
-            description: { type: "string" },
+            limits: {
+              type: "object",
+              properties: {
+                zh: { type: ["string", "null"] },
+                en: { type: ["string", "null"] },
+              },
+              required: ["zh", "en"],
+            },
+            caveat: {
+              type: "object",
+              properties: {
+                zh: { type: ["string", "null"] },
+                en: { type: ["string", "null"] },
+              },
+              required: ["zh", "en"],
+            },
             url: { type: ["string", "null"] },
             source: { type: ["string", "null"] },
             actionUrl: { type: ["string", "null"] },
-            limits: { type: ["string", "null"] },
             expiresAt: { type: ["string", "null"] },
-            caveat: { type: ["string", "null"] },
             lastVerified: { type: ["string", "null"] },
           },
         },

@@ -3,5 +3,5 @@ import { offers } from "../../../../content/offers";
 
 export const GET = () => {
   const data = activeOnly(offers).map(serializeOffer);
-  return jsonResponse({ schemaVersion: "1.0", data });
+  return jsonResponse({ schemaVersion: "2.0", data });
 };

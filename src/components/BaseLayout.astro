@@ -1,21 +1,32 @@
 ---
 import "../styles/global.css";
+import type { Locale, RouteKey } from "../lib/i18n";
+import { UI, pageUrl, altLocale } from "../lib/i18n";
 
 interface Props {
-  title?: string;
-  description?: string;
+  locale: Locale;
+  route: RouteKey;
+  title: string;
+  description: string;
 }
 
-const {
-  title = "eggx — offer directory",
-  description = "Curated free and limited-time offers.",
-} = Astro.props;
+const { locale, route, title, description } = Astro.props;
+
+const ui = UI[locale];
+const langUrl = pageUrl(altLocale(locale), route);
+
+const navDeals = [
+  { route: "/", label: ui.navTemporary },
+  { route: "/long-term/", label: ui.navLongTerm },
+] as const;
+
+const navMore = [{ route: "/about/", label: ui.navAbout }] as const;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={ui.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,6 +41,47 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     />
   </head>
   <body>
-    <slot />
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <a class="brand-name" href={pageUrl(locale, "/")}>eggx</a>
+          <p class="brand-tagline">{ui.siteTagline}</p>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Primary">
+          <p class="nav-group-label">{ui.navGroupDeals}</p>
+          <ul class="nav-list">
+            {navDeals.map((item) => {
+              const href = pageUrl(locale, item.route);
+              const active = route === item.route;
+              return (
+                <li>
+                  <a class:list={["nav-link", { active }]} href={href}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p class="nav-group-label">{ui.navGroupMore}</p>
+          <ul class="nav-list">
+            {navMore.map((item) => {
+              const href = pageUrl(locale, item.route);
+              const active = route === item.route;
+              return (
+                <li>
+                  <a class:list={["nav-link", { active }]} href={href}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <a class="lang-switch" href={langUrl}>{ui.langName}</a>
+      </aside>
+
+      <main class="main">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
