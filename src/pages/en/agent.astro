@@ -1,0 +1,183 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import { UI, withBase } from "../../lib/i18n";
+
+const ui = UI.en;
+
+const installCmd = `npm install -g aweskill        # one-time: install the skill manager
+aweskill install wehuman01/eggx --skill eggx`;
+
+const updateCmd = `aweskill update eggx`;
+
+const agentPrompt = `Please install the eggx skill: first follow
+https://github.com/wehuman01/aweskill/blob/main/README.ai.md to install and
+initialize aweskill, then run aweskill install wehuman01/eggx --skill eggx and
+project eggx into this agent. Tell me afterwards whether I need to start a new
+session, then verify with "What free AI coding credits can I claim right now?"`;
+
+const curlCmd = `curl https://eggx.wehuman.top/api/v1/offers.json`;
+
+const endpoints = [
+  { path: "/api/v1/offers.json", desc: "All active (non-archived) offers" },
+  { path: "/api/v1/offers/{id}.json", desc: "Single offer" },
+  { path: "/api/v1/providers/{slug}.json", desc: "Offers grouped by provider (slug = lowercase, spaces as hyphens)" },
+  { path: "/api/v1/snapshot.json", desc: "Schema-versioned full snapshot" },
+  {
+    path: "/api/v1/changes.json",
+    desc: "Sorted by lastVerified, newest first; incremental sync filters client-side on lastVerified ≥ since",
+  },
+];
+
+const steps = [
+  { num: "01", title: "Send the command", desc: "Run the aweskill command, or paste the prompt and let your agent do it" },
+  { num: "02", title: "Start a new session", desc: "Most agents only scan the skills directory at session start" },
+  { num: "03", title: "Verify with one question", desc: "Ask: \"What free AI coding credits can I claim right now?\"" },
+];
+---
+
+<BaseLayout
+  locale="en"
+  route="/agent/"
+  title="Agent access — eggx"
+  description="Agent access guide for eggx: Skill (aweskill), REST API, RSS, llms.txt — all anonymous, read-only, no API key."
+>
+  <div class="main-inner">
+    <div class="prose">
+      <header class="page-head">
+        <h1>{ui.agentTitle}</h1>
+        <p>{ui.agentBlurb}</p>
+        <div class="agent-chips" aria-label="Versions">
+          <span class="chip">Skill v1.0.0</span>
+          <span class="chip">API v2</span>
+          <span class="chip">RSS</span>
+        </div>
+        <nav class="agent-toc" aria-label="On this page">
+          <a href="#skill">Agent Skill</a>
+          <a href="#api">REST API</a>
+          <a href="#rss">RSS</a>
+          <a href="#llms">llms.txt</a>
+          <a href={withBase("llms.txt")} target="_blank" rel="noopener">llms.txt file</a>
+          <a href={withBase("openapi.json")} target="_blank" rel="noopener">openapi.json</a>
+          <a href={withBase("feed.xml")} target="_blank" rel="noopener">feed.xml</a>
+          <a
+            href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+            target="_blank"
+            rel="noopener">Skill source</a
+          >
+        </nav>
+      </header>
+
+      <section id="skill">
+        <h2>Agent Skill (recommended)</h2>
+        <p>
+          The official eggx skill package lives at
+          <a
+            href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+            target="_blank"
+            rel="noopener">skills/eggx/</a
+          > in the repository and is managed by
+          <a href="https://github.com/wehuman01/aweskill" target="_blank" rel="noopener">aweskill</a>:
+          install once, and it projects into Claude Code, Codex, Gemini CLI, Cursor,
+          and more. Updates, dedup, and backups are handled by aweskill. The skill
+          keeps your agent answering from current data only, with official sources
+          and verification dates attached.
+        </p>
+
+        <h3>Install with aweskill</h3>
+        <pre><code set:html={installCmd}></code></pre>
+        <p>The first line is a one-time prerequisite; skip it if aweskill is already installed. To update:</p>
+        <pre><code set:html={updateCmd}></code></pre>
+
+        <h3>Let your agent install it</h3>
+        <p>Send this to your agent:</p>
+        <pre class="prompt"><code set:html={agentPrompt}></code></pre>
+
+        <h3>Manual install (without aweskill)</h3>
+        <p>
+          Copy the skills/eggx/ directory from GitHub into your agent's skills
+          directory (e.g. ~/.claude/skills/, ~/.codex/skills/, or the cross-agent
+          ~/.agents/skills/) and keep the file named SKILL.md.
+        </p>
+
+        <div class="agent-steps">
+          {
+            steps.map((step) => (
+              <div class="step-card">
+                <span class="step-num">{step.num}</span>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <h3>Capability limits</h3>
+        <ul>
+          <li>Data covers only offers currently listed: temporary, long-term, and application tiers; there is no archive endpoint</li>
+          <li>verified=false means community-reported; answers will ask the user to double-check</li>
+          <li>Unpublished limits stay "not published" — never assumed unlimited</li>
+          <li>No MCP server (static site); the REST API and RSS already cover all data</li>
+        </ul>
+      </section>
+
+      <section id="api">
+        <h2>REST API</h2>
+        <p>
+          Every endpoint is a static JSON file: anonymous, read-only, no API key.
+          Canonical base is https://eggx.wehuman.top (the GitHub Pages mirror serves
+          the same paths); responses are cached for 5 minutes.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Endpoint</th>
+              <th>Returns</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              endpoints.map((e) => (
+                <tr>
+                  <td><code>{e.path}</code></td>
+                  <td>{e.desc}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <h3>Field notes</h3>
+        <p>
+          name / description / limits / caveat are bilingual {`{zh, en}`} objects; plus
+          verified (official / community), expiresAt, lastVerified, source (official
+          origin), and actionUrl (claim link). Responses are wrapped as
+          {`{"schemaVersion":"2.0","data":[…]}`} — see openapi.json for the full field table.
+        </p>
+        <pre><code set:html={curlCmd}></code></pre>
+      </section>
+
+      <section id="rss">
+        <h2>RSS</h2>
+        <p>
+          <a href={withBase("feed.xml")}>feed.xml</a>
+          — the first 20 active offers (Chinese channel), items include expiry dates.
+          Good for subscription monitoring; use the REST API for structured consumption.
+        </p>
+      </section>
+
+      <section id="llms">
+        <h2>llms.txt and openapi.json</h2>
+        <ul>
+          <li><a href={withBase("llms.txt")}>llms.txt</a> — the site guide for agents: tiers, field conventions, endpoint list</li>
+          <li><a href={withBase("openapi.json")}>openapi.json</a> — full OpenAPI 3.1 specification</li>
+          <li>
+            <a
+              href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+              target="_blank"
+              rel="noopener">Skill source</a
+            > — SKILL.md and the API reference (references/api.md)
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

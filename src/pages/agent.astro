@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import { UI, withBase } from "../lib/i18n";
+
+const ui = UI.zh;
+
+const installCmd = `npm install -g aweskill        # 一次性：安装技能管理器
+aweskill install wehuman01/eggx --skill eggx`;
+
+const updateCmd = `aweskill update eggx`;
+
+const agentPrompt = `请安装 eggx skill：先按 https://github.com/wehuman01/aweskill/blob/main/README.ai.md
+安装 aweskill 并初始化，然后执行 aweskill install wehuman01/eggx --skill eggx，
+把 eggx 投影到当前 agent。装完告诉我是否需要开启新会话，
+再用「现在有什么可以白嫖的 AI 编码额度？」验证。`;
+
+const curlCmd = `curl https://eggx.wehuman.top/api/v1/offers.json`;
+
+const endpoints = [
+  { path: "/api/v1/offers.json", desc: "全部在架（非归档）羊毛" },
+  { path: "/api/v1/offers/{id}.json", desc: "单条羊毛" },
+  { path: "/api/v1/providers/{slug}.json", desc: "按厂商分组（slug = 厂商名小写、空格转连字符）" },
+  { path: "/api/v1/snapshot.json", desc: "带版本的全量快照" },
+  {
+    path: "/api/v1/changes.json",
+    desc: "按 lastVerified 最新在前；增量同步在客户端按 lastVerified ≥ since 过滤",
+  },
+];
+
+const steps = [
+  { num: "01", title: "发命令", desc: "用 aweskill 命令，或把提示词直接发给 agent 代装" },
+  { num: "02", title: "开新会话", desc: "多数 agent 只在会话启动时扫描技能目录" },
+  { num: "03", title: "验证一句", desc: "问：「现在有什么可以白嫖的 AI 编码额度？」" },
+];
+---
+
+<BaseLayout
+  locale="zh"
+  route="/agent/"
+  title="Agent 接入 — eggx"
+  description="eggx 的 Agent 接入指南：Skill（aweskill）、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。"
+>
+  <div class="main-inner">
+    <div class="prose">
+      <header class="page-head">
+        <h1>{ui.agentTitle}</h1>
+        <p>{ui.agentBlurb}</p>
+        <div class="agent-chips" aria-label="版本">
+          <span class="chip">Skill v1.0.0</span>
+          <span class="chip">API v2</span>
+          <span class="chip">RSS</span>
+        </div>
+        <nav class="agent-toc" aria-label="本页目录">
+          <a href="#skill">Agent Skill</a>
+          <a href="#api">REST API</a>
+          <a href="#rss">RSS</a>
+          <a href="#llms">llms.txt</a>
+          <a href={withBase("llms.txt")} target="_blank" rel="noopener">llms.txt 文件</a>
+          <a href={withBase("openapi.json")} target="_blank" rel="noopener">openapi.json</a>
+          <a href={withBase("feed.xml")} target="_blank" rel="noopener">feed.xml</a>
+          <a
+            href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+            target="_blank"
+            rel="noopener">技能源码</a
+          >
+        </nav>
+      </header>
+
+      <section id="skill">
+        <h2>Agent Skill（推荐）</h2>
+        <p>
+          eggx 官方技能包在仓库
+          <a
+            href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+            target="_blank"
+            rel="noopener">skills/eggx/</a
+          >，经
+          <a href="https://github.com/wehuman01/aweskill" target="_blank" rel="noopener">aweskill</a>
+          统一管理：装一次，自动投影到 Claude Code、Codex、Gemini CLI、Cursor
+          等 agent；更新、去重、备份都由 aweskill 负责。技能会约束 agent
+          只用当前数据回答，并附官方来源与核实日期。
+        </p>
+
+        <h3>用 aweskill 安装</h3>
+        <pre><code set:html={installCmd}></code></pre>
+        <p>第一行是一次性前置；已装过 aweskill 的直接第二行。更新：</p>
+        <pre><code set:html={updateCmd}></code></pre>
+
+        <h3>让 Agent 自己装</h3>
+        <p>把下面这段直接发给你的 agent：</p>
+        <pre class="prompt"><code set:html={agentPrompt}></code></pre>
+
+        <h3>手动安装（不用 aweskill）</h3>
+        <p>
+          从 GitHub 复制 skills/eggx/ 目录到你 agent
+          的技能目录（如 ~/.claude/skills/、~/.codex/skills/ 或跨 agent 的
+          ~/.agents/skills/），文件名保持 SKILL.md。
+        </p>
+
+        <div class="agent-steps">
+          {
+            steps.map((step) => (
+              <div class="step-card">
+                <span class="step-num">{step.num}</span>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <h3>能力边界</h3>
+        <ul>
+          <li>数据只有当前在架羊毛：临时、长期、需申请三类；没有历史归档端点</li>
+          <li>verified=false 是社区消息，回答时会提醒二次确认</li>
+          <li>限额未公布就写「未公布」，不推测为无限</li>
+          <li>无 MCP server（纯静态站）；REST API 与 RSS 已覆盖全部数据</li>
+        </ul>
+      </section>
+
+      <section id="api">
+        <h2>REST API</h2>
+        <p>
+          全部端点是静态 JSON 文件：匿名、只读、无需 API Key。正式域名
+          https://eggx.wehuman.top（GitHub Pages
+          镜像同路径），响应缓存 5 分钟。
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>端点</th>
+              <th>返回</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              endpoints.map((e) => (
+                <tr>
+                  <td><code>{e.path}</code></td>
+                  <td>{e.desc}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <h3>字段要点</h3>
+        <p>
+          name / description / limits / caveat 均为 {`{zh, en}`} 双语对象；verified
+          （官方核实 / 社区消息）、expiresAt（到期）、lastVerified（核实日期）、source（官方来源）、actionUrl（领取入口）。响应外层
+          {`{"schemaVersion":"2.0","data":[…]}`}，完整字段表见 openapi.json。
+        </p>
+        <pre><code set:html={curlCmd}></code></pre>
+      </section>
+
+      <section id="rss">
+        <h2>RSS</h2>
+        <p>
+          <a href={withBase("feed.xml")}>feed.xml</a>
+          — 在架羊毛前 20 条（中文频道），条目含到期日。适合订阅监控；结构化消费请走 REST API。
+        </p>
+      </section>
+
+      <section id="llms">
+        <h2>llms.txt 与 openapi.json</h2>
+        <ul>
+          <li><a href={withBase("llms.txt")}>llms.txt</a> — 给 agent 的站点使用指南：分类规则、字段约定、端点清单</li>
+          <li><a href={withBase("openapi.json")}>openapi.json</a> — OpenAPI 3.1 完整接口说明</li>
+          <li>
+            <a
+              href="https://github.com/wehuman01/eggx/tree/main/skills/eggx"
+              target="_blank"
+              rel="noopener">技能源码</a
+            > — SKILL.md 与 API 参考（references/api.md）
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

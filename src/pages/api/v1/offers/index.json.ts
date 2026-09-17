@@ -1,7 +1,3 @@
-import { jsonResponse, activeOnly, serializeOffer } from "../../../../lib/api";
-import { offers } from "../../../../content/offers";
-
-export const GET = () => {
-  const data = activeOnly(offers).map(serializeOffer);
-  return jsonResponse({ schemaVersion: "2.0", data });
-};
+// Compat alias: /api/v1/offers/index.json was the pre-1.0 file layout of the
+// list endpoint. Canonical URL is /api/v1/offers.json.
+export { GET } from "../offers.json";

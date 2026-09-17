@@ -40,10 +40,17 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 
 eggx 同时为人类和 Agent 设计：内容双语（中文默认，[`/en/`](https://eggx.wehuman.top/en/) 英文），外加静态、免鉴权的机器接口：
 
+- [`/agent/`](https://eggx.wehuman.top/agent/) — Agent 接入指南（Skill / API / RSS）
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — Agent 使用指南
-- [`/api/v1/offers`](https://eggx.wehuman.top/api/v1/offers) — 全部在架羊毛（JSON）
+- [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — 全部在架羊毛（JSON）
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS 订阅
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — 完整 API 说明
+
+也可以给 Agent 装官方技能包（经 [aweskill](https://github.com/wehuman01/aweskill) 统一管理，一条命令投影到 Claude Code、Codex、Gemini CLI 等）：
+
+```bash
+aweskill install wehuman01/eggx --skill eggx
+```
 
 ## 参与进来
 

@@ -40,10 +40,17 @@ eggx answers one question: **what can I claim for free right now to build with A
 
 eggx is built for humans and agents alike: bilingual content (Chinese default, English at [`/en/`](https://eggx.wehuman.top/en/)) plus static, keyless machine endpoints:
 
+- [`/agent/`](https://eggx.wehuman.top/agent/) — agent access guide (Skill / API / RSS)
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — guide for agents
-- [`/api/v1/offers`](https://eggx.wehuman.top/api/v1/offers) — all active offers (JSON)
+- [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — all active offers (JSON)
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS feed
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — full API description
+
+There is also an official skill package for agents (managed via [aweskill](https://github.com/wehuman01/aweskill) — one install, projected into Claude Code, Codex, Gemini CLI, and more):
+
+```bash
+aweskill install wehuman01/eggx --skill eggx
+```
 
 ## Contribute
 

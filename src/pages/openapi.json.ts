@@ -10,9 +10,12 @@ export const GET: APIRoute = () => {
       description:
         "Agent-readable static API for eggx verified AI coding deals. Endpoints are static JSON files served from GitHub Pages; URLs include the .json extension. Query parameters on static endpoints are advisory.",
     },
-    servers: [{ url: import.meta.env.SITE }],
+    servers: [
+      { url: "https://eggx.wehuman.top" },
+      { url: "https://wehuman01.github.io/eggx/" },
+    ],
     paths: {
-      "/api/v1/offers": {
+      "/api/v1/offers.json": {
         get: {
           summary: "List all active offers",
           responses: {
@@ -131,7 +134,8 @@ export const GET: APIRoute = () => {
               in: "query",
               required: false,
               schema: { type: "string", format: "date-time" },
-              description: "ISO-8601 date to filter changes since",
+              description:
+                "Advisory on static hosting: the file always returns all active offers sorted by lastVerified (newest first); filter client-side with lastVerified >= since",
             },
           ],
           responses: {

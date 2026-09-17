@@ -21,7 +21,10 @@ const navDeals = [
   { route: "/application/", label: ui.navApplication },
 ] as const;
 
-const navMore = [{ route: "/about/", label: ui.navAbout }] as const;
+const navMore = [
+  { route: "/agent/", label: ui.navAgent },
+  { route: "/about/", label: ui.navAbout },
+] as const;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---

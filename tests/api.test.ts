@@ -9,7 +9,8 @@ function joinDist(...segments: string[]): string {
 }
 
 describe("API v1 routes in dist", () => {
-  it("generates /api/v1/offers/index.json", () => {
+  it("generates /api/v1/offers.json plus compat /api/v1/offers/index.json", () => {
+    expect(fs.existsSync(joinDist("api", "v1", "offers.json"))).toBe(true);
     expect(fs.existsSync(joinDist("api", "v1", "offers", "index.json"))).toBe(true);
   });
 
@@ -74,7 +75,7 @@ describe("API v1 routes in dist", () => {
   });
 
   it("offers index has source, kind, verified, lastVerified, expiresAt, name.zh", async () => {
-    const offersPath = joinDist("api", "v1", "offers", "index.json");
+    const offersPath = joinDist("api", "v1", "offers.json");
     expect(fs.existsSync(offersPath)).toBe(true);
     const content = fs.readFileSync(offersPath, "utf-8");
     const parsed = JSON.parse(content);
@@ -100,19 +101,27 @@ describe("API v1 routes in dist", () => {
     expect(content).toMatch(/long-term/);
   });
 
+  it("changes.json sorts by lastVerified desc and keeps since null (static hosting)", () => {
+    const changesPath = joinDist("api", "v1", "changes.json");
+    expect(fs.existsSync(changesPath)).toBe(true);
+    const parsed = JSON.parse(fs.readFileSync(changesPath, "utf-8"));
+    expect(parsed).toHaveProperty("schemaVersion", "2.0");
+    expect(parsed).toHaveProperty("since", null);
+    const dates = parsed.data.map((o: { lastVerified: string | null }) => o.lastVerified ?? "");
+    const sorted = [...dates].sort((a: string, b: string) => b.localeCompare(a));
+    expect(dates).toEqual(sorted);
+  });
+
   it("every path documented in openapi.json resolves to a dist file", async () => {
     const { offers } = await import("../src/content/offers");
     const spec = JSON.parse(fs.readFileSync(joinDist("openapi.json"), "utf-8"));
     const firstId = offers[0].id;
     const firstSlug = offers[0].provider.toLowerCase().replace(/\s+/g, "-");
     for (const route of Object.keys(spec.paths)) {
-      let file = route
+      const file = route
         .replace("{id}", firstId)
         .replace("{slug}", firstSlug)
         .replace(/^\//, "");
-      if (file === "api/v1/offers") {
-        file = "api/v1/offers/index.json";
-      }
       expect({
         route,
         resolved: file,
@@ -131,13 +140,10 @@ describe("API v1 routes in dist", () => {
     const firstId = offers[0].id;
     const firstSlug = offers[0].provider.toLowerCase().replace(/\s+/g, "-");
     for (const route of routes) {
-      let file = route
+      const file = route
         .replace(":id", firstId)
         .replace(":slug", firstSlug)
         .replace(/^\//, "");
-      if (file === "api/v1/offers") {
-        file = "api/v1/offers/index.json";
-      }
       expect({
         route,
         resolved: file,

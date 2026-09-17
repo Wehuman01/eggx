@@ -2,7 +2,7 @@ import type { Locale } from "./schema";
 
 export type { Locale };
 
-export type RouteKey = "/" | "/long-term/" | "/application/" | "/about/";
+export type RouteKey = "/" | "/long-term/" | "/application/" | "/about/" | "/agent/";
 
 export function localePath(locale: Locale, route: RouteKey): string {
   if (locale === "zh") return route;
@@ -30,6 +30,9 @@ export interface UIStrings {
   navApplication: string;
   navGroupMore: string;
   navAbout: string;
+  navAgent: string;
+  agentTitle: string;
+  agentBlurb: string;
   temporaryTitle: string;
   temporaryBlurb: string;
   longTermTitle: string;
@@ -60,6 +63,10 @@ const zh: UIStrings = {
   navApplication: "申请羊毛",
   navGroupMore: "更多",
   navAbout: "关于",
+  navAgent: "Agent 接入",
+  agentTitle: "Agent 接入",
+  agentBlurb:
+    "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
   temporaryTitle: "临时羊毛",
   temporaryBlurb: "限时活动，过期不候 — 按到期时间排序。",
   longTermTitle: "长期羊毛",
@@ -90,6 +97,10 @@ const en: UIStrings = {
   navApplication: "Apply",
   navGroupMore: "More",
   navAbout: "About",
+  navAgent: "Agent access",
+  agentTitle: "Agent access",
+  agentBlurb:
+    "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",
   temporaryTitle: "Temporary offers",
   temporaryBlurb: "Limited-time campaigns, sorted by expiry date.",
   longTermTitle: "Long-term offers",
