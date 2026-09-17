@@ -15,7 +15,7 @@ export const offers = validateRegistry([
     zh: {
       name: "ZCode 夜间免额度活动 + 新人 5 天试用",
       description:
-        "GLM Coding Plan 官方 GLM-5.3-Flash 夜间活动（2026-09-03 至 2026-09-20）：每天 23:00 至次日 09:00（新加坡时间 UTC+8），付费计划用户经 ZCode 使用 GLM-5.3-Flash 零额度消耗、不限量；经其他受支持 Agent 使用则额度翻倍。无需申请，装上 ZCode 即享。新用户另送 5 天免费试用，每天 500 万 tokens（GLM-5.3 300 万 + GLM-5-turbo 200 万）。",
+        "GLM Coding Plan 官方 GLM-5.3-Flash 夜间活动（2026-09-03 至 2026-09-20）：每天 23:00 至次日 09:00（北京时间 UTC+8），付费计划用户经 ZCode 使用 GLM-5.3-Flash 零额度消耗、不限量；经其他受支持 Agent 使用则额度翻倍。无需申请，装上 ZCode 即享。新用户另送 5 天免费试用，每天 500 万 tokens（GLM-5.3 300 万 + GLM-5-turbo 200 万）。",
       limits:
         "夜间窗口经 ZCode 用 GLM-5.3-Flash 不限量（需 ZCode ≥ 3.10，且 5 小时/周额度未耗尽）；新用户试用每天 5M tokens，仅前 5 天有效",
       caveat:
@@ -24,7 +24,7 @@ export const offers = validateRegistry([
     en: {
       name: "ZCode Nightly Free Campaign + 5-Day New-User Trial",
       description:
-        "Official GLM Coding Plan GLM-5.3-Flash usage campaign (Sep 3–20, 2026): daily 23:00–09:00 the next day (Singapore time, UTC+8), paid-plan users get unlimited zero-quota GLM-5.3-Flash via ZCode, and doubled quota via other supported agents. No application needed — install ZCode and go. First-time ZCode users also get a 5-day free trial with 5M tokens per day (3M GLM-5.3 + 2M GLM-5-turbo).",
+        "Official GLM Coding Plan GLM-5.3-Flash usage campaign (Sep 3–20, 2026): daily 23:00–09:00 the next day (Beijing time, UTC+8), paid-plan users get unlimited zero-quota GLM-5.3-Flash via ZCode, and doubled quota via other supported agents. No application needed — install ZCode and go. First-time ZCode users also get a 5-day free trial with 5M tokens per day (3M GLM-5.3 + 2M GLM-5-turbo).",
       limits:
         "Nightly GLM-5.3-Flash via ZCode is unlimited (needs ZCode ≥ 3.10 and non-exhausted 5-hour/weekly quota); the new-user trial grants 5M tokens/day for the first 5 days only",
       caveat:
