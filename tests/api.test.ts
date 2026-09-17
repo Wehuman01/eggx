@@ -1,10 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { fileURLToPath } from "node:url";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-const dist = fileURLToPath(new URL("../dist", import.meta.url));
+const dist = path.join(__dirname, "..", "dist");
 
 function joinDist(...segments: string[]): string {
   return path.join(dist, ...segments);
