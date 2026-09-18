@@ -214,8 +214,9 @@ const historySummary = ui.historySummaryTemplate
           reference only.
         </li>
         <li>
-          <strong>Updates</strong> — static snapshot refreshed on each build; the upstream
-          scanner runs about every 5 minutes, last verified {checkedAt}.
+          <strong>Updates</strong> — a scheduled job syncs the upstream every 6 hours and
+          rebuilds this page; the upstream (AIHOT) re-verifies Tibo's public posts about
+          every 15 minutes, last verified {checkedAt}.
         </li>
       </ul>
     </section>
