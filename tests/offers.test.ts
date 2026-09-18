@@ -294,7 +294,7 @@ describe("offers helpers", () => {
         en: { name: "C1", description: "C1 desc" },
       },
     ];
-    expect(byVerified(mixed, true).map((o) => o.id)).toEqual(["a1"]);
+    expect(byVerified(mixed, true).map((o) => o.id)).toEqual(["a1", "a2"]);
     expect(byVerified(mixed, false).map((o) => o.id)).toEqual(["c1"]);
   });
 

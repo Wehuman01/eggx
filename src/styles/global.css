@@ -476,6 +476,102 @@ h3 {
   color: var(--muted);
 }
 
+/* --- Community section: unverified leads + crowd verification --- */
+
+.community-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed var(--border);
+}
+
+.community-head h2 {
+  font-size: 1.375rem;
+}
+
+.community-head p {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.code-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--paper);
+  border: 1px dashed var(--orange);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.code-chip .code-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.code-chip code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 0.04em;
+}
+
+.code-chip.copied {
+  border-style: solid;
+  background: var(--moss-soft);
+  border-color: var(--moss);
+}
+
+.code-chip.copied code {
+  color: var(--moss);
+}
+
+.verify-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.btn-verify {
+  padding: 0.3125rem 0.75rem;
+  min-height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.btn-verify:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.btn-verify.voted {
+  border-color: var(--moss);
+  background: var(--moss-soft);
+  color: var(--moss);
+  cursor: default;
+}
+
+.verify-counts {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
 /* --- Prose (about) --- */
 
 .prose {

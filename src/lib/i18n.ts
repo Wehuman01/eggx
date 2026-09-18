@@ -71,6 +71,16 @@ export interface UIStrings {
   agentBlurb: string;
   temporaryTitle: string;
   temporaryBlurb: string;
+  communitySectionTitle: string;
+  communitySectionBlurb: string;
+  verifyYesAction: string;
+  verifyNoAction: string;
+  verifyYesCountTemplate: string;
+  verifyNoCountTemplate: string;
+  verifyUnavailable: string;
+  codeLabel: string;
+  codeHint: string;
+  codeCopied: string;
   longTermTitle: string;
   longTermBlurb: string;
   applicationTitle: string;
@@ -138,6 +148,17 @@ const zh: UIStrings = {
     "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
   temporaryTitle: "临时羊毛",
   temporaryBlurb: "限时活动，过期不候 — 按到期时间排序。",
+  communitySectionTitle: "社区消息",
+  communitySectionBlurb:
+    "社区线索，未经官方核实，使用前自辨。领到了或失效了，点一下帮大家核实：",
+  verifyYesAction: "我领到了",
+  verifyNoAction: "已失效",
+  verifyYesCountTemplate: "{n} 人领到了",
+  verifyNoCountTemplate: "{n} 人说失效",
+  verifyUnavailable: "核实计数暂时不可用",
+  codeLabel: "兑换码",
+  codeHint: "点击复制",
+  codeCopied: "已复制",
   longTermTitle: "长期羊毛",
   longTermBlurb: "持续供应的免费额度与计划，稳定可依赖。",
   applicationTitle: "申请羊毛",
@@ -206,6 +227,17 @@ const en: UIStrings = {
     "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",
   temporaryTitle: "Temporary offers",
   temporaryBlurb: "Limited-time campaigns, sorted by expiry date.",
+  communitySectionTitle: "Community reports",
+  communitySectionBlurb:
+    "Community leads, not officially verified — judge before you rely on them. Claimed one, or found it dead? Tap to help verify:",
+  verifyYesAction: "It worked",
+  verifyNoAction: "Expired",
+  verifyYesCountTemplate: "{n} claimed it",
+  verifyNoCountTemplate: "{n} say expired",
+  verifyUnavailable: "Verification counts unavailable",
+  codeLabel: "Code",
+  codeHint: "Click to copy",
+  codeCopied: "Copied",
   longTermTitle: "Long-term offers",
   longTermBlurb: "Recurring free tiers and programs you can rely on.",
   applicationTitle: "Application offers",

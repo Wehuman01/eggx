@@ -304,6 +304,7 @@ export const GET: APIRoute = () => {
             url: { type: ["string", "null"] },
             source: { type: ["string", "null"] },
             actionUrl: { type: ["string", "null"] },
+            code: { type: ["string", "null"], description: "Redemption code, if the offer ships one" },
             expiresAt: { type: ["string", "null"] },
             lastVerified: { type: ["string", "null"] },
           },
