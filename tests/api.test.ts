@@ -40,6 +40,17 @@ describe("API v1 routes in dist", () => {
     expect(fs.existsSync(joinDist("api", "v1", "snapshot.json"))).toBe(true);
   });
 
+  it("generates /api/v1/codex-resets.json with events and gap stats", () => {
+    const file = joinDist("api", "v1", "codex-resets.json");
+    expect(fs.existsSync(file)).toBe(true);
+    const body = JSON.parse(fs.readFileSync(file, "utf8"));
+    expect(body).toHaveProperty("schemaVersion", "2.0");
+    expect(Array.isArray(body.data.events)).toBe(true);
+    expect(body.data.events.length).toBeGreaterThan(0);
+    expect(body.data.events[0].posts[0].url).toMatch(/^https:\/\/x\.com\//);
+    expect(body.data.snapshot.checkedAt).toBeTruthy();
+  });
+
   it("generates /api/v1/changes.json", () => {
     expect(fs.existsSync(joinDist("api", "v1", "changes.json"))).toBe(true);
   });

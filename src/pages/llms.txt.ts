@@ -31,11 +31,13 @@ Default language is Chinese (Simplified). English mirror lives under /en/.
 - / — temporary offers (default landing)
 - /long-term/ — long-term offers
 - /application/ — application-required offers
+- /codex-reset/ — Codex reset tracker (full resets and reset cards announced by @thsottiaux)
 - /about/ — editorial policy
 - /agent/ — agent access guide (Skill, REST API, RSS)
 - /en/ — English temporary offers
 - /en/long-term/ — English long-term offers
 - /en/application/ — English application-required offers
+- /en/codex-reset/ — English Codex reset tracker
 - /en/about/ — English about
 - /en/agent/ — English agent access guide
 
@@ -47,6 +49,7 @@ Endpoints are static JSON files, anonymous and read-only, no API key. Canonical 
 - GET /api/v1/offers/:id.json — single offer by ID
 - GET /api/v1/providers/:slug.json — offers grouped by provider slug (provider lowercased, spaces as hyphens)
 - GET /api/v1/snapshot.json — schema-versioned snapshot of the full non-archived registry
+- GET /api/v1/codex-resets.json — tracked Codex resets and reset cards (source posts, status, gap stats; not an official OpenAI feed)
 - GET /api/v1/changes.json?since=ISO8601 — advisory on static hosting: the file always returns all active offers sorted by lastVerified (newest first); filter client-side with lastVerified >= since
 
 Also served: /feed.xml (RSS 2.0, Chinese default), /llms.txt (this file), /openapi.json (OpenAPI 3.1).

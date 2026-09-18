@@ -21,6 +21,8 @@ const navDeals = [
   { route: "/application/", label: ui.navApplication },
 ] as const;
 
+const navTracking = [{ route: "/codex-reset/", label: ui.navCodexReset }] as const;
+
 const navMore = [
   { route: "/agent/", label: ui.navAgent },
   { route: "/about/", label: ui.navAbout },
@@ -67,6 +69,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <p class="nav-group-label">{ui.navGroupDeals}</p>
           <ul class="nav-list">
             {navDeals.map((item) => {
+              const href = pageUrl(locale, item.route);
+              const active = route === item.route;
+              return (
+                <li>
+                  <a class:list={["nav-link", { active }]} href={href}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p class="nav-group-label">{ui.navGroupTracking}</p>
+          <ul class="nav-list">
+            {navTracking.map((item) => {
               const href = pageUrl(locale, item.route);
               const active = route === item.route;
               return (

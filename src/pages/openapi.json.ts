@@ -161,9 +161,90 @@ export const GET: APIRoute = () => {
           },
         },
       },
+      "/api/v1/codex-resets.json": {
+        get: {
+          summary: "List tracked Codex resets and reset cards announced by Tibo (@thsottiaux)",
+          description:
+            "Static curated snapshot: events sorted newest first, each with source post links (x.com), bilingual quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics. Not an official OpenAI feed; updated only when the registry is rebuilt.",
+          responses: {
+            "200": {
+              description: "Reset events and interval statistics",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      schemaVersion: { type: "string" },
+                      data: {
+                        type: "object",
+                        properties: {
+                          snapshot: { $ref: "#/components/schemas/ResetSnapshot" },
+                          intervalStats: {
+                            type: ["object", "null"],
+                            properties: {
+                              count: { type: "integer" },
+                              min: { type: "integer" },
+                              median: { type: "integer" },
+                              max: { type: "integer" },
+                            },
+                          },
+                          events: {
+                            type: "array",
+                            items: { $ref: "#/components/schemas/ResetEvent" },
+                          },
+                        },
+                        required: ["snapshot", "events"],
+                      },
+                    },
+                    required: ["schemaVersion", "data"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     components: {
       schemas: {
+        ResetSnapshot: {
+          type: "object",
+          required: ["checkedAt", "historyFrom", "source", "curator"],
+          properties: {
+            checkedAt: { type: "string" },
+            historyFrom: { type: "string" },
+            source: { type: "string" },
+            curator: { type: "string" },
+          },
+        },
+        ResetEvent: {
+          type: "object",
+          required: ["id", "type", "status", "posts"],
+          properties: {
+            id: { type: "string" },
+            type: { type: "string", enum: ["reset", "card"] },
+            status: { type: "string", enum: ["confirmed", "announced"] },
+            scope: { type: ["string", "null"] },
+            confirmedAt: { type: ["string", "null"] },
+            occurredOn: { type: ["string", "null"] },
+            scheduleFrom: { type: ["string", "null"] },
+            scheduleThrough: { type: ["string", "null"] },
+            posts: {
+              type: "array",
+              items: {
+                type: "object",
+                required: ["stage", "publishedAt", "url", "zh", "en"],
+                properties: {
+                  stage: { type: "string", enum: ["announce", "confirm"] },
+                  publishedAt: { type: "string" },
+                  url: { type: "string" },
+                  zh: { type: "string" },
+                  en: { type: "string" },
+                },
+              },
+            },
+          },
+        },
         Offer: {
           type: "object",
           required: [

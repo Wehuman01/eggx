@@ -43,6 +43,7 @@ eggx is built for humans and agents alike: bilingual content (Chinese default, E
 - [`/agent/`](https://eggx.wehuman.top/agent/) — agent access guide (Skill / API / RSS)
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — guide for agents
 - [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — all active offers (JSON)
+- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex reset log (JSON)
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS feed
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — full API description
 
@@ -51,6 +52,11 @@ There is also an official skill package for agents (managed via [aweskill](https
 ```bash
 aweskill install wehuman01/eggx --skill eggx
 ```
+
+## Sources & credits
+
+- **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is curated from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, and the Chinese quote renderings are AIHOT's AI translations, credited to their authors.
+- Not an official OpenAI page; for information only. Whether and when resets happen is entirely OpenAI's call.
 
 ## Contribute
 

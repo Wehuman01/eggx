@@ -2,7 +2,13 @@ import type { Locale } from "./schema";
 
 export type { Locale };
 
-export type RouteKey = "/" | "/long-term/" | "/application/" | "/about/" | "/agent/";
+export type RouteKey =
+  | "/"
+  | "/long-term/"
+  | "/application/"
+  | "/codex-reset/"
+  | "/about/"
+  | "/agent/";
 
 export function localePath(locale: Locale, route: RouteKey): string {
   if (locale === "zh") return route;
@@ -31,6 +37,29 @@ export interface UIStrings {
   navGroupMore: string;
   navAbout: string;
   navAgent: string;
+  navGroupTracking: string;
+  navCodexReset: string;
+  codexResetTitle: string;
+  codexResetBlurb: string;
+  resetTypeLabel: string;
+  cardTypeLabel: string;
+  confirmedTag: string;
+  announcedTag: string;
+  lastResetHeading: string;
+  nextResetHeading: string;
+  historyHeading: string;
+  methodHeading: string;
+  confirmedAtLabel: string;
+  announceAtLabel: string;
+  sourcePostLabel: string;
+  scopeLabel: string;
+  todayLabel: string;
+  daysAgoLabel: string;
+  intervalsTemplate: string;
+  estimateNote: string;
+  followAction: string;
+  historySummaryTemplate: string;
+  monthSummaryTemplate: string;
   agentTitle: string;
   agentBlurb: string;
   temporaryTitle: string;
@@ -67,6 +96,30 @@ const zh: UIStrings = {
   navGroupMore: "更多",
   navAbout: "关于",
   navAgent: "Agent 接入",
+  navGroupTracking: "追踪",
+  navCodexReset: "Codex 重置",
+  codexResetTitle: "Codex 重置监控",
+  codexResetBlurb:
+    "追踪 Tibo（@thsottiaux）公开宣布的 Codex 全员重置与重置卡发放 — 每条带原始推文来源。静态快照，随构建更新。",
+  resetTypeLabel: "全员重置",
+  cardTypeLabel: "发重置卡",
+  confirmedTag: "已确认",
+  announcedTag: "仅预告",
+  lastResetHeading: "最近一次全员重置",
+  nextResetHeading: "下一次重置",
+  historyHeading: "重置记录",
+  methodHeading: "统计口径",
+  confirmedAtLabel: "确认时间",
+  announceAtLabel: "预告时间",
+  sourcePostLabel: "原推",
+  scopeLabel: "范围",
+  todayLabel: "今天",
+  daysAgoLabel: "{n} 天前",
+  intervalsTemplate: "历史间隔：最短 {min} 天 · 中位 {median} 天 · 最长 {max} 天（{count} 个间隔）",
+  estimateNote: "Tibo 不按固定周期重置，本页不做日期预测；以上间隔仅供参考。",
+  followAction: "在 X 上关注 @thsottiaux",
+  historySummaryTemplate: "自 {from} 以来共 {total} 条记录：全员重置 {resets} 次 · 发重置卡 {cards} 次",
+  monthSummaryTemplate: "{n} 条记录",
   agentTitle: "Agent 接入",
   agentBlurb:
     "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
@@ -104,6 +157,31 @@ const en: UIStrings = {
   navGroupMore: "More",
   navAbout: "About",
   navAgent: "Agent access",
+  navGroupTracking: "Tracking",
+  navCodexReset: "Codex resets",
+  codexResetTitle: "Codex reset tracker",
+  codexResetBlurb:
+    "Tracking Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) — every entry links to the source post. Static snapshot, refreshed on each build.",
+  resetTypeLabel: "Full reset",
+  cardTypeLabel: "Reset card",
+  confirmedTag: "Confirmed",
+  announcedTag: "Announced only",
+  lastResetHeading: "Latest full reset",
+  nextResetHeading: "Next reset",
+  historyHeading: "Reset log",
+  methodHeading: "Methodology",
+  confirmedAtLabel: "Confirmed at",
+  announceAtLabel: "Announced at",
+  sourcePostLabel: "Source",
+  scopeLabel: "Scope",
+  todayLabel: "today",
+  daysAgoLabel: "{n} days ago",
+  intervalsTemplate: "Historical gaps: min {min} · median {median} · max {max} days ({count} gaps)",
+  estimateNote:
+    "Resets do not follow a fixed schedule and no date is predicted here; treat these gaps as reference only.",
+  followAction: "Follow @thsottiaux on X",
+  historySummaryTemplate: "{total} records since {from}: {resets} full resets · {cards} reset cards",
+  monthSummaryTemplate: "{n} records",
   agentTitle: "Agent access",
   agentBlurb:
     "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",

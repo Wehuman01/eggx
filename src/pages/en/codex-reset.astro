@@ -1,0 +1,249 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import { resets, resetSnapshot } from "../../content/resets";
+import {
+  byTimeDesc,
+  confirmedResetDates,
+  eventTime,
+  intervalsInDays,
+  isConfirmed,
+  summarizeIntervals,
+  daysSince,
+  scopeText,
+} from "../../lib/resets";
+import { UI } from "../../lib/i18n";
+
+const ui = UI.en;
+const events = byTimeDesc(resets);
+
+const latestReset = events.find((e) => e.type === "reset" && isConfirmed(e)) ?? null;
+const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(resets)));
+const resetCount = resets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
+const cardCount = resets.filter((e) => e.type === "card").length;
+
+const tz = "Asia/Shanghai";
+const dtFmt = new Intl.DateTimeFormat("en-US", {
+  timeZone: tz,
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+const monthFmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "long" });
+const dayFmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "short", day: "numeric" });
+
+/** Quote shown on the row: the confirmation when present, else the announcement. */
+function primaryPost(event: (typeof events)[number]) {
+  return event.posts.find((p) => p.stage === "confirm") ?? event.posts[0];
+}
+
+const groups: { label: string; events: typeof events }[] = [];
+for (const event of events) {
+  const label = monthFmt.format(new Date(eventTime(event)));
+  const last = groups[groups.length - 1];
+  if (last && last.label === label) {
+    last.events.push(event);
+  } else {
+    groups.push({ label, events: [event] });
+  }
+}
+
+const elapsedDays = latestReset ? daysSince(latestReset.confirmedAt ?? eventTime(latestReset)) : null;
+
+const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
+const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
+const intervalsText = intervals
+  ? ui.intervalsTemplate
+      .replace("{min}", String(intervals.min))
+      .replace("{median}", String(intervals.median))
+      .replace("{max}", String(intervals.max))
+      .replace("{count}", String(intervals.count))
+  : "";
+const historySummary = ui.historySummaryTemplate
+  .replace("{from}", historyFrom)
+  .replace("{total}", String(resets.length))
+  .replace("{resets}", String(resetCount))
+  .replace("{cards}", String(cardCount));
+---
+
+<BaseLayout
+  locale="en"
+  route="/codex-reset/"
+  title={`${ui.codexResetTitle} — eggx`}
+  description={ui.codexResetBlurb}
+>
+  <div class="main-inner">
+    <header class="page-head">
+      <h1>{ui.codexResetTitle}</h1>
+      <p>{ui.codexResetBlurb}</p>
+    </header>
+
+    <div class="reset-grid">
+      <article class="offer-card">
+        <div class="offer-head">
+          <h2 class="reset-card-title">{ui.lastResetHeading}</h2>
+          {latestReset && <span class="tag tag-verified">{ui.confirmedTag}</span>}
+        </div>
+        {latestReset ? (
+          <>
+            <p class="reset-when">
+              {dtFmt.format(new Date(latestReset.confirmedAt ?? eventTime(latestReset)))}
+              <span class="reset-tz">Beijing time</span>
+            </p>
+            {elapsedDays !== null && (
+              <p class="reset-elapsed">
+                <span class="badge-elapsed" data-since={latestReset.confirmedAt ?? eventTime(latestReset)}>
+                  {elapsedDays <= 0 ? ui.todayLabel : ui.daysAgoLabel.replace("{n}", String(elapsedDays))}
+                </span>
+              </p>
+            )}
+            <blockquote class="reset-quote">
+              {primaryPost(latestReset).en}
+              <footer>
+                <a href={primaryPost(latestReset).url} rel="noopener" target="_blank">{ui.sourcePostLabel}</a>
+              </footer>
+            </blockquote>
+          </>
+        ) : (
+          <p class="empty">No confirmed full reset recorded yet.</p>
+        )}
+      </article>
+
+      <article class="offer-card">
+        <div class="offer-head">
+          <h2 class="reset-card-title">{ui.nextResetHeading}</h2>
+        </div>
+        {latestReset && elapsedDays !== null ? (
+          <>
+            <p class="reset-when">
+              {elapsedDays <= 0 ? ui.todayLabel : ui.daysAgoLabel.replace("{n}", String(elapsedDays))}
+            </p>
+            <p class="stat-line" data-intervals>{intervalsText}</p>
+          </>
+        ) : (
+          <p class="stat-line" data-intervals>{intervalsText}</p>
+        )}
+        <p class="reset-note">{ui.estimateNote}</p>
+        <a
+          class="btn btn-primary offer-action"
+          href="https://x.com/thsottiaux"
+          rel="noopener"
+          target="_blank">{ui.followAction}</a
+        >
+      </article>
+    </div>
+
+    <section class="reset-history">
+      <h2>{ui.historyHeading}</h2>
+      <p class="reset-summary">{historySummary}</p>
+
+      {groups.map((group, index) => (
+        <details class="reset-month" open={index === 0}>
+          <summary class="reset-month-summary">
+            <h3 class="reset-month-label">{group.label}</h3>
+            <span class="reset-month-count">
+              {ui.monthSummaryTemplate.replace("{n}", String(group.events.length))}
+            </span>
+          </summary>
+          <div class="reset-month-body">
+            {group.events.map((event) => {
+              const post = primaryPost(event);
+              const confirmed = isConfirmed(event);
+              const scope = scopeText(event, "en");
+              return (
+                <article class="reset-row">
+                  <div class="reset-row-head">
+                    <span class="reset-row-time">
+                      {dtFmt.format(new Date(eventTime(event)))}
+                    </span>
+                    <span class="tag tag-outline">
+                      {event.type === "reset" ? ui.resetTypeLabel : ui.cardTypeLabel}
+                    </span>
+                    <span class:list={["tag", confirmed ? "tag-verified" : "tag-community"]}>
+                      {confirmed ? ui.confirmedTag : ui.announcedTag}
+                    </span>
+                  </div>
+                  {scope && (
+                    <p class="reset-scope">{ui.scopeLabel}: {scope}</p>
+                  )}
+                  <blockquote class="reset-quote reset-quote-row">
+                    {post.en}
+                    <footer>
+                      <a href={post.url} rel="noopener" target="_blank">{ui.sourcePostLabel}</a>
+                    </footer>
+                  </blockquote>
+                </article>
+              );
+            })}
+          </div>
+        </details>
+      ))}
+    </section>
+
+    <section class="prose reset-method">
+      <h2>{ui.methodHeading}</h2>
+      <ul>
+        <li>
+          <strong>Source</strong> — only public announcements by Tibo (@thsottiaux) on X are
+          recorded; quotes link to the original posts. Snapshot curated from
+          <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>.
+        </li>
+        <li>
+          <strong>Counting</strong> — "Full reset" means Codex quotas wiped for all paid
+          accounts; "Reset card" means a self-serve reset card granted to accounts. The
+          confirmed time is when Tibo's confirmation post was published, not the exact
+          execution time.
+        </li>
+        <li>
+          <strong>Gap stats</strong> — intervals between consecutive full resets counted on
+          deduplicated confirmation dates (same-day rounds count once), since {historyFrom}.
+        </li>
+        <li><strong>Timezone</strong> — all times are Beijing time (UTC+8).</li>
+        <li>
+          <strong>Disclaimer</strong> — this is not an official OpenAI page; whether and when
+          resets happen is entirely OpenAI's call. Any inference from historical gaps is
+          reference only.
+        </li>
+        <li>
+          <strong>Updates</strong> — static snapshot refreshed on each build; the upstream
+          scanner runs about every 5 minutes, last verified {checkedAt}.
+        </li>
+      </ul>
+    </section>
+
+    <p class="reset-footnote">
+      Snapshot verified {checkedAt} · curated from
+      <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
+      · not an official OpenAI page
+    </p>
+  </div>
+
+  <script
+    type="application/json"
+    id="eggx-reset-i18n"
+    set:html={JSON.stringify({ todayLabel: ui.todayLabel, daysAgoLabel: ui.daysAgoLabel })}
+  />
+  {/* The static HTML carries build-day "N days ago" values; recompute at view time
+      from Beijing calendar dates so the page stays honest between deploys. */}
+  <script is:inline>
+    (function () {
+      var cfg = document.getElementById("eggx-reset-i18n");
+      if (!cfg) return;
+      var labels = JSON.parse(cfg.textContent || "{}");
+      var BJ_OFFSET = 8 * 3600000;
+      function beijingDay(ms) {
+        var d = new Date(ms + BJ_OFFSET);
+        return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+      }
+      var today = beijingDay(Date.now());
+      document.querySelectorAll("[data-since]").forEach(function (el) {
+        var then = beijingDay(Date.parse(el.getAttribute("data-since")));
+        var days = Math.round((today - then) / 86400000);
+        el.textContent =
+          days <= 0 ? labels.todayLabel : labels.daysAgoLabel.replace("{n}", String(days));
+      });
+    })();
+  </script>
+</BaseLayout>
