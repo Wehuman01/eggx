@@ -2,9 +2,10 @@ name: Sync codex resets
 
 on:
   schedule:
-    # 每小时整点同步一次（北京时间不变，GitHub 按UTC触发）。上游 AIHOT 每
-    # 15 分钟核验一次、响应缓存 60 秒，每小时拉一次远低于其限流线。
-    - cron: "0 * * * *"
+    # 每小时 :23 同步一次（GitHub 按UTC触发）。避开整点高峰——GitHub 官方文档
+    # 明确说 cron 高峰期（尤其整点）会大幅延迟。上游 AIHOT 每 15 分钟核验一次、
+    # 响应缓存 60 秒，每小时拉一次远低于其限流线。
+    - cron: "23 * * * *"
   workflow_dispatch:
 
 permissions:
