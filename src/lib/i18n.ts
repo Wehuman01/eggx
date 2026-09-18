@@ -60,6 +60,11 @@ export interface UIStrings {
   followAction: string;
   historySummaryTemplate: string;
   monthSummaryTemplate: string;
+  impatientAction: string;
+  impatientDone: string;
+  impatientCountTemplate: string;
+  impatientHint: string;
+  impatientUnavailable: string;
   agentTitle: string;
   agentBlurb: string;
   temporaryTitle: string;
@@ -120,6 +125,11 @@ const zh: UIStrings = {
   followAction: "在 X 上关注 @thsottiaux",
   historySummaryTemplate: "自 {from} 以来共 {total} 条记录：全员重置 {resets} 次 · 发重置卡 {cards} 次",
   monthSummaryTemplate: "{n} 条记录",
+  impatientAction: "等不及了",
+  impatientDone: "已记下了",
+  impatientCountTemplate: "{n} 人等不及了",
+  impatientHint: "同一浏览器限点一次 · 仅供一乐",
+  impatientUnavailable: "计数暂时不可用",
   agentTitle: "Agent 接入",
   agentBlurb:
     "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
@@ -182,6 +192,11 @@ const en: UIStrings = {
   followAction: "Follow @thsottiaux on X",
   historySummaryTemplate: "{total} records since {from}: {resets} full resets · {cards} reset cards",
   monthSummaryTemplate: "{n} records",
+  impatientAction: "Can't wait",
+  impatientDone: "Counted",
+  impatientCountTemplate: "{n} can't wait",
+  impatientHint: "One click per browser · just for fun",
+  impatientUnavailable: "Counter unavailable",
   agentTitle: "Agent access",
   agentBlurb:
     "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",

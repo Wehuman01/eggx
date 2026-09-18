@@ -126,6 +126,13 @@ const historySummary = ui.historySummaryTemplate
           <p class="stat-line" data-intervals>{intervalsText}</p>
         )}
         <p class="reset-note">{ui.estimateNote}</p>
+        <div class="impatient-row">
+          <button type="button" class="btn btn-impatient" id="impatient-btn">{ui.impatientAction}</button>
+          <span class="impatient-meta">
+            <span class="impatient-count" data-impatient-count hidden></span>
+            <span class="impatient-hint" data-impatient-hint>{ui.impatientHint}</span>
+          </span>
+        </div>
         <a
           class="btn btn-primary offer-action"
           href="https://x.com/thsottiaux"
@@ -225,6 +232,18 @@ const historySummary = ui.historySummaryTemplate
     id="eggx-reset-i18n"
     set:html={JSON.stringify({ todayLabel: ui.todayLabel, daysAgoLabel: ui.daysAgoLabel })}
   />
+  <script
+    type="application/json"
+    id="eggx-impatient"
+    set:html={JSON.stringify({
+      base: "https://abacus.jasoncameron.dev",
+      ns: "eggx-wehuman",
+      key: "codex-reset-impatient",
+      doneLabel: ui.impatientDone,
+      countTemplate: ui.impatientCountTemplate,
+      unavailableLabel: ui.impatientUnavailable,
+    })}
+  />
   {/* The static HTML carries build-day "N days ago" values; recompute at view time
       from Beijing calendar dates so the page stays honest between deploys. */}
   <script is:inline>
@@ -243,6 +262,57 @@ const historySummary = ui.historySummaryTemplate
         var days = Math.round((today - then) / 86400000);
         el.textContent =
           days <= 0 ? labels.todayLabel : labels.daysAgoLabel.replace("{n}", String(days));
+      });
+    })();
+  </script>
+  {/* "Can't wait" counter: one increment per browser (localStorage), global count
+      from a free third-party counter service; degraded state stays honest. */}
+  <script is:inline>
+    (function () {
+      var cfgEl = document.getElementById("eggx-impatient");
+      var btn = document.getElementById("impatient-btn");
+      var countEl = document.querySelector("[data-impatient-count]");
+      var hintEl = document.querySelector("[data-impatient-hint]");
+      if (!cfgEl || !btn || !countEl) return;
+      var cfg = JSON.parse(cfgEl.textContent || "{}");
+      var FLAG = "eggx-impatient-v1";
+      function setHint(text) {
+        if (hintEl && text) hintEl.textContent = text;
+      }
+      function renderCount(n) {
+        countEl.textContent = cfg.countTemplate.replace("{n}", String(n));
+        countEl.hidden = false;
+      }
+      function markDone() {
+        btn.disabled = true;
+        btn.textContent = cfg.doneLabel;
+      }
+      fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (d) {
+          if (d && typeof d.value === "number") renderCount(d.value);
+          else setHint(cfg.unavailableLabel);
+        })
+        .catch(function () {
+          setHint(cfg.unavailableLabel);
+        });
+      if (localStorage.getItem(FLAG)) markDone();
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        fetch(cfg.base + "/hit/" + cfg.ns + "/" + cfg.key)
+          .then(function (r) {
+            return r.ok ? r.json() : null;
+          })
+          .then(function (d) {
+            if (d && typeof d.value === "number") renderCount(d.value);
+            localStorage.setItem(FLAG, "1");
+            markDone();
+          })
+          .catch(function () {
+            setHint(cfg.unavailableLabel);
+          });
       });
     })();
   </script>

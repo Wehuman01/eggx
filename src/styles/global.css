@@ -854,6 +854,48 @@ h3 {
   margin-top: 2rem;
 }
 
+/* --- "Can't wait" counter --- */
+
+.impatient-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1rem;
+}
+
+.btn-impatient {
+  background: var(--moss-soft);
+  color: var(--moss);
+}
+
+.btn-impatient:hover {
+  background: #dbe8c9;
+}
+
+.btn-impatient[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.impatient-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.impatient-count {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--moss);
+}
+
+.impatient-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
 .reset-footnote {
   margin-top: 1.5rem;
   padding-top: 0.875rem;
