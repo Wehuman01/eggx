@@ -167,17 +167,22 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
         counts.hidden = false;
       };
 
-      const markVoted = (dir: string) => {
-        const button = buttons[dir];
-        if (button) {
+      /* One vote per browser: picking either direction locks both buttons.
+         The flag stores the direction; legacy per-direction flags still count. */
+      const lockVote = (dir: string) => {
+        (["yes", "no"] as const).forEach((d) => {
+          const button = buttons[d];
+          if (!button) return;
           button.disabled = true;
-          button.classList.add("voted");
-        }
+          if (d === dir) button.classList.add("voted");
+        });
       };
 
-      (["yes", "no"] as const).forEach((dir) => {
-        if (localStorage.getItem(`${FLAG_PREFIX}${key}-${dir}`)) markVoted(dir);
-      });
+      const legacyVote = (["yes", "no"] as const).find((d) =>
+        localStorage.getItem(`${FLAG_PREFIX}${key}-${d}`)
+      );
+      const savedVote = localStorage.getItem(`${FLAG_PREFIX}${key}`) ?? legacyVote;
+      if (savedVote === "yes" || savedVote === "no") lockVote(savedVote);
 
       Promise.all([fetchCount(`${key}-yes`), fetchCount(`${key}-no`)]).then(([yes, no]) => {
         current.yes = yes;
@@ -190,12 +195,11 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
         if (!button) return;
         button.addEventListener("click", () => {
           if (button.disabled) return;
-          const flag = `${FLAG_PREFIX}${key}-${dir}`;
           fetch(`${ABACUS}/hit/${NAMESPACE}/${key}-${dir}`)
             .then((r) => (r.ok ? r.json() : null))
             .then((d) => {
-              localStorage.setItem(flag, "1");
-              markVoted(dir);
+              localStorage.setItem(`${FLAG_PREFIX}${key}`, dir);
+              lockVote(dir);
               if (d && typeof d.value === "number") {
                 current[dir] = d.value;
                 render();
