@@ -1,0 +1,50 @@
+name: 提交羊毛
+description: 推荐一条 AI 编码羊毛，必须附官方来源链接
+title: "提交羊毛："
+labels: ["submission"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 栏目类型
+      description: 这条羊毛适合放进哪个栏目？
+      options:
+        - 临时羊毛（公开限时活动）
+        - 长期羊毛（持续供应的免费额度）
+        - 申请羊毛（需申请、认证或审核）
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: 羊毛名称
+      placeholder: 例如：XX 编辑器学生免费计划
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 官方来源链接
+      description: >
+        官方公告、定价页或项目文档的直链。第三方文章和社区传闻只能作为线索，
+        不能作为唯一依据；没有官方来源的推荐不会收录。
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: limits
+    attributes:
+      label: 限额与获取方式
+      description: 额度多少、给谁、怎么领、有效期。不确定就写"未公布"，不要推测。
+  - type: textarea
+    id: notes
+    attributes:
+      label: 补充说明
+      description: 可信度依据、截止时间、其他值得注意的细节。
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我确认上面的来源是官方来源，并理解收录前会由维护者核实。
+          required: true

@@ -8,7 +8,8 @@ export type RouteKey =
   | "/application/"
   | "/codex-reset/"
   | "/about/"
-  | "/agent/";
+  | "/agent/"
+  | "/submit/";
 
 export function localePath(locale: Locale, route: RouteKey): string {
   if (locale === "zh") return route;
@@ -37,6 +38,7 @@ export interface UIStrings {
   navGroupMore: string;
   navAbout: string;
   navAgent: string;
+  navSubmit: string;
   navGroupTracking: string;
   navCodexReset: string;
   codexResetTitle: string;
@@ -101,6 +103,7 @@ const zh: UIStrings = {
   navGroupMore: "更多",
   navAbout: "关于",
   navAgent: "Agent 接入",
+  navSubmit: "提交羊毛",
   navGroupTracking: "追踪",
   navCodexReset: "Codex 重置",
   codexResetTitle: "Codex 重置监控",
@@ -167,6 +170,7 @@ const en: UIStrings = {
   navGroupMore: "More",
   navAbout: "About",
   navAgent: "Agent access",
+  navSubmit: "Submit a deal",
   navGroupTracking: "Tracking",
   navCodexReset: "Codex resets",
   codexResetTitle: "Codex reset tracker",

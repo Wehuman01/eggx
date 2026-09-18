@@ -60,7 +60,7 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## Contribute
 
-- Found a new offer? Open an [Issue](https://github.com/wehuman01/eggx/issues) with the official source link.
+- Found a new offer? [Submit it](https://github.com/wehuman01/eggx/issues/new?template=submit.yml) with the official source link.
 - Finding it useful? [Star it on GitHub](https://github.com/wehuman01/eggx) ★ so more people see it.
 
 ## License

@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import { UI } from "../lib/i18n";
+
+const ui = UI.zh;
+const submitUrl = "https://github.com/wehuman01/eggx/issues/new?template=submit.yml";
+---
+
+<BaseLayout
+  locale="zh"
+  route="/submit/"
+  title="提交羊毛 — eggx"
+  description="发现新的 AI 编码羊毛？通过 GitHub Issue 推荐给我们，附官方来源链接即可。"
+>
+  <div class="main-inner">
+    <div class="prose">
+      <h1>{ui.navSubmit}</h1>
+      <p>
+        发现了一条我们还没收录的羊毛？推荐给 eggx。提交走 GitHub Issue：公开、可追溯，
+        收不收录都有据可查。
+      </p>
+      <p>
+        <a class="btn btn-primary offer-action" href={submitUrl} rel="noopener" target="_blank"
+          >去提交（需要 GitHub 账号）</a
+        >
+      </p>
+
+      <h2>收什么</h2>
+      <p>三个栏目都收，提交时选一个：</p>
+      <ul>
+        <li><strong>临时羊毛</strong> — 公开的限时活动，有截止日期。</li>
+        <li><strong>长期羊毛</strong> — 持续供应的免费额度与计划。</li>
+        <li><strong>申请羊毛</strong> — 需申请、认证或人工审核才能领取。</li>
+      </ul>
+
+      <h2>必须带官方来源</h2>
+      <p>
+        每条羊毛必须有官方来源链接：官方公告、定价页或项目文档的直链。
+        第三方文章和社区传闻只能作为线索，引导我们去核实，永远不能作为唯一依据。
+        没有官方来源的推荐不会收录。
+      </p>
+
+      <h2>提交之后</h2>
+      <ul>
+        <li>推荐会公开留在 Issue 里，任何人可见。</li>
+        <li>维护者按官方来源核实栏目、限额与可信度，再决定是否收录。</li>
+        <li>过期只归档，不删除 — 收录的每条羊毛都保留公开的核实轨迹。</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

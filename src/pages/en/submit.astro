@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import { UI } from "../../lib/i18n";
+
+const ui = UI.en;
+const submitUrl = "https://github.com/wehuman01/eggx/issues/new?template=submit.yml";
+---
+
+<BaseLayout
+  locale="en"
+  route="/submit/"
+  title="Submit a deal — eggx"
+  description="Found a free AI coding deal we're missing? Recommend it via a GitHub Issue with an official source link."
+>
+  <div class="main-inner">
+    <div class="prose">
+      <h1>{ui.navSubmit}</h1>
+      <p>
+        Found a deal we haven't listed? Send it to eggx. Submissions go through GitHub Issues:
+        public, traceable, and every accept-or-reject decision stays on the record.
+      </p>
+      <p>
+        <a class="btn btn-primary offer-action" href={submitUrl} rel="noopener" target="_blank"
+          >Open the submission form (GitHub account required)</a
+        >
+      </p>
+
+      <h2>What we take</h2>
+      <p>All three sections welcome submissions — pick one when filing:</p>
+      <ul>
+        <li><strong>Temporary offers</strong> — public limited-time campaigns with an end date.</li>
+        <li><strong>Long-term offers</strong> — recurring free tiers and programs.</li>
+        <li><strong>Application offers</strong> — deals that require applying, verification, or review.</li>
+      </ul>
+
+      <h2>An official source is mandatory</h2>
+      <p>
+        Every submission needs a link to the official source: an announcement, pricing page, or
+        project documentation. Third-party articles and community rumors can point us at something
+        to verify, but they can never be the only evidence. Submissions without an official source
+        will not be listed.
+      </p>
+
+      <h2>After you submit</h2>
+      <ul>
+        <li>Your submission stays public in the Issue tracker.</li>
+        <li>Maintainers verify the section, limits, and credibility against the official source before listing.</li>
+        <li>Expired entries are archived, never deleted — every listing keeps its public verification trail.</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

@@ -60,7 +60,7 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## 参与进来
 
-- 发现新羊毛？提 [Issue](https://github.com/wehuman01/eggx/issues) 推荐，附上官方来源链接。
+- 发现新羊毛？通过[提交表单](https://github.com/wehuman01/eggx/issues/new?template=submit.yml)推荐，附上官方来源链接。
 - 觉得有用？去 [GitHub 加个星](https://github.com/wehuman01/eggx) ★，让更多人看到。
 
 ## License
