@@ -204,9 +204,87 @@ export const GET: APIRoute = () => {
           },
         },
       },
+      "/api/v1/aweshare.json": {
+        get: {
+          summary: "Snapshot of shared models available on the aweshare hub",
+          description:
+            "Hourly snapshot of the aweshare hub catalog (run by the eggx team): which shared models are usable right now, their wire protocols, status, last hub-side success, and shared daily token budgets. Public fields only — upstream model identity and live occupancy stay hub-side. Status reflects snapshot time and is no availability guarantee.",
+          responses: {
+            "200": {
+              description: "Hub catalog snapshot",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      schemaVersion: { type: "string" },
+                      data: {
+                        type: "object",
+                        properties: {
+                          snapshot: { $ref: "#/components/schemas/AweshareSnapshot" },
+                          offerings: {
+                            type: "array",
+                            items: { $ref: "#/components/schemas/AweshareOffering" },
+                          },
+                        },
+                        required: ["snapshot", "offerings"],
+                      },
+                    },
+                    required: ["schemaVersion", "data"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     components: {
       schemas: {
+        AweshareSnapshot: {
+          type: "object",
+          required: ["hubUrl", "checkedAt", "count"],
+          properties: {
+            hubUrl: { type: "string" },
+            checkedAt: { type: "string" },
+            count: { type: "integer" },
+          },
+        },
+        AweshareOffering: {
+          type: "object",
+          required: [
+            "producer",
+            "alias",
+            "protocols",
+            "status",
+            "hubCheckAt",
+            "degradedSince",
+            "maxConcurrencyPerUser",
+            "maxConcurrentUsers",
+            "dailyTokens",
+            "usedDailyTokens",
+            "shareState",
+          ],
+          properties: {
+            producer: { type: "string" },
+            alias: { type: "string" },
+            protocols: {
+              type: "array",
+              items: {
+                type: "string",
+                enum: ["anthropic", "openai-chat", "openai-responses"],
+              },
+            },
+            status: { type: "string", enum: ["online", "degraded", "offline", "blocked"] },
+            hubCheckAt: { type: ["string", "null"] },
+            degradedSince: { type: ["string", "null"] },
+            maxConcurrencyPerUser: { type: "integer" },
+            maxConcurrentUsers: { type: "integer" },
+            dailyTokens: { type: "integer", description: "0 = unlimited" },
+            usedDailyTokens: { type: "integer" },
+            shareState: { type: ["string", "null"], enum: ["open", "closed", null] },
+          },
+        },
         ResetSnapshot: {
           type: "object",
           required: ["checkedAt", "historyFrom", "source", "curator"],
