@@ -13,7 +13,7 @@ eggx is a verified free AI coding deals registry. Every entry is a real platform
 
 - **verified=true** — the offer has been confirmed through official channels or direct evidence, and carries a \`lastVerified\` date.
 - **verified=false** — community-reported; confirm independently before relying on it.
-- **archived** — no longer active; excluded from public listings but kept in history.
+- **archived** — no longer active; excluded from the live tiers and the API, but kept in the public audit archive at /expired/ (nothing there is claimable).
 
 ## Text fields
 
@@ -31,6 +31,7 @@ Default language is Chinese (Simplified). English mirror lives under /en/.
 - / — temporary offers (default landing)
 - /long-term/ — long-term offers
 - /application/ — application-required offers
+- /expired/ — archived (expired) offers; audit trail only, nothing to claim
 - /codex-reset/ — Codex reset tracker (full resets and reset cards announced by @thsottiaux)
 - /aweshare/ — aweshare hub shared-model availability (hourly snapshot; invite-based access)
 - /about/ — editorial policy
@@ -38,6 +39,7 @@ Default language is Chinese (Simplified). English mirror lives under /en/.
 - /en/ — English temporary offers
 - /en/long-term/ — English long-term offers
 - /en/application/ — English application-required offers
+- /en/expired/ — English archived (expired) offers
 - /en/codex-reset/ — English Codex reset tracker
 - /en/aweshare/ — English aweshare model availability
 - /en/about/ — English about

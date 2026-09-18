@@ -6,6 +6,7 @@ export type RouteKey =
   | "/"
   | "/long-term/"
   | "/application/"
+  | "/expired/"
   | "/codex-reset/"
   | "/aweshare/"
   | "/about/"
@@ -110,6 +111,13 @@ export interface UIStrings {
   longTermBlurb: string;
   applicationTitle: string;
   applicationBlurb: string;
+  navExpired: string;
+  expiredTitle: string;
+  expiredBlurb: string;
+  expiredWarnHeading: string;
+  expiredWarnBody: string;
+  expiredEmptyList: string;
+  archivedTag: string;
   expiringToday: string;
   expiredTag: string;
   daysLeftOne: string;
@@ -214,6 +222,14 @@ navCodexReset: "Codex 重置",
   longTermBlurb: "持续供应的免费额度与计划，稳定可依赖。",
   applicationTitle: "申请羊毛",
   applicationBlurb: "需申请、认证或人工审核才能领取的羊毛。",
+  navExpired: "过期羊毛",
+  expiredTitle: "过期羊毛",
+  expiredBlurb: "犹如砒霜，入口无益 — 早已下架，仅作审计归档。",
+  expiredWarnHeading: "不建议点开",
+  expiredWarnBody:
+    "这里埋的全是死掉的羊毛：活动结束、页面失效、兑换码作废。留着只为保留公开的审计轨迹，不是为了让你去领。点进去大概率一无所获，别怪没提醒。",
+  expiredEmptyList: "墓园还空着 — 暂无归档的羊毛。",
+  archivedTag: "已归档",
   expiringToday: "今天到期",
   expiredTag: "已过期",
   daysLeftOne: "1 天后到期",
@@ -319,6 +335,14 @@ const en: UIStrings = {
   longTermBlurb: "Recurring free tiers and programs you can rely on.",
   applicationTitle: "Application offers",
   applicationBlurb: "Deals that require an application, verification, or review to claim.",
+  navExpired: "Expired deals",
+  expiredTitle: "Expired deals",
+  expiredBlurb: "Like arsenic — long dead, worth nothing. Audit archive only.",
+  expiredWarnHeading: "Not recommended",
+  expiredWarnBody:
+    "Everything below is dead: campaigns over, pages gone, codes void. This is a public audit trail, not a claim list. Clicking will most likely get you nothing — you were warned.",
+  expiredEmptyList: "The graveyard is empty — nothing archived yet.",
+  archivedTag: "archived",
   expiringToday: "Ends today",
   expiredTag: "Expired",
   daysLeftOne: "Ends in 1 day",

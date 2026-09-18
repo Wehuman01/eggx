@@ -67,6 +67,7 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
+    archived: true,
     expiry: "2026-09-24",
     url: "https://opencode.ai/docs/zen",
     source: "https://opencode.ai/docs/zen",
@@ -75,18 +76,18 @@ export const offers = validateRegistry([
     zh: {
       name: "OpenCode Zen Union Alpha 免费车道",
       description:
-        "OpenCode Zen 的零价格 Union Alpha 车道：匿名前沿多模态模型限时免费（一周活动，至 9 月 24 日截止）、零数据留存。同车免费的还有 MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra / 3.5 Lightning、Big Pickle、Muse Spark 1.3 Contributor。",
+        "OpenCode Zen 的零价格 Union Alpha 车道：匿名前沿多模态模型限时免费（一周活动，原定 9 月 24 日截止）、零数据留存。同车免费的还有 MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra / 3.5 Lightning、Big Pickle、Muse Spark 1.3 Contributor。",
       limits: "限时免费期内可用；各模型配额未公布",
       caveat:
-        "活动至 9 月 24 日截止。除 Union Alpha 零留存外，Big Pickle、MiMo、Ling、Nemotron 免费期数据可能用于改进模型；Muse Spark Contributor 的提示词与补全会用于训练 Meta 模型。",
+        "活动提前下线，2026-09-18 核实已失效，本条仅作归档。原记录：除 Union Alpha 零留存外，Big Pickle、MiMo、Ling、Nemotron 免费期数据可能用于改进模型；Muse Spark Contributor 的提示词与补全会用于训练 Meta 模型。",
     },
     en: {
       name: "OpenCode Zen Union Alpha Free Lane",
       description:
-        "OpenCode Zen's zero-price Union Alpha lane: a stealth frontier multimodal model free for a limited time (one-week run, through Sep 24) with zero-retention privacy. Also free: MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra / 3.5 Lightning, Big Pickle, Muse Spark 1.3 Contributor.",
+        "OpenCode Zen's zero-price Union Alpha lane: a stealth frontier multimodal model free for a limited time (one-week run, originally through Sep 24) with zero-retention privacy. Also free: MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra / 3.5 Lightning, Big Pickle, Muse Spark 1.3 Contributor.",
       limits: "Free during the limited-time period; per-model caps not published",
       caveat:
-        "The campaign ends Sep 24. Beyond zero-retention Union Alpha, Big Pickle, MiMo, Ling, and Nemotron may use free-period data to improve the model; Muse Spark Contributor's prompts and completions train future Meta models.",
+        "The campaign ended early and was confirmed dead on 2026-09-18; this entry is archived. Original record: beyond zero-retention Union Alpha, Big Pickle, MiMo, Ling, and Nemotron may use free-period data to improve the model; Muse Spark Contributor's prompts and completions train future Meta models.",
     },
   },
   {
@@ -216,20 +217,20 @@ export const offers = validateRegistry([
     zh: {
       name: "OpenCode Zen 免费车道（长期轮换）",
       description:
-        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra、Big Pickle、Union Alpha 等先后免费上架，任一时刻通常都有数款模型可零价格调用，当前阵容见官方 pricing 表。限时免费的新模型下架后，车道会补上下一批。",
+        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。当前阵容（2026-09-18 核实，共 7 款）：Muse Spark 1.3 / 1.2、Ling 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、MiMo V2.5、Big Pickle。限时免费的新模型下架后，车道会补上下一批。",
       limits:
         "注册即用，但需绑定支付信息才能取 API key（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
       caveat:
-        "单个模型都是限时免费、到期即下架车道；免费期间数据政策各不相同——部分模型的数据可能用于改进训练，Union Alpha 例外（零留存）。",
+        "单个模型都是限时免费、到期即下架车道；免费期间数据政策各不相同——部分模型的数据可能用于改进训练，详见各模型说明。",
     },
     en: {
       name: "OpenCode Zen Free Lane (Rotating)",
       description:
-        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Big Pickle, and Union Alpha have all taken a free turn — at any moment several models are callable at price zero. See the official pricing table for today's lineup; as one limited-time model leaves, the next batch lands.",
+        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Current lineup (verified 2026-09-18, seven lanes): Muse Spark 1.3 / 1.2, Ling 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, MiMo V2.5, and Big Pickle. As one limited-time model leaves, the next batch lands.",
       limits:
         "Sign-up is instant, but billing details are required before an API key (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
       caveat:
-        "Each model is individually limited-time free and leaves the lane when it ends; data policies vary — some models may use free-period data for training, Union Alpha excepted (zero retention).",
+        "Each model is individually limited-time free and leaves the lane when it ends; data policies vary — some models may use free-period data for training; check each model's terms.",
     },
   },
   {

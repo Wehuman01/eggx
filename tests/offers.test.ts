@@ -8,6 +8,8 @@ import {
 } from "../src/lib/schema";
 import {
   activeOffers,
+  archivedOffers,
+  archivalOrder,
   byKind,
   byVerified,
   providerLookup,
@@ -209,10 +211,11 @@ describe("data guards", () => {
     }
   });
 
-  it("expiry dates are not in the past", async () => {
+  it("expiry dates are not in the past (active offers; archived may be past)", async () => {
     const { offers } = await import("../src/content/offers");
     const today = new Date().toISOString().slice(0, 10);
     for (const offer of offers) {
+      if (offer.archived) continue;
       if (typeof offer.expiry !== "string") continue;
       expect(offer.expiry >= today, `${offer.id} expiry ${offer.expiry} must not be before ${today}`).toBe(
         true,
@@ -261,6 +264,40 @@ describe("offers helpers", () => {
   it("activeOffers excludes archived", () => {
     expect(activeOffers(mockOffers)).toHaveLength(1);
     expect(activeOffers(mockOffers)[0].id).toBe("a1");
+  });
+
+  it("archivedOffers collects exactly the archived entries", () => {
+    expect(archivedOffers(mockOffers).map((o) => o.id)).toEqual(["a2"]);
+  });
+
+  it("archivalOrder puts newest lastVerified first, then later expiry", () => {
+    const dead: Offer[] = [
+      {
+        id: "older-death",
+        provider: "Z",
+        kind: "temporary",
+        access: "public",
+        verified: true,
+        archived: true,
+        expiry: "2026-08-01",
+        lastVerified: "2026-08-02",
+        zh: { name: "Old", description: "Old" },
+        en: { name: "Old", description: "Old" },
+      },
+      {
+        id: "newer-death",
+        provider: "Z",
+        kind: "temporary",
+        access: "public",
+        verified: true,
+        archived: true,
+        expiry: "2026-09-24",
+        lastVerified: "2026-09-18",
+        zh: { name: "New", description: "New" },
+        en: { name: "New", description: "New" },
+      },
+    ];
+    expect(archivalOrder(dead).map((o) => o.id)).toEqual(["newer-death", "older-death"]);
   });
 
   it("byKind filters to the requested kind", () => {

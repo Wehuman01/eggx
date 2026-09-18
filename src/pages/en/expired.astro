@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../components/BaseLayout.astro";
+import OfferCard from "../../components/OfferCard.astro";
+import { offers } from "../../content/offers";
+import { archivedOffers, archivalOrder } from "../../lib/offers";
+import { UI } from "../../lib/i18n";
+
+const ui = UI.en;
+const list = archivalOrder(archivedOffers(offers));
+---
+
+<BaseLayout
+  locale="en"
+  route="/expired/"
+  title="Expired deals — eggx"
+  description={ui.expiredBlurb}
+>
+  <div class="main-inner graveyard">
+    <header class="page-head">
+      <h1>{ui.expiredTitle}</h1>
+      <p>{ui.expiredBlurb}</p>
+    </header>
+
+    <section class="graveyard-banner" aria-label={ui.expiredWarnHeading}>
+      <p class="graveyard-skull" aria-hidden="true">☠</p>
+      <div>
+        <h2>{ui.expiredWarnHeading}</h2>
+        <p>{ui.expiredWarnBody}</p>
+      </div>
+    </section>
+
+    {list.length > 0 ? (
+      list.map((offer) => <OfferCard offer={offer} locale="en" />)
+    ) : (
+      <p class="empty">{ui.expiredEmptyList}</p>
+    )}
+  </div>
+</BaseLayout>

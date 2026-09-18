@@ -12,18 +12,20 @@ interface Props {
 const { offer, locale } = Astro.props;
 const ui = UI[locale];
 const loc = offer[locale];
+const dead = offer.archived === true;
 const showPageLink = Boolean(offer.url && offer.url !== offer.actionUrl && offer.url !== offer.source);
 
 let expiryBadge: string | null = null;
-if (offer.kind === "temporary" && offer.expiry) {
+if (offer.kind === "temporary" && offer.expiry && !dead) {
   expiryBadge = expiryBadgeLabel(offer.expiry, new Date(), ui);
 }
 ---
 
-<article class="offer-card">
+<article class:list={["offer-card", { "offer-dead": dead }]}>
   <div class="offer-head">
     <h3 class="offer-name">{loc.name}</h3>
     <div class="offer-tags">
+      {dead && <span class="tag tag-archived">{ui.archivedTag}</span>}
       <span class:list={["tag", offer.verified ? "tag-verified" : "tag-community"]}>
         {offer.verified ? ui.verifiedTag : ui.communityTag}
       </span>
@@ -53,7 +55,7 @@ if (offer.kind === "temporary" && offer.expiry) {
 
   {loc.caveat && <p class="offer-caveat">{loc.caveat}</p>}
 
-  {offer.code && (
+  {offer.code && !dead && (
     <button
       type="button"
       class="code-chip"
@@ -66,7 +68,7 @@ if (offer.kind === "temporary" && offer.expiry) {
     </button>
   )}
 
-  {!offer.verified && (
+  {!offer.verified && !dead && (
     <div
       class="verify-row"
       data-verify-key={`verify-${offer.id}`}
@@ -80,11 +82,13 @@ if (offer.kind === "temporary" && offer.expiry) {
     </div>
   )}
 
-  {offer.actionUrl && (
+  {offer.actionUrl && !dead ? (
     <a class="btn btn-primary offer-action" href={offer.actionUrl} rel="noopener" target="_blank">
       {offer.access === "application" ? ui.applyAction : ui.claimAction}
     </a>
-  )}
+  ) : dead ? (
+    <p class="offer-dead-note">{ui.expiredBlurb}</p>
+  ) : null}
 
   <footer class="offer-meta">
     {offer.source && (

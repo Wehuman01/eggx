@@ -4,6 +4,10 @@ export function activeOffers(offers: readonly Offer[]): Offer[] {
   return offers.filter((o) => !o.archived);
 }
 
+export function archivedOffers(offers: readonly Offer[]): Offer[] {
+  return offers.filter((o) => o.archived);
+}
+
 export function byKind(offers: readonly Offer[], kind: OfferKind): Offer[] {
   return offers.filter((o) => o.kind === kind);
 }
@@ -27,6 +31,16 @@ export function expiryOrder(offers: readonly Offer[]): Offer[] {
     if (!a.expiry) return 1;
     if (!b.expiry) return -1;
     return a.expiry.localeCompare(b.expiry);
+  });
+}
+
+/** Graveyard order: most recently verified (i.e. most recently found dead) first. */
+export function archivalOrder(offers: readonly Offer[]): Offer[] {
+  return [...offers].sort((a, b) => {
+    const av = a.lastVerified ?? "";
+    const bv = b.lastVerified ?? "";
+    if (av !== bv) return bv.localeCompare(av);
+    return (b.expiry ?? "").localeCompare(a.expiry ?? "");
   });
 }
 

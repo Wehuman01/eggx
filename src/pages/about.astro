@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
-import { UI } from "../lib/i18n";
+import { UI, pageUrl } from "../lib/i18n";
 
 const ui = UI.zh;
 ---
@@ -63,6 +63,8 @@ const ui = UI.zh;
       <p>
         已过期或下架的羊毛会归档保留，而不是删除，以保留公开的审计轨迹。
         一个来源不可用只代表它曾经的核实记录，绝不代表它仍然可用。
+        归档条目收在<a href={pageUrl("zh", "/expired/")}>过期羊毛</a>页 —
+        犹如砒霜，入口无益，不建议点开。
       </p>
 
       <h2>只读目录</h2>

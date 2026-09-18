@@ -149,6 +149,29 @@ h3 {
   font-weight: 600;
 }
 
+/* Dead link: deliberately uninviting — muted, smaller, no hover perk. */
+.nav-link-dead {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.nav-link-dead:hover {
+  background: none;
+  color: var(--ink);
+  text-decoration: line-through;
+}
+
+.nav-link-dead.active {
+  background: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.nav-dead-mark {
+  margin-right: 0.25rem;
+  opacity: 0.7;
+}
+
 .sidebar-actions {
   margin-top: auto;
   display: flex;
@@ -474,6 +497,79 @@ h3 {
 
 .empty {
   color: var(--muted);
+}
+
+/* --- Graveyard: archived (expired) offers --- */
+
+.graveyard-banner {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  background: #26221f;
+  color: #d9d2c7;
+  border: 1px dashed #4d463f;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.graveyard-banner .graveyard-skull {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0.125rem 0 0;
+  color: #a89a7c;
+}
+
+.graveyard-banner h2 {
+  color: #f3ede4;
+  font-size: 1.0625rem;
+  margin: 0 0 0.25rem;
+}
+
+.graveyard-banner p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #c9c0b2;
+}
+
+.offer-card.offer-dead {
+  background: #f3f0ea;
+  border: 1px dashed #c6bfb2;
+  box-shadow: none;
+}
+
+.offer-dead .offer-name {
+  color: #5f584d;
+}
+
+.offer-dead .offer-desc {
+  color: #6f675c;
+}
+
+.offer-dead .offer-caveat {
+  border-left-color: #a89a7c;
+  color: #6f675c;
+}
+
+.offer-dead a {
+  color: #8a8272;
+}
+
+.offer-dead .tag-verified,
+.offer-dead .tag-community {
+  opacity: 0.55;
+}
+
+.tag-archived {
+  background: #e9e4db;
+  color: #6f675c;
+}
+
+.offer-dead-note {
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  color: #8a8272;
+  font-style: italic;
 }
 
 /* --- Community section: unverified leads + crowd verification --- */

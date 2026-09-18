@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import { UI } from "../../lib/i18n";
+import { UI, pageUrl } from "../../lib/i18n";
 
 const ui = UI.en;
 ---
@@ -64,7 +64,9 @@ const ui = UI.en;
       <p>
         Removed or expired offers are archived rather than deleted, so the public
         audit trail is preserved. An unavailable source is shown as a prior
-        verification — never as evidence of continued availability.
+        verification — never as evidence of continued availability. The archive
+        lives on the <a href={pageUrl("en", "/expired/")}>expired deals</a> page: like arsenic,
+        long dead and worth nothing — kept for audit, not for claiming.
       </p>
 
       <h2>A read-only directory</h2>

@@ -29,6 +29,7 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 | 临时羊毛 | 公开限时活动，按到期时间排序，带倒计时 | [eggx.wehuman.top](https://eggx.wehuman.top/) |
 | 长期羊毛 | 持续供应的免费额度与计划，稳定可依赖 | [/long-term](https://eggx.wehuman.top/long-term/) |
 | 申请羊毛 | 需申请、认证或人工审核才能领取的 | [/application](https://eggx.wehuman.top/application/) |
+| 过期羊毛 | 已下架活动的审计归档 — 犹如砒霜，不建议点开 | [/expired](https://eggx.wehuman.top/expired/) |
 
 ## 诚实优先
 

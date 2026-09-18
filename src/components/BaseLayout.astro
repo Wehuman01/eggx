@@ -81,6 +81,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
                 </li>
               );
             })}
+            <li>
+              <a
+                class:list={["nav-link", "nav-link-dead", { active: route === "/expired/" }]}
+                href={pageUrl(locale, "/expired/")}
+              >
+                <span class="nav-dead-mark" aria-hidden="true">☠</span>
+                {ui.navExpired}
+              </a>
+            </li>
           </ul>
 
           <p class="nav-group-label">{ui.navGroupTracking}</p>

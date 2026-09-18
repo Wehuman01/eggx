@@ -29,6 +29,7 @@ eggx answers one question: **what can I claim for free right now to build with A
 | Temporary | Open limited-time campaigns, sorted by expiry, with countdowns | [eggx.wehuman.top](https://eggx.wehuman.top/en/) |
 | Long-term | Continuously available free tiers and plans you can rely on | [/en/long-term](https://eggx.wehuman.top/en/long-term/) |
 | Application | Benefits that require applying, verification, or manual review | [/en/application](https://eggx.wehuman.top/en/application/) |
+| Expired | Audit archive of dead campaigns — like arsenic, not recommended | [/en/expired](https://eggx.wehuman.top/en/expired/) |
 
 ## Honesty first
 
