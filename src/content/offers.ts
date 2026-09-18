@@ -294,18 +294,18 @@ export const offers = validateRegistry([
     zh: {
       name: "Codex 学生计划",
       description:
-        "美国/加拿大高校在读学生完成认证后，获 100 美元 ChatGPT 额度（2,500 credits）用于 Codex，授予后 4 个月内有效。没有美高校邮的话，海鲜市场有代认证服务；代认证不参与绑卡，但领取优惠需要账号绑卡。",
-      limits: "认证学生一次性 100 美元额度，4 个月内用完；需 ChatGPT 账号（Free/Go/Plus/Pro）",
+        "美国/加拿大高校在读学生完成认证后，送 4 个月 ChatGPT Plus 账号，Codex 用量随 Plus 额度走。没有美高校邮的话，海鲜市场有代认证服务；代认证不参与绑卡，但领取优惠需要账号绑卡。",
+      limits: "认证学生送 4 个月 ChatGPT Plus 账号；需 ChatGPT 账号（Free/Go/Plus/Pro）",
       caveat:
-        "是 ChatGPT 额度而非 API 额度；仅限美加在读且居住美加的学生。代认证需把账号交给第三方，违反 OpenAI 条款，有封号风险；领取优惠需要账号绑卡，找充值的话，学生额度的 4 个月有效期会挤掉本来套餐的时间，请自行权衡。",
+        "这是 Plus 订阅而非 API 额度；仅限美加在读且居住美加的学生。代认证需把账号交给第三方，违反 OpenAI 条款，有封号风险；领取优惠需要账号绑卡，找充值的话，4 个月 Plus 会挤掉本来套餐的时间，请自行权衡。",
     },
     en: {
       name: "Codex for Students",
       description:
-        "Verified university students in the US and Canada get $100 in ChatGPT credits (2,500 credits) for use in Codex, expiring 4 months after the grant date. Without a US/Canada school email, proxy-verification services exist on resale marketplaces; proxy verification doesn't involve card binding, but claiming the offer requires a card on the account.",
-      limits: "One-time $100 grant per verified student, usable for 4 months; requires a ChatGPT account (Free/Go/Plus/Pro)",
+        "Verified university students in the US and Canada get 4 months of ChatGPT Plus for free; Codex usage follows the Plus quota. Without a US/Canada school email, proxy-verification services exist on resale marketplaces; proxy verification doesn't involve card binding, but claiming the offer requires a card on the account.",
+      limits: "4 months of ChatGPT Plus per verified student; requires a ChatGPT account (Free/Go/Plus/Pro)",
       caveat:
-        "These are ChatGPT credits, not API credits; limited to students enrolled in and residing in the US/Canada. Proxy verification hands your account to a third party and breaches OpenAI terms — ban risk is yours to weigh. Claiming requires a card on the account; if you go through a top-up service, the 4-month student credit window displaces the remaining time on your existing plan.",
+        "This is a Plus subscription, not API credits; limited to students enrolled in and residing in the US/Canada. Proxy verification hands your account to a third party and breaches OpenAI terms — ban risk is yours to weigh. Claiming requires a card on the account; if you go through a top-up service, the 4-month Plus window displaces the remaining time on your existing plan.",
     },
   },
   {
