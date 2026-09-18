@@ -32,7 +32,7 @@ eggx answers one question: **what can I claim for free right now to build with A
 
 ## Honesty first
 
-- **Verified vs community** — every offer carries a trust label: confirmed by official docs, or reported by the community and worth a second check. Third-party sources can lead to an entry, but never serve as its sole basis.
+- **Verified vs community** — every offer carries a trust label: confirmed by official docs, or reported by the community and worth a second check. Third-party sources are welcome leads; entries get verified before they're listed.
 - **Free ≠ unlimited** — unpublished limits stay "not published"; we never guess them into "unlimited". Read each offer's limits before you depend on it.
 - **Expired offers are archived, never deleted** — the audit trail stays public. A dead source proves a past verification, never current availability.
 

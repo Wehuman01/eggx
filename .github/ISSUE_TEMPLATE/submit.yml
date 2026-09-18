@@ -1,5 +1,5 @@
 name: 提交羊毛
-description: 推荐一条 AI 编码羊毛，必须附官方来源链接
+description: 推荐一条 AI 编码羊毛，附官方来源链接更好
 title: "提交羊毛："
 labels: ["submission"]
 body:
@@ -26,11 +26,9 @@ body:
     attributes:
       label: 官方来源链接
       description: >
-        官方公告、定价页或项目文档的直链。第三方文章和社区传闻只能作为线索，
-        不能作为唯一依据；没有官方来源的推荐不会收录。
+        官方公告、定价页或项目文档的直链，有它核实会快很多。
+        第三方文章或社区传闻也行，说清是在哪里看到的即可。
       placeholder: https://
-    validations:
-      required: true
   - type: textarea
     id: limits
     attributes:
@@ -46,5 +44,5 @@ body:
     attributes:
       label: 确认
       options:
-        - label: 我确认上面的来源是官方来源，并理解收录前会由维护者核实。
+        - label: 我理解这条推荐会公开展示，并由维护者核实后才可能收录。
           required: true
