@@ -112,8 +112,11 @@ if (offer.kind === "temporary" && offer.expiry) {
 
   function fetchCount(key: string): Promise<number | null> {
     return fetch(`${ABACUS}/get/${NAMESPACE}/${key}`)
-      .then((r) => (r.status === 404 ? 0 : r.ok ? r.json() : null))
-      .then((d) => (d && typeof d.value === "number" ? d.value : null))
+      .then((r) => {
+        if (r.status === 404) return 0;
+        if (!r.ok) return null;
+        return r.json().then((d) => (typeof d.value === "number" ? d.value : null));
+      })
       .catch(() => null);
   }
 
