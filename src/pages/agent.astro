@@ -25,6 +25,8 @@ const endpoints = [
     path: "/api/v1/changes.json",
     desc: "按 lastVerified 最新在前；增量同步在客户端按 lastVerified ≥ since 过滤",
   },
+  { path: "/api/v1/codex-resets.json", desc: "Codex 重置记录" },
+  { path: "/api/v1/aweshare.json", desc: "aweshare hub 共享模型可用性（每小时快照）" },
 ];
 
 const steps = [

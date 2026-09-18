@@ -9,6 +9,7 @@ import {
 import {
   activeOffers,
   byKind,
+  byVerified,
   providerLookup,
   expiryOrder,
   daysUntil,
@@ -278,6 +279,23 @@ describe("offers helpers", () => {
     ];
     expect(byKind(mixed, "temporary")).toHaveLength(1);
     expect(byKind(mixed, "temporary")[0].id).toBe("t1");
+  });
+
+  it("byVerified splits official from community entries", () => {
+    const mixed: Offer[] = [
+      ...mockOffers,
+      {
+        id: "c1",
+        provider: "W",
+        kind: "temporary",
+        access: "public",
+        verified: false,
+        zh: { name: "C1", description: "C1 desc" },
+        en: { name: "C1", description: "C1 desc" },
+      },
+    ];
+    expect(byVerified(mixed, true).map((o) => o.id)).toEqual(["a1"]);
+    expect(byVerified(mixed, false).map((o) => o.id)).toEqual(["c1"]);
   });
 
   it("providerLookup is case-insensitive", () => {

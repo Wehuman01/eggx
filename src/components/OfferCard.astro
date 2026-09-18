@@ -53,6 +53,33 @@ if (offer.kind === "temporary" && offer.expiry) {
 
   {loc.caveat && <p class="offer-caveat">{loc.caveat}</p>}
 
+  {offer.code && (
+    <button
+      type="button"
+      class="code-chip"
+      data-code={offer.code}
+      data-copied={ui.codeCopied}
+      title={ui.codeHint}
+    >
+      <span class="code-label">{ui.codeLabel}</span>
+      <code>{offer.code}</code>
+    </button>
+  )}
+
+  {!offer.verified && (
+    <div
+      class="verify-row"
+      data-verify-key={`verify-${offer.id}`}
+      data-yes-template={ui.verifyYesCountTemplate}
+      data-no-template={ui.verifyNoCountTemplate}
+      data-unavailable={ui.verifyUnavailable}
+    >
+      <button type="button" class="btn-verify" data-verify="yes">{ui.verifyYesAction}</button>
+      <button type="button" class="btn-verify" data-verify="no">{ui.verifyNoAction}</button>
+      <span class="verify-counts" data-verify-counts hidden></span>
+    </div>
+  )}
+
   {offer.actionUrl && (
     <a class="btn btn-primary offer-action" href={offer.actionUrl} rel="noopener" target="_blank">
       {offer.access === "application" ? ui.applyAction : ui.claimAction}
@@ -73,3 +100,111 @@ if (offer.kind === "temporary" && offer.expiry) {
     {offer.lastVerified && <span>{ui.verifiedOn(offer.lastVerified)}</span>}
   </footer>
 </article>
+
+<script>
+  /* Community verification + code chips. Processed script: bundled once per
+     page even when OfferCard renders many times. Anonymous counts come from a
+     free third-party counter; a missing key means 0, a network failure means
+     "unavailable" — degraded states stay honest. */
+  const ABACUS = "https://abacus.jasoncameron.dev";
+  const NAMESPACE = "eggx-wehuman";
+  const FLAG_PREFIX = "eggx-verify-";
+
+  function fetchCount(key: string): Promise<number | null> {
+    return fetch(`${ABACUS}/get/${NAMESPACE}/${key}`)
+      .then((r) => (r.status === 404 ? 0 : r.ok ? r.json() : null))
+      .then((d) => (d && typeof d.value === "number" ? d.value : null))
+      .catch(() => null);
+  }
+
+  function init() {
+    document.querySelectorAll<HTMLButtonElement>(".code-chip").forEach((chip) => {
+      const label = chip.querySelector<HTMLElement>(".code-label");
+      const original = label?.textContent ?? "";
+      chip.addEventListener("click", () => {
+        const code = chip.getAttribute("data-code") ?? "";
+        const copied = chip.getAttribute("data-copied") ?? "";
+        const write = navigator.clipboard?.writeText(code);
+        if (!write) return;
+        write.then(() => {
+          if (!label) return;
+          label.textContent = copied;
+          chip.classList.add("copied");
+          setTimeout(() => {
+            label.textContent = original;
+            chip.classList.remove("copied");
+          }, 1500);
+        });
+      });
+    });
+
+    document.querySelectorAll<HTMLElement>(".verify-row").forEach((row) => {
+      const key = row.getAttribute("data-verify-key") ?? "";
+      const yesTemplate = row.getAttribute("data-yes-template") ?? "{n}";
+      const noTemplate = row.getAttribute("data-no-template") ?? "{n}";
+      const unavailable = row.getAttribute("data-unavailable") ?? "";
+      const counts = row.querySelector<HTMLElement>("[data-verify-counts]");
+      const buttons: Record<string, HTMLButtonElement | null> = {
+        yes: row.querySelector<HTMLButtonElement>('[data-verify="yes"]'),
+        no: row.querySelector<HTMLButtonElement>('[data-verify="no"]'),
+      };
+      const current: { yes: number | null; no: number | null } = { yes: null, no: null };
+
+      const render = () => {
+        if (!counts) return;
+        if (current.yes === null || current.no === null) {
+          counts.textContent = unavailable;
+        } else {
+          counts.textContent = `${yesTemplate.replace("{n}", String(current.yes))} · ${noTemplate.replace("{n}", String(current.no))}`;
+        }
+        counts.hidden = false;
+      };
+
+      const markVoted = (dir: string) => {
+        const button = buttons[dir];
+        if (button) {
+          button.disabled = true;
+          button.classList.add("voted");
+        }
+      };
+
+      (["yes", "no"] as const).forEach((dir) => {
+        if (localStorage.getItem(`${FLAG_PREFIX}${key}-${dir}`)) markVoted(dir);
+      });
+
+      Promise.all([fetchCount(`${key}-yes`), fetchCount(`${key}-no`)]).then(([yes, no]) => {
+        current.yes = yes;
+        current.no = no;
+        render();
+      });
+
+      (["yes", "no"] as const).forEach((dir) => {
+        const button = buttons[dir];
+        if (!button) return;
+        button.addEventListener("click", () => {
+          if (button.disabled) return;
+          const flag = `${FLAG_PREFIX}${key}-${dir}`;
+          fetch(`${ABACUS}/hit/${NAMESPACE}/${key}-${dir}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => {
+              localStorage.setItem(flag, "1");
+              markVoted(dir);
+              if (d && typeof d.value === "number") {
+                current[dir] = d.value;
+                render();
+              }
+            })
+            .catch(() => {
+              /* network failure: leave buttons enabled so the user can retry */
+            });
+        });
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>

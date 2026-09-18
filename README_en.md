@@ -44,6 +44,7 @@ eggx is built for humans and agents alike: bilingual content (Chinese default, E
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — guide for agents
 - [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — all active offers (JSON)
 - [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex reset log (JSON)
+- [`/api/v1/aweshare.json`](https://eggx.wehuman.top/api/v1/aweshare.json) — aweshare hub shared-model availability (JSON, hourly snapshot)
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS feed
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — full API description
 
@@ -55,6 +56,7 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## Sources & credits
 
+- **aweshare model availability** ([tracking page](https://eggx.wehuman.top/en/aweshare/)) — an hourly snapshot of the [aweshare](https://github.com/wehuman01/aweshare) hub we operate: which shared models are usable, their wire protocols, and remaining shared daily budgets. Public fields only (alias/protocol/status/budget); access is by invite.
 - **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is synced automatically from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, the Chinese quote renderings are AIHOT's AI translations (translation rights remain with AIHOT), and the English originals are credited to their author.
 - Not an official OpenAI page; for information only. Whether and when resets happen is entirely OpenAI's call.
 

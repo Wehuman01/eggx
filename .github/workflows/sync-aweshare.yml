@@ -1,0 +1,47 @@
+name: Sync aweshare catalog
+
+on:
+  schedule:
+    # 每小时一次（:13 错开整点高峰）。hub 目录随时在变（状态/余量/新模型），
+    # 快照即页面本身，保持每小时节奏；目录读取不消耗模型额度。
+    - cron: "13 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-aweshare
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync from aweshare hub
+        run: npm run sync:aweshare
+        env:
+          AWESHARE_CONSUMER_TOKEN: ${{ secrets.AWESHARE_CONSUMER_TOKEN }}
+
+      - name: Commit and push if content changed
+        run: |
+          if git diff --quiet src/content/aweshare.ts; then
+            echo "No aweshare updates."
+          else
+            git config user.name "eggx-sync-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/content/aweshare.ts
+            git commit -m "sync: aweshare catalog snapshot"
+            git push
+          fi

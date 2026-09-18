@@ -12,6 +12,10 @@ export function byAccess(offers: readonly Offer[], access: OfferAccess): Offer[]
   return offers.filter((o) => o.access === access);
 }
 
+export function byVerified(offers: readonly Offer[], verified: boolean): Offer[] {
+  return offers.filter((o) => o.verified === verified);
+}
+
 export function providerLookup(offers: readonly Offer[], provider: string): Offer[] {
   const target = provider.toLowerCase();
   return offers.filter((o) => o.provider.toLowerCase() === target);

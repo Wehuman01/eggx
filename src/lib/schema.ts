@@ -20,6 +20,7 @@ export interface Offer {
   url?: string;
   source?: string;
   actionUrl?: string;
+  code?: string;
   lastVerified?: string;
   zh: LocalizedOffer;
   en: LocalizedOffer;
@@ -77,7 +78,7 @@ export function validateOffer(o: unknown): Offer {
   if (obj.archived !== undefined && typeof obj.archived !== "boolean") {
     throw new Error("Offer.archived must be a boolean");
   }
-  for (const field of ["url", "source", "actionUrl", "lastVerified"] as const) {
+  for (const field of ["url", "source", "actionUrl", "code", "lastVerified"] as const) {
     if (obj[field] !== undefined && typeof obj[field] !== "string") {
       throw new Error(`Offer.${field} must be a string`);
     }
@@ -97,6 +98,7 @@ export function validateOffer(o: unknown): Offer {
     ...(obj.url !== undefined ? { url: obj.url as string } : {}),
     ...(obj.source !== undefined ? { source: obj.source as string } : {}),
     ...(obj.actionUrl !== undefined ? { actionUrl: obj.actionUrl as string } : {}),
+    ...(obj.code !== undefined ? { code: obj.code as string } : {}),
     ...(obj.lastVerified !== undefined ? { lastVerified: obj.lastVerified as string } : {}),
     zh: validateLocalized(obj, "zh", obj.id),
     en: validateLocalized(obj, "en", obj.id),

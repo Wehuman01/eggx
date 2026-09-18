@@ -49,6 +49,7 @@ export function serializeOffer(o: Offer) {
     url: o.url ?? null,
     source: o.source ?? null,
     actionUrl: o.actionUrl ?? null,
+    code: o.code ?? null,
     expiresAt: o.expiry ?? null,
     lastVerified: o.lastVerified ?? null,
   };

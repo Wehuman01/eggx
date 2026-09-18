@@ -2,11 +2,13 @@
 import BaseLayout from "../components/BaseLayout.astro";
 import OfferCard from "../components/OfferCard.astro";
 import { offers } from "../content/offers";
-import { activeOffers, byKind, byAccess, expiryOrder } from "../lib/offers";
+import { activeOffers, byKind, byAccess, byVerified, expiryOrder } from "../lib/offers";
 import { UI } from "../lib/i18n";
 
 const ui = UI.zh;
-const list = expiryOrder(byAccess(byKind(activeOffers(offers), "temporary"), "public"));
+const pool = expiryOrder(byAccess(byKind(activeOffers(offers), "temporary"), "public"));
+const list = byVerified(pool, true);
+const community = byVerified(pool, false);
 ---
 
 <BaseLayout
@@ -25,6 +27,16 @@ const list = expiryOrder(byAccess(byKind(activeOffers(offers), "temporary"), "pu
       list.map((offer) => <OfferCard offer={offer} locale="zh" />)
     ) : (
       <p class="empty">{ui.emptyList}</p>
+    )}
+
+    {community.length > 0 && (
+      <section class="community-section">
+        <header class="community-head">
+          <h2>{ui.communitySectionTitle}</h2>
+          <p>{ui.communitySectionBlurb}</p>
+        </header>
+        {community.map((offer) => <OfferCard offer={offer} locale="zh" />)}
+      </section>
     )}
   </div>
 </BaseLayout>

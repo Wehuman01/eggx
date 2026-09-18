@@ -94,29 +94,58 @@ export const offers = validateRegistry([
     provider: "Tencent WorkBuddy",
     kind: "temporary",
     access: "public",
-    verified: false,
+    verified: true,
     expiry: null,
     url: "https://www.workbuddy.ai/",
-    source: "https://www.tencent.com/zh-cn/tencent-releases-and-open-sources-tencent-hy4-preview/",
+    source: "https://www.workbuddy.ai/",
     actionUrl: "https://www.workbuddy.ai/",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "WorkBuddy 国际版：Hy4 preview + DeepSeek V4.1 Flash 免费",
       description:
-        "腾讯的 AI 办公工作台，国际版（workbuddy.ai）内置 Claude、GPT、Gemini、混元、DeepSeek 等模型，免翻墙可用。社区报告称国际版当前 Hy4 preview 与 DeepSeek V4.1 Flash 两个模型免费使用：Hy4 preview 是 8 月 28 日开源的腾讯混元 770B MoE 模型（1M 上下文，Terminal Bench 2.1 得分 85.4）；DeepSeek V4.1 Flash 是 9 月 10 日发布的轻量旗舰（552B MoE）。国内版同期为限时折扣（DeepSeek 0.03 倍率、Hy4 闲时免费），国际版更宽松。",
+        "腾讯的 AI 办公工作台，国际版（workbuddy.ai）内置 Claude、GPT、Gemini、混元、DeepSeek 等模型，免翻墙可用。当前 Hy4 preview 与 DeepSeek V4.1 Flash 两个模型免费使用：Hy4 preview 是 8 月 28 日开源的腾讯混元 770B MoE 模型（1M 上下文，Terminal Bench 2.1 得分 85.4）；DeepSeek V4.1 Flash 是 9 月 10 日发布的轻量旗舰（552B MoE）。国内版同期为限时折扣（DeepSeek 0.03 倍率、Hy4 闲时免费），国际版更宽松。",
       limits:
         "每日免费额度有限，触发限频需等待页面重置；Hy4 preview 不支持图像/视频等多模态任务（走其他模型正常扣积分）；国际版新用户注册送 350 积分",
       caveat:
-        "国际版免费口径属社区消息（X / 知乎，2026-09-17 核实），官方未单独发布国际版公告，使用前自行确认计费页；GitHub 一键登录有封号报告，建议邮箱注册。",
+        "免费口径以官方计费页展示为准（2026-09-18 核实），官方未单独发布国际版公告。GitHub 一键登录有封号报告，建议邮箱注册。",
     },
     en: {
       name: "WorkBuddy International: Hy4 preview + DeepSeek V4.1 Flash Free",
       description:
-        "Tencent's AI office workbench — the international edition (workbuddy.ai) ships Claude, GPT, Gemini, Hunyuan, and DeepSeek models. Community reports say Hy4 preview and DeepSeek V4.1 Flash are currently free there: Hy4 preview is Tencent Hunyuan's open-source 770B MoE released Aug 28 (1M context, 85.4 on Terminal Bench 2.1); DeepSeek V4.1 Flash is the lightweight flagship released Sep 10 (552B MoE). The domestic edition only discounts in the same window (0.03x DeepSeek rate, off-peak Hy4) — the international one is more generous.",
+        "Tencent's AI office workbench — the international edition (workbuddy.ai) ships Claude, GPT, Gemini, Hunyuan, and DeepSeek models. Hy4 preview and DeepSeek V4.1 Flash are currently free there: Hy4 preview is Tencent Hunyuan's open-source 770B MoE released Aug 28 (1M context, 85.4 on Terminal Bench 2.1); DeepSeek V4.1 Flash is the lightweight flagship released Sep 10 (552B MoE). The domestic edition only discounts in the same window (0.03x DeepSeek rate, off-peak Hy4) — the international one is more generous.",
       limits:
         "Daily free quota is rationed; hitting the rate limit waits for the on-page reset. Hy4 preview has no multimodal support (image/video tasks switch models and burn credits normally); international new users get 350 credits",
       caveat:
-        "The international free terms are community-reported (X / Zhihu, verified 2026-09-17); no official intl announcement — check the billing page before heavy use. GitHub one-click sign-in has ban reports; prefer email signup.",
+        "The free terms follow the official billing page (verified 2026-09-18); there is no separate international announcement. GitHub one-click sign-in has ban reports; prefer email signup.",
+    },
+  },
+  {
+    id: "sciencepro-xinzhiyuan-code",
+    provider: "磐石 SciencePro",
+    kind: "temporary",
+    access: "public",
+    verified: false,
+    expiry: null,
+    url: "https://www.scienceone.com.cn/portal/",
+    source: "https://www.scienceone.com.cn/portal/",
+    actionUrl: "https://www.scienceone.com.cn/portal/",
+    code: "DH26JYZ5684",
+    lastVerified: "2026-09-18",
+    zh: {
+      name: "磐石 SciencePro：新智元独家兑换码",
+      description:
+        "中科闻歌的 AI for Science 科研智能平台：深度研究（多智能体调研）、对话式科学计算、2.7 亿论文/专利文献库。新智元公众号发文送独家福利——注册后在平台内输入兑换码，领取独家福利积分，兑换的 token 直接到账。注意这是科研平台，不是编码工具。",
+      limits: "积分/Token 到账数量未公布，以平台内实际到账为准",
+      caveat:
+        "兑换码来自新智元公众号文章（2026-09-18 收录），属社区消息，未见官方公告；数量有限，领完即止，需注册平台账号。",
+    },
+    en: {
+      name: "Panshi SciencePro: Xinzhiyuan exclusive redemption code",
+      description:
+        "An AI for Science research platform by Zhongke Wenge: deep research (multi-agent investigation), conversational scientific computing, and a 270M paper/patent library. Xinzhiyuan's WeChat article gives away an exclusive code — sign up, enter it in the platform, and the bonus credits (redeemable for tokens) land directly in your account. Note: this is a research platform, not a coding tool.",
+      limits: "Credit/token amount not published; go by what actually lands in your account",
+      caveat:
+        "The code comes from Xinzhiyuan's WeChat article (added 2026-09-18) — a community lead, no official announcement seen; limited quantity, first come first served, platform account required.",
     },
   },
   {

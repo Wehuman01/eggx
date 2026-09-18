@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import { aweshareOfferings, aweshareSnapshot } from "../content/aweshare";
+import { countByStatus, groupByProducer, remainingTokens } from "../lib/aweshare";
+import { UI } from "../lib/i18n";
+
+const ui = UI.zh;
+const groups = groupByProducer(aweshareOfferings);
+const counts = countByStatus(aweshareOfferings);
+
+const tz = "Asia/Shanghai";
+const dtFmt = new Intl.DateTimeFormat("zh-CN", {
+  timeZone: tz,
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+const tokenFmt = new Intl.NumberFormat("zh-CN", { notation: "compact", maximumFractionDigits: 1 });
+const relFmt = new Intl.RelativeTimeFormat("zh", { numeric: "auto" });
+
+const buildNow = Date.now();
+
+/** Build-time relative age of the last hub-side success; the page redeploys hourly. */
+function lastSeen(iso: string | null): string {
+  if (iso === null) return ui.aweshareNeverSeen;
+  const diffMin = (buildNow - Date.parse(iso)) / 60000;
+  if (diffMin < 60) return relFmt.format(-Math.max(1, Math.round(diffMin)), "minute");
+  if (diffMin < 48 * 60) return relFmt.format(-Math.round(diffMin / 60), "hour");
+  return relFmt.format(-Math.round(diffMin / 1440), "day");
+}
+
+function statusTag(status: string): { label: string; class: string } {
+  if (status === "online") return { label: ui.aweshareOnlineTag, class: "tag-verified" };
+  if (status === "degraded") return { label: ui.aweshareDegradedTag, class: "tag-community" };
+  if (status === "offline") return { label: ui.aweshareOfflineTag, class: "tag-offline" };
+  return { label: ui.aweshareBlockedTag, class: "tag-offline" };
+}
+
+function metaLine(o: (typeof aweshareOfferings)[number]): string {
+  const daily = o.dailyTokens === 0 ? ui.aweshareUnlimited : tokenFmt.format(o.dailyTokens);
+  const remaining = remainingTokens(o);
+  const parts = [
+    o.protocols.join(" · "),
+    `${ui.aweshareDailyLabel} ${daily}`,
+    remaining === null ? null : `${ui.aweshareRemainingLabel} ${tokenFmt.format(remaining)}`,
+    ui.awesharePerUserTemplate.replace("{n}", String(o.maxConcurrencyPerUser)),
+    ui.aweshareLastSeenTemplate.replace("{t}", lastSeen(o.hubCheckAt)),
+  ].filter((p): p is string => p !== null);
+  return parts.join(" · ");
+}
+
+const statsText = ui.aweshareStatsTemplate
+  .replace("{total}", String(counts.total))
+  .replace("{online}", String(counts.online))
+  .replace("{degraded}", String(counts.degraded))
+  .replace("{down}", String(counts.down));
+const checkedAt = dtFmt.format(new Date(aweshareSnapshot.checkedAt));
+---
+
+<BaseLayout
+  locale="zh"
+  route="/aweshare/"
+  title={`${ui.aweshareTitle} — eggx`}
+  description={ui.aweshareBlurb}
+>
+  <div class="main-inner">
+    <header class="page-head">
+      <h1>{ui.aweshareTitle}</h1>
+      <p>{ui.aweshareBlurb}</p>
+    </header>
+
+    <div class="reset-grid">
+      <article class="offer-card">
+        <div class="offer-head">
+          <h2 class="reset-card-title">{ui.aweshareNowHeading}</h2>
+        </div>
+        <p class="aweshare-stat">{statsText}</p>
+        <p class="stat-line">
+          {ui.aweshareSnapshotTemplate.replace("{time}", checkedAt)}
+        </p>
+      </article>
+
+      <article class="offer-card">
+        <div class="offer-head">
+          <h2 class="reset-card-title">{ui.aweshareHowHeading}</h2>
+        </div>
+        <p class="aweshare-how-note">{ui.aweshareHowNote}</p>
+        <a
+          class="btn btn-primary offer-action"
+          href={aweshareSnapshot.hubUrl}
+          rel="noopener"
+          target="_blank">{ui.aweshareVisitAction}</a
+        >
+        <a class="aweshare-repo-link" href="https://github.com/wehuman01/aweshare" rel="noopener" target="_blank">
+          {ui.aweshareRepoAction} ↗
+        </a>
+      </article>
+    </div>
+
+    <section class="reset-history">
+      <h2>{ui.aweshareModelsHeading}</h2>
+
+      {groups.map((group, index) => {
+        const online = group.offerings.filter((o) => o.status === "online").length;
+        return (
+          <details class="reset-month" open={index === 0}>
+            <summary class="reset-month-summary">
+              <h3 class="reset-month-label">{group.producer}</h3>
+              <span class="reset-month-count">
+                {ui.aweshareProducerSummaryTemplate
+                  .replace("{n}", String(group.offerings.length))
+                  .replace("{online}", String(online))}
+              </span>
+            </summary>
+            <div class="reset-month-body">
+              {group.offerings.map((o) => {
+                const tag = statusTag(o.status);
+                return (
+                  <article class="reset-row aweshare-row">
+                    <div class="reset-row-head">
+                      <code class="aweshare-alias">{o.alias}</code>
+                      <span class:list={["tag", tag.class]}>{tag.label}</span>
+                      {o.shareState === "closed" && (
+                        <span class="tag tag-outline">{ui.aweshareShareClosedTag}</span>
+                      )}
+                    </div>
+                    <p class="aweshare-meta">{metaLine(o)}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </details>
+        );
+      })}
+    </section>
+
+    <section class="prose reset-method">
+      <h2>{ui.methodHeading}</h2>
+      <ul>
+        <li>
+          <strong>来源</strong> — 每小时读取一次 aweshare hub 的只读目录接口，静态快照随构建发布，
+          快照时间见页脚；目录读取不消耗任何模型的额度。
+        </li>
+        <li>
+          <strong>状态</strong> — 在线＝hub 最近探测或真实流量成功；降级＝上游后端异常、恢复探测中
+          （同一模型的多条协议任一异常即计为降级）；离线＝供给隧道断开；停用＝运营者手动下线。
+          状态随时可能变化，不代表承诺。
+        </li>
+        <li>
+          <strong>额度</strong> — 「每日」是该模型所有使用者共享的当日总额度（「不限量」即未设上限）；
+          「剩余」是快照时刻的余量，随每小时快照更新，不是实时值。
+        </li>
+        <li>
+          <strong>隐私</strong> — 只展示别名、协议、状态与额度；上游模型来源与实时占用数不公开。
+        </li>
+        <li>
+          <strong>准入</strong> — hub 由 eggx 运营方维护，凭邀请码接入；
+          <a href="https://github.com/wehuman01/aweshare" rel="noopener" target="_blank">aweshare</a>
+          本身开源。
+        </li>
+      </ul>
+    </section>
+
+    <p class="reset-footnote">
+      {ui.aweshareFootnoteTemplate.replace("{time}", checkedAt)}
+    </p>
+  </div>
+</BaseLayout>

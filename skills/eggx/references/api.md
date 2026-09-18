@@ -13,6 +13,7 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 | `GET /api/v1/snapshot.json` | 带版本的全量快照（`schemaVersion` + `generatedAt` + `data`） |
 | `GET /api/v1/changes.json` | 在架羊毛，按 `lastVerified` 最新在前排序；增量同步时客户端取 `lastVerified >= since` 的前缀 |
 | `GET /api/v1/codex-resets.json` | Codex 重置追踪（Tibo @thsottiaux 宣布的全员重置与重置卡） |
+| `GET /api/v1/aweshare.json` | aweshare hub 共享模型可用性（每小时快照） |
 
 `{slug}` = `provider` 转小写、空格替换为连字符（如 `Z.ai` → `z.ai`）。
 
@@ -71,6 +72,31 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 | `intervalStats` | 历史全员重置间隔统计（天），`null` = 样本不足 |
 
 机器接口只含事实与英文原帖；中文译文仅出现在网页。数据来源 [AIHOT](https://aihot.news/codex-reset)，非 OpenAI 官方页面。
+
+## `aweshare.json`
+
+```json
+{
+  "schemaVersion": "2.0",
+  "data": {
+    "snapshot": { "hubUrl": "https://aweshare.wehuman.top", "checkedAt": "...", "count": 42 },
+    "offerings": [ /* AweshareOffering[]，生产者字母序、组内健康优先 */ ]
+  }
+}
+```
+
+| 字段 | 说明 |
+| --- | --- |
+| `snapshot.checkedAt` | 快照时间（同步时刻，ISO-8601），每小时更新 |
+| `offerings[].alias` | 模型名，形如 `hub/glm-5.3`；接入方直接把它当 model 名用 |
+| `offerings[].protocols` | 支持的线协议：`anthropic` / `openai-chat` / `openai-responses` |
+| `offerings[].status` | `online` / `degraded`（含多协议部分异常）/ `offline` / `blocked` |
+| `offerings[].hubCheckAt` | hub 最近一次成功（流量或探测）时间；`null` = 从未观测到 |
+| `offerings[].dailyTokens` | 全体使用者共享的每日额度；`0` = 不限量 |
+| `offerings[].usedDailyTokens` | 当前窗口已用（快照时刻，非实时） |
+| `offerings[].shareState` | 共享窗口状态；`null` = 全天共享 |
+
+数据来自 eggx 团队运营的 [aweshare](https://github.com/wehuman01/aweshare) hub，凭邀请接入；状态与余量是快照事实，不构成可用性承诺。上游模型来源与实时占用不公开。
 
 ## 输出建议
 

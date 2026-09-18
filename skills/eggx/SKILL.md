@@ -4,7 +4,7 @@ description: 查询 eggx 已核实的免费 AI 编码羊毛（限时活动、长
 license: MIT. See https://github.com/wehuman01/eggx/blob/main/LICENSE
 metadata:
   author: wehuman01
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # eggx — 已核实的 AI 编码羊毛

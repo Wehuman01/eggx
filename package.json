@@ -8,6 +8,7 @@
     "build": "astro build",
     "check": "astro check",
     "sync:resets": "node scripts/sync-resets.mjs",
+    "sync:aweshare": "node scripts/sync-aweshare.mjs",
     "test": "vitest"
   },
   "devDependencies": {
