@@ -2,9 +2,9 @@ name: Sync codex resets
 
 on:
   schedule:
-    # UTC 1/7/13/19 点 = 北京时间 09/15/21/03 点。上游 AIHOT 每 15 分钟
-    # 才核验一次，每 6 小时一次同步足够新，也远低于其限流线。
-    - cron: "0 1,7,13,19 * * *"
+    # 每小时整点同步一次（北京时间不变，GitHub 按UTC触发）。上游 AIHOT 每
+    # 15 分钟核验一次、响应缓存 60 秒，每小时拉一次远低于其限流线。
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
