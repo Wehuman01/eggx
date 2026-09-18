@@ -29,3 +29,5 @@ jobs:
 
       - name: Run tests
         run: npm test -- --run
+        env:
+          AWESHARE_CONSUMER_TOKEN: ${{ secrets.AWESHARE_CONSUMER_TOKEN }}
