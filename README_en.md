@@ -55,7 +55,7 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## Sources & credits
 
-- **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is curated from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, and the Chinese quote renderings are AIHOT's AI translations, credited to their authors.
+- **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is synced automatically from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, the Chinese quote renderings are AIHOT's AI translations (translation rights remain with AIHOT), and the English originals are credited to their author.
 - Not an official OpenAI page; for information only. Whether and when resets happen is entirely OpenAI's call.
 
 ## Contribute

@@ -1,15 +1,17 @@
 // Codex 重置记录（Tibo @thsottiaux 公布的全员重置与重置卡发放）。
-// 来源：https://aihot.news/api/v1/codex-resets 公开接口的整理快照，每条带原始推文链接；
-// 引文 zh 为该站的中译，en 为 Tibo 原文。更新方式：拉取该接口，人工核对每条推文后替换本文件。
-// confirmedAt 是确认推文时间而非精确执行时间；occurredOn 是单独核实过的日期；时间为北京时间 UTC+8。
+// 本文件由 scripts/sync-resets.mjs 自动生成，请勿手改。数据来自 AIHOT 公开接口
+// https://aihot.news/api/v1/codex-resets （上游每 15 分钟核验一次 Tibo 的公开帖）。
+// 时间、状态、推文链接为事实；zh 引文是 AIHOT 的 AI 翻译，译文著作权归 AIHOT，
+// 依其公开使用规则（非商业、署名、允许同步）收录；en 为 Tibo 原文，版权归原发帖人。
+// confirmedAt 是确认帖时间而非精确执行时间；occurredOn 是单独核实过的日期；时间均为北京时间 UTC+8。
 
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  checkedAt: "2026-09-18T08:09:29.520+08:00",
-  historyFrom: "2026-06-12T00:00:00.000+08:00",
-  source: "https://aihot.news/codex-reset",
-  curator: "AIHOT",
+  "checkedAt": "2026-09-18T09:09:37.303+08:00",
+  "historyFrom": "2026-06-12T00:00:00.000+08:00",
+  "source": "https://aihot.news/codex-reset",
+  "curator": "AIHOT"
 };
 
 export const resets = validateResets(

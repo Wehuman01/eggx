@@ -12,6 +12,7 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 | `GET /api/v1/providers/{slug}.json` | 按厂商分组的在架羊毛；404 时返回 `{ "error": "Provider not found" }` |
 | `GET /api/v1/snapshot.json` | 带版本的全量快照（`schemaVersion` + `generatedAt` + `data`） |
 | `GET /api/v1/changes.json` | 在架羊毛，按 `lastVerified` 最新在前排序；增量同步时客户端取 `lastVerified >= since` 的前缀 |
+| `GET /api/v1/codex-resets.json` | Codex 重置追踪（Tibo @thsottiaux 宣布的全员重置与重置卡） |
 
 `{slug}` = `provider` 转小写、空格替换为连字符（如 `Z.ai` → `z.ai`）。
 
@@ -44,6 +45,32 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 | `lastVerified` | string \| null | 最后核实日期 |
 
 双语对象的两个键都必有（值可能是 `null`）。除 `name`/`description` 外均可为 `null`。
+
+## `codex-resets.json`
+
+```json
+{
+  "schemaVersion": "2.0",
+  "data": {
+    "snapshot": { "checkedAt": "...", "historyFrom": "...", "source": "https://aihot.news/codex-reset", "curator": "AIHOT" },
+    "intervalStats": { "count": 18, "min": 2, "median": 5, "max": 27 },
+    "events": [ /* ResetEvent[]，最新在前 */ ]
+  }
+}
+```
+
+| 字段 | 说明 |
+| --- | --- |
+| `snapshot.checkedAt` | 上游策展方（AIHOT）最后一次核验时间，北京时间 |
+| `events[].type` | `reset` = 全员重置；`card` = 发重置卡（发卡 ≠ 额度恢复） |
+| `events[].status` | `confirmed` = 有确认帖；`announced` = 仅预告 |
+| `events[].confirmedAt` | 确认帖时间，≠ 精确执行时间 |
+| `events[].occurredOn` | 单独核实过的到账日，可能为 `null` |
+| `events[].scheduleFrom/Through` | 原帖预告的时间窗，可能为 `null` |
+| `events[].posts[]` | `stage`（`announce`/`confirm`）、`publishedAt`、原推链接 `url`、英文原文 `en` |
+| `intervalStats` | 历史全员重置间隔统计（天），`null` = 样本不足 |
+
+机器接口只含事实与英文原帖；中文译文仅出现在网页。数据来源 [AIHOT](https://aihot.news/codex-reset)，非 OpenAI 官方页面。
 
 ## 输出建议
 

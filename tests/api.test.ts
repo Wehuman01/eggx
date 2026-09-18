@@ -51,6 +51,16 @@ describe("API v1 routes in dist", () => {
     expect(body.data.snapshot.checkedAt).toBeTruthy();
   });
 
+  it("keeps AIHOT's Chinese translations out of the public codex-resets API", () => {
+    const body = JSON.parse(fs.readFileSync(joinDist("api", "v1", "codex-resets.json"), "utf8"));
+    for (const event of body.data.events) {
+      for (const post of event.posts) {
+        expect(post).not.toHaveProperty("zh");
+        expect(typeof post.en).toBe("string");
+      }
+    }
+  });
+
   it("generates /api/v1/changes.json", () => {
     expect(fs.existsSync(joinDist("api", "v1", "changes.json"))).toBe(true);
   });

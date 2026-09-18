@@ -22,3 +22,5 @@ npm-debug.log*
 
 # OS noise
 .DS_Store
+# Sync state (ETag cache for scripts/sync-resets.mjs)
+.resets-sync.json

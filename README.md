@@ -55,7 +55,7 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## 数据来源与致谢
 
-- **Codex 重置监控**（[追踪页](https://eggx.wehuman.top/codex-reset/)）— 追踪 Tibo（@thsottiaux）在 X 上公开宣布的 Codex 全员重置与重置卡发放。数据整理自 [AIHOT](https://aihot.news/codex-reset) 的公开接口：时间、类型等事实来自公开推文，每条都链回原始推文；中文引文为 AIHOT 的 AI 翻译，版权归原作者所有。
+- **Codex 重置监控**（[追踪页](https://eggx.wehuman.top/codex-reset/)）— 追踪 Tibo（@thsottiaux）在 X 上公开宣布的 Codex 全员重置与重置卡发放。数据由定时任务自动同步自 [AIHOT](https://aihot.news/codex-reset) 的公开接口：时间、类型等事实来自公开推文，每条都链回原始推文；中文引文为 AIHOT 的 AI 翻译，译文著作权归 AIHOT，英文原帖版权归原作者所有。
 - 非 OpenAI 官方页面，仅供信息参考；是否重置、何时重置由 OpenAI 决定。
 
 ## 参与进来

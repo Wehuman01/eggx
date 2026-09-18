@@ -1,0 +1,45 @@
+name: Sync codex resets
+
+on:
+  schedule:
+    # UTC 1/7/13/19 点 = 北京时间 09/15/21/03 点。上游 AIHOT 每 15 分钟
+    # 才核验一次，每 6 小时一次同步足够新，也远低于其限流线。
+    - cron: "0 1,7,13,19 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-resets
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync from AIHOT
+        run: npm run sync:resets
+
+      - name: Commit and push if content changed
+        run: |
+          if git diff --quiet src/content/resets.ts; then
+            echo "No reset updates."
+          else
+            git config user.name "eggx-sync-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add src/content/resets.ts
+            git commit -m "sync: codex resets from AIHOT"
+            git push
+          fi
