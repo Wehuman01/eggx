@@ -91,6 +91,36 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "qoder-qwen38-flash-free",
+    provider: "Qoder",
+    kind: "temporary",
+    access: "public",
+    verified: false,
+    expiry: "2026-09-30",
+    url: "https://qoder.cn",
+    source: "https://qoder.cn",
+    actionUrl: "https://qoder.cn",
+    lastVerified: "2026-09-18",
+    zh: {
+      name: "Qoder：Qwen3.8-Flash 免费用到 9 月 30 日 + 每日 100 Credits",
+      description:
+        "阿里 Qoder 编程平台的限时福利（9 月 18 日 10:00 起）：打开 Qoder 桌面端，模型选择器选中 Qwen3.8-Flash 即用，计费系数从 0.1× 降到 0.0×，不扣 Credits，免费至 9 月 30 日，无需领取资格。同期叠加每天可领的 100 通用 Credits（每笔有效期 30 天，可累积）。国际版与国内版、新老个人用户均有份。",
+      limits:
+        "Qwen3.8-Flash 在 Qoder 内不扣 Credits（至 9 月 30 日）；每日 100 通用 Credits 需当天领取，每笔 30 天有效、可累积；面向个人用户",
+      caveat:
+        "来自公众号「数字生命Q」文章（2026-09-18 收录），属社区消息，Qoder 官网未见公告；活动起始与截止时间、Credits 规则以客户端实际展示为准。上一次同类赠送很多人没赶上，这次别拖。",
+    },
+    en: {
+      name: "Qoder: Qwen3.8-Flash free through Sep 30 + 100 daily Credits",
+      description:
+        "A limited-time perk on Alibaba's Qoder coding platform (from Sep 18, 10:00): open the Qoder desktop app, pick Qwen3.8-Flash in the model selector and go — the billing multiplier drops from 0.1x to 0.0x, no Credits deducted, free through Sep 30, no claim needed. Stacked on top: 100 general Credits claimable every day, each grant valid 30 days and accumulative. International and CN editions, new and existing individual users alike.",
+      limits:
+        "Qwen3.8-Flash costs zero Credits inside Qoder through Sep 30; the 100 daily general Credits must be claimed each day, every grant lasts 30 days and stacks; individual users only",
+      caveat:
+        "Reported by the WeChat account 数字生命Q (added 2026-09-18) — a community lead, no official announcement on the Qoder site; start/end times and Credit rules follow what the client actually shows. The last giveaway of this kind left many empty-handed — don't sit on this one.",
+    },
+  },
+  {
     id: "workbuddy-intl-free",
     provider: "Tencent WorkBuddy",
     kind: "temporary",
