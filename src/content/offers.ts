@@ -217,20 +217,20 @@ export const offers = validateRegistry([
     zh: {
       name: "OpenCode Zen 免费车道（长期轮换）",
       description:
-        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。当前阵容（2026-09-18 核实，共 7 款）：Muse Spark 1.3 / 1.2、Ling 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、MiMo V2.5、Big Pickle。限时免费的新模型下架后，车道会补上下一批。",
+        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。下载 opencode 登录即用，免费车道无需充值、无需绑卡。当前阵容（2026-09-18 核实，共 7 款）：Muse Spark 1.3 / 1.2、Ling 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、MiMo V2.5、Big Pickle。限时免费的新模型下架后，车道会补上下一批。",
       limits:
-        "注册即用，但需绑定支付信息才能取 API key（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
+        "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
       caveat:
-        "单个模型都是限时免费、到期即下架车道；免费期间数据政策各不相同——部分模型的数据可能用于改进训练，详见各模型说明。",
+        "单个模型都是限时免费、到期即下架车道；免费期数据政策各异——Big Pickle、MiMo、Ling 的数据可能用于改进模型，Nemotron 免费车道走 NVIDIA 试用端点、会记录用量，Muse Spark Contributor 的提示词与补全用于训练 Meta 模型。",
     },
     en: {
       name: "OpenCode Zen Free Lane (Rotating)",
       description:
-        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Current lineup (verified 2026-09-18, seven lanes): Muse Spark 1.3 / 1.2, Ling 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, MiMo V2.5, and Big Pickle. As one limited-time model leaves, the next batch lands.",
+        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Free models work in the opencode client right after sign-in — no top-up, no card. Current lineup (verified 2026-09-18, seven lanes): Muse Spark 1.3 / 1.2, Ling 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, MiMo V2.5, and Big Pickle. As one limited-time model leaves, the next batch lands.",
       limits:
-        "Sign-up is instant, but billing details are required before an API key (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
+        "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
       caveat:
-        "Each model is individually limited-time free and leaves the lane when it ends; data policies vary — some models may use free-period data for training; check each model's terms.",
+        "Each model is individually limited-time free and leaves the lane when it ends; data policies vary — Big Pickle, MiMo, and Ling may use free-period data to improve the model, the Nemotron free lanes ride NVIDIA trial endpoints with logged usage, and Muse Spark Contributor's prompts and completions train future Meta models.",
     },
   },
   {
