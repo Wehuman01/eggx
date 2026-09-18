@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import FreshnessBar from "../../components/FreshnessBar.astro";
 import { campaigns, campaignSnapshot } from "../../content/campaigns";
 import { beijingDaysUntil, sortActiveCampaigns, type CampaignEvent } from "../../lib/campaigns";
 import { UI } from "../../lib/i18n";
@@ -66,13 +65,6 @@ const checkedAt = dtFmt.format(new Date(campaignSnapshot.checkedAt));
       <h1>{ui.campaignsTitle}</h1>
       <p>{ui.campaignsBlurb}</p>
     </header>
-
-    <FreshnessBar
-      checkedAt={campaignSnapshot.checkedAt}
-      locale="en"
-      cadenceZh="每次构建时更新"
-      cadenceEn="refreshed on each build"
-    />
 
     <div class="agent-chips">
       <span class="chip">{ui.campaignsActiveTemplate.replace("{n}", String(promos.length))}</span>

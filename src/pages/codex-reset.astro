@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
-import FreshnessBar from "../components/FreshnessBar.astro";
 import { resets, resetSnapshot } from "../content/resets";
 import {
   byTimeDesc,
@@ -80,13 +79,6 @@ const historySummary = ui.historySummaryTemplate
       <h1>{ui.codexResetTitle}</h1>
       <p>{ui.codexResetBlurb}</p>
     </header>
-
-    <FreshnessBar
-      checkedAt={resetSnapshot.checkedAt}
-      locale="zh"
-      cadenceZh="每小时同步一次"
-      cadenceEn="synced hourly"
-    />
 
     <div class="reset-grid">
       <article class="offer-card">
