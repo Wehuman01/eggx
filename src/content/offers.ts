@@ -32,6 +32,36 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "zcode-weekend-plan",
+    provider: "Z.ai",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://zcode.z.ai/cn",
+    source: "https://zcode.z.ai/cn/changelog",
+    actionUrl: "https://zcode.z.ai/cn",
+    lastVerified: "2026-09-18",
+    zh: {
+      name: "ZCode 周末计划：免费领体验额度",
+      description:
+        "每周五 15:00 起（北京时间）在 ZCode 客户端活动卡片领取，20:00 生效、周一 09:00 过期；所有登录用户（新用户、老用户、订阅用户）均可领，每账号每轮限领一次，订阅用户原有权益不受影响。官方更新日志确认了 Weekend Plan 免费领取功能（3.10.1）；额度为社区一致报告的 3 亿 GLM-5.3-Flash Token，仅限 ZCode 内使用，具体以客户端活动卡片为准。",
+      limits:
+        "3 亿 GLM-5.3-Flash 体验额度（社区报告数）；仅限 ZCode 内使用，需 ZCode ≥ 3.10.1；周五 20:00 生效、周一 09:00 过期，未用完自动失效，不可延期、不可折现",
+      caveat:
+        "官方文档未公布具体额度数字；高峰期可能限流，付费用户优先保障；活动按每周轮换进行，结束时间未公布。",
+    },
+    en: {
+      name: "ZCode Weekend Plan: free trial quota",
+      description:
+        "Claims open every Friday 15:00 Beijing time from the activity card in the ZCode client; active 20:00 Friday until Monday 09:00. All signed-in users (new, existing, and Coding Plan subscribers) can claim once per round; subscriber benefits are unaffected. The official changelog confirms the Weekend Plan free claim (3.10.1); the quota is consistently reported by the community as 300M GLM-5.3-Flash tokens, usable in ZCode only — check the in-client card for the exact figure.",
+      limits:
+        "300M GLM-5.3-Flash trial tokens (community-reported); ZCode use only, requires ZCode ≥ 3.10.1; active Friday 20:00 until Monday 09:00, unused tokens expire, no extension or cash-out",
+      caveat:
+        "The exact token amount is not published in official docs; rate limits may apply at peak times with priority for paid users; runs as weekly rounds with no announced end date.",
+    },
+  },
+  {
     id: "opencode-zen-union-alpha",
     provider: "OpenCode",
     kind: "temporary",
