@@ -7,6 +7,8 @@ export type RouteKey =
   | "/long-term/"
   | "/application/"
   | "/codex-reset/"
+  | "/campaigns/"
+  | "/aweshare/"
   | "/about/"
   | "/agent/"
   | "/submit/";
@@ -41,6 +43,45 @@ export interface UIStrings {
   navSubmit: string;
   navGroupTracking: string;
   navCodexReset: string;
+  navCampaigns: string;
+  campaignsTitle: string;
+  campaignsBlurb: string;
+  campaignsActiveHeading: string;
+  campaignsPolicyHeading: string;
+  campaignsEndedHeading: string;
+  campaignsChannelHeading: string;
+  campaignsWindowLabel: string;
+  campaignsKindPromo: string;
+  campaignsKindPolicy: string;
+  campaignsEndedTag: string;
+  campaignsOngoing: string;
+  campaignsActiveTemplate: string;
+  campaignsEndedTemplate: string;
+  campaignsOfficialAction: string;
+  navAweshare: string;
+  aweshareTitle: string;
+  aweshareBlurb: string;
+  aweshareNowHeading: string;
+  aweshareStatsTemplate: string;
+  aweshareSnapshotTemplate: string;
+  aweshareHowHeading: string;
+  aweshareHowNote: string;
+  aweshareVisitAction: string;
+  aweshareRepoAction: string;
+  aweshareModelsHeading: string;
+  aweshareProducerSummaryTemplate: string;
+  aweshareOnlineTag: string;
+  aweshareDegradedTag: string;
+  aweshareOfflineTag: string;
+  aweshareBlockedTag: string;
+  aweshareShareClosedTag: string;
+  aweshareUnlimited: string;
+  aweshareDailyLabel: string;
+  aweshareRemainingLabel: string;
+  awesharePerUserTemplate: string;
+  aweshareLastSeenTemplate: string;
+  aweshareNeverSeen: string;
+  aweshareFootnoteTemplate: string;
   codexResetTitle: string;
   codexResetBlurb: string;
   resetTypeLabel: string;
@@ -116,6 +157,48 @@ const zh: UIStrings = {
   navSubmit: "提交羊毛",
   navGroupTracking: "追踪",
   navCodexReset: "Codex 重置",
+  navCampaigns: "国产活动",
+  campaignsTitle: "国产 Coding Plan 活动追踪",
+  campaignsBlurb:
+    "追踪国产厂商（Z.ai、StepFun、TRAE、MiniMax、Kimi）官方公告的编程计划活动与政策变动 — 每条带官方来源与核实日期。",
+  campaignsActiveHeading: "进行中",
+  campaignsPolicyHeading: "政策与计划变动",
+  campaignsEndedHeading: "已结束",
+  campaignsChannelHeading: "在盯的信源",
+  campaignsWindowLabel: "时间窗",
+  campaignsKindPromo: "活动",
+  campaignsKindPolicy: "政策",
+  campaignsEndedTag: "已结束",
+  campaignsOngoing: "长期进行 · 截止未公布",
+  campaignsActiveTemplate: "{n} 条进行中",
+  campaignsEndedTemplate: "{n} 条已结束 · 只作审计记录",
+  campaignsOfficialAction: "官方公告",
+  navAweshare: "aweshare 模型",
+  aweshareTitle: "aweshare 模型可用性",
+  aweshareBlurb:
+    "eggx 团队运营的 aweshare 共享 hub 上，哪些模型现在能用 — 协议、状态与每日额度，每小时自动刷新。邀请制接入，非无限资源。",
+  aweshareNowHeading: "当前状态",
+  aweshareStatsTemplate: "{total} 个模型：{online} 在线 · {degraded} 降级 · {down} 不可用",
+  aweshareSnapshotTemplate: "快照 {time}（北京时间）· 每小时刷新",
+  aweshareHowHeading: "怎么接入",
+  aweshareHowNote:
+    "这些模型通过 aweshare hub 共享：标准 OpenAI / Anthropic SDK 指向 hub 即可，模型名形如 hub/glm-5.3。凭邀请码接入，准入与额度由运营者控制。",
+  aweshareVisitAction: "打开 hub",
+  aweshareRepoAction: "aweshare 项目",
+  aweshareModelsHeading: "模型目录",
+  aweshareProducerSummaryTemplate: "{n} 个模型 · {online} 在线",
+  aweshareOnlineTag: "在线",
+  aweshareDegradedTag: "降级",
+  aweshareOfflineTag: "离线",
+  aweshareBlockedTag: "已停用",
+  aweshareShareClosedTag: "共享窗口已关",
+  aweshareUnlimited: "不限量",
+  aweshareDailyLabel: "每日",
+  aweshareRemainingLabel: "剩余",
+  awesharePerUserTemplate: "单用户并发 {n}",
+  aweshareLastSeenTemplate: "最近在线 {t}",
+  aweshareNeverSeen: "暂无在线记录",
+  aweshareFootnoteTemplate: "快照 {time} · 每小时从 aweshare hub 同步 · 不构成可用性承诺",
   codexResetTitle: "Codex 重置监控",
   codexResetBlurb:
     "追踪 Tibo（@thsottiaux）公开宣布的 Codex 全员重置与重置卡发放 — 每条带原始推文来源。静态快照，随构建更新。",
@@ -194,6 +277,48 @@ const en: UIStrings = {
   navSubmit: "Submit a deal",
   navGroupTracking: "Tracking",
   navCodexReset: "Codex resets",
+  navCampaigns: "CN campaigns",
+  campaignsTitle: "CN Coding Plan campaign tracker",
+  campaignsBlurb:
+    "Tracking coding-plan campaigns and policy changes officially announced by Chinese vendors (Z.ai, StepFun, TRAE, MiniMax, Kimi) — every entry links to the official source with a verified date.",
+  campaignsActiveHeading: "Active",
+  campaignsPolicyHeading: "Policy changes",
+  campaignsEndedHeading: "Ended",
+  campaignsChannelHeading: "Sources watched",
+  campaignsWindowLabel: "Window",
+  campaignsKindPromo: "Campaign",
+  campaignsKindPolicy: "Policy",
+  campaignsEndedTag: "Ended",
+  campaignsOngoing: "Ongoing · no end date",
+  campaignsActiveTemplate: "{n} active",
+  campaignsEndedTemplate: "{n} ended · audit trail only",
+  campaignsOfficialAction: "Official notice",
+  navAweshare: "aweshare models",
+  aweshareTitle: "aweshare model availability",
+  aweshareBlurb:
+    "Which shared models on the aweshare hub run by the eggx team are usable right now — protocol, status and daily budgets, refreshed hourly. Invite-based access, not an unlimited resource.",
+  aweshareNowHeading: "Right now",
+  aweshareStatsTemplate: "{total} models: {online} online · {degraded} degraded · {down} unavailable",
+  aweshareSnapshotTemplate: "Snapshot {time} (Beijing time) · refreshed hourly",
+  aweshareHowHeading: "How to connect",
+  aweshareHowNote:
+    "These models are shared through an aweshare hub: point a standard OpenAI / Anthropic SDK at the hub and use names like hub/glm-5.3. Admission is by invite; access and budgets are operator-controlled.",
+  aweshareVisitAction: "Open the hub",
+  aweshareRepoAction: "aweshare project",
+  aweshareModelsHeading: "Model catalog",
+  aweshareProducerSummaryTemplate: "{n} models · {online} online",
+  aweshareOnlineTag: "online",
+  aweshareDegradedTag: "degraded",
+  aweshareOfflineTag: "offline",
+  aweshareBlockedTag: "blocked",
+  aweshareShareClosedTag: "share window closed",
+  aweshareUnlimited: "unlimited",
+  aweshareDailyLabel: "daily",
+  aweshareRemainingLabel: "left",
+  awesharePerUserTemplate: "{n} concurrent per user",
+  aweshareLastSeenTemplate: "last seen {t}",
+  aweshareNeverSeen: "no activity recorded",
+  aweshareFootnoteTemplate: "Snapshot {time} · synced hourly from the aweshare hub · no availability guarantee",
   codexResetTitle: "Codex reset tracker",
   codexResetBlurb:
     "Tracking Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) — every entry links to the source post. Static snapshot, refreshed on each build.",
