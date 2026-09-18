@@ -11,7 +11,7 @@ export const offers = validateRegistry([
     url: "https://zcode.z.ai/en",
     source: "https://docs.z.ai/devpack/notice/event-glm-5.3-flash",
     actionUrl: "https://zcode.z.ai/en",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "ZCode 夜间免额度活动 + 新人 5 天试用",
       description:
@@ -67,26 +67,26 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
-    expiry: null,
+    expiry: "2026-09-24",
     url: "https://opencode.ai/docs/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "OpenCode Zen Union Alpha 免费车道",
       description:
-        "OpenCode Zen 的零价格 Union Alpha 车道：匿名前沿多模态模型限时免费、零数据留存。同车免费的还有 MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra / 3.5 Lightning、Big Pickle、Muse Spark 1.3 Contributor。",
+        "OpenCode Zen 的零价格 Union Alpha 车道：匿名前沿多模态模型限时免费（一周活动，至 9 月 24 日截止）、零数据留存。同车免费的还有 MiMo-V2.5、Ling 3.0 Flash Fin、Nemotron 3 Ultra / 3.5 Lightning、Big Pickle、Muse Spark 1.3 Contributor。",
       limits: "限时免费期内可用；各模型配额未公布",
       caveat:
-        "官方仅说明限时、未公布截止日期。除 Union Alpha 零留存外，Big Pickle、MiMo、Ling、Nemotron 免费期数据可能用于改进模型；Muse Spark Contributor 的提示词与补全会用于训练 Meta 模型。",
+        "活动至 9 月 24 日截止。除 Union Alpha 零留存外，Big Pickle、MiMo、Ling、Nemotron 免费期数据可能用于改进模型；Muse Spark Contributor 的提示词与补全会用于训练 Meta 模型。",
     },
     en: {
       name: "OpenCode Zen Union Alpha Free Lane",
       description:
-        "OpenCode Zen's zero-price Union Alpha lane: a stealth frontier multimodal model free for a limited time, with zero-retention privacy. Also free: MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra / 3.5 Lightning, Big Pickle, Muse Spark 1.3 Contributor.",
+        "OpenCode Zen's zero-price Union Alpha lane: a stealth frontier multimodal model free for a limited time (one-week run, through Sep 24) with zero-retention privacy. Also free: MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra / 3.5 Lightning, Big Pickle, Muse Spark 1.3 Contributor.",
       limits: "Free during the limited-time period; per-model caps not published",
       caveat:
-        "Official page says limited time with no end date published. Beyond zero-retention Union Alpha, Big Pickle, MiMo, Ling, and Nemotron may use free-period data to improve the model; Muse Spark Contributor's prompts and completions train future Meta models.",
+        "The campaign ends Sep 24. Beyond zero-retention Union Alpha, Big Pickle, MiMo, Ling, and Nemotron may use free-period data to improve the model; Muse Spark Contributor's prompts and completions train future Meta models.",
     },
   },
   {
@@ -157,7 +157,7 @@ export const offers = validateRegistry([
     url: "https://aihubmix.com",
     source: "https://docs.aihubmix.com/en/blogs/free-ai-models",
     actionUrl: "https://aihubmix.com/token",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "AIHubMix 免费模型",
       description:
@@ -184,7 +184,7 @@ export const offers = validateRegistry([
     url: "https://openrouter.ai",
     source: "https://openrouter.ai/docs/limits",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "OpenRouter 免费层",
       description:
@@ -212,7 +212,7 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "OpenCode Zen 免费车道（长期轮换）",
       description:
@@ -241,7 +241,7 @@ export const offers = validateRegistry([
     url: "https://aweshare.wehuman.top",
     source: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
     actionUrl: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "aweshare 社区 Hub",
       description:
@@ -266,7 +266,7 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://openai.com/form/codex-for-oss/",
     actionUrl: "https://openai.com/form/codex-for-oss/",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "Codex 开源维护者计划",
       description:
@@ -317,7 +317,7 @@ export const offers = validateRegistry([
     url: "https://platform.stepfun.com",
     source: "https://platform.stepfun.com/builder-program",
     actionUrl: "https://platform.stepfun.com/builder-program",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "StepFun Builder 计划",
       description:
@@ -342,7 +342,7 @@ export const offers = validateRegistry([
     url: "https://education.github.com",
     source: "https://education.github.com/pack",
     actionUrl: "https://education.github.com/pack",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "GitHub 学生开发者包",
       description:
@@ -367,7 +367,7 @@ export const offers = validateRegistry([
     url: "https://zed.dev",
     source: "https://github.com/zed-industries/zed",
     actionUrl: "https://zed.dev/download",
-    lastVerified: "2026-09-17",
+    lastVerified: "2026-09-18",
     zh: {
       name: "Zed",
       description:
