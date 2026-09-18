@@ -2,7 +2,7 @@
 import type { Offer } from "../lib/schema";
 import type { Locale } from "../lib/i18n";
 import { UI } from "../lib/i18n";
-import { daysUntil, shortUrlText } from "../lib/offers";
+import { expiryBadgeLabel, shortUrlText } from "../lib/offers";
 
 interface Props {
   offer: Offer;
@@ -16,8 +16,7 @@ const showPageLink = Boolean(offer.url && offer.url !== offer.actionUrl && offer
 
 let expiryBadge: string | null = null;
 if (offer.kind === "temporary" && offer.expiry) {
-  const n = daysUntil(offer.expiry);
-  expiryBadge = n <= 0 ? ui.expiringToday : ui.daysLeft(n);
+  expiryBadge = expiryBadgeLabel(offer.expiry, new Date(), ui);
 }
 ---
 
@@ -39,7 +38,9 @@ if (offer.kind === "temporary" && offer.expiry) {
       <li>
         <span class="fact-label">{ui.expiryLabel}</span>
         {offer.expiry ?? <span>{ui.noEndDate}</span>}
-        {expiryBadge && <span class="badge badge-countdown">{expiryBadge}</span>}
+        {expiryBadge && (
+          <span class="badge badge-countdown" data-expiry={offer.expiry}>{expiryBadge}</span>
+        )}
       </li>
     )}
     {loc.limits && (

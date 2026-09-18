@@ -101,5 +101,43 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <slot />
       </main>
     </div>
+
+    <script
+      type="application/json"
+      id="eggx-badge-i18n"
+      set:html={JSON.stringify({
+        expiringToday: ui.expiringToday,
+        expiredTag: ui.expiredTag,
+        daysLeftOne: ui.daysLeftOne,
+        daysLeftOther: ui.daysLeftOther,
+      })}
+    />
+    {/* Recompute countdown badges at view time: the static HTML carries the
+        build-day value; this keeps it honest until the next deploy. */}
+    <script is:inline>
+      (function () {
+        var cfg = document.getElementById("eggx-badge-i18n");
+        if (!cfg) return;
+        var labels = JSON.parse(cfg.textContent || "{}");
+        function badgeLabel(days) {
+          if (days < 0) return labels.expiredTag;
+          if (days === 0) return labels.expiringToday;
+          var template = days === 1 ? labels.daysLeftOne : labels.daysLeftOther;
+          return template.replace("{n}", String(days));
+        }
+        function update() {
+          var now = new Date();
+          var todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+          document.querySelectorAll("[data-expiry]").forEach(function (el) {
+            var target = Date.parse(el.getAttribute("data-expiry") + "T00:00:00Z");
+            if (!Number.isNaN(target)) {
+              el.textContent = badgeLabel(Math.round((target - todayUtc) / 86400000));
+            }
+          });
+        }
+        update();
+        setInterval(update, 3600000);
+      })();
+    </script>
   </body>
 </html>

@@ -40,7 +40,9 @@ export interface UIStrings {
   applicationTitle: string;
   applicationBlurb: string;
   expiringToday: string;
-  daysLeft: (n: number) => string;
+  expiredTag: string;
+  daysLeftOne: string;
+  daysLeftOther: string;
   noEndDate: string;
   verifiedTag: string;
   communityTag: string;
@@ -75,7 +77,9 @@ const zh: UIStrings = {
   applicationTitle: "申请羊毛",
   applicationBlurb: "需申请、认证或人工审核才能领取的羊毛。",
   expiringToday: "今天到期",
-  daysLeft: (n) => `${n} 天后到期`,
+  expiredTag: "已过期",
+  daysLeftOne: "1 天后到期",
+  daysLeftOther: "{n} 天后到期",
   noEndDate: "截止日期未公布",
   verifiedTag: "官方核实",
   communityTag: "社区消息",
@@ -110,7 +114,9 @@ const en: UIStrings = {
   applicationTitle: "Application offers",
   applicationBlurb: "Deals that require an application, verification, or review to claim.",
   expiringToday: "Ends today",
-  daysLeft: (n) => `Ends in ${n} day${n === 1 ? "" : "s"}`,
+  expiredTag: "Expired",
+  daysLeftOne: "Ends in 1 day",
+  daysLeftOther: "Ends in {n} days",
   noEndDate: "No end date published",
   verifiedTag: "official",
   communityTag: "community",

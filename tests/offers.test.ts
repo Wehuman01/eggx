@@ -12,8 +12,37 @@ import {
   providerLookup,
   expiryOrder,
   daysUntil,
+  expiryBadgeLabel,
   shortUrlText,
 } from "../src/lib/offers";
+
+describe("expiryBadgeLabel", () => {
+  const zh = {
+    expiringToday: "今天到期",
+    expiredTag: "已过期",
+    daysLeftOne: "1 天后到期",
+    daysLeftOther: "{n} 天后到期",
+  };
+  const now = new Date("2026-09-17T12:00:00Z");
+
+  it("distinguishes expired, today, one day, and many days", () => {
+    expect(expiryBadgeLabel("2026-09-15", now, zh)).toBe("已过期");
+    expect(expiryBadgeLabel("2026-09-17", now, zh)).toBe("今天到期");
+    expect(expiryBadgeLabel("2026-09-18", now, zh)).toBe("1 天后到期");
+    expect(expiryBadgeLabel("2026-09-20", now, zh)).toBe("3 天后到期");
+  });
+
+  it("handles far-future dates and localized templates", () => {
+    const en = {
+      expiringToday: "Ends today",
+      expiredTag: "Expired",
+      daysLeftOne: "Ends in 1 day",
+      daysLeftOther: "Ends in {n} days",
+    };
+    expect(expiryBadgeLabel("2026-12-31", now, en)).toBe("Ends in 105 days");
+    expect(expiryBadgeLabel("2026-09-18", now, en)).toBe("Ends in 1 day");
+  });
+});
 
 describe("shortUrlText", () => {
   it("shows host plus path, trailing slash trimmed", () => {

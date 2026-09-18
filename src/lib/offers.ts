@@ -32,6 +32,23 @@ export function daysUntil(date: string, now = new Date()): number {
   return Math.round((target.getTime() - today.getTime()) / 86_400_000);
 }
 
+export interface ExpiryBadgeLabels {
+  expiringToday: string;
+  expiredTag: string;
+  daysLeftOne: string;
+  daysLeftOther: string;
+}
+
+/** Build-time countdown label; the client script recomputes the same shape on view. */
+export function expiryBadgeLabel(expiry: string, now: Date, labels: ExpiryBadgeLabels): string {
+  const n = daysUntil(expiry, now);
+  if (n < 0) return labels.expiredTag;
+  if (n === 0) return labels.expiringToday;
+  return n === 1
+    ? labels.daysLeftOne
+    : labels.daysLeftOther.replace("{n}", String(n));
+}
+
 /** Compact link text (host + truncated path); the href keeps the full URL. */
 export function shortUrlText(url: string, max = 36): string {
   try {
