@@ -7,7 +7,6 @@ export type RouteKey =
   | "/long-term/"
   | "/application/"
   | "/codex-reset/"
-  | "/campaigns/"
   | "/aweshare/"
   | "/about/"
   | "/agent/"
@@ -43,21 +42,6 @@ export interface UIStrings {
   navSubmit: string;
   navGroupTracking: string;
   navCodexReset: string;
-  navCampaigns: string;
-  campaignsTitle: string;
-  campaignsBlurb: string;
-  campaignsActiveHeading: string;
-  campaignsPolicyHeading: string;
-  campaignsEndedHeading: string;
-  campaignsChannelHeading: string;
-  campaignsWindowLabel: string;
-  campaignsKindPromo: string;
-  campaignsKindPolicy: string;
-  campaignsEndedTag: string;
-  campaignsOngoing: string;
-  campaignsActiveTemplate: string;
-  campaignsEndedTemplate: string;
-  campaignsOfficialAction: string;
   navAweshare: string;
   aweshareTitle: string;
   aweshareBlurb: string;
@@ -156,23 +140,7 @@ const zh: UIStrings = {
   navAgent: "Agent 接入",
   navSubmit: "提交羊毛",
   navGroupTracking: "追踪",
-  navCodexReset: "Codex 重置",
-  navCampaigns: "国产活动",
-  campaignsTitle: "国产 Coding Plan 活动追踪",
-  campaignsBlurb:
-    "追踪国产厂商（Z.ai、StepFun、TRAE、MiniMax、Kimi）官方公告的编程计划活动与政策变动 — 每条带官方来源与核实日期。",
-  campaignsActiveHeading: "进行中",
-  campaignsPolicyHeading: "政策与计划变动",
-  campaignsEndedHeading: "已结束",
-  campaignsChannelHeading: "在盯的信源",
-  campaignsWindowLabel: "时间窗",
-  campaignsKindPromo: "活动",
-  campaignsKindPolicy: "政策",
-  campaignsEndedTag: "已结束",
-  campaignsOngoing: "长期进行 · 截止未公布",
-  campaignsActiveTemplate: "{n} 条进行中",
-  campaignsEndedTemplate: "{n} 条已结束 · 只作审计记录",
-  campaignsOfficialAction: "官方公告",
+navCodexReset: "Codex 重置",
   navAweshare: "aweshare 模型",
   aweshareTitle: "aweshare 模型可用性",
   aweshareBlurb:
@@ -277,22 +245,6 @@ const en: UIStrings = {
   navSubmit: "Submit a deal",
   navGroupTracking: "Tracking",
   navCodexReset: "Codex resets",
-  navCampaigns: "CN campaigns",
-  campaignsTitle: "CN Coding Plan campaign tracker",
-  campaignsBlurb:
-    "Tracking coding-plan campaigns and policy changes officially announced by Chinese vendors (Z.ai, StepFun, TRAE, MiniMax, Kimi) — every entry links to the official source with a verified date.",
-  campaignsActiveHeading: "Active",
-  campaignsPolicyHeading: "Policy changes",
-  campaignsEndedHeading: "Ended",
-  campaignsChannelHeading: "Sources watched",
-  campaignsWindowLabel: "Window",
-  campaignsKindPromo: "Campaign",
-  campaignsKindPolicy: "Policy",
-  campaignsEndedTag: "Ended",
-  campaignsOngoing: "Ongoing · no end date",
-  campaignsActiveTemplate: "{n} active",
-  campaignsEndedTemplate: "{n} ended · audit trail only",
-  campaignsOfficialAction: "Official notice",
   navAweshare: "aweshare models",
   aweshareTitle: "aweshare model availability",
   aweshareBlurb:
