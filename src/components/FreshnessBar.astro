@@ -1,0 +1,36 @@
+---
+// Freshness indicator for tracking pages.
+// Shows the snapshot timestamp and the sync cadence so users know
+// how stale the data might be without refreshing.
+interface Props {
+  checkedAt: string;
+  locale: "zh" | "en";
+  cadenceZh: string;
+  cadenceEn: string;
+}
+
+const tz = "Asia/Shanghai";
+const fmtOptsZh: Intl.DateTimeFormatOptions = {
+  timeZone: tz, year: "numeric", month: "long", day: "numeric",
+  hour: "2-digit", minute: "2-digit", hour12: false,
+};
+const fmtOptsEn: Intl.DateTimeFormatOptions = {
+  timeZone: tz, year: "numeric", month: "short", day: "numeric",
+  hour: "2-digit", minute: "2-digit", hour12: false,
+};
+
+const { checkedAt, locale, cadenceZh, cadenceEn } = Astro.props;
+const time =
+  locale === "zh"
+    ? new Intl.DateTimeFormat("zh-CN", fmtOptsZh).format(new Date(checkedAt))
+    : new Intl.DateTimeFormat("en-US", fmtOptsEn).format(new Date(checkedAt));
+const cadence = locale === "zh" ? cadenceZh : cadenceEn;
+const label =
+  locale === "zh"
+    ? `快照核验至 ${time} · ${cadence}`
+    : `Snapshot as of ${time} · ${cadence}`;
+---
+<div class="freshness-bar">
+  <span class="freshness-dot" aria-hidden="true"></span>
+  <span class="freshness-text">{label}</span>
+</div>

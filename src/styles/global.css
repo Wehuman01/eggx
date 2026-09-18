@@ -636,6 +636,28 @@ h3 {
   letter-spacing: 0.02em;
 }
 
+.freshness-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.2rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #f7f4ef;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.freshness-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--moss);
+  flex-shrink: 0;
+}
+
 .agent-toc {
   display: flex;
   flex-wrap: wrap;
@@ -1008,4 +1030,45 @@ h3 {
   .reset-when {
     font-size: 1.25rem;
   }
+}
+/* --- aweshare model availability --- */
+
+.aweshare-stat {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.aweshare-how-note {
+  font-size: 0.875rem;
+  color: #333;
+}
+
+.aweshare-repo-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.aweshare-alias {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.aweshare-meta {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.tag-offline {
+  background: var(--border);
+  color: var(--muted);
 }
