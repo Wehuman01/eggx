@@ -4,6 +4,7 @@ import OfferCard from "../components/OfferCard.astro";
 import { offers } from "../content/offers";
 import { archivedOffers, archivalOrder } from "../lib/offers";
 import { UI } from "../lib/i18n";
+import { itemListSchema } from "../lib/jsonld";
 
 const ui = UI.zh;
 const list = archivalOrder(archivedOffers(offers));
@@ -14,6 +15,7 @@ const list = archivalOrder(archivedOffers(offers));
   route="/expired/"
   title="过期羊毛 — eggx"
   description={ui.expiredBlurb}
+  structuredData={[itemListSchema(list, ui.expiredTitle, "zh")]}
 >
   <div class="main-inner graveyard">
     <header class="page-head">

@@ -2,18 +2,41 @@
 import "../styles/global.css";
 import type { Locale, RouteKey } from "../lib/i18n";
 import { UI, pageUrl, altLocale, withBase } from "../lib/i18n";
+import type { JsonLdObject } from "../lib/jsonld";
 
 interface Props {
   locale: Locale;
   route: RouteKey;
   title: string;
   description: string;
+  structuredData?: JsonLdObject[];
 }
 
-const { locale, route, title, description } = Astro.props;
+const { locale, route, title, description, structuredData } = Astro.props;
 
 const ui = UI[locale];
 const langUrl = pageUrl(altLocale(locale), route);
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const absolute = (path: string) => new URL(path, Astro.site).href;
+
+const ogImage = absolute(withBase("og-default.png"));
+const ogLocale = locale === "zh" ? "zh_CN" : "en_US";
+const ogAltLocale = locale === "zh" ? "en_US" : "zh_CN";
+const altLangUrl = absolute(langUrl);
+const defaultLangUrl = absolute(pageUrl("zh", route));
+const rssUrl = absolute(withBase("feed.xml"));
+const altHtmlLang = UI[altLocale(locale)].htmlLang;
+
+const websiteSchema: JsonLdObject = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "eggx",
+  url: absolute(withBase("/")),
+  description: ui.siteTagline,
+  inLanguage: ui.htmlLang,
+};
+const allSchemas = [websiteSchema, ...(structuredData ?? [])];
 
 const navDeals = [
   { route: "/", label: ui.navTemporary },
@@ -31,8 +54,6 @@ const navMore = [
   { route: "/agent/", label: ui.navAgent },
   { route: "/about/", label: ui.navAbout },
 ] as const;
-
-const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -41,9 +62,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={ui.htmlLang} href={canonical.href} />
+    <link rel="alternate" hreflang={altHtmlLang} href={altLangUrl} />
+    <link rel="alternate" hreflang="x-default" href={defaultLangUrl} />
     <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" title="eggx" href={rssUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="eggx" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogAltLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

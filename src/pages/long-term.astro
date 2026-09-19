@@ -4,6 +4,7 @@ import OfferCard from "../components/OfferCard.astro";
 import { offers } from "../content/offers";
 import { activeOffers, byKind, byAccess, expiryOrder } from "../lib/offers";
 import { UI } from "../lib/i18n";
+import { itemListSchema } from "../lib/jsonld";
 
 const ui = UI.zh;
 const list = expiryOrder(byAccess(byKind(activeOffers(offers), "long-term"), "public"));
@@ -14,6 +15,7 @@ const list = expiryOrder(byAccess(byKind(activeOffers(offers), "long-term"), "pu
   route="/long-term/"
   title="长期羊毛 — eggx"
   description={ui.longTermBlurb}
+  structuredData={[itemListSchema(list, ui.longTermTitle, "zh")]}
 >
   <div class="main-inner">
     <header class="page-head">

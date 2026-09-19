@@ -21,7 +21,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
 }
 ---
 
-<article class:list={["offer-card", { "offer-dead": dead }]}>
+<article class:list={["offer-card", { "offer-dead": dead }]} id={offer.id}>
   <div class="offer-head">
     <h3 class="offer-name">{loc.name}</h3>
     <div class="offer-tags">

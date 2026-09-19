@@ -4,6 +4,7 @@ import OfferCard from "../components/OfferCard.astro";
 import { offers } from "../content/offers";
 import { activeOffers, byAccess } from "../lib/offers";
 import { UI } from "../lib/i18n";
+import { itemListSchema } from "../lib/jsonld";
 
 const ui = UI.zh;
 const list = byAccess(activeOffers(offers), "application");
@@ -14,6 +15,7 @@ const list = byAccess(activeOffers(offers), "application");
   route="/application/"
   title="申请羊毛 — eggx"
   description={ui.applicationBlurb}
+  structuredData={[itemListSchema(list, ui.applicationTitle, "zh")]}
 >
   <div class="main-inner">
     <header class="page-head">

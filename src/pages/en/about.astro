@@ -1,8 +1,32 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
 import { UI, pageUrl } from "../../lib/i18n";
+import { faqSchema } from "../../lib/jsonld";
 
 const ui = UI.en;
+
+const faq = faqSchema([
+  {
+    question: "What kinds of offers does eggx list?",
+    answer:
+      "eggx splits offers into three sections: temporary offers are public limited-time campaigns sorted by expiry, long-term offers are recurring free tiers and programs, and application offers require an application, verification, or review to claim.",
+  },
+  {
+    question: "What is the difference between official and community offers?",
+    answer:
+      "Official offers are confirmed by current provider documentation or program pages. Community offers have reproducible community reports, but the provider's terms are incomplete or ambiguous — confirm independently before relying on them.",
+  },
+  {
+    question: "Does free mean unlimited?",
+    answer:
+      "Rarely. Unpublished limits stay labeled as unpublished instead of being assumed unlimited. Read each offer's limits and how-to-claim before you depend on it, especially under heavy or production use.",
+  },
+  {
+    question: "Are expired offers deleted?",
+    answer:
+      "No. Expired or delisted offers are archived, not deleted, keeping a public audit trail. An archived entry only records its past verification — it does not mean the offer still works.",
+  },
+]);
 ---
 
 <BaseLayout
@@ -10,6 +34,7 @@ const ui = UI.en;
   route="/about/"
   title="About — eggx"
   description="eggx's editorial policy, verification standards, and why free is not unlimited."
+  structuredData={[faq]}
 >
   <div class="main-inner">
     <div class="prose">

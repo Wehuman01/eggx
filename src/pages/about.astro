@@ -1,8 +1,32 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import { UI, pageUrl } from "../lib/i18n";
+import { faqSchema } from "../lib/jsonld";
 
 const ui = UI.zh;
+
+const faq = faqSchema([
+  {
+    question: "eggx 收录哪几种羊毛？",
+    answer:
+      "eggx 把羊毛分为三栏：临时羊毛是公开限时活动，按到期时间排序；长期羊毛是持续供应的免费额度与计划；申请羊毛需要申请、认证或人工审核才能领取。",
+  },
+  {
+    question: "官方核实和社区消息有什么区别？",
+    answer:
+      "官方核实由官方文档或项目页确认当前仍可领取；社区消息有可复现的社区报告，但官方声明不完整或含混，需要自行二次确认。",
+  },
+  {
+    question: "免费额度是无限的吗？",
+    answer:
+      "免费很少意味着无限。未公布的限额一直标注为“未公布”，而不是推测成没有上限。依赖前请先读每条羊毛的限额与获取方式。",
+  },
+  {
+    question: "过期的羊毛会删除吗？",
+    answer:
+      "不会。已过期或下架的羊毛会归档保留在过期羊毛页，保留公开的审计轨迹；归档条目只代表它曾经的核实记录，不代表仍然可用。",
+  },
+]);
 ---
 
 <BaseLayout
@@ -10,6 +34,7 @@ const ui = UI.zh;
   route="/about/"
   title="关于 — eggx"
   description="eggx 的编辑准则：核实规则、免费不等于无限、只读目录。"
+  structuredData={[faq]}
 >
   <div class="main-inner">
     <div class="prose">

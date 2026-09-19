@@ -4,6 +4,7 @@ import OfferCard from "../../components/OfferCard.astro";
 import { offers } from "../../content/offers";
 import { activeOffers, byKind, byAccess, byVerified, expiryOrder } from "../../lib/offers";
 import { UI } from "../../lib/i18n";
+import { itemListSchema } from "../../lib/jsonld";
 
 const ui = UI.en;
 const pool = expiryOrder(byAccess(byKind(activeOffers(offers), "temporary"), "public"));
@@ -16,6 +17,7 @@ const community = byVerified(pool, false);
   route="/"
   title={`${ui.siteTagline} — eggx`}
   description={ui.siteDescription}
+  structuredData={[itemListSchema([...list, ...community], ui.temporaryTitle, "en")]}
 >
   <div class="main-inner">
     <header class="page-head">
