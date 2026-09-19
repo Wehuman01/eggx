@@ -139,7 +139,7 @@ export interface UIStrings {
 }
 
 const zh: UIStrings = {
-  siteTagline: "已核实的 AI 编码羊毛",
+  siteTagline: "一代人有一代人的鸡蛋领吧",
   navGroupDeals: "羊毛",
   navTemporary: "临时羊毛",
   navLongTerm: "长期羊毛",
@@ -207,7 +207,7 @@ navCodexReset: "Codex 重置",
   agentBlurb:
     "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
   siteDescription:
-    "eggx 只回答一个问题：现在有什么可以领的免费 AI 编码额度？每条羊毛都带官方来源、可信度标签、真实限额与最后核实日期。",
+    "一代人有一代人的鸡蛋领吧。eggx 持续核实可领取的免费 AI 编码额度：每条羊毛都带官方来源、可信度标签、真实限额与最后核实日期。",
   temporaryTitle: "临时羊毛",
   temporaryBlurb: "限时活动，过期不候 — 按到期时间排序。",
   communitySectionTitle: "社区消息",
@@ -253,7 +253,7 @@ navCodexReset: "Codex 重置",
 };
 
 const en: UIStrings = {
-  siteTagline: "Verified free AI coding deals",
+  siteTagline: "Every generation has its free credits to claim",
   navGroupDeals: "Deals",
   navTemporary: "Temporary",
   navLongTerm: "Long-term",
@@ -322,7 +322,7 @@ const en: UIStrings = {
   agentBlurb:
     "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",
   siteDescription:
-    "eggx answers one question: what can I claim for free right now to build with AI? Every offer carries an official source, a trust label, the real limits, and the date it was last verified.",
+    "Every generation has its free credits to claim. eggx tracks verified free AI coding deals, each with an official source, trust label, real limits, and last-verified date.",
   temporaryTitle: "Temporary offers",
   temporaryBlurb: "Limited-time campaigns, sorted by expiry date.",
   communitySectionTitle: "Community reports",

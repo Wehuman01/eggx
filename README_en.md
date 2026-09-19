@@ -1,8 +1,8 @@
 <div align="center">
   <img src="public/favicon.svg" alt="eggx logo" width="112" />
   <h1>eggx</h1>
-  <p><strong>Verified free AI coding offers</strong></p>
-  <p>Limited-time campaigns · long-term free tiers · application tracks — each with an official source, real limits, and a verification date.</p>
+  <p><strong>Every generation has its free credits to claim.</strong></p>
+  <p>Verified free AI coding deals: limited-time campaigns · long-term free tiers · application tracks — each with an official source, real limits, and a verification date.</p>
   <p>
     <a href="./README.md">简体中文</a> ·
     <strong>English</strong>

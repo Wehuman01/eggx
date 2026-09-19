@@ -1,8 +1,8 @@
 <div align="center">
   <img src="public/favicon.svg" alt="eggx logo" width="112" />
   <h1>eggx</h1>
-  <p><strong>已核实的 AI 编码羊毛</strong></p>
-  <p>限时活动 · 长期免费层 · 申请通道 — 每条都带官方来源、限额与核实日期。</p>
+  <p><strong>一代人有一代人的鸡蛋领吧</strong></p>
+  <p>已核实的免费 AI 编码额度：限时活动 · 长期免费层 · 申请通道 — 每条都带官方来源、限额与核实日期。</p>
   <p>
     <strong>简体中文</strong> ·
     <a href="./README_en.md">English</a>

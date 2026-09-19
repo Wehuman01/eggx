@@ -23,9 +23,9 @@ export const GET: APIRoute = () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>eggx 羊毛</title>
+    <title>eggx — 一代人有一代人的鸡蛋领吧</title>
     <link>/feed.xml</link>
-    <description>已核实的 AI 编码羊毛与免费平台目录</description>
+    <description>持续核实的免费 AI 编码额度与平台目录</description>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <generator>eggx</generator>
     ${items}

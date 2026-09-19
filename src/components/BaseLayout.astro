@@ -33,7 +33,7 @@ const websiteSchema: JsonLdObject = {
   "@type": "WebSite",
   name: "eggx",
   url: absolute(withBase("/")),
-  description: ui.siteTagline,
+  description,
   inLanguage: ui.htmlLang,
 };
 const allSchemas = [websiteSchema, ...(structuredData ?? [])];
