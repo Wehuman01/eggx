@@ -1,3 +1,4 @@
+import { isExpired } from "./offers";
 import type { Offer } from "./schema";
 
 export const API_VERSION = "2";
@@ -23,8 +24,8 @@ export function jsonResponse<T>(
   });
 }
 
-export function activeOnly(offers: readonly Offer[]): Offer[] {
-  return offers.filter((o) => !o.archived);
+export function activeOnly(offers: readonly Offer[], now = new Date()): Offer[] {
+  return offers.filter((o) => !o.archived && !isExpired(o, now));
 }
 
 function localized(o: Offer, field: "limits" | "caveat") {

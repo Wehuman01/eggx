@@ -1,11 +1,16 @@
 import type { Offer, OfferKind, OfferAccess } from "./schema";
 
-export function activeOffers(offers: readonly Offer[]): Offer[] {
-  return offers.filter((o) => !o.archived);
+/** Past its stated end date. Offers without expiry never auto-expire. */
+export function isExpired(offer: Offer, now = new Date()): boolean {
+  return offer.expiry ? daysUntil(offer.expiry, now) < 0 : false;
 }
 
-export function archivedOffers(offers: readonly Offer[]): Offer[] {
-  return offers.filter((o) => o.archived);
+export function activeOffers(offers: readonly Offer[], now = new Date()): Offer[] {
+  return offers.filter((o) => !o.archived && !isExpired(o, now));
+}
+
+export function archivedOffers(offers: readonly Offer[], now = new Date()): Offer[] {
+  return offers.filter((o) => o.archived || isExpired(o, now));
 }
 
 export function byKind(offers: readonly Offer[], kind: OfferKind): Offer[] {

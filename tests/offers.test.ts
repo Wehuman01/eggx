@@ -16,6 +16,7 @@ import {
   expiryOrder,
   daysUntil,
   expiryBadgeLabel,
+  isExpired,
   shortUrlText,
 } from "../src/lib/offers";
 
@@ -268,6 +269,70 @@ describe("offers helpers", () => {
 
   it("archivedOffers collects exactly the archived entries", () => {
     expect(archivedOffers(mockOffers).map((o) => o.id)).toEqual(["a2"]);
+  });
+
+  describe("auto-expiry", () => {
+    const dated: Offer[] = [
+      {
+        id: "past",
+        provider: "X",
+        kind: "temporary",
+        access: "public",
+        verified: true,
+        expiry: "2026-09-18",
+        zh: { name: "Past", description: "Past" },
+        en: { name: "Past", description: "Past" },
+      },
+      {
+        id: "today",
+        provider: "X",
+        kind: "temporary",
+        access: "public",
+        verified: true,
+        expiry: "2026-09-19",
+        zh: { name: "Today", description: "Today" },
+        en: { name: "Today", description: "Today" },
+      },
+      {
+        id: "future",
+        provider: "X",
+        kind: "temporary",
+        access: "public",
+        verified: true,
+        expiry: "2026-09-20",
+        zh: { name: "Future", description: "Future" },
+        en: { name: "Future", description: "Future" },
+      },
+      {
+        id: "open-ended",
+        provider: "X",
+        kind: "long-term",
+        access: "public",
+        verified: true,
+        zh: { name: "Open", description: "Open" },
+        en: { name: "Open", description: "Open" },
+      },
+    ];
+    // Fixed "now" so the boundary behaviour stays deterministic.
+    const now = new Date("2026-09-19T12:00:00Z");
+
+    it("isExpired only fires strictly after the expiry date", () => {
+      expect(isExpired(dated[0], now)).toBe(true);
+      expect(isExpired(dated[1], now)).toBe(false);
+      expect(isExpired(dated[2], now)).toBe(false);
+      expect(isExpired(dated[3], now)).toBe(false);
+    });
+
+    it("activeOffers drops expired entries and keeps the rest", () => {
+      expect(activeOffers(dated, now).map((o) => o.id)).toEqual(["today", "future", "open-ended"]);
+    });
+
+    it("archivedOffers auto-collects expired entries alongside manual archives", () => {
+      expect(archivedOffers([...dated, ...mockOffers], now).map((o) => o.id)).toEqual([
+        "past",
+        "a2",
+      ]);
+    });
   });
 
   it("archivalOrder puts newest lastVerified first, then later expiry", () => {
