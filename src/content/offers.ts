@@ -344,6 +344,32 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "claude-oss",
+    provider: "Anthropic",
+    kind: "long-term",
+    access: "application",
+    verified: true,
+    source: "https://claude.com/contact-sales/claude-for-oss",
+    actionUrl: "https://claude.com/contact-sales/claude-for-oss",
+    lastVerified: "2026-09-19",
+    zh: {
+      name: "Claude for Open Source 开源计划",
+      description:
+        "Anthropic 面向开源维护者与贡献者的感谢计划：入选者获 6 个月免费 Claude Max 20x（含 Claude Code）。满足任一条件即可申请：维护的包被 500+ 仓库依赖 / 100+ 包依赖 / 全 registry 合计月下载 20 万+；是 CPython、Rust、Node.js、Apache、CNCF、Kubernetes、Linux kernel、Django、Rails 等项目的在列 committer 或 maintainer；近 12 个月在他人仓库有 100+ 已合并 PR；某仓库有 20+ 个不同的外部贡献者提交过已合并 PR；或任一仓库 OpenSSF criticality score ≥ 0.4。不完全达标也可以申请并自述情况。",
+      limits: "6 个月 Claude Max 20x；申请审核制；每类门槛满足其一即可",
+      caveat:
+        "6 个月到期后免费订阅自动结束（官方提前邮件提醒）；原有付费计划会按原价自动恢复，不想续费需在到期前取消。",
+    },
+    en: {
+      name: "Claude for Open Source",
+      description:
+        "Anthropic's thank-you program for open-source maintainers and contributors: selected applicants get 6 months of free Claude Max 20x (includes Claude Code). Any one of these qualifies: your package has 500+ dependent repos / 100+ dependent packages / 200k+ combined monthly downloads across registries; you're a listed committer or maintainer on projects like CPython, Rust, Node.js, Apache, CNCF, Kubernetes, Linux kernel, Django, or Rails; 100+ PRs merged into repos you don't own in the last 12 months; a repo with 20+ unique external contributors with merged PRs in the last 12 months; or any repo you maintain has an OpenSSF criticality score of 0.4+. Don't fit exactly? Apply anyway and tell your story.",
+      limits: "6 months of Claude Max 20x; application and review; meeting any single threshold qualifies",
+      caveat:
+        "The complimentary subscription ends after 6 months (Anthropic emails you beforehand); a prior paid plan resumes at your prior rate unless you cancel.",
+    },
+  },
+  {
     id: "codex-students",
     provider: "OpenAI",
     kind: "long-term",
