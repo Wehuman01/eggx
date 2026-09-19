@@ -161,7 +161,7 @@ const zh: UIStrings = {
   navAgent: "Agent 接入",
   navSubmit: "提交羊毛",
   navGroupTracking: "追踪",
-navCodexReset: "Codex 重置",
+  navCodexReset: "Codex 重置",
   navAweshare: "aweshare 模型",
   aweshareTitle: "aweshare 模型可用性",
   aweshareBlurb:

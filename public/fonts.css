@@ -1,0 +1,20 @@
+/* Self-hosted Google Fonts, latin subset, variable weights. Google Fonts is
+   unreachable from mainland China and the <link> to it was render-blocking,
+   so the two woff2 files ship with the site instead. Relative URLs keep the
+   paths correct under any BASE_PATH. CJK text never hits these faces — the
+   browser falls back per glyph. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("fonts/inter-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("fonts/playfair-display-latin.woff2") format("woff2");
+}

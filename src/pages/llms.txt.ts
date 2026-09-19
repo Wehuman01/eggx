@@ -13,7 +13,8 @@ eggx is a verified free AI coding deals registry. Every entry is a real platform
 
 - **verified=true** — the offer has been confirmed through official channels or direct evidence, and carries a \`lastVerified\` date.
 - **verified=false** — community-reported; confirm independently before relying on it.
-- **archived** — no longer active; excluded from the live tiers and the API, but kept in the public audit archive at /expired/ (nothing there is claimable).
+- **archived** — manually retired; excluded from the live tiers and the list endpoints.
+- **expired** — a temporary offer whose \`expiresAt\` date has passed. These are retired automatically at build time (the site rebuilds hourly) and move to the public audit archive at /expired/ (nothing there is claimable). The endpoint /api/v1/offers/:id.json still resolves archived and expired entries — the payload's \`archived\`/\`expiresAt\` fields tell you which — so stale IDs fail loudly with data, not a bare 404.
 
 ## Text fields
 
@@ -49,10 +50,10 @@ Default language is Chinese (Simplified). English mirror lives under /en/.
 
 Endpoints are static JSON files, anonymous and read-only, no API key. Canonical base is https://eggx.wehuman.top (GitHub Pages mirror: https://wehuman01.github.io/eggx/); URLs include the .json extension. All JSON responses carry \`X-API-Version: 2\` and \`schemaVersion: "2.0"\`.
 
-- GET /api/v1/offers.json — all active (non-archived) offers
-- GET /api/v1/offers/:id.json — single offer by ID
-- GET /api/v1/providers/:slug.json — offers grouped by provider slug (provider lowercased, spaces as hyphens)
-- GET /api/v1/snapshot.json — schema-versioned snapshot of the full non-archived registry
+- GET /api/v1/offers.json — all active offers (expired and archived entries are excluded)
+- GET /api/v1/offers/:id.json — single offer by ID (resolves expired/archived entries too; check the \`archived\` field and \`expiresAt\` against today)
+- GET /api/v1/providers/:slug.json — active offers grouped by provider slug (provider lowercased, spaces as hyphens)
+- GET /api/v1/snapshot.json — schema-versioned snapshot of the active registry
 - GET /api/v1/codex-resets.json — tracked Codex resets and reset cards (source posts, status, gap stats; not an official OpenAI feed)
 - GET /api/v1/aweshare.json — hourly snapshot of shared models on the aweshare hub run by the eggx team (alias, protocols, status, daily budgets; public fields only)
 - GET /api/v1/changes.json?since=ISO8601 — advisory on static hosting: the file always returns all active offers sorted by lastVerified (newest first); filter client-side with lastVerified >= since

@@ -38,6 +38,10 @@ const websiteSchema: JsonLdObject = {
 };
 const allSchemas = [websiteSchema, ...(structuredData ?? [])];
 
+/* Escape "<" so a curated string containing "</script>" can never break out
+   of the JSON-LD block. */
+const jsonLdText = (data: unknown) => JSON.stringify(data).replace(/</g, "\\u003c");
+
 const navDeals = [
   { route: "/", label: ui.navTemporary },
   { route: "/long-term/", label: ui.navLongTerm },
@@ -83,14 +87,11 @@ const navMore = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+    <script type="application/ld+json" set:html={jsonLdText(allSchemas)} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    {/* Self-hosted fonts (see public/fonts.css): Google Fonts is unreachable
+        from mainland China and its stylesheet link was render-blocking. */}
+    <link rel="stylesheet" href={withBase("fonts.css")} />
   </head>
   <body>
     <div class="shell">
@@ -174,7 +175,7 @@ const navMore = [
     <script
       type="application/json"
       id="eggx-badge-i18n"
-      set:html={JSON.stringify({
+      set:html={jsonLdText({
         expiringToday: ui.expiringToday,
         expiredTag: ui.expiredTag,
         daysLeftOne: ui.daysLeftOne,

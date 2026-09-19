@@ -789,7 +789,11 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     document.body.appendChild(dialog);
     canvasHost = dialog.querySelector(".share-canvas-host");
     (dialog.querySelector(".share-dialog-eyebrow") as HTMLElement).textContent = labels.title;
-    (dialog.querySelector(".share-close") as HTMLElement).textContent = "✕";
+    const closeBtn = dialog.querySelector<HTMLButtonElement>(".share-close");
+    if (closeBtn) {
+      closeBtn.textContent = "✕";
+      closeBtn.setAttribute("aria-label", labels.close);
+    }
     const standardBtn = dialog.querySelector<HTMLButtonElement>('[data-variant="standard"]');
     const phoneBtn = dialog.querySelector<HTMLButtonElement>('[data-variant="phone"]');
     if (standardBtn) {
@@ -823,12 +827,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     return dialog?.querySelector<HTMLButtonElement>(`[data-share-action="${action}"]`) ?? null;
   }
 
-  function labelOf(button: HTMLButtonElement): string {
-    return button.dataset.shareLabel ?? button.textContent ?? "";
-  }
-
-  let flashTimer: ReturnType<typeof setTimeout> | null = null;
-  function flash(button: HTMLButtonElement, cls: "copied" | "failed", text: string) {
+  let flashTimer: ReturnType<typeof setTimeout> | null = null;  function flash(button: HTMLButtonElement, cls: "copied" | "failed", text: string) {
     button.classList.remove("copied", "failed");
     button.classList.add(cls);
     button.textContent = text;

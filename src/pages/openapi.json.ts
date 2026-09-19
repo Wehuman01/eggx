@@ -53,7 +53,8 @@ export const GET: APIRoute = () => {
           ],
           responses: {
             "200": {
-              description: "Offer details",
+              description:
+                "Offer details. Expired and archived IDs still resolve here — check the `archived` field and `expiresAt` against today before relying on the offer.",
               content: {
                 "application/json": {
                   schema: { $ref: "#/components/schemas/Offer" },
