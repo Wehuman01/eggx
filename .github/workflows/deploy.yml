@@ -23,8 +23,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        # 不能用 workflow_run.head_sha：sync 类工作流在运行中会 push 新提交，
+        # 而 head_sha 是它"启动时"的 main，按它构建会把刚同步的快照漏掉
+        #（线上因此滞后到下一次触发）。这里直接取 main 最新提交。
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v4
