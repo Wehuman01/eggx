@@ -108,6 +108,16 @@ export interface UIStrings {
   codeLabel: string;
   codeHint: string;
   codeCopied: string;
+  shareAction: string;
+  shareDialogTitle: string;
+  shareCardEyebrow: string;
+  shareCopyImage: string;
+  shareCopied: string;
+  shareCopyFailed: string;
+  shareDownload: string;
+  shareCopyLink: string;
+  shareClose: string;
+  shareScan: string;
   longTermTitle: string;
   longTermBlurb: string;
   applicationTitle: string;
@@ -221,6 +231,16 @@ navCodexReset: "Codex 重置",
   codeLabel: "兑换码",
   codeHint: "点击复制",
   codeCopied: "已复制",
+  shareAction: "分享",
+  shareDialogTitle: "分享这条羊毛",
+  shareCardEyebrow: "EGGX · 已核实的 AI 编码羊毛",
+  shareCopyImage: "复制图片",
+  shareCopied: "已复制",
+  shareCopyFailed: "复制失败",
+  shareDownload: "下载图片",
+  shareCopyLink: "复制链接",
+  shareClose: "关闭",
+  shareScan: "扫码打开",
   longTermTitle: "长期羊毛",
   longTermBlurb: "持续供应的免费额度与计划，稳定可依赖。",
   applicationTitle: "申请羊毛",
@@ -336,6 +356,16 @@ const en: UIStrings = {
   codeLabel: "Code",
   codeHint: "Click to copy",
   codeCopied: "Copied",
+  shareAction: "Share",
+  shareDialogTitle: "Share this offer",
+  shareCardEyebrow: "EGGX · Verified free AI coding deals",
+  shareCopyImage: "Copy image",
+  shareCopied: "Copied",
+  shareCopyFailed: "Copy failed",
+  shareDownload: "Download",
+  shareCopyLink: "Copy link",
+  shareClose: "Close",
+  shareScan: "Scan to open",
   longTermTitle: "Long-term offers",
   longTermBlurb: "Recurring free tiers and programs you can rely on.",
   applicationTitle: "Application offers",

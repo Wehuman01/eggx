@@ -29,6 +29,32 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
       <span class:list={["tag", offer.verified ? "tag-verified" : "tag-community"]}>
         {offer.verified ? ui.verifiedTag : ui.communityTag}
       </span>
+      {!dead && (
+        <button
+          type="button"
+          class="share-btn"
+          data-share-id={offer.id}
+          data-share-name={loc.name}
+          data-share-provider={offer.provider}
+          data-share-desc={loc.description}
+          data-share-expiry={offer.kind === "temporary" ? (offer.expiry ?? "") : ""}
+          data-share-limits={loc.limits ?? ""}
+          data-share-code={offer.code ?? ""}
+          data-share-verified={offer.verified ? "1" : "0"}
+          data-share-verified-on={offer.lastVerified ? ui.verifiedOn(offer.lastVerified) : ""}
+          aria-label={ui.shareAction}
+          aria-haspopup="dialog"
+          title={ui.shareAction}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+        </button>
+      )}
     </div>
   </div>
 
@@ -218,4 +244,563 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
   } else {
     init();
   }
+</script>
+
+<script>
+  /* Offer share cards. The card is drawn client-side onto a canvas — no
+     external image service, nothing leaves the browser. The dialog is a
+     singleton created on first use; ui labels ride the page-level i18n JSON
+     (#eggx-badge-i18n, rendered by BaseLayout), per-offer facts ride data
+     attributes on the share button. */
+  import qrcode from "qrcode-generator";
+  import { splitUrlForCard, wrapToFit } from "../lib/share-card";
+
+  const CARD_W = 1080;
+  const CARD_H = 1440;
+  const CARD_INSET = 56;
+  const PAD = 80;
+  const QR_BOX = 232;
+  const QR_CAPTION_H = 44;
+
+  const PALETTE = {
+    paper: "#faf8f5",
+    grid: "#e5e0d8",
+    card: "#ffffff",
+    border: "#e5e0d8",
+    ink: "#1a1a1a",
+    text: "#333333",
+    muted: "#6b6b6b",
+    moss: "#4a5d23",
+    mossSoft: "#e8f0e0",
+    orange: "#c75b2a",
+    orangeSoft: "#fff3e0",
+  } as const;
+
+  const SANS = '"Inter", system-ui, sans-serif';
+  const SERIF = '"Playfair Display", Georgia, serif';
+
+  interface ShareFacts {
+    id: string;
+    name: string;
+    provider: string;
+    description: string;
+    expiry: string;
+    limits: string;
+    code: string;
+    verified: boolean;
+    verifiedOn: string;
+    url: string;
+  }
+
+  interface ShareLabels {
+    title: string;
+    eyebrow: string;
+    copyImage: string;
+    copied: string;
+    copyFailed: string;
+    download: string;
+    copyLink: string;
+    close: string;
+    scan: string;
+    expiryLabel: string;
+    limitsLabel: string;
+    codeLabel: string;
+    verifiedTag: string;
+    communityTag: string;
+    noEndDate: string;
+  }
+
+  interface BadgeConfig {
+    expiringToday: string;
+    expiredTag: string;
+    daysLeftOne: string;
+    daysLeftOther: string;
+  }
+
+  interface PageI18n {
+    share?: ShareLabels;
+    expiringToday?: string;
+    expiredTag?: string;
+    daysLeftOne?: string;
+    daysLeftOther?: string;
+  }
+
+  function readPageI18n(): PageI18n | null {
+    const el = document.getElementById("eggx-badge-i18n");
+    if (!el) return null;
+    try {
+      return JSON.parse(el.textContent || "{}") as PageI18n;
+    } catch {
+      return null;
+    }
+  }
+
+  /* Same computation as BaseLayout's countdown badges, so the card's badge
+     matches what the page shows at view time. */
+  function countdownLabel(expiry: string, cfg: BadgeConfig): string | null {
+    const target = Date.parse(`${expiry}T00:00:00Z`);
+    if (Number.isNaN(target)) return null;
+    const now = new Date();
+    const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    const days = Math.round((target - todayUtc) / 86400000);
+    if (days < 0) return cfg.expiredTag;
+    if (days === 0) return cfg.expiringToday;
+    const template = days === 1 ? cfg.daysLeftOne : cfg.daysLeftOther;
+    return template.replace("{n}", String(days));
+  }
+
+  const setTracking = (ctx: CanvasRenderingContext2D, ls: number) => {
+    if ("letterSpacing" in ctx) ctx.letterSpacing = `${ls}px`;
+  };
+  const clearTracking = (ctx: CanvasRenderingContext2D) => {
+    if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
+  };
+  const tracked = (ctx: CanvasRenderingContext2D, text: string) =>
+    "letterSpacing" in ctx ? text : text.split("").join(" ");
+
+  function drawShareCard(
+    facts: ShareFacts,
+    labels: ShareLabels,
+    badges: BadgeConfig,
+  ): HTMLCanvasElement {
+    const canvas = document.createElement("canvas");
+    canvas.width = CARD_W * 2;
+    canvas.height = CARD_H * 2;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return canvas;
+    ctx.scale(2, 2);
+
+    const font = (weight: number, size: number, family: string) => {
+      ctx.font = `${weight} ${size}px ${family}`;
+    };
+    const ellipsize = (text: string, maxW: number) => {
+      if (ctx.measureText(text).width <= maxW) return text;
+      let out = text;
+      while (out.length > 1 && ctx.measureText(`${out}…`).width > maxW) out = out.slice(0, -1);
+      return `${out}…`;
+    };
+
+    // Paper + the site's 24px grid.
+    ctx.fillStyle = PALETTE.paper;
+    ctx.fillRect(0, 0, CARD_W, CARD_H);
+    ctx.strokeStyle = PALETTE.grid;
+    ctx.lineWidth = 1;
+    for (let gx = 24; gx < CARD_W; gx += 24) {
+      ctx.beginPath();
+      ctx.moveTo(gx, 0);
+      ctx.lineTo(gx, CARD_H);
+      ctx.stroke();
+    }
+    for (let gy = 24; gy < CARD_H; gy += 24) {
+      ctx.beginPath();
+      ctx.moveTo(0, gy);
+      ctx.lineTo(CARD_W, gy);
+      ctx.stroke();
+    }
+
+    // White card with the site's rounded border.
+    const cardX = CARD_INSET;
+    const cardY = CARD_INSET;
+    const cardW = CARD_W - CARD_INSET * 2;
+    const cardH = CARD_H - CARD_INSET * 2;
+    ctx.save();
+    ctx.shadowColor = "rgba(0, 0, 0, 0.06)";
+    ctx.shadowBlur = 12;
+    ctx.fillStyle = PALETTE.card;
+    ctx.beginPath();
+    ctx.roundRect(cardX, cardY, cardW, cardH, 24);
+    ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle = PALETTE.border;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(cardX, cardY, cardW, cardH, 24);
+    ctx.stroke();
+
+    const x = cardX + PAD;
+    const contentW = cardW - PAD * 2;
+    const right = x + contentW;
+    const qrX = right - QR_BOX;
+    const qrY = cardY + cardH - PAD - QR_BOX - QR_CAPTION_H;
+    const factsMax = qrY - 32;
+    let y = cardY + PAD;
+
+    // Eyebrow
+    font(500, 26, SANS);
+    ctx.fillStyle = PALETTE.muted;
+    setTracking(ctx, 6);
+    ctx.fillText(tracked(ctx, labels.eyebrow), x, y + 24);
+    clearTracking(ctx);
+    y += 72;
+
+    // Name — the hero, up to three lines.
+    const nameLines = wrapToFit(
+      (t) => {
+        font(700, 72, SERIF);
+        return ctx.measureText(t).width;
+      },
+      facts.name,
+      contentW,
+      3,
+    );
+    font(700, 72, SERIF);
+    ctx.fillStyle = PALETTE.ink;
+    for (const line of nameLines) {
+      y += 80;
+      ctx.fillText(line, x, y);
+      y += 14;
+    }
+    y += 10;
+
+    // Provider
+    if (facts.provider) {
+      font(400, 30, SANS);
+      ctx.fillStyle = PALETTE.muted;
+      ctx.fillText(ellipsize(facts.provider, contentW), x, y + 28);
+      y += 58;
+    }
+
+    // Divider
+    y += 12;
+    ctx.strokeStyle = PALETTE.border;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(right, y);
+    ctx.stroke();
+    y += 46;
+
+    // Description — up to four lines.
+    const description = facts.description.trim();
+    if (description) {
+      const descLines = wrapToFit(
+        (t) => {
+          font(400, 34, SANS);
+          return ctx.measureText(t).width;
+        },
+        description,
+        contentW,
+        4,
+      );
+      font(400, 34, SANS);
+      ctx.fillStyle = PALETTE.text;
+      for (const line of descLines) {
+        y += 46;
+        ctx.fillText(line, x, y);
+        y += 6;
+      }
+      y += 42;
+    }
+
+    const pill = (
+      text: string,
+      px: number,
+      py: number,
+      bg: string | null,
+      fg: string,
+    ): number => {
+      font(600, 26, SANS);
+      const textW = ctx.measureText(text).width;
+      const pw = textW + 36;
+      const ph = 44;
+      ctx.beginPath();
+      ctx.roundRect(px, py, pw, ph, 10);
+      if (bg) {
+        ctx.fillStyle = bg;
+        ctx.fill();
+      } else {
+        ctx.strokeStyle = PALETTE.border;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+      ctx.fillStyle = fg;
+      ctx.fillText(text, px + 18, py + ph / 2 + 9);
+      return pw;
+    };
+
+    // Fact rows stop before the QR zone — a long card drops the least
+    // critical rows rather than colliding with the code.
+    const drawLabeled = (label: string, value: string, badgeText: string | null): boolean => {
+      font(600, 32, SANS);
+      const valueLines = wrapToFit(
+        (t) => {
+          font(600, 32, SANS);
+          return ctx.measureText(t).width;
+        },
+        value,
+        contentW,
+        2,
+      );
+      const rowH = 34 + valueLines.length * 44 + 20;
+      if (y + rowH > factsMax) return false;
+      font(500, 24, SANS);
+      ctx.fillStyle = PALETTE.muted;
+      setTracking(ctx, 2);
+      ctx.fillText(tracked(ctx, label), x, y + 20);
+      clearTracking(ctx);
+      font(600, 32, SANS);
+      ctx.fillStyle = PALETTE.ink;
+      valueLines.forEach((line, i) => {
+        ctx.fillText(line, x, y + 56 + i * 44);
+      });
+      if (badgeText) {
+        font(600, 26, SANS);
+        const badgeW = ctx.measureText(badgeText).width + 36;
+        pill(badgeText, right - badgeW, y + 34, PALETTE.orangeSoft, PALETTE.orange);
+      }
+      y += rowH;
+      return true;
+    };
+
+    // Expiry with its countdown badge, then trust + code chips, then limits,
+    // then the verification date — in the order a reader needs them.
+    if (facts.expiry) {
+      drawLabeled(labels.expiryLabel, facts.expiry, countdownLabel(facts.expiry, badges));
+    }
+    if (y + 66 <= factsMax) {
+      let px = x;
+      const tagText = facts.verified ? labels.verifiedTag : labels.communityTag;
+      px +=
+        pill(
+          tagText,
+          px,
+          y,
+          facts.verified ? PALETTE.mossSoft : PALETTE.orangeSoft,
+          facts.verified ? PALETTE.moss : PALETTE.orange,
+        ) + 14;
+      if (facts.code) {
+        font(500, 24, SANS);
+        const labelW = ctx.measureText(labels.codeLabel).width;
+        font(600, 26, SANS);
+        const codeW = ctx.measureText(facts.code).width;
+        const chipW = labelW + 14 + codeW + 36;
+        if (px + chipW <= right) {
+          ctx.strokeStyle = PALETTE.border;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(px, y, chipW, 44, 10);
+          ctx.stroke();
+          ctx.fillStyle = PALETTE.muted;
+          font(500, 24, SANS);
+          ctx.fillText(labels.codeLabel, px + 18, y + 31);
+          ctx.fillStyle = PALETTE.ink;
+          font(600, 26, SANS);
+          ctx.fillText(facts.code, px + 32 + labelW, y + 32);
+        }
+      }
+      y += 66;
+    }
+    if (facts.limits) {
+      drawLabeled(labels.limitsLabel, facts.limits, null);
+    }
+    if (facts.verifiedOn && y + 54 <= factsMax) {
+      font(400, 26, SANS);
+      ctx.fillStyle = PALETTE.muted;
+      ctx.fillText(ellipsize(facts.verifiedOn, contentW), x, y + 26);
+      y += 54;
+    }
+
+    // QR block with its caption; bottom-left prints the target URL.
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(qrX, qrY, QR_BOX, QR_BOX);
+    ctx.strokeStyle = PALETTE.ink;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(qrX, qrY, QR_BOX, QR_BOX);
+    const qr = qrcode(0, "M");
+    qr.addData(facts.url);
+    qr.make();
+    const count = qr.getModuleCount();
+    const quiet = 16;
+    const cell = (QR_BOX - quiet * 2) / count;
+    ctx.fillStyle = PALETTE.ink;
+    for (let row = 0; row < count; row += 1) {
+      for (let col = 0; col < count; col += 1) {
+        if (qr.isDark(row, col)) {
+          ctx.fillRect(qrX + quiet + col * cell, qrY + quiet + row * cell, cell + 0.5, cell + 0.5);
+        }
+      }
+    }
+    font(500, 22, SANS);
+    ctx.fillStyle = PALETTE.muted;
+    setTracking(ctx, 4);
+    const caption = tracked(ctx, labels.scan);
+    ctx.fillText(caption, qrX + (QR_BOX - ctx.measureText(caption).width) / 2, qrY + QR_BOX + 34);
+    clearTracking(ctx);
+
+    const { host, path } = splitUrlForCard(facts.url);
+    const urlMaxW = contentW - QR_BOX - 48;
+    font(600, 34, SANS);
+    ctx.fillStyle = PALETTE.ink;
+    ctx.fillText(ellipsize(host, urlMaxW), x, qrY + QR_BOX - 56);
+    if (path) {
+      font(400, 28, SANS);
+      ctx.fillStyle = PALETTE.muted;
+      ctx.fillText(ellipsize(path, urlMaxW), x, qrY + QR_BOX - 18);
+    }
+
+    return canvas;
+  }
+
+  // ----- Singleton dialog + actions --------------------------------------
+
+  let dialog: HTMLDialogElement | null = null;
+  let canvasHost: HTMLElement | null = null;
+  let currentCanvas: HTMLCanvasElement | null = null;
+  let currentFacts: ShareFacts | null = null;
+
+  function ensureDialog(labels: ShareLabels): HTMLDialogElement {
+    if (dialog) return dialog;
+    dialog = document.createElement("dialog");
+    dialog.className = "share-dialog";
+    dialog.setAttribute("aria-label", labels.title);
+    dialog.innerHTML = `
+      <div class="share-dialog-inner">
+        <div class="share-dialog-head">
+          <div class="share-dialog-title">
+            <p class="share-dialog-eyebrow"></p>
+            <p class="share-dialog-name"></p>
+          </div>
+          <button type="button" class="share-close" aria-label="close">&#10005;</button>
+        </div>
+        <div class="share-canvas-host"></div>
+        <div class="share-actions">
+          <button type="button" class="share-action" data-share-action="copy-image"></button>
+          <button type="button" class="share-action" data-share-action="download"></button>
+          <button type="button" class="share-action" data-share-action="copy-link"></button>
+        </div>
+      </div>`;
+    document.body.appendChild(dialog);
+    canvasHost = dialog.querySelector(".share-canvas-host");
+    (dialog.querySelector(".share-dialog-eyebrow") as HTMLElement).textContent = labels.title;
+    (dialog.querySelector(".share-close") as HTMLElement).textContent = "✕";
+    dialog.querySelector(".share-close")?.addEventListener("click", () => dialog?.close());
+    dialog
+      .querySelector('[data-share-action="copy-image"]')
+      ?.addEventListener("click", () => void copyImage());
+    dialog
+      .querySelector('[data-share-action="download"]')
+      ?.addEventListener("click", downloadImage);
+    dialog
+      .querySelector('[data-share-action="copy-link"]')
+      ?.addEventListener("click", () => void copyLink());
+    return dialog;
+  }
+
+  function actionButton(action: string): HTMLButtonElement | null {
+    return dialog?.querySelector<HTMLButtonElement>(`[data-share-action="${action}"]`) ?? null;
+  }
+
+  function labelOf(button: HTMLButtonElement): string {
+    return button.dataset.shareLabel ?? button.textContent ?? "";
+  }
+
+  let flashTimer: ReturnType<typeof setTimeout> | null = null;
+  function flash(button: HTMLButtonElement, cls: "copied" | "failed", text: string) {
+    button.classList.remove("copied", "failed");
+    button.classList.add(cls);
+    button.textContent = text;
+    if (flashTimer) clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => {
+      button.classList.remove("copied", "failed");
+      button.textContent = button.dataset.shareLabel ?? "";
+    }, 2000);
+  }
+
+  async function copyImage() {
+    const button = actionButton("copy-image");
+    const canvas = currentCanvas;
+    if (!button || !canvas) return;
+    try {
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, "image/png"),
+      );
+      if (!blob) throw new Error("PNG encoding failed");
+      await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+      flash(button, "copied", button.dataset.shareCopied ?? "");
+    } catch {
+      // Clipboard image writes need focus + permission; Download stays
+      // available, so the failure is a button state, not an error UI.
+      flash(button, "failed", button.dataset.shareFailed ?? "");
+    }
+  }
+
+  function downloadImage() {
+    const canvas = currentCanvas;
+    if (!canvas || !currentFacts) return;
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const href = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = href;
+      anchor.download = `eggx-${currentFacts!.id}-card.png`;
+      anchor.click();
+      URL.revokeObjectURL(href);
+    }, "image/png");
+  }
+
+  async function copyLink() {
+    const button = actionButton("copy-link");
+    if (!button || !currentFacts) return;
+    try {
+      await navigator.clipboard.writeText(currentFacts.url);
+      flash(button, "copied", button.dataset.shareCopied ?? "");
+    } catch {
+      // URL stays printed on the card for manual copying.
+    }
+  }
+
+  async function openShare(button: HTMLButtonElement) {
+    const pageI18n = readPageI18n();
+    const labels = pageI18n?.share;
+    if (!labels) return;
+    const ds = button.dataset;
+    if (!ds.shareId || !ds.shareName) return;
+    const facts: ShareFacts = {
+      id: ds.shareId,
+      name: ds.shareName,
+      provider: ds.shareProvider ?? "",
+      description: ds.shareDesc ?? "",
+      expiry: ds.shareExpiry ?? "",
+      limits: ds.shareLimits ?? "",
+      code: ds.shareCode ?? "",
+      verified: ds.shareVerified === "1",
+      verifiedOn: ds.shareVerifiedOn ?? "",
+      url: `${location.origin}${location.pathname}#${ds.shareId}`,
+    };
+    currentFacts = facts;
+
+    const badges: BadgeConfig = {
+      expiringToday: pageI18n?.expiringToday ?? "",
+      expiredTag: pageI18n?.expiredTag ?? "",
+      daysLeftOne: pageI18n?.daysLeftOne ?? "",
+      daysLeftOther: pageI18n?.daysLeftOther ?? "",
+    };
+
+    const dlg = ensureDialog(labels);
+    (dlg.querySelector(".share-dialog-name") as HTMLElement).textContent = facts.name;
+    const setAction = (action: string, label: string, copied: string, failed: string) => {
+      const el = actionButton(action);
+      if (!el) return;
+      el.textContent = label;
+      el.dataset.shareLabel = label;
+      el.dataset.shareCopied = copied;
+      el.dataset.shareFailed = failed;
+    };
+    setAction("copy-image", labels.copyImage, labels.copied, labels.copyFailed);
+    setAction("download", labels.download, "", "");
+    setAction("copy-link", labels.copyLink, labels.copied, "");
+
+    // Fonts may still be loading on a cold first open; wait once so the
+    // serif hero renders as the site does.
+    await document.fonts.ready;
+    currentCanvas = drawShareCard(facts, labels, badges);
+    canvasHost?.replaceChildren(currentCanvas);
+    if (!dlg.open) dlg.showModal();
+  }
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement | null;
+    const button = target?.closest<HTMLButtonElement>("[data-share-id]");
+    if (button) void openShare(button);
+  });
 </script>

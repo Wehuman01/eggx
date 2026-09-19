@@ -19,6 +19,7 @@
     "vitest": "^3.0.0"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.4"
+    "@astrojs/sitemap": "^3.7.4",
+    "qrcode-generator": "^2.0.4"
   }
 }

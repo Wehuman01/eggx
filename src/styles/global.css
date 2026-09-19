@@ -345,6 +345,140 @@ h3 {
   margin-top: 0.25rem;
 }
 
+/* --- Offer share button + dialog --- */
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.share-btn:hover {
+  color: var(--moss);
+  border-color: var(--moss);
+}
+
+.share-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.share-dialog {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0;
+  width: min(92vw, 380px);
+  max-height: 90vh;
+  background: var(--card-bg);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.share-dialog::backdrop {
+  background: rgba(26, 26, 26, 0.45);
+}
+
+.share-dialog-inner {
+  padding: 1rem 1.125rem 1.125rem;
+  overflow-y: auto;
+}
+
+.share-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.share-dialog-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.share-dialog-name {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  margin-top: 0.125rem;
+}
+
+.share-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.share-close:hover {
+  color: var(--ink);
+}
+
+.share-canvas-host {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.share-canvas-host canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.share-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.share-action {
+  flex: 1;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.share-action:hover {
+  border-color: var(--moss);
+  color: var(--moss);
+}
+
+.share-action.copied {
+  border-color: var(--moss);
+  background: var(--moss-soft);
+  color: var(--moss);
+}
+
+.share-action.failed {
+  border-color: var(--orange);
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+
 /* --- Offer card --- */
 
 .offer-card {
