@@ -802,6 +802,11 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     }
     syncToggle();
     dialog.querySelector(".share-close")?.addEventListener("click", () => dialog?.close());
+    // Backdrop clicks surface as clicks on the dialog element itself; the
+    // inner wrapper soaks up every click inside the box.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog?.close();
+    });
     dialog
       .querySelector('[data-share-action="copy-image"]')
       ?.addEventListener("click", () => void copyImage());

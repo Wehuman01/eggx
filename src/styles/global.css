@@ -373,6 +373,12 @@ h3 {
 }
 
 .share-dialog {
+  /* Native <dialog> only auto-centers vertically; anchor the box to the
+     viewport center explicitly or it parks at its static (left) position. */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0;
