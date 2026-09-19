@@ -248,19 +248,116 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
 
 <script>
   /* Offer share cards. The card is drawn client-side onto a canvas — no
-     external image service, nothing leaves the browser. The dialog is a
-     singleton created on first use; ui labels ride the page-level i18n JSON
-     (#eggx-badge-i18n, rendered by BaseLayout), per-offer facts ride data
-     attributes on the share button. */
+     external image service, nothing leaves the browser. Two shapes share one
+     draw call: the original 3:4 card and a 9:16 phone long shot; the phone
+     variant stretches vertical rhythm and type instead of leaving the taller
+     canvas empty. The dialog is a singleton created on first use; ui labels
+     ride the page-level i18n JSON (#eggx-badge-i18n, rendered by
+     BaseLayout), per-offer facts ride data attributes on the share button. */
   import qrcode from "qrcode-generator";
   import { splitUrlForCard, wrapToFit } from "../lib/share-card";
 
   const CARD_W = 1080;
-  const CARD_H = 1440;
   const CARD_INSET = 56;
   const PAD = 80;
-  const QR_BOX = 232;
-  const QR_CAPTION_H = 44;
+
+  type CardVariant = "standard" | "phone";
+
+  /* Vertical metrics per shape. `height` sizes the canvas; qrBox/captionH
+     place the fixed bottom-right QR block; the rest tune the type scale and
+     line rhythm so the taller shape does not read as half-empty. */
+  const LAYOUTS = {
+    standard: {
+      height: 1440,
+      qrBox: 232,
+      captionH: 44,
+      nameSize: 72,
+      nameBaseline: 80,
+      nameGap: 14,
+      nameAfter: 10,
+      providerSize: 30,
+      providerBaseline: 28,
+      providerAfter: 58,
+      dividerBefore: 12,
+      dividerAfter: 46,
+      descSize: 34,
+      descBaseline: 46,
+      descGap: 6,
+      descAfter: 42,
+      factLabelSize: 24,
+      factLabelBaseline: 20,
+      factValueSize: 32,
+      factValueBaseline: 56,
+      factLine: 44,
+      factRowTop: 34,
+      factRowBottom: 20,
+      badgeOffset: 34,
+      pillFont: 26,
+      pillPad: 18,
+      pillWidth: 36,
+      pillHeight: 44,
+      pillBaseline: 9,
+      chipsRow: 66,
+      codeLabelSize: 24,
+      codeSize: 26,
+      codeLabelBaseline: 31,
+      codeBaseline: 32,
+      verifiedSize: 26,
+      verifiedBaseline: 26,
+      verifiedRow: 54,
+      captionFont: 22,
+      captionBaseline: 34,
+      hostSize: 34,
+      hostBaseline: 56,
+      pathSize: 28,
+      pathBaseline: 18,
+    },
+    phone: {
+      height: 1920,
+      qrBox: 264,
+      captionH: 48,
+      nameSize: 78,
+      nameBaseline: 88,
+      nameGap: 16,
+      nameAfter: 14,
+      providerSize: 32,
+      providerBaseline: 30,
+      providerAfter: 66,
+      dividerBefore: 16,
+      dividerAfter: 54,
+      descSize: 36,
+      descBaseline: 50,
+      descGap: 8,
+      descAfter: 52,
+      factLabelSize: 26,
+      factLabelBaseline: 22,
+      factValueSize: 34,
+      factValueBaseline: 62,
+      factLine: 48,
+      factRowTop: 40,
+      factRowBottom: 24,
+      badgeOffset: 38,
+      pillFont: 28,
+      pillPad: 20,
+      pillWidth: 40,
+      pillHeight: 48,
+      pillBaseline: 10,
+      chipsRow: 74,
+      codeLabelSize: 26,
+      codeSize: 28,
+      codeLabelBaseline: 34,
+      codeBaseline: 35,
+      verifiedSize: 28,
+      verifiedBaseline: 28,
+      verifiedRow: 60,
+      captionFont: 24,
+      captionBaseline: 38,
+      hostSize: 36,
+      hostBaseline: 60,
+      pathSize: 30,
+      pathBaseline: 20,
+    },
+  } as const;
 
   const PALETTE = {
     paper: "#faf8f5",
@@ -302,6 +399,8 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     copyLink: string;
     close: string;
     scan: string;
+    sizeStandard: string;
+    sizePhone: string;
     expiryLabel: string;
     limitsLabel: string;
     codeLabel: string;
@@ -362,7 +461,12 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     facts: ShareFacts,
     labels: ShareLabels,
     badges: BadgeConfig,
+    variant: CardVariant,
   ): HTMLCanvasElement {
+    const m = LAYOUTS[variant];
+    const CARD_H = m.height;
+    const QR_BOX = m.qrBox;
+    const QR_CAPTION_H = m.captionH;
     const canvas = document.createElement("canvas");
     canvas.width = CARD_W * 2;
     canvas.height = CARD_H * 2;
@@ -436,60 +540,60 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     // Name — the hero, up to three lines.
     const nameLines = wrapToFit(
       (t) => {
-        font(700, 72, SERIF);
+        font(700, m.nameSize, SERIF);
         return ctx.measureText(t).width;
       },
       facts.name,
       contentW,
       3,
     );
-    font(700, 72, SERIF);
+    font(700, m.nameSize, SERIF);
     ctx.fillStyle = PALETTE.ink;
     for (const line of nameLines) {
-      y += 80;
+      y += m.nameBaseline;
       ctx.fillText(line, x, y);
-      y += 14;
+      y += m.nameGap;
     }
-    y += 10;
+    y += m.nameAfter;
 
     // Provider
     if (facts.provider) {
-      font(400, 30, SANS);
+      font(400, m.providerSize, SANS);
       ctx.fillStyle = PALETTE.muted;
-      ctx.fillText(ellipsize(facts.provider, contentW), x, y + 28);
-      y += 58;
+      ctx.fillText(ellipsize(facts.provider, contentW), x, y + m.providerBaseline);
+      y += m.providerAfter;
     }
 
     // Divider
-    y += 12;
+    y += m.dividerBefore;
     ctx.strokeStyle = PALETTE.border;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(right, y);
     ctx.stroke();
-    y += 46;
+    y += m.dividerAfter;
 
     // Description — up to four lines.
     const description = facts.description.trim();
     if (description) {
       const descLines = wrapToFit(
         (t) => {
-          font(400, 34, SANS);
+          font(400, m.descSize, SANS);
           return ctx.measureText(t).width;
         },
         description,
         contentW,
         4,
       );
-      font(400, 34, SANS);
+      font(400, m.descSize, SANS);
       ctx.fillStyle = PALETTE.text;
       for (const line of descLines) {
-        y += 46;
+        y += m.descBaseline;
         ctx.fillText(line, x, y);
-        y += 6;
+        y += m.descGap;
       }
-      y += 42;
+      y += m.descAfter;
     }
 
     const pill = (
@@ -499,10 +603,10 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
       bg: string | null,
       fg: string,
     ): number => {
-      font(600, 26, SANS);
+      font(600, m.pillFont, SANS);
       const textW = ctx.measureText(text).width;
-      const pw = textW + 36;
-      const ph = 44;
+      const pw = textW + m.pillWidth;
+      const ph = m.pillHeight;
       ctx.beginPath();
       ctx.roundRect(px, py, pw, ph, 10);
       if (bg) {
@@ -514,39 +618,39 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
         ctx.stroke();
       }
       ctx.fillStyle = fg;
-      ctx.fillText(text, px + 18, py + ph / 2 + 9);
+      ctx.fillText(text, px + m.pillPad, py + ph / 2 + m.pillBaseline);
       return pw;
     };
 
     // Fact rows stop before the QR zone — a long card drops the least
     // critical rows rather than colliding with the code.
     const drawLabeled = (label: string, value: string, badgeText: string | null): boolean => {
-      font(600, 32, SANS);
+      font(600, m.factValueSize, SANS);
       const valueLines = wrapToFit(
         (t) => {
-          font(600, 32, SANS);
+          font(600, m.factValueSize, SANS);
           return ctx.measureText(t).width;
         },
         value,
         contentW,
         2,
       );
-      const rowH = 34 + valueLines.length * 44 + 20;
+      const rowH = m.factRowTop + valueLines.length * m.factLine + m.factRowBottom;
       if (y + rowH > factsMax) return false;
-      font(500, 24, SANS);
+      font(500, m.factLabelSize, SANS);
       ctx.fillStyle = PALETTE.muted;
       setTracking(ctx, 2);
-      ctx.fillText(tracked(ctx, label), x, y + 20);
+      ctx.fillText(tracked(ctx, label), x, y + m.factLabelBaseline);
       clearTracking(ctx);
-      font(600, 32, SANS);
+      font(600, m.factValueSize, SANS);
       ctx.fillStyle = PALETTE.ink;
       valueLines.forEach((line, i) => {
-        ctx.fillText(line, x, y + 56 + i * 44);
+        ctx.fillText(line, x, y + m.factValueBaseline + i * m.factLine);
       });
       if (badgeText) {
-        font(600, 26, SANS);
-        const badgeW = ctx.measureText(badgeText).width + 36;
-        pill(badgeText, right - badgeW, y + 34, PALETTE.orangeSoft, PALETTE.orange);
+        font(600, m.pillFont, SANS);
+        const badgeW = ctx.measureText(badgeText).width + m.pillWidth;
+        pill(badgeText, right - badgeW, y + m.badgeOffset, PALETTE.orangeSoft, PALETTE.orange);
       }
       y += rowH;
       return true;
@@ -557,7 +661,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     if (facts.expiry) {
       drawLabeled(labels.expiryLabel, facts.expiry, countdownLabel(facts.expiry, badges));
     }
-    if (y + 66 <= factsMax) {
+    if (y + m.chipsRow <= factsMax) {
       let px = x;
       const tagText = facts.verified ? labels.verifiedTag : labels.communityTag;
       px +=
@@ -569,35 +673,35 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
           facts.verified ? PALETTE.moss : PALETTE.orange,
         ) + 14;
       if (facts.code) {
-        font(500, 24, SANS);
+        font(500, m.codeLabelSize, SANS);
         const labelW = ctx.measureText(labels.codeLabel).width;
-        font(600, 26, SANS);
+        font(600, m.codeSize, SANS);
         const codeW = ctx.measureText(facts.code).width;
-        const chipW = labelW + 14 + codeW + 36;
+        const chipW = labelW + 14 + codeW + m.pillWidth;
         if (px + chipW <= right) {
           ctx.strokeStyle = PALETTE.border;
           ctx.lineWidth = 2;
           ctx.beginPath();
-          ctx.roundRect(px, y, chipW, 44, 10);
+          ctx.roundRect(px, y, chipW, m.pillHeight, 10);
           ctx.stroke();
           ctx.fillStyle = PALETTE.muted;
-          font(500, 24, SANS);
-          ctx.fillText(labels.codeLabel, px + 18, y + 31);
+          font(500, m.codeLabelSize, SANS);
+          ctx.fillText(labels.codeLabel, px + m.pillPad, y + m.codeLabelBaseline);
           ctx.fillStyle = PALETTE.ink;
-          font(600, 26, SANS);
-          ctx.fillText(facts.code, px + 32 + labelW, y + 32);
+          font(600, m.codeSize, SANS);
+          ctx.fillText(facts.code, px + m.pillPad + labelW + 14, y + m.codeBaseline);
         }
       }
-      y += 66;
+      y += m.chipsRow;
     }
     if (facts.limits) {
       drawLabeled(labels.limitsLabel, facts.limits, null);
     }
-    if (facts.verifiedOn && y + 54 <= factsMax) {
-      font(400, 26, SANS);
+    if (facts.verifiedOn && y + m.verifiedRow <= factsMax) {
+      font(400, m.verifiedSize, SANS);
       ctx.fillStyle = PALETTE.muted;
-      ctx.fillText(ellipsize(facts.verifiedOn, contentW), x, y + 26);
-      y += 54;
+      ctx.fillText(ellipsize(facts.verifiedOn, contentW), x, y + m.verifiedBaseline);
+      y += m.verifiedRow;
     }
 
     // QR block with its caption; bottom-left prints the target URL.
@@ -620,22 +724,26 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
         }
       }
     }
-    font(500, 22, SANS);
+    font(500, m.captionFont, SANS);
     ctx.fillStyle = PALETTE.muted;
     setTracking(ctx, 4);
     const caption = tracked(ctx, labels.scan);
-    ctx.fillText(caption, qrX + (QR_BOX - ctx.measureText(caption).width) / 2, qrY + QR_BOX + 34);
+    ctx.fillText(
+      caption,
+      qrX + (QR_BOX - ctx.measureText(caption).width) / 2,
+      qrY + QR_BOX + m.captionBaseline,
+    );
     clearTracking(ctx);
 
     const { host, path } = splitUrlForCard(facts.url);
     const urlMaxW = contentW - QR_BOX - 48;
-    font(600, 34, SANS);
+    font(600, m.hostSize, SANS);
     ctx.fillStyle = PALETTE.ink;
-    ctx.fillText(ellipsize(host, urlMaxW), x, qrY + QR_BOX - 56);
+    ctx.fillText(ellipsize(host, urlMaxW), x, qrY + QR_BOX - m.hostBaseline);
     if (path) {
-      font(400, 28, SANS);
+      font(400, m.pathSize, SANS);
       ctx.fillStyle = PALETTE.muted;
-      ctx.fillText(ellipsize(path, urlMaxW), x, qrY + QR_BOX - 18);
+      ctx.fillText(ellipsize(path, urlMaxW), x, qrY + QR_BOX - m.pathBaseline);
     }
 
     return canvas;
@@ -647,6 +755,11 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
   let canvasHost: HTMLElement | null = null;
   let currentCanvas: HTMLCanvasElement | null = null;
   let currentFacts: ShareFacts | null = null;
+  let currentLabels: ShareLabels | null = null;
+  let currentBadges: BadgeConfig | null = null;
+  // The size choice is a ui preference, not per-card art, so it persists
+  // across opens instead of resetting like agentx's session stickers.
+  let currentVariant: CardVariant = "standard";
 
   function ensureDialog(labels: ShareLabels): HTMLDialogElement {
     if (dialog) return dialog;
@@ -662,6 +775,10 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
           </div>
           <button type="button" class="share-close" aria-label="close">&#10005;</button>
         </div>
+        <div class="share-size-toggle" role="group">
+          <button type="button" class="share-size-btn" data-variant="standard" aria-pressed="false"></button>
+          <button type="button" class="share-size-btn" data-variant="phone" aria-pressed="false"></button>
+        </div>
         <div class="share-canvas-host"></div>
         <div class="share-actions">
           <button type="button" class="share-action" data-share-action="copy-image"></button>
@@ -673,6 +790,17 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     canvasHost = dialog.querySelector(".share-canvas-host");
     (dialog.querySelector(".share-dialog-eyebrow") as HTMLElement).textContent = labels.title;
     (dialog.querySelector(".share-close") as HTMLElement).textContent = "✕";
+    const standardBtn = dialog.querySelector<HTMLButtonElement>('[data-variant="standard"]');
+    const phoneBtn = dialog.querySelector<HTMLButtonElement>('[data-variant="phone"]');
+    if (standardBtn) {
+      standardBtn.textContent = labels.sizeStandard;
+      standardBtn.addEventListener("click", () => void setVariant("standard"));
+    }
+    if (phoneBtn) {
+      phoneBtn.textContent = labels.sizePhone;
+      phoneBtn.addEventListener("click", () => void setVariant("phone"));
+    }
+    syncToggle();
     dialog.querySelector(".share-close")?.addEventListener("click", () => dialog?.close());
     dialog
       .querySelector('[data-share-action="copy-image"]')
@@ -706,6 +834,29 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     }, 2000);
   }
 
+  function redraw() {
+    if (!currentFacts || !currentLabels || !currentBadges) return;
+    currentCanvas = drawShareCard(currentFacts, currentLabels, currentBadges, currentVariant);
+    canvasHost?.replaceChildren(currentCanvas);
+  }
+
+  function syncToggle() {
+    if (!dialog) return;
+    dialog.querySelectorAll<HTMLButtonElement>(".share-size-btn").forEach((btn) => {
+      const active = btn.dataset.variant === currentVariant;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  async function setVariant(variant: CardVariant) {
+    if (variant === currentVariant) return;
+    currentVariant = variant;
+    syncToggle();
+    await document.fonts.ready;
+    redraw();
+  }
+
   async function copyImage() {
     const button = actionButton("copy-image");
     const canvas = currentCanvas;
@@ -732,7 +883,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
       const href = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = href;
-      anchor.download = `eggx-${currentFacts!.id}-card.png`;
+      anchor.download = `eggx-${currentFacts!.id}-card${currentVariant === "phone" ? "-phone" : ""}.png`;
       anchor.click();
       URL.revokeObjectURL(href);
     }, "image/png");
@@ -778,6 +929,9 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
 
     const dlg = ensureDialog(labels);
     (dlg.querySelector(".share-dialog-name") as HTMLElement).textContent = facts.name;
+    currentLabels = labels;
+    currentBadges = badges;
+    syncToggle();
     const setAction = (action: string, label: string, copied: string, failed: string) => {
       const el = actionButton(action);
       if (!el) return;
@@ -793,8 +947,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     // Fonts may still be loading on a cold first open; wait once so the
     // serif hero renders as the site does.
     await document.fonts.ready;
-    currentCanvas = drawShareCard(facts, labels, badges);
-    canvasHost?.replaceChildren(currentCanvas);
+    redraw();
     if (!dlg.open) dlg.showModal();
   }
 

@@ -118,6 +118,8 @@ export interface UIStrings {
   shareCopyLink: string;
   shareClose: string;
   shareScan: string;
+  shareSizeStandard: string;
+  shareSizePhone: string;
   longTermTitle: string;
   longTermBlurb: string;
   applicationTitle: string;
@@ -241,6 +243,8 @@ navCodexReset: "Codex 重置",
   shareCopyLink: "复制链接",
   shareClose: "关闭",
   shareScan: "扫码打开",
+  shareSizeStandard: "标准 3:4",
+  shareSizePhone: "手机 9:16",
   longTermTitle: "长期羊毛",
   longTermBlurb: "持续供应的免费额度与计划，稳定可依赖。",
   applicationTitle: "申请羊毛",
@@ -366,6 +370,8 @@ const en: UIStrings = {
   shareCopyLink: "Copy link",
   shareClose: "Close",
   shareScan: "Scan to open",
+  shareSizeStandard: "Standard 3:4",
+  shareSizePhone: "Phone 9:16",
   longTermTitle: "Long-term offers",
   longTermBlurb: "Recurring free tiers and programs you can rely on.",
   applicationTitle: "Application offers",

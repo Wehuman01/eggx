@@ -432,6 +432,34 @@ h3 {
   color: var(--ink);
 }
 
+.share-size-toggle {
+  display: flex;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.share-size-btn {
+  flex: 1;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.share-size-btn:hover {
+  color: var(--ink);
+}
+
+.share-size-btn.active {
+  border-color: var(--moss);
+  background: var(--moss-soft);
+  color: var(--moss);
+}
+
 .share-canvas-host {
   border: 1px solid var(--border);
   border-radius: 8px;
