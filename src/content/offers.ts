@@ -2,6 +2,36 @@ import { validateRegistry } from "../lib/schema";
 
 export const offers = validateRegistry([
   {
+    id: "cline-desktop-free-models",
+    provider: "Cline",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://cline.bot/",
+    source: "https://x.com/cline/status/2099536235350086029",
+    actionUrl: "https://cline.bot/",
+    lastVerified: "2026-09-20",
+    zh: {
+      name: "Cline Desktop 桌面端免费模型（DeepSeek-V4.1-Flash、Musespark-1.3）",
+      description:
+        "Cline 官方 2026-09-14 发布的开源桌面端 Cline Desktop，面向开放权重模型的原生界面（并行多智能体、插件/MCP 市场、技能等）。发布推文确认内置免费模型 DeepSeek-V4.1-Flash 与 Musespark-1.3，登录即用，也可配 ClinePass 订阅或自带 API key。macOS 与 Windows（beta）可下载。",
+      limits:
+        "免费模型在模型选择器中带 FREE 标签，登录即用，无需充值绑卡；官方未公布具体用量上限",
+      caveat:
+        "来自社区 issue 投稿，推文与官方博客已核实（2026-09-20）；投稿提到的 Kimi K3 未在官方渠道出现，未收录；官方未声明免费截止时间，下线以模型选择器实际展示为准。",
+    },
+    en: {
+      name: "Cline Desktop Free Models (DeepSeek-V4.1-Flash, Musespark-1.3)",
+      description:
+        "Cline's open-source desktop app announced 2026-09-14 — a native interface for open-weight models (parallel agents, a plugin/MCP marketplace, skills, and more). The launch tweet confirms built-in free models DeepSeek-V4.1-Flash and Musespark-1.3, usable right after sign-in; pair with a ClinePass subscription or bring your own API key. Available on macOS and Windows (beta).",
+      limits:
+        "Free models carry a FREE tag in the model selector and work after sign-in, no top-up or card; no specific usage caps published",
+      caveat:
+        "Community-submitted via issue; verified against the tweet and official blog (2026-09-20). The submitter's Kimi K3 claim does not appear in official channels and was not included; no end date announced — the model selector is the source of truth.",
+    },
+  },
+  {
     id: "zcode",
     provider: "Z.ai",
     kind: "temporary",
