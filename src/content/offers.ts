@@ -2,6 +2,36 @@ import { validateRegistry } from "../lib/schema";
 
 export const offers = validateRegistry([
   {
+    id: "stepfun-step-plan-trial",
+    provider: "StepFun",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://platform.stepfun.com",
+    source: "https://platform.stepfun.com/step-plan",
+    actionUrl: "https://platform.stepfun.com/step-plan",
+    lastVerified: "2026-09-20",
+    zh: {
+      name: "阶跃星辰 Step Plan：登录领 15 天，首调/邀请再送，最高 75 天",
+      description:
+        "Step Plan 是阶跃星辰开放平台新推的个人订阅套餐，含全部旗舰模型（Step 5 Preview、Step 3.7/3.5 Flash、StepAudio 3 系列）、智能路由与 MCP 工具，官方定位 Vibe Coding、学习与个人项目。活动三段拿：登录即得 15 天（在页面套餐商品处手动领取，领取按钮挂在 Plus 档卡片）；完成首次 API 调用自动再得 15 天；邀请新账号注册每位再得 15 天，上限 3 人，合计最高 75 天。",
+      limits:
+        "登录 15 天（需手动领取）+ 首次调用 15 天（自动发放，站内信通知）+ 邀请每位 15 天（上限 3 人），合计最高 75 天；新用户定义为当前无订阅中套餐的账号，老账号无订阅也能领；发放记录在用户中心「支付管理—赠送记录」",
+      caveat:
+        "活动标注「限时放送」但未公布截止时间；Credits 与 token 的换算未公布；这是订阅试用而非 API 余额，到期后的续费规则未说明；个人支付仅支持微信支付，数字订阅默认不退款。",
+    },
+    en: {
+      name: "StepFun Step Plan: 15 days on sign-in, more on first call/referrals, up to 75 days",
+      description:
+        "Step Plan is StepFun's new personal subscription on its open platform — all flagship models (Step 5 Preview, Step 3.7/3.5 Flash, StepAudio 3 series), smart routing, and MCP tools, positioned by the FAQ for vibe coding, learning, and personal projects. The campaign pays out in three stages: 15 days on sign-in (claimed manually from a plan card on the page — the claim button sits on the Plus tier); another 15 days automatically after your first successful API call; plus 15 days per newly registered invitee, capped at 3, for up to 75 days total.",
+      limits:
+        "15 days on sign-in (manual claim) + 15 days after first API call (automatic, notified via in-site message) + 15 days per invitee (max 3), up to 75 days total; a 'new user' is any account without an active subscription, so unsubscribed old accounts qualify; grant history lives under User Center → Payment Management → Gift Records",
+      caveat:
+        "Marked 'limited time' with no published end date; credit-to-token conversion unpublished; this is a subscription trial, not API balance, and post-trial renewal terms are unspecified; individuals pay via WeChat Pay only, and digital subscriptions are non-refundable by default.",
+    },
+  },
+  {
     id: "cline-desktop-free-models",
     provider: "Cline",
     kind: "temporary",
