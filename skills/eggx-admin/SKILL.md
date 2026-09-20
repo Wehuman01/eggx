@@ -13,7 +13,7 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 
 ## 定位仓库
 
-先 cd 到 eggx 仓库再干活。维护者本机路径：`/Users/peng/Desktop/Project/product/wehuman/others/eggx`（其他机器按 `package.json` 的 `"name": "eggx"` 定位，或 clone `https://github.com/Wehuman01/eggx`）。判定标准：仓库根有 `package.json`、`src/content/offers.ts`、`skills/` 目录。
+先 cd 到 eggx 仓库再干活。维护者本机路径：`/Users/peng/Desktop/Project/product/wehuman/others/eggx`（其他机器按 `package.json` 的 `"name": "eggx"` 定位，或 clone `https://github.com/wehuman01/eggx`）。判定标准：仓库根有 `package.json`、`src/content/offers.ts`、`skills/` 目录。
 
 ## 数据地图 — 先分清人和机器各管什么
 
