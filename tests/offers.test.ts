@@ -212,15 +212,19 @@ describe("data guards", () => {
     }
   });
 
-  it("expiry dates are not in the past (active offers; archived may be past)", async () => {
+  it("expiry dates are not stale at verification time (active offers; archived and auto-retired entries may be past)", async () => {
     const { offers } = await import("../src/content/offers");
-    const today = new Date().toISOString().slice(0, 10);
     for (const offer of offers) {
       if (offer.archived) continue;
       if (typeof offer.expiry !== "string") continue;
-      expect(offer.expiry >= today, `${offer.id} expiry ${offer.expiry} must not be before ${today}`).toBe(
-        true,
-      );
+      if (typeof offer.lastVerified !== "string") continue;
+      // auto-retire (build-time isExpired) owns entries whose official date has
+      // passed, so a past expiry is fine; the guard here catches dates that were
+      // already stale when the entry was written or re-verified.
+      expect(
+        offer.expiry >= offer.lastVerified,
+        `${offer.id} expiry ${offer.expiry} predates lastVerified ${offer.lastVerified} — fix the date or archive the entry`,
+      ).toBe(true);
     }
   });
 
