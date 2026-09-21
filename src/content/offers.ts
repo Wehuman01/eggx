@@ -2,6 +2,36 @@ import { validateRegistry } from "../lib/schema";
 
 export const offers = validateRegistry([
   {
+    id: "typesafe-signup-credit",
+    provider: "TypeSafe AI",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://typesafe.ai/",
+    source: "https://x.com/typesafeai/status/2101786280946499671",
+    actionUrl: "https://console.typesafe.ai/",
+    lastVerified: "2026-09-21",
+    zh: {
+      name: "TypeSafe AI 注册送 $5 额度（Jev 决策模型，约 1.2 亿 token）",
+      description:
+        "TypeSafe AI 于 2026-09-21（北京时间）官宣旗舰模型 Jev 全面开放、取消 waitlist，所有注册用户开局送 $5 额度（官方口径约 120 million tokens）。Jev（jev-1.13.0）是「System One」结构化决策模型：传入 state 与类型化问题（Choice 选项 / Score 打分 / Noul 是非判断），返回带概率与置信度的类型化结果，面向分类、路由、抽取、guardrails 等高频判断场景——它不生成文本，不是编码模型。注册走 Google OAuth 或邮箱验证码，在控制台拿 API key 即用；官方另有 Claude Code / Codex 可装的 agent skill，用 Jev 做 agent 技能路由。",
+      limits:
+        "新注册账号一次性 $5（官方口径约 120 million tokens）；Jev 计费仅收输入 token，$42/Btok（$0.042/Mtok），输出免费；限速 250,000 tokens/s、1,200 请求/分；额度有效期与活动截止时间未公布",
+      caveat:
+        "2026-09-21 核实：官方 X 公告原文「All users start with $5 in credit (~120 million tokens)」，文档定价页确认计费口径。第三方「每月 $5 免费用量」的说法与官方一次性口径冲突，未采纳。注意这不是编码模型羊毛——Jev 只做结构化决策，对编码工作流的价值在 agent 管线的路由与判断环节。公司 2026-09-16 刚在 Robinhood Crypto 上线 $TYPESAFE 代币，官方文档自述限速仍在动态调整，充值前自行斟酌。",
+    },
+    en: {
+      name: "TypeSafe AI: $5 signup credit (Jev decision model, ~120M tokens)",
+      description:
+        "On 2026-09-21 (Beijing time) TypeSafe AI announced general availability of its flagship model Jev with the waitlist removed — every account starts with $5 in credit (officially ~120 million tokens). Jev (jev-1.13.0) is a 'System One' structured-decision model: you send a state plus typed questions (Choice / Score / Noul) and get typed answers with probabilities and confidence, aimed at classification, routing, extraction, and guardrail loops — it generates no text and is not a coding model. Sign up via Google OAuth or an email code, grab an API key in the console, and go; there is also an agent skill for Claude Code / Codex that routes agent skills through Jev.",
+      limits:
+        "One-time $5 per new account (officially ~120 million tokens); Jev charges input tokens only at $42/Btok ($0.042/Mtok), output free; rate limits 250,000 tokens/s and 1,200 requests/min; credit validity and campaign end date unpublished",
+      caveat:
+        "Verified 2026-09-21: official X post reads 'All users start with $5 in credit (~120 million tokens)' and the docs pricing page confirms the billing math. A third-party claim of '$5/month free usage' conflicts with the official one-time wording and was not adopted. Note this is not a coding-model freebie — Jev only makes structured decisions; its value to coding workflows is routing and judgment steps in agent pipelines. The company listed a $TYPESAFE token on Robinhood Crypto on 2026-09-16, docs say rate limits are still adjusting dynamically, so think twice before topping up.",
+    },
+  },
+  {
     id: "stepfun-step-plan-trial",
     provider: "StepFun",
     kind: "temporary",
