@@ -2,7 +2,7 @@
 import type { Offer } from "../lib/schema";
 import type { Locale } from "../lib/i18n";
 import { UI } from "../lib/i18n";
-import { expiryBadgeLabel, shortUrlText } from "../lib/offers";
+import { expiryBadgeLabel, shortUrlText, isExpired } from "../lib/offers";
 
 interface Props {
   offer: Offer;
@@ -12,7 +12,10 @@ interface Props {
 const { offer, locale } = Astro.props;
 const ui = UI[locale];
 const loc = offer[locale];
-const dead = offer.archived === true;
+/* Auto-retired entries (expiry passed) enter the graveyard via the same
+   isExpired predicate at build time, so they render dead here too — no
+   per-entry manual archived flag needed. */
+const dead = offer.archived === true || isExpired(offer);
 const showPageLink = Boolean(offer.url && offer.url !== offer.actionUrl && offer.url !== offer.source);
 
 let expiryBadge: string | null = null;
