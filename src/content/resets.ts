@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-09-22T09:29:35.096+08:00",
+  "checkedAt": "2026-09-22T15:43:40.478+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,6 +16,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "reset-2102254445082116335-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-09-22T15:00:00.000+08:00",
+    "scheduleThrough": "2026-09-23T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-22T12:31:32.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2102254445082116335",
+        "zh": "我承诺过周二重置。",
+        "en": "I promised a reset for Tuesday"
+      }
+    ]
+  },
   {
     "id": "banked-2101352781219258527-1-1",
     "type": "card",
