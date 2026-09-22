@@ -2,6 +2,36 @@ import { validateRegistry } from "../lib/schema";
 
 export const offers = validateRegistry([
   {
+    id: "autoclaw-token-charge-season",
+    provider: "Z.ai",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: "2026-09-22",
+    url: "https://autoglm.zhipuai.cn",
+    source: "https://zhipu-ai.feishu.cn/docx/DVm0d6jByosHOKxKXTicpmuxnig",
+    actionUrl: "https://autoglm.zhipuai.cn",
+    lastVerified: "2026-09-22",
+    zh: {
+      name: "AutoClaw Token 充能季：9.21 领 2 亿、9.22 领 3 亿 GLM-5.3-Flash tokens",
+      description:
+        "智谱 AutoClaw（autoglm.zhipuai.cn，Agent 产品，覆盖深度研究、网页自动化、代码执行等能力）的中秋限定活动：9.21（周一）所有用户登录即无门槛领 2 亿 GLM-5.3-Flash tokens（折合约 20,000 积分）；9.22（周二）登录领 3 亿（约 30,000 积分）；当日领取的奖励当天 24:00 失效。9.23–9.27 转为付费会员专属：AutoClaw 连续包月、团购订阅及 GLM Coding Plan 个人套餐用户每日登录领积分，最高 8,000 积分/天。",
+      limits:
+        "每人每日登录领取一次：9.21 发 2 亿 tokens（≈20,000 积分）、9.22 发 3 亿 tokens（≈30,000 积分），当日 24:00 前有效；9.23–9.27 付费会员每日最高 8,000 积分；活动总量上限未公布",
+      caveat:
+        "2026-09-22 核实智谱官方飞书文档（9.20 更新）：投稿所称 9.21 发 2 亿、9.22 发 3 亿、所有用户可领、当天到期，均与官方一致。免费领取仅 9.21、9.22 两天，各当日 24:00 过期（9.21 的 2 亿档已过期）；token 在 AutoClaw 站内以积分形态消耗，非 bigmodel API 额度；9.23–9.27 的每日积分仅限 AutoClaw 付费会员。",
+    },
+    en: {
+      name: "AutoClaw Token Charge Season: 200M tokens on Sep 21, 300M on Sep 22 (GLM-5.3-Flash)",
+      description:
+        "A Mid-Autumn limited campaign for Zhipu's AutoClaw (autoglm.zhipuai.cn, an agent product covering deep research, browser automation, and code execution): on Sep 21 (Mon) every signed-in user claims 200M GLM-5.3-Flash tokens (~20,000 credits) with no threshold; on Sep 22 (Tue), 300M (~30,000 credits). Each day's grant expires at 24:00 that same day. From Sep 23–27 it turns paid-members-only: AutoClaw monthly subscribers, group-buy subscribers, and GLM Coding Plan personal-plan users claim daily credits of up to 8,000/day.",
+      limits:
+        "One claim per sign-in per day: 200M tokens on Sep 21 (~20,000 credits) and 300M on Sep 22 (~30,000 credits), each valid until 24:00 the same day; Sep 23–27 daily credits up to 8,000 for paid members; no total cap published",
+      caveat:
+        "Verified 2026-09-22 against Zhipu's official Feishu doc (updated Sep 20): the submission's claims — 200M on Sep 21, 300M on Sep 22, all users, same-day expiry — all match. The free claim runs only Sep 21–22, each expiring at 24:00 that day (the Sep 21 200M round has ended); tokens burn as in-product credits inside AutoClaw, not bigmodel API quota; Sep 23–27 daily credits require a paid AutoClaw membership.",
+    },
+  },
+  {
     id: "typesafe-signup-credit",
     provider: "TypeSafe AI",
     kind: "temporary",
