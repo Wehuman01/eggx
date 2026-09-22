@@ -67,11 +67,12 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
+    archived: true,
     expiry: null,
     url: "https://platform.stepfun.com",
     source: "https://platform.stepfun.com/step-plan",
     actionUrl: "https://platform.stepfun.com/step-plan",
-    lastVerified: "2026-09-20",
+    lastVerified: "2026-09-22",
     zh: {
       name: "阶跃星辰 Step Plan：登录领 15 天，首调/邀请再送，最高 75 天",
       description:
@@ -79,7 +80,7 @@ export const offers = validateRegistry([
       limits:
         "登录 15 天（需手动领取）+ 首次调用 15 天（自动发放，站内信通知）+ 邀请每位 15 天（上限 3 人），合计最高 75 天；新用户定义为当前无订阅中套餐的账号，老账号无订阅也能领；发放记录在用户中心「支付管理—赠送记录」",
       caveat:
-        "活动标注「限时放送」但未公布截止时间；Credits 与 token 的换算未公布；这是订阅试用而非 API 余额，到期后的续费规则未说明；个人支付仅支持微信支付，数字订阅默认不退款。",
+        "活动提前关闭，2026-09-22 核实已失效，本条仅作归档。证据：Step Plan 页面弹「服务调整通知」——「结合当前服务承载能力，为优先保障已付费用户的使用体验，我们将关闭新增免费体验领取通道」，页面免费领取入口已移除，四个付费档（Mini/Plus/Pro/Max）全部显示已售罄、订阅按钮禁用。原记录：活动标注「限时放送」但未公布截止时间；Credits 与 token 的换算未公布；这是订阅试用而非 API 余额，到期后的续费规则未说明；个人支付仅支持微信支付，数字订阅默认不退款。",
     },
     en: {
       name: "StepFun Step Plan: 15 days on sign-in, more on first call/referrals, up to 75 days",
@@ -88,7 +89,7 @@ export const offers = validateRegistry([
       limits:
         "15 days on sign-in (manual claim) + 15 days after first API call (automatic, notified via in-site message) + 15 days per invitee (max 3), up to 75 days total; a 'new user' is any account without an active subscription, so unsubscribed old accounts qualify; grant history lives under User Center → Payment Management → Gift Records",
       caveat:
-        "Marked 'limited time' with no published end date; credit-to-token conversion unpublished; this is a subscription trial, not API balance, and post-trial renewal terms are unspecified; individuals pay via WeChat Pay only, and digital subscriptions are non-refundable by default.",
+        "The offer was pulled early and was confirmed dead on 2026-09-22; this entry is archived. Evidence: the Step Plan page pops a 'service adjustment notice' — 'Given current service capacity, to protect the experience of paying users first, we are closing the new free-trial claim channel' — the free-claim entry is gone from the page, and all four paid tiers (Mini/Plus/Pro/Max) show sold out with disabled subscribe buttons. Original record: marked 'limited time' with no published end date; credit-to-token conversion unpublished; this was a subscription trial, not API balance, and post-trial renewal terms were unspecified; individuals paid via WeChat Pay only, and digital subscriptions were non-refundable by default.",
     },
   },
   {
