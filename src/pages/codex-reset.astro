@@ -16,7 +16,7 @@ import { UI } from "../lib/i18n";
 const ui = UI.zh;
 const events = byTimeDesc(resets);
 
-const latestReset = events.find((e) => e.type === "reset" && isConfirmed(e)) ?? null;
+const latestReset = events.find(isConfirmed) ?? null;
 const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(resets)));
 const resetCount = resets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
 const cardCount = resets.filter((e) => e.type === "card").length;
@@ -34,9 +34,10 @@ const dtFmt = new Intl.DateTimeFormat("zh-CN", {
 const monthFmt = new Intl.DateTimeFormat("zh-CN", { timeZone: tz, year: "numeric", month: "long" });
 const dayFmt = new Intl.DateTimeFormat("zh-CN", { timeZone: tz, year: "numeric", month: "long", day: "numeric" });
 
-/** Quote shown on the row: the confirmation when present, else the announcement. */
+/** Quote shown on the row: the confirmation when present, else the latest post
+    (which is also what eventTime displays). */
 function primaryPost(event: (typeof events)[number]) {
-  return event.posts.find((p) => p.stage === "confirm") ?? event.posts[0];
+  return event.posts.find((p) => p.stage === "confirm") ?? event.posts[event.posts.length - 1];
 }
 
 const groups: { label: string; events: typeof events }[] = [];
@@ -84,6 +85,11 @@ const historySummary = ui.historySummaryTemplate
       <article class="offer-card">
         <div class="offer-head">
           <h2 class="reset-card-title">{ui.lastResetHeading}</h2>
+          {latestReset && (
+            <span class="tag tag-outline">
+              {latestReset.type === "reset" ? ui.resetTypeLabel : ui.cardTypeLabel}
+            </span>
+          )}
           {latestReset && <span class="tag tag-verified">{ui.confirmedTag}</span>}
         </div>
         {latestReset ? (
@@ -107,7 +113,7 @@ const historySummary = ui.historySummaryTemplate
             </blockquote>
           </>
         ) : (
-          <p class="empty">还没有已确认的全员重置记录。</p>
+          <p class="empty">还没有已确认的重置记录。</p>
         )}
       </article>
 
@@ -200,12 +206,13 @@ const historySummary = ui.historySummaryTemplate
         </li>
         <li>
           <strong>口径</strong> — 「全员重置」指所有付费账户的 Codex 额度被清零；
-          「发重置卡」指向账户发放可自助使用的重置卡。确认时间是 Tibo 确认推文的发布时间，
+          「发重置卡」指向账户发放可自助使用的重置卡。两类事件都计入
+          「最近一次」与间隔统计，且仅计已确认的事件。确认时间是 Tibo 确认推文的发布时间，
           不是精确执行时间。
         </li>
         <li>
           <strong>间隔统计</strong> — 按确认日期去重后（同日多轮只计一天）
-          计算相邻两次全员重置的间隔，自 {historyFrom} 起。
+          计算相邻两次重置（全员重置或发重置卡）的间隔，自 {historyFrom} 起。
         </li>
         <li><strong>时区</strong> — 全部使用北京时间（UTC+8）。</li>
         <li>

@@ -108,14 +108,14 @@ describe("eventTime and byTimeDesc", () => {
 });
 
 describe("confirmedResetDates and intervals", () => {
-  it("dedupes same-day rounds and sorts ascending", () => {
+  it("counts both kinds, dedupes same-day rounds, sorts ascending", () => {
     const dates = confirmedResetDates([
       { id: "a", type: "reset", status: "confirmed", confirmedAt: "2026-07-11T01:59:00.000+08:00", occurredOn: null, scheduleFrom: null, scheduleThrough: null, posts: [{ stage: "confirm", publishedAt: "2026-07-11T01:59:00.000+08:00", url: "https://x.com/thsottiaux/status/1", zh: "a", en: "a" }] },
       { id: "b", type: "reset", status: "confirmed", confirmedAt: "2026-07-11T22:51:00.000+08:00", occurredOn: null, scheduleFrom: null, scheduleThrough: null, posts: [{ stage: "confirm", publishedAt: "2026-07-11T22:51:00.000+08:00", url: "https://x.com/thsottiaux/status/2", zh: "b", en: "b" }] },
       { id: "c", type: "card", status: "confirmed", confirmedAt: "2026-07-12T08:00:00.000+08:00", occurredOn: null, scheduleFrom: null, scheduleThrough: null, posts: [{ stage: "confirm", publishedAt: "2026-07-12T08:00:00.000+08:00", url: "https://x.com/thsottiaux/status/3", zh: "c", en: "c" }] },
       { id: "d", type: "reset", status: "announced", confirmedAt: null, occurredOn: null, scheduleFrom: null, scheduleThrough: null, posts: [{ stage: "announce", publishedAt: "2026-07-13T08:00:00.000+08:00", url: "https://x.com/thsottiaux/status/4", zh: "d", en: "d" }] },
     ]);
-    expect(dates).toEqual(["2026-07-11"]);
+    expect(dates).toEqual(["2026-07-11", "2026-07-12"]);
   });
 
   it("computes day intervals", () => {

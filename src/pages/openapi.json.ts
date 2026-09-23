@@ -166,7 +166,7 @@ export const GET: APIRoute = () => {
         get: {
           summary: "List tracked Codex resets and reset cards announced by Tibo (@thsottiaux)",
           description:
-            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics. Chinese translations are available on the web page only. Not an official OpenAI feed; synced automatically from the upstream curator.",
+            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics across confirmed resets and reset-card grants. Chinese translations are available on the web page only. Not an official OpenAI feed; synced automatically from the upstream curator.",
           responses: {
             "200": {
               description: "Reset events and interval statistics",

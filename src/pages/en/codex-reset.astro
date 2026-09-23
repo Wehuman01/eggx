@@ -16,7 +16,7 @@ import { UI } from "../../lib/i18n";
 const ui = UI.en;
 const events = byTimeDesc(resets);
 
-const latestReset = events.find((e) => e.type === "reset" && isConfirmed(e)) ?? null;
+const latestReset = events.find(isConfirmed) ?? null;
 const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(resets)));
 const resetCount = resets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
 const cardCount = resets.filter((e) => e.type === "card").length;
@@ -34,9 +34,10 @@ const dtFmt = new Intl.DateTimeFormat("en-US", {
 const monthFmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "long" });
 const dayFmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "short", day: "numeric" });
 
-/** Quote shown on the row: the confirmation when present, else the announcement. */
+/** Quote shown on the row: the confirmation when present, else the latest post
+    (which is also what eventTime displays). */
 function primaryPost(event: (typeof events)[number]) {
-  return event.posts.find((p) => p.stage === "confirm") ?? event.posts[0];
+  return event.posts.find((p) => p.stage === "confirm") ?? event.posts[event.posts.length - 1];
 }
 
 const groups: { label: string; events: typeof events }[] = [];
@@ -84,6 +85,11 @@ const historySummary = ui.historySummaryTemplate
       <article class="offer-card">
         <div class="offer-head">
           <h2 class="reset-card-title">{ui.lastResetHeading}</h2>
+          {latestReset && (
+            <span class="tag tag-outline">
+              {latestReset.type === "reset" ? ui.resetTypeLabel : ui.cardTypeLabel}
+            </span>
+          )}
           {latestReset && <span class="tag tag-verified">{ui.confirmedTag}</span>}
         </div>
         {latestReset ? (
@@ -107,7 +113,7 @@ const historySummary = ui.historySummaryTemplate
             </blockquote>
           </>
         ) : (
-          <p class="empty">No confirmed full reset recorded yet.</p>
+          <p class="empty">No confirmed reset recorded yet.</p>
         )}
       </article>
 
@@ -199,13 +205,15 @@ const historySummary = ui.historySummaryTemplate
         </li>
         <li>
           <strong>Counting</strong> — "Full reset" means Codex quotas wiped for all paid
-          accounts; "Reset card" means a self-serve reset card granted to accounts. The
-          confirmed time is when Tibo's confirmation post was published, not the exact
+          accounts; "Reset card" means a self-serve reset card granted to accounts. Both
+          kinds count toward the latest-reset card and gap stats, confirmed events only.
+          The confirmed time is when Tibo's confirmation post was published, not the exact
           execution time.
         </li>
         <li>
-          <strong>Gap stats</strong> — intervals between consecutive full resets counted on
-          deduplicated confirmation dates (same-day rounds count once), since {historyFrom}.
+          <strong>Gap stats</strong> — intervals between consecutive resets (full resets
+          and reset-card grants alike) counted on deduplicated confirmation dates
+          (same-day rounds count once), since {historyFrom}.
         </li>
         <li><strong>Timezone</strong> — all times are Beijing time (UTC+8).</li>
         <li>

@@ -141,14 +141,15 @@ export function isConfirmed(event: ResetEvent): boolean {
 }
 
 /**
- * Distinct Beijing dates of confirmed full-account resets, ascending.
- * Same-day rounds collapse into one date: for readers they are the same
- * "quota is back" day, and counting them twice would fake short intervals.
+ * Distinct Beijing dates of confirmed events — full resets and reset-card
+ * grants alike, since both mean "quota is back". Ascending. Same-day rounds
+ * collapse into one date: for readers they are the same "quota is back" day,
+ * and counting them twice would fake short intervals.
  */
 export function confirmedResetDates(events: readonly ResetEvent[]): string[] {
   const dates = new Set<string>();
   for (const event of events) {
-    if (event.type === "reset" && isConfirmed(event)) {
+    if (isConfirmed(event)) {
       dates.add((event.occurredOn ?? eventTime(event)).slice(0, 10));
     }
   }
