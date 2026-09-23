@@ -306,6 +306,9 @@ const historySummary = ui.historySummaryTemplate
       }
       fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
         .then(function (r) {
+          // Fresh cycle: nobody has clicked yet, so the key does not exist and
+          // abacus answers 404 — that reads as zero, not as an outage.
+          if (r.status === 404) return { value: 0 };
           return r.ok ? r.json() : null;
         })
         .then(function (d) {

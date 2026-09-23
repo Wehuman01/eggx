@@ -302,6 +302,8 @@ const historySummary = ui.historySummaryTemplate
       }
       fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
         .then(function (r) {
+          // 新周期还没有人点过，key 不存在，abacus 返回 404——读作 0，不算故障。
+          if (r.status === 404) return { value: 0 };
           return r.ok ? r.json() : null;
         })
         .then(function (d) {
