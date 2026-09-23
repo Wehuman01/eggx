@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  schedule:
+    # 每天北京时间 09:07（UTC 01:07）空跑一次：站点是静态构建，到期条目要等
+    # 下一次构建才从临时羊毛归档进 /expired。定时重建让过期翻转最迟当天上午
+    # 生效，不依赖人工 push；CI 绿了会经 workflow_run 自动触发 deploy。
+    # 避开整点高峰（GitHub 官方文档：整点 cron 延迟大）。
+    - cron: "7 1 * * *"
 
 jobs:
   check:
