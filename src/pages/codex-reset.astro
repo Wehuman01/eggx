@@ -53,6 +53,9 @@ for (const event of events) {
 
 const elapsedDays = latestReset ? daysSince(latestReset.confirmedAt ?? eventTime(latestReset)) : null;
 
+/** "等不及了"计数按重置周期分轮：以最近一次已确认重置的北京日期为轮次。 */
+const impatientCycle = latestReset ? eventTime(latestReset).slice(0, 10) : "none";
+
 const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
 const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
 const intervalsText = intervals
@@ -119,12 +122,14 @@ const historySummary = ui.historySummaryTemplate
 
       <article class="offer-card">
         <div class="offer-head">
-          <h2 class="reset-card-title">{ui.nextResetHeading}</h2>
+          <h2 class="reset-card-title">{ui.sinceResetHeading}</h2>
         </div>
         {latestReset && elapsedDays !== null ? (
           <>
             <p class="reset-when">
-              {elapsedDays <= 0 ? ui.todayLabel : ui.daysAgoLabel.replace("{n}", String(elapsedDays))}
+              <span class="badge-elapsed" data-since={latestReset.confirmedAt ?? eventTime(latestReset)}>
+                {elapsedDays <= 0 ? ui.todayLabel : ui.daysAgoLabel.replace("{n}", String(elapsedDays))}
+              </span>
             </p>
             <p class="stat-line" data-intervals>{intervalsText}</p>
           </>
@@ -244,7 +249,7 @@ const historySummary = ui.historySummaryTemplate
     set:html={JSON.stringify({
       base: "https://abacus.jasoncameron.dev",
       ns: "eggx-wehuman",
-      key: "codex-reset-impatient",
+      key: `codex-reset-impatient-${impatientCycle}`,
       doneLabel: ui.impatientDone,
       countTemplate: ui.impatientCountTemplate,
       unavailableLabel: ui.impatientUnavailable,
@@ -271,8 +276,10 @@ const historySummary = ui.historySummaryTemplate
       });
     })();
   </script>
-  {/* "等不及了" counter: one increment per browser (localStorage), global count
-      from a free third-party counter service; degraded state stays honest. */}
+  {/* "等不及了" counter: one increment per browser per reset cycle (both the
+      localStorage flag and the counter key are keyed to the latest confirmed
+      reset), global count from a free third-party counter service; degraded
+      state stays honest. */}
   <script is:inline>
     (function () {
       var cfgEl = document.getElementById("eggx-impatient");
@@ -281,7 +288,7 @@ const historySummary = ui.historySummaryTemplate
       var hintEl = document.querySelector("[data-impatient-hint]");
       if (!cfgEl || !btn || !countEl) return;
       var cfg = JSON.parse(cfgEl.textContent || "{}");
-      var FLAG = "eggx-impatient-v1";
+      var FLAG = "eggx-impatient-" + cfg.key;
       function setHint(text) {
         if (hintEl && text) hintEl.textContent = text;
       }

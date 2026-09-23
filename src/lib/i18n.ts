@@ -74,7 +74,7 @@ export interface UIStrings {
   confirmedTag: string;
   announcedTag: string;
   lastResetHeading: string;
-  nextResetHeading: string;
+  sinceResetHeading: string;
   historyHeading: string;
   methodHeading: string;
   confirmedAtLabel: string;
@@ -196,7 +196,7 @@ const zh: UIStrings = {
   confirmedTag: "已确认",
   announcedTag: "仅预告",
   lastResetHeading: "最近一次重置",
-  nextResetHeading: "下一次重置",
+  sinceResetHeading: "距上次重置",
   historyHeading: "重置记录",
   methodHeading: "统计口径",
   confirmedAtLabel: "确认时间",
@@ -322,7 +322,7 @@ const en: UIStrings = {
   confirmedTag: "Confirmed",
   announcedTag: "Announced only",
   lastResetHeading: "Latest reset",
-  nextResetHeading: "Next reset",
+  sinceResetHeading: "Since last reset",
   historyHeading: "Reset log",
   methodHeading: "Methodology",
   confirmedAtLabel: "Confirmed at",
