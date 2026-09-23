@@ -57,6 +57,19 @@ const elapsedDays = latestReset ? daysSince(latestReset.confirmedAt ?? eventTime
     reset's Beijing date, so each new reset starts a fresh round. */
 const impatientCycle = latestReset ? eventTime(latestReset).slice(0, 10) : "none";
 
+/** Counter key of the previous round, shown on the page as its final tally.
+    Per-date keying started 2026-09-23; earlier rounds all accumulated under
+    the one legacy key, which counts as "the previous round". */
+const PER_CYCLE_KEYING_SINCE = "2026-09-23";
+const confirmedEvents = events.filter(isConfirmed);
+const prevCycleDate =
+  confirmedEvents.length > 1 ? eventTime(confirmedEvents[1]).slice(0, 10) : null;
+const prevRoundKey = prevCycleDate
+  ? prevCycleDate >= PER_CYCLE_KEYING_SINCE
+    ? `codex-reset-impatient-${prevCycleDate}`
+    : "codex-reset-impatient"
+  : null;
+
 const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
 const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
 const intervalsText = intervals
@@ -143,6 +156,7 @@ const historySummary = ui.historySummaryTemplate
           <span class="impatient-meta">
             <span class="impatient-count" data-impatient-count hidden></span>
             <span class="impatient-hint" data-impatient-hint>{ui.impatientHint}</span>
+            <span class="impatient-prev" data-impatient-prev hidden></span>
           </span>
         </div>
         <a
@@ -254,6 +268,8 @@ const historySummary = ui.historySummaryTemplate
       base: "https://abacus.jasoncameron.dev",
       ns: "eggx-wehuman",
       key: `codex-reset-impatient-${impatientCycle}`,
+      prevKey: prevRoundKey,
+      prevTemplate: ui.impatientPrevTemplate,
       doneLabel: ui.impatientDone,
       countTemplate: ui.impatientCountTemplate,
       unavailableLabel: ui.impatientUnavailable,
@@ -290,6 +306,7 @@ const historySummary = ui.historySummaryTemplate
       var btn = document.getElementById("impatient-btn");
       var countEl = document.querySelector("[data-impatient-count]");
       var hintEl = document.querySelector("[data-impatient-hint]");
+      var prevEl = document.querySelector("[data-impatient-prev]");
       if (!cfgEl || !btn || !countEl) return;
       var cfg = JSON.parse(cfgEl.textContent || "{}");
       var FLAG = "eggx-impatient-" + cfg.key;
@@ -318,6 +335,22 @@ const historySummary = ui.historySummaryTemplate
         .catch(function () {
           setHint(cfg.unavailableLabel);
         });
+      // The previous round's final tally is a historical note; if it cannot be
+      // fetched, keep it hidden rather than claiming the counter is down.
+      if (cfg.prevKey && prevEl) {
+        fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.prevKey)
+          .then(function (r) {
+            if (r.status === 404) return { value: 0 };
+            return r.ok ? r.json() : null;
+          })
+          .then(function (d) {
+            if (d && typeof d.value === "number") {
+              prevEl.textContent = cfg.prevTemplate.replace("{n}", String(d.value));
+              prevEl.hidden = false;
+            }
+          })
+          .catch(function () {});
+      }
       if (localStorage.getItem(FLAG)) markDone();
       btn.addEventListener("click", function () {
         if (btn.disabled) return;

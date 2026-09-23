@@ -1256,6 +1256,11 @@ h3 {
   color: var(--muted);
 }
 
+.impatient-prev {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
 .reset-footnote {
   margin-top: 1.5rem;
   padding-top: 0.875rem;

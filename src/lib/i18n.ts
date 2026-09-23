@@ -92,6 +92,7 @@ export interface UIStrings {
   impatientDone: string;
   impatientCountTemplate: string;
   impatientHint: string;
+  impatientPrevTemplate: string;
   impatientUnavailable: string;
   agentTitle: string;
   agentBlurb: string;
@@ -214,6 +215,7 @@ const zh: UIStrings = {
   impatientDone: "已记下了",
   impatientCountTemplate: "{n} 人等不及了",
   impatientHint: "同一浏览器限点一次 · 仅供一乐",
+  impatientPrevTemplate: "上一轮 {n} 人等不及了",
   impatientUnavailable: "计数暂时不可用",
   agentTitle: "Agent 接入",
   agentBlurb:
@@ -341,6 +343,7 @@ const en: UIStrings = {
   impatientDone: "Counted",
   impatientCountTemplate: "{n} can't wait",
   impatientHint: "One click per browser · just for fun",
+  impatientPrevTemplate: "Last round: {n} couldn't wait",
   impatientUnavailable: "Counter unavailable",
   agentTitle: "Agent access",
   agentBlurb:
