@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-09-23T20:20:58.027Z",
+  "checkedAt": "2026-09-23T23:40:50.732Z",
   "count": 44
 };
 
@@ -351,9 +351,9 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "degraded",
+    "status": "offline",
     "hubCheckAt": "2026-09-17T09:04:53.971Z",
-    "degradedSince": "2026-09-22T07:59:45.525Z",
+    "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 10000000,
@@ -366,9 +366,9 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "degraded",
+    "status": "offline",
     "hubCheckAt": "2026-09-19T06:31:47.250Z",
-    "degradedSince": "2026-09-22T07:59:45.525Z",
+    "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000,
@@ -443,7 +443,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-09-23T18:56:14.490Z",
+    "degradedSince": "2026-09-23T22:16:29.988Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -458,7 +458,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-09-23T18:56:14.490Z",
+    "degradedSince": "2026-09-23T22:16:29.988Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
