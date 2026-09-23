@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-09-23T05:12:08.740+08:00",
+  "checkedAt": "2026-09-23T08:08:08.191+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -17,15 +17,22 @@ export const resetSnapshot: ResetSnapshot = {
 export const resets = validateResets(
 [
   {
-    "id": "banked-2102463847714247142-1-1",
+    "id": "banked-2101352781219258527-1-1",
     "type": "card",
-    "status": "announced",
+    "status": "confirmed",
     "scope": "Plus、Pro、Business",
     "confirmedAt": null,
-    "occurredOn": null,
+    "occurredOn": "2026-09-23",
     "scheduleFrom": null,
     "scheduleThrough": null,
     "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-20T00:48:38.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2101352781219258527",
+        "zh": "好吧。但它也仍然会在周二到来。",
+        "en": "OK fine. But it’s also still coming in Tuesday"
+      },
       {
         "stage": "announce",
         "publishedAt": "2026-09-23T02:23:37.000+08:00",
@@ -51,25 +58,6 @@ export const resets = validateResets(
         "url": "https://x.com/thsottiaux/status/2102254445082116335",
         "zh": "我承诺过周二重置。",
         "en": "I promised a reset for Tuesday"
-      }
-    ]
-  },
-  {
-    "id": "banked-2101352781219258527-1-1",
-    "type": "card",
-    "status": "announced",
-    "scope": null,
-    "confirmedAt": null,
-    "occurredOn": null,
-    "scheduleFrom": "2026-09-22T15:00:00.000+08:00",
-    "scheduleThrough": "2026-09-23T15:00:00.000+08:00",
-    "posts": [
-      {
-        "stage": "announce",
-        "publishedAt": "2026-09-20T00:48:38.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2101352781219258527",
-        "zh": "好吧。但它也仍然会在周二到来。",
-        "en": "OK fine. But it’s also still coming in Tuesday"
       }
     ]
   },
