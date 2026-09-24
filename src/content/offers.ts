@@ -386,6 +386,35 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "space-bunny-alpha",
+    provider: "OpenRouter",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://openrouter.ai/stealth/space-bunny-alpha",
+    source: "https://openrouter.ai/stealth/space-bunny-alpha",
+    actionUrl: "https://openrouter.ai",
+    lastVerified: "2026-09-24",
+    zh: {
+      name: "OpenRouter stealth/space-bunny-alpha 免费模型",
+      description:
+        "OpenRouter 的零价格空格模型 space-bunny-alpha（Space Bunny Alpha）：匿名大模型、推理速度快、编码能力强、原生多模态输入，1M 上下文窗口。定价 prompt 与 completion 均为 $0，走 OpenRouter stealth/ 命名空间的零价格车道（与 stealth/union-alpha 同类），不带 :free 后缀、不占 :free 模型的每日共享配额。申请 OpenRouter API key 后可在任意 agent 中调用",
+      limits: "定价 $0，不占 :free 每日配额；具体用量与限速官方未公布",
+      caveat:
+        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。用户提示系一周的限时免费活动，但 OpenRouter 官方未公布截止日期，也未标注临时/常驻——下线以模型选择器实际展示为准，本条目不填 expiry。",
+    },
+    en: {
+      name: "OpenRouter stealth/space-bunny-alpha Free Lane",
+      description:
+        "OpenRouter's zero-price stealth model space-bunny-alpha (Space Bunny Alpha): an anonymous large model with fast inference, strong coding capability and native multimodal input, in a 1M-token context window. Both prompt and completion are priced at $0; it runs on OpenRouter's stealth/ zero-price lane, carries no :free suffix and does not count against the shared daily :free cap. With an OpenRouter API key you can call it from any agent.",
+      limits:
+        "Priced at $0 and outside the :free daily quota; per-usage caps and rate limits not published",
+      caveat:
+        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. The sponsor frames it as a roughly one-week limited campaign, but OpenRouter publishes no end date and does not say temporary vs permanent; take the model selector as ground truth, so expiry is left unset.",
+    },
+  },
+  {
     id: "opencode-zen-free-rotation",
     provider: "OpenCode",
     kind: "long-term",
