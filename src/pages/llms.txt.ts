@@ -54,7 +54,7 @@ Endpoints are static JSON files, anonymous and read-only, no API key. Canonical 
 - GET /api/v1/offers/:id.json — single offer by ID (resolves expired/archived entries too; check the \`archived\` field and \`expiresAt\` against today)
 - GET /api/v1/providers/:slug.json — active offers grouped by provider slug (provider lowercased, spaces as hyphens)
 - GET /api/v1/snapshot.json — schema-versioned snapshot of the active registry
-- GET /api/v1/codex-resets.json — tracked Codex resets and reset cards (source posts, status, gap stats; not an official OpenAI feed)
+- GET /api/v1/codex-resets.json — tracked Codex resets and reset cards (source posts, status, gap stats; history back to 2025-09 via a one-pass backfill, provenance in data.backfill; not an official OpenAI feed)
 - GET /api/v1/aweshare.json — hourly snapshot of shared models on the aweshare hub run by the eggx team (alias, protocols, status, daily budgets; public fields only)
 - GET /api/v1/changes.json?since=ISO8601 — advisory on static hosting: the file always returns all active offers sorted by lastVerified (newest first); filter client-side with lastVerified >= since
 

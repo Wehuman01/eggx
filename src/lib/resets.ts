@@ -124,6 +124,7 @@ export function eventTime(event: ResetEvent): string {
 const SCOPE_EN: Record<string, string> = {
   所有付费订阅: "All paid plans",
   "Plus、Pro、Business": "Plus, Pro, and Business",
+  "Plus、Pro": "Plus and Pro",
   business: "Business",
 };
 

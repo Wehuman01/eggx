@@ -8,6 +8,7 @@
     "build": "astro build",
     "check": "astro check",
     "sync:resets": "node scripts/sync-resets.mjs",
+    "sentinel:resets": "node scripts/check-resets-sentinel.mjs",
     "sync:impatient": "node scripts/sync-impatient.mjs",
     "sync:aweshare": "node scripts/sync-aweshare.mjs",
     "test": "vitest"

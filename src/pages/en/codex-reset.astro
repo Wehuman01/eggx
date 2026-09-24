@@ -1,9 +1,8 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import { resets, resetSnapshot } from "../../content/resets";
+import { allResets, allResetSnapshot } from "../../content/resets-all";
 import { impatientSnapshot } from "../../content/impatient";
 import {
-  byTimeDesc,
   confirmedResetDates,
   eventTime,
   intervalsInDays,
@@ -16,12 +15,12 @@ import { previousRound, roundForCycle } from "../../lib/impatient";
 import { UI } from "../../lib/i18n";
 
 const ui = UI.en;
-const events = byTimeDesc(resets);
+const events = allResets;
 
 const latestReset = events.find(isConfirmed) ?? null;
-const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(resets)));
-const resetCount = resets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
-const cardCount = resets.filter((e) => e.type === "card").length;
+const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(allResets)));
+const resetCount = allResets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
+const cardCount = allResets.filter((e) => e.type === "card").length;
 
 const tz = "Asia/Shanghai";
 const dtFmt = new Intl.DateTimeFormat("en-US", {
@@ -67,8 +66,8 @@ const prevRound =
   impatientCycle === "none" ? null : previousRound(impatientSnapshot, impatientCycle);
 const legacyRound = impatientSnapshot.rounds.find((round) => round.cycle === null) ?? null;
 
-const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
-const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
+const historyFrom = dayFmt.format(new Date(allResetSnapshot.historyFrom));
+const checkedAt = dtFmt.format(new Date(allResetSnapshot.checkedAt));
 const intervalsText = intervals
   ? ui.intervalsTemplate
       .replace("{min}", String(intervals.min))
@@ -78,7 +77,7 @@ const intervalsText = intervals
   : "";
 const historySummary = ui.historySummaryTemplate
   .replace("{from}", historyFrom)
-  .replace("{total}", String(resets.length))
+  .replace("{total}", String(allResets.length))
   .replace("{resets}", String(resetCount))
   .replace("{cards}", String(cardCount));
 ---
@@ -235,7 +234,11 @@ const historySummary = ui.historySummaryTemplate
         <li>
           <strong>Source</strong> — only public announcements by Tibo (@thsottiaux) on X are
           recorded; quotes link to the original posts. Snapshot curated from
-          <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>.
+          <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>;
+          history before 2026-06-12 was backfilled in one pass from
+          <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a>
+          (credited per its terms). Those entries carry announcement times only — no separately
+          verified execution dates.
         </li>
         <li>
           <strong>Counting</strong> — "Full reset" means Codex quotas wiped for all paid
@@ -265,7 +268,9 @@ const historySummary = ui.historySummaryTemplate
 
     <p class="reset-footnote">
       Snapshot verified {checkedAt} · curated from
-      <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
+      <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
+      · pre-June 2026 history backfilled from
+      <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a>
       · not an official OpenAI page
     </p>
   </div>

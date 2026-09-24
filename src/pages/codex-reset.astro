@@ -1,9 +1,8 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
-import { resets, resetSnapshot } from "../content/resets";
+import { allResets, allResetSnapshot } from "../content/resets-all";
 import { impatientSnapshot } from "../content/impatient";
 import {
-  byTimeDesc,
   confirmedResetDates,
   eventTime,
   intervalsInDays,
@@ -16,12 +15,12 @@ import { previousRound, roundForCycle } from "../lib/impatient";
 import { UI } from "../lib/i18n";
 
 const ui = UI.zh;
-const events = byTimeDesc(resets);
+const events = allResets;
 
 const latestReset = events.find(isConfirmed) ?? null;
-const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(resets)));
-const resetCount = resets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
-const cardCount = resets.filter((e) => e.type === "card").length;
+const intervals = summarizeIntervals(intervalsInDays(confirmedResetDates(allResets)));
+const resetCount = allResets.filter((e) => e.type === "reset" && isConfirmed(e)).length;
+const cardCount = allResets.filter((e) => e.type === "card").length;
 
 const tz = "Asia/Shanghai";
 const dtFmt = new Intl.DateTimeFormat("zh-CN", {
@@ -65,8 +64,8 @@ const prevRound =
   impatientCycle === "none" ? null : previousRound(impatientSnapshot, impatientCycle);
 const legacyRound = impatientSnapshot.rounds.find((round) => round.cycle === null) ?? null;
 
-const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
-const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
+const historyFrom = dayFmt.format(new Date(allResetSnapshot.historyFrom));
+const checkedAt = dtFmt.format(new Date(allResetSnapshot.checkedAt));
 const intervalsText = intervals
   ? ui.intervalsTemplate
       .replace("{min}", String(intervals.min))
@@ -76,7 +75,7 @@ const intervalsText = intervals
   : "";
 const historySummary = ui.historySummaryTemplate
   .replace("{from}", historyFrom)
-  .replace("{total}", String(resets.length))
+  .replace("{total}", String(allResets.length))
   .replace("{resets}", String(resetCount))
   .replace("{cards}", String(cardCount));
 ---
@@ -233,8 +232,10 @@ const historySummary = ui.historySummaryTemplate
         <li>
           <strong>来源</strong> — 只记录 Tibo（@thsottiaux）在 X 上的公开宣布；
           中文引文为 AI 翻译（整理自
-          <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a
-          >），点「原推」查看英文原文。
+          <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a
+          >），点「原推」查看英文原文。2026-06-12 之前的历史一次性回填自
+          <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a
+          >（依其条款署名），该段中文引文为 eggx 自译，时间为公告时间、无单独核实的执行日期。
         </li>
         <li>
           <strong>口径</strong> — 「全员重置」指所有付费账户的 Codex 额度被清零；
@@ -260,7 +261,9 @@ const historySummary = ui.historySummaryTemplate
 
     <p class="reset-footnote">
       快照核验至 {checkedAt} · 数据整理自
-      <a href={resetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
+      <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
+      · 2026-06 前历史回填自
+      <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a>
       · 非 OpenAI 官方页面
     </p>
   </div>

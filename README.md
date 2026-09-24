@@ -44,7 +44,7 @@ eggx 同时为人类和 Agent 设计：内容双语（中文默认，[`/en/`](ht
 - [`/agent/`](https://eggx.wehuman.top/agent/) — Agent 接入指南（Skill / API / RSS）
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — Agent 使用指南
 - [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — 全部在架羊毛（JSON）
-- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex 重置记录（JSON）
+- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex 重置记录（JSON；2026-06 前历史一次性回填自 codex-resets.com）
 - [`/api/v1/aweshare.json`](https://eggx.wehuman.top/api/v1/aweshare.json) — aweshare hub 共享模型可用性（JSON，每小时快照）
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS 订阅
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — 完整 API 说明

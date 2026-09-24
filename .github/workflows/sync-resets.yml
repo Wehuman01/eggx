@@ -61,3 +61,8 @@ jobs:
           }
           commit_and_push src/content/resets.ts "sync: codex resets from AIHOT" || exit 1
           commit_and_push src/content/impatient.json "sync: freeze ended can't-wait round counts" || exit 1
+
+      # 哨兵放在提交之后：报警时本轮 AIHOT 数据已入库，只把「上游疑似停更」
+      # 变成醒目的 workflow 失败；哨兵自身拉不动 codex-resets.com 时跳过（exit 0）。
+      - name: Cross-check fallback sentinel (codex-resets.com)
+        run: npm run sentinel:resets

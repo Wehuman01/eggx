@@ -166,7 +166,7 @@ export const GET: APIRoute = () => {
         get: {
           summary: "List tracked Codex resets and reset cards announced by Tibo (@thsottiaux)",
           description:
-            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics across confirmed resets and reset-card grants. Chinese translations are available on the web page only. Not an official OpenAI feed; synced automatically from the upstream curator.",
+            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics across confirmed resets and reset-card grants. History before 2026-06-12 was backfilled in one pass from codex-resets.com (announcement times only; provenance in data.backfill) and merged with the live feed. Chinese translations are available on the web page only. Not an official OpenAI feed; synced automatically from the upstream curator.",
           responses: {
             "200": {
               description: "Reset events and interval statistics",
@@ -180,6 +180,7 @@ export const GET: APIRoute = () => {
                         type: "object",
                         properties: {
                           snapshot: { $ref: "#/components/schemas/ResetSnapshot" },
+                          backfill: { $ref: "#/components/schemas/ResetSnapshot" },
                           intervalStats: {
                             type: ["object", "null"],
                             properties: {
@@ -194,7 +195,7 @@ export const GET: APIRoute = () => {
                             items: { $ref: "#/components/schemas/ResetEvent" },
                           },
                         },
-                        required: ["snapshot", "events"],
+                        required: ["snapshot", "backfill", "events"],
                       },
                     },
                     required: ["schemaVersion", "data"],
