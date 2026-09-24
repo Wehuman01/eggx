@@ -128,28 +128,28 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
-    expiry: "2026-09-20",
+    expiry: "2026-10-07",
     url: "https://zcode.z.ai/en",
     source: "https://docs.z.ai/devpack/notice/event-glm-5.3-flash",
     actionUrl: "https://zcode.z.ai/en",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-09-24",
     zh: {
-      name: "ZCode 夜间免额度活动 + 新人 5 天试用",
+      name: "ZCode 夜间免额度活动：GLM-5.3-Flash 每晚 23:00–09:00 零消耗（至 10-07）",
       description:
-        "GLM Coding Plan 官方 GLM-5.3-Flash 夜间活动（2026-09-03 至 2026-09-20）：每天 23:00 至次日 09:00（北京时间 UTC+8），付费计划用户经 ZCode 使用 GLM-5.3-Flash 零额度消耗、不限量；经其他受支持 Agent 使用则额度翻倍。无需申请，装上 ZCode 即享。新用户另送 5 天免费试用，每天 500 万 tokens（GLM-5.3 300 万 + GLM-5-turbo 200 万）。",
+        "GLM Coding Plan 官方 GLM-5.3-Flash 夜间活动（2026-09-03 至 2026-10-07，原定 09-20 截止、官方已延期）：每天 23:00 至次日 09:00（官方口径为新加坡时间，UTC+8），付费计划用户经 ZCode 使用 GLM-5.3-Flash 零额度消耗、不限量；经其他受支持 Agent 使用则额度翻倍。无需申请，装上 ZCode 即享。",
       limits:
-        "夜间窗口经 ZCode 用 GLM-5.3-Flash 不限量（需 ZCode ≥ 3.10，且 5 小时/周额度未耗尽）；新用户试用每天 5M tokens，仅前 5 天有效",
+        "夜间窗口经 ZCode 用 GLM-5.3-Flash 不限量（需 ZCode ≥ 3.10，且 5 小时/周额度未耗尽）",
       caveat:
-        "周末节假日同样适用；仅限 GLM-5.3-Flash，GLM-5.3 照常扣额度；活动 2026-09-20 截止，需付费 Coding Plan。",
+        "周末节假日同样适用；仅限 GLM-5.3-Flash，GLM-5.3 照常扣额度；需付费 Coding Plan。2026-09-24 复核官方公告：活动结束日已从 09-20 延期至 10-07（官方原文 \"the campaign end date has been extended from September 20 to October 7\"），规则不变。此前条目中的「新人 5 天免费试用」在 09-24 复核时已从公告页移除、无法再核实，故删去。",
     },
     en: {
-      name: "ZCode Nightly Free Campaign + 5-Day New-User Trial",
+      name: "ZCode Nightly Free Campaign: zero-quota GLM-5.3-Flash 23:00–09:00 nightly (through Oct 7)",
       description:
-        "Official GLM Coding Plan GLM-5.3-Flash usage campaign (Sep 3–20, 2026): daily 23:00–09:00 the next day (Beijing time, UTC+8), paid-plan users get unlimited zero-quota GLM-5.3-Flash via ZCode, and doubled quota via other supported agents. No application needed — install ZCode and go. First-time ZCode users also get a 5-day free trial with 5M tokens per day (3M GLM-5.3 + 2M GLM-5-turbo).",
+        "Official GLM Coding Plan GLM-5.3-Flash usage campaign (Sep 3 – Oct 7, 2026; originally set to end Sep 20, officially extended): daily 23:00–09:00 the next day (Singapore time per the official notice, UTC+8), paid-plan users get unlimited zero-quota GLM-5.3-Flash via ZCode, and doubled quota via other supported agents. No application needed — install ZCode and go.",
       limits:
-        "Nightly GLM-5.3-Flash via ZCode is unlimited (needs ZCode ≥ 3.10 and non-exhausted 5-hour/weekly quota); the new-user trial grants 5M tokens/day for the first 5 days only",
+        "Nightly GLM-5.3-Flash via ZCode is unlimited (needs ZCode ≥ 3.10 and non-exhausted 5-hour/weekly quota)",
       caveat:
-        "Weekends and holidays included; GLM-5.3-Flash only — GLM-5.3 still burns quota; campaign ends 2026-09-20 and requires a paid Coding Plan.",
+        "Weekends and holidays included; GLM-5.3-Flash only — GLM-5.3 still burns quota; requires a paid Coding Plan. Re-verified 2026-09-24 against the official notice: the end date was extended from Sep 20 to Oct 7 (official wording \"the campaign end date has been extended from September 20 to October 7\"), rules unchanged. The 5-day new-user trial previously listed here was gone from the notice page at the Sep 24 re-check and could no longer be verified, so it has been removed.",
     },
   },
   {
@@ -162,7 +162,7 @@ export const offers = validateRegistry([
     url: "https://zcode.z.ai/cn",
     source: "https://zcode.z.ai/cn/changelog",
     actionUrl: "https://zcode.z.ai/cn",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-09-24",
     zh: {
       name: "ZCode 周末计划：免费领体验额度",
       description:
@@ -246,29 +246,29 @@ export const offers = validateRegistry([
     provider: "Qoder",
     kind: "temporary",
     access: "public",
-    verified: false,
+    verified: true,
     expiry: "2026-09-30",
     url: "https://qoder.cn",
-    source: "https://qoder.cn",
+    source: "https://docs.qoder.cn/events/flashoffer",
     actionUrl: "https://qoder.cn",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-09-24",
     zh: {
-      name: "Qoder：Qwen3.8-Flash 免费用到 9 月 30 日 + 每日 100 Credits",
+      name: "Qoder CN：Qwen3.8-Flash 免费用到 9 月 30 日 + 每日 100 Credits",
       description:
-        "阿里 Qoder 编程平台的限时福利（9 月 18 日 10:00 起）：打开 Qoder 桌面端，模型选择器选中 Qwen3.8-Flash 即用，计费系数从 0.1× 降到 0.0×，不扣 Credits，免费至 9 月 30 日，无需领取资格。同期叠加每天可领的 100 通用 Credits（每笔有效期 30 天，可累积）。国际版与国内版、新老个人用户均有份。",
+        "阿里 Qoder CN 编程平台的限时福利（9 月 18 日 10:00 起）：Qwen3.8-Flash 计费系数从 0.1× 降到 0.0×，调用不扣 Credits，免费至 9 月 30 日 23:59:59，自动生效、无需领取，Credits 余额为 0 也能用；覆盖桌面端、IDE、JetBrains 插件、CLI、QoderWake、Cloud Agents、移动端与网页版。同期叠加每日 100 通用 Credits：每天 10:00 开放新一轮领取（窗口持续到次日 10:00），仅限 Qoder CN 桌面端在用量面板（礼物图标）主动领取，每笔 30 天有效、未到期的可叠加保留，错过不补。",
       limits:
-        "Qwen3.8-Flash 在 Qoder 内不扣 Credits（至 9 月 30 日）；每日 100 通用 Credits 需当天领取，每笔 30 天有效、可累积；面向个人用户",
+        "Qwen3.8-Flash 活动期内不扣 Credits（至 9 月 30 日 23:59:59，结束后按届时公示系数计费）；每日 100 Credits 每账号每轮限领一次、每笔 30 天有效、未领取不累计到下一轮；面向 Qoder CN 个人用户（体验/专业/高级/旗舰版及会员卡用户，免费与试用期用户均可），企业订阅用户不适用",
       caveat:
-        "来自公众号「数字生命Q」文章（2026-09-18 收录），属社区消息，Qoder 官网未见公告；活动起始与截止时间、Credits 规则以客户端实际展示为准。上一次同类赠送很多人没赶上，这次别拖。",
+        "2026-09-24 核实 Qoder 官方文档活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：免费档期、计费系数 0.1×→0.0×、自动生效、每日 100 Credits 规则均与官方一致。09-18 收录时「国际版也有份」的说法来自公众号「数字生命Q」投稿，官方活动页仅写 Qoder CN，故限定为 Qoder CN。每日 Credits 活动官方未公布结束时间（『另行公告』）；本条 expiry 取 Flash 免费档截止 09-30，其后 Credits 活动是否延续以官方公告为准。高峰期官方提示响应可能变慢。",
     },
     en: {
-      name: "Qoder: Qwen3.8-Flash free through Sep 30 + 100 daily Credits",
+      name: "Qoder CN: Qwen3.8-Flash free through Sep 30 + 100 daily Credits",
       description:
-        "A limited-time perk on Alibaba's Qoder coding platform (from Sep 18, 10:00): open the Qoder desktop app, pick Qwen3.8-Flash in the model selector and go — the billing multiplier drops from 0.1x to 0.0x, no Credits deducted, free through Sep 30, no claim needed. Stacked on top: 100 general Credits claimable every day, each grant valid 30 days and accumulative. International and CN editions, new and existing individual users alike.",
+        "A limited-time perk on Alibaba's Qoder CN coding platform (from Sep 18, 10:00): Qwen3.8-Flash's billing multiplier drops from 0.1x to 0.0x — calls burn no Credits, free through Sep 30 23:59:59, effective automatically with no claim needed, usable even at a zero Credit balance; covers desktop, IDE, JetBrains plugin, CLI, QoderWake, Cloud Agents, mobile and web. Stacked on top: 100 general Credits per day — a new round opens daily at 10:00 (window lasts until the next day's 10:00), claimable only in the Qoder CN desktop app from the usage panel (gift icon); each grant lasts 30 days, unexpired grants stack, and missed rounds are not made up.",
       limits:
-        "Qwen3.8-Flash costs zero Credits inside Qoder through Sep 30; the 100 daily general Credits must be claimed each day, every grant lasts 30 days and stacks; individual users only",
+        "Qwen3.8-Flash costs zero Credits during the event (through Sep 30 23:59:59; billed at then-published rates afterwards); 100 daily Credits, one claim per account per round, each grant valid 30 days, unclaimed rounds don't carry over; for Qoder CN individual users (trial/pro/max/ultra and member-card tiers, free and trial users included), enterprise subscriptions excluded",
       caveat:
-        "Reported by the WeChat account 数字生命Q (added 2026-09-18) — a community lead, no official announcement on the Qoder site; start/end times and Credit rules follow what the client actually shows. The last giveaway of this kind left many empty-handed — don't sit on this one.",
+        "Verified 2026-09-24 against Qoder's official docs event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the free window, 0.1x→0.0x multiplier, auto-activation, and daily-100-Credits rules all match. The \"international edition included\" claim from the original Sep 18 submission (WeChat account 数字生命Q) is not on the official page, which covers Qoder CN only — the entry is scoped to Qoder CN accordingly. No end date is published for the daily-Credits event (\"to be announced\"); this entry's expiry follows the Flash free window (Sep 30), and whether the Credits event continues after that is up to official announcements. Qoder notes responses may be slow at peak times.",
     },
   },
   {
