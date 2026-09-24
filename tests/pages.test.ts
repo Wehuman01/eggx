@@ -61,7 +61,7 @@ describe("self-hosted assets and feeds", () => {
   });
 
   it("ships the self-hosted font files and stylesheet", () => {
-    for (const asset of ["fonts.css", "fonts/inter-latin.woff2", "fonts/playfair-display-latin.woff2"]) {
+    for (const asset of ["fonts.css", "fonts/inter-latin.woff2", "fonts/baloo2-latin.woff2"]) {
       expect(fs.existsSync(path.join(dist, asset)), `missing ${asset}`).toBe(true);
     }
   });

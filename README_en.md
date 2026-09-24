@@ -60,6 +60,7 @@ aweskill install wehuman01/eggx --skill eggx
 - **aweshare model availability** ([tracking page](https://eggx.wehuman.top/en/aweshare/)) — an hourly snapshot of the [aweshare](https://github.com/wehuman01/aweshare) hub we operate: which shared models are usable, their wire protocols, and remaining shared daily budgets. Public fields only (alias/protocol/status/budget); access is by invite.
 - **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is synced automatically from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, the Chinese quote renderings are AIHOT's AI translations (translation rights remain with AIHOT), and the English originals are credited to their author.
 - Not an official OpenAI page; for information only. Whether and when resets happen is entirely OpenAI's call.
+- **UI style** — the candy-sticker look (cream paper, chunky ink outlines, hard offset shadows, Baloo 2) is inspired by [codex-resets.com](https://codex-resets.com/); the layout and code remain eggx's own.
 
 ## Contribute
 

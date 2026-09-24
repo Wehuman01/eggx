@@ -363,21 +363,22 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
   } as const;
 
   const PALETTE = {
-    paper: "#faf8f5",
-    grid: "#e5e0d8",
-    card: "#ffffff",
-    border: "#e5e0d8",
-    ink: "#1a1a1a",
-    text: "#333333",
-    muted: "#6b6b6b",
-    moss: "#4a5d23",
-    mossSoft: "#e8f0e0",
-    orange: "#c75b2a",
-    orangeSoft: "#fff3e0",
+    paper: "#fff4dd",
+    dot: "rgba(38, 32, 26, 0.14)",
+    card: "#fffdf7",
+    border: "#26201a",
+    ink: "#26201a",
+    text: "#3d362d",
+    muted: "#7a6e5e",
+    mint: "#b9e6a6",
+    peach: "#ffb07a",
+    accent: "#ff5c2b",
+    accentSoft: "#ffe3d2",
+    accentInk: "#c73a0f",
   } as const;
 
   const SANS = '"Inter", system-ui, sans-serif';
-  const SERIF = '"Playfair Display", Georgia, serif';
+  const BALOO = '"Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif';
 
   interface ShareFacts {
     id: string;
@@ -487,39 +488,33 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
       return `${out}…`;
     };
 
-    // Paper + the site's 24px grid.
+    // Paper + the site's 22px dot grid.
     ctx.fillStyle = PALETTE.paper;
     ctx.fillRect(0, 0, CARD_W, CARD_H);
-    ctx.strokeStyle = PALETTE.grid;
-    ctx.lineWidth = 1;
-    for (let gx = 24; gx < CARD_W; gx += 24) {
-      ctx.beginPath();
-      ctx.moveTo(gx, 0);
-      ctx.lineTo(gx, CARD_H);
-      ctx.stroke();
-    }
-    for (let gy = 24; gy < CARD_H; gy += 24) {
-      ctx.beginPath();
-      ctx.moveTo(0, gy);
-      ctx.lineTo(CARD_W, gy);
-      ctx.stroke();
+    ctx.fillStyle = PALETTE.dot;
+    for (let gx = 22; gx < CARD_W; gx += 22) {
+      for (let gy = 22; gy < CARD_H; gy += 22) {
+        ctx.beginPath();
+        ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
-    // White card with the site's rounded border.
+    // Cream card with the sticker look: hard offset shadow, chunky ink border.
     const cardX = CARD_INSET;
     const cardY = CARD_INSET;
     const cardW = CARD_W - CARD_INSET * 2;
     const cardH = CARD_H - CARD_INSET * 2;
-    ctx.save();
-    ctx.shadowColor = "rgba(0, 0, 0, 0.06)";
-    ctx.shadowBlur = 12;
+    ctx.fillStyle = PALETTE.ink;
+    ctx.beginPath();
+    ctx.roundRect(cardX + 6, cardY + 6, cardW, cardH, 24);
+    ctx.fill();
     ctx.fillStyle = PALETTE.card;
     ctx.beginPath();
     ctx.roundRect(cardX, cardY, cardW, cardH, 24);
     ctx.fill();
-    ctx.restore();
     ctx.strokeStyle = PALETTE.border;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.roundRect(cardX, cardY, cardW, cardH, 24);
     ctx.stroke();
@@ -543,14 +538,14 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
     // Name — the hero, up to three lines.
     const nameLines = wrapToFit(
       (t) => {
-        font(700, m.nameSize, SERIF);
+        font(700, m.nameSize, BALOO);
         return ctx.measureText(t).width;
       },
       facts.name,
       contentW,
       3,
     );
-    font(700, m.nameSize, SERIF);
+    font(700, m.nameSize, BALOO);
     ctx.fillStyle = PALETTE.ink;
     for (const line of nameLines) {
       y += m.nameBaseline;
@@ -653,7 +648,7 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
       if (badgeText) {
         font(600, m.pillFont, SANS);
         const badgeW = ctx.measureText(badgeText).width + m.pillWidth;
-        pill(badgeText, right - badgeW, y + m.badgeOffset, PALETTE.orangeSoft, PALETTE.orange);
+        pill(badgeText, right - badgeW, y + m.badgeOffset, PALETTE.accentSoft, PALETTE.accentInk);
       }
       y += rowH;
       return true;
@@ -672,8 +667,8 @@ if (offer.kind === "temporary" && offer.expiry && !dead) {
           tagText,
           px,
           y,
-          facts.verified ? PALETTE.mossSoft : PALETTE.orangeSoft,
-          facts.verified ? PALETTE.moss : PALETTE.orange,
+          facts.verified ? PALETTE.mint : PALETTE.peach,
+          PALETTE.ink,
         ) + 14;
       if (facts.code) {
         font(500, m.codeLabelSize, SANS);
