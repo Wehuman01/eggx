@@ -11,6 +11,7 @@
 // `en` quotes are Tibo's original posts. The generated file says this in its header.
 
 import { readFile, writeFile } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
 
 const API_URL = "https://aihot.news/api/v1/codex-resets";
 const SOURCE_URL = "https://aihot.news/codex-reset";
@@ -84,7 +85,10 @@ export function mapAihotEvent(event) {
   };
 }
 
-function eventTime(event) {
+/** Best display/sort time: confirmation when present, else the latest post.
+    Same semantics as eventTime() in src/lib/resets.ts — the counter round keys
+    in sync-impatient.mjs are derived from it. */
+export function eventTime(event) {
   return event.confirmedAt ?? event.posts[event.posts.length - 1].publishedAt;
 }
 
@@ -166,4 +170,9 @@ async function main() {
   );
 }
 
-main();
+// Only run the sync when executed directly — the module also gets imported
+// for its pure helpers (tests, sync-impatient.mjs), and an import must never
+// fire network requests.
+if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+  main();
+}

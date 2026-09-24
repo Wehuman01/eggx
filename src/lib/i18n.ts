@@ -93,6 +93,8 @@ export interface UIStrings {
   impatientCountTemplate: string;
   impatientHint: string;
   impatientPrevTemplate: string;
+  impatientRoundTemplate: string;
+  impatientLegacyTemplate: string;
   impatientUnavailable: string;
   agentTitle: string;
   agentBlurb: string;
@@ -216,6 +218,8 @@ const zh: UIStrings = {
   impatientCountTemplate: "{n} 人等不及了",
   impatientHint: "同一浏览器限点一次 · 仅供一乐",
   impatientPrevTemplate: "上一轮 {n} 人等不及了",
+  impatientRoundTemplate: "该轮 {n} 人等不及了",
+  impatientLegacyTemplate: "2026-09-23 前各轮合计 {n} 人等不及了（旧计数未按轮次拆分）",
   impatientUnavailable: "计数暂时不可用",
   agentTitle: "Agent 接入",
   agentBlurb:
@@ -344,6 +348,8 @@ const en: UIStrings = {
   impatientCountTemplate: "{n} can't wait",
   impatientHint: "One click per browser · just for fun",
   impatientPrevTemplate: "Last round: {n} couldn't wait",
+  impatientRoundTemplate: "{n} couldn't wait this round",
+  impatientLegacyTemplate: "{n} couldn't wait in total across rounds before 2026-09-23 (legacy counter, not split per round)",
   impatientUnavailable: "Counter unavailable",
   agentTitle: "Agent access",
   agentBlurb:

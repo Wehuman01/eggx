@@ -1,0 +1,12 @@
+{
+  "namespace": "eggx-wehuman",
+  "rounds": [
+    {
+      "key": "codex-reset-impatient",
+      "cycle": null,
+      "final": 46,
+      "frozenAt": "2026-09-24T11:06:40.000+08:00",
+      "note": "按轮次分 key(2026-09-23 起)之前的所有轮次都累计在这把旧全局 key 里,无法拆分到单轮"
+    }
+  ]
+}

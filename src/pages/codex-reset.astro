@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import { resets, resetSnapshot } from "../content/resets";
+import { impatientSnapshot } from "../content/impatient";
 import {
   byTimeDesc,
   confirmedResetDates,
@@ -11,6 +12,7 @@ import {
   daysSince,
   scopeText,
 } from "../lib/resets";
+import { previousRound, roundForCycle } from "../lib/impatient";
 import { UI } from "../lib/i18n";
 
 const ui = UI.zh;
@@ -56,17 +58,12 @@ const elapsedDays = latestReset ? daysSince(latestReset.confirmedAt ?? eventTime
 /** "等不及了"计数按重置周期分轮：以最近一次已确认重置的北京日期为轮次。 */
 const impatientCycle = latestReset ? eventTime(latestReset).slice(0, 10) : "none";
 
-/** 上一轮的计数 key，页面展示其最终人数。按日期分 key 自 2026-09-23 起，
-    更早的轮次都累计在旧的全局 key 里，一并视为「上一轮」。 */
-const PER_CYCLE_KEYING_SINCE = "2026-09-23";
-const confirmedEvents = events.filter(isConfirmed);
-const prevCycleDate =
-  confirmedEvents.length > 1 ? eventTime(confirmedEvents[1]).slice(0, 10) : null;
-const prevRoundKey = prevCycleDate
-  ? prevCycleDate >= PER_CYCLE_KEYING_SINCE
-    ? `codex-reset-impatient-${prevCycleDate}`
-    : "codex-reset-impatient"
-  : null;
+/** 上一轮的人数读仓库里冻结的轮次档案（impatient.json），不再运行时访问计数
+    服务。按日期分轮自 2026-09-23 起，更早的轮次都累计在旧全局 key 的合计
+    档案里，一并视为「上一轮」。 */
+const prevRound =
+  impatientCycle === "none" ? null : previousRound(impatientSnapshot, impatientCycle);
+const legacyRound = impatientSnapshot.rounds.find((round) => round.cycle === null) ?? null;
 
 const historyFrom = dayFmt.format(new Date(resetSnapshot.historyFrom));
 const checkedAt = dtFmt.format(new Date(resetSnapshot.checkedAt));
@@ -154,7 +151,11 @@ const historySummary = ui.historySummaryTemplate
           <span class="impatient-meta">
             <span class="impatient-count" data-impatient-count hidden></span>
             <span class="impatient-hint" data-impatient-hint>{ui.impatientHint}</span>
-            <span class="impatient-prev" data-impatient-prev hidden></span>
+            {prevRound && (
+              <span class="impatient-prev">
+                {ui.impatientPrevTemplate.replace("{n}", String(prevRound.final))}
+              </span>
+            )}
           </span>
         </div>
         <a
@@ -169,6 +170,11 @@ const historySummary = ui.historySummaryTemplate
     <section class="reset-history">
       <h2>{ui.historyHeading}</h2>
       <p class="reset-summary">{historySummary}</p>
+      {legacyRound && (
+        <p class="reset-summary reset-legacy-note">
+          {ui.impatientLegacyTemplate.replace("{n}", String(legacyRound.final))}
+        </p>
+      )}
 
       {groups.map((group, index) => (
         <details class="reset-month" open={index === 0}>
@@ -183,6 +189,9 @@ const historySummary = ui.historySummaryTemplate
               const post = primaryPost(event);
               const confirmed = isConfirmed(event);
               const scope = scopeText(event, "zh");
+              const round = confirmed
+                ? roundForCycle(impatientSnapshot, eventTime(event).slice(0, 10))
+                : null;
               return (
                 <article class="reset-row">
                   <div class="reset-row-head">
@@ -198,6 +207,11 @@ const historySummary = ui.historySummaryTemplate
                   </div>
                   {scope && (
                     <p class="reset-scope">{ui.scopeLabel}：{scope}</p>
+                  )}
+                  {round && (
+                    <p class="reset-round">
+                      {ui.impatientRoundTemplate.replace("{n}", String(round.final))}
+                    </p>
                   )}
                   <blockquote class="reset-quote reset-quote-row">
                     {post.zh}
@@ -263,8 +277,6 @@ const historySummary = ui.historySummaryTemplate
       base: "https://abacus.jasoncameron.dev",
       ns: "eggx-wehuman",
       key: `codex-reset-impatient-${impatientCycle}`,
-      prevKey: prevRoundKey,
-      prevTemplate: ui.impatientPrevTemplate,
       doneLabel: ui.impatientDone,
       countTemplate: ui.impatientCountTemplate,
       unavailableLabel: ui.impatientUnavailable,
@@ -301,7 +313,6 @@ const historySummary = ui.historySummaryTemplate
       var btn = document.getElementById("impatient-btn");
       var countEl = document.querySelector("[data-impatient-count]");
       var hintEl = document.querySelector("[data-impatient-hint]");
-      var prevEl = document.querySelector("[data-impatient-prev]");
       if (!cfgEl || !btn || !countEl) return;
       var cfg = JSON.parse(cfgEl.textContent || "{}");
       var FLAG = "eggx-impatient-" + cfg.key;
@@ -329,21 +340,6 @@ const historySummary = ui.historySummaryTemplate
         .catch(function () {
           setHint(cfg.unavailableLabel);
         });
-      // 上一轮的最终人数是历史记录，取不到就保持隐藏，不占用「不可用」提示。
-      if (cfg.prevKey && prevEl) {
-        fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.prevKey)
-          .then(function (r) {
-            if (r.status === 404) return { value: 0 };
-            return r.ok ? r.json() : null;
-          })
-          .then(function (d) {
-            if (d && typeof d.value === "number") {
-              prevEl.textContent = cfg.prevTemplate.replace("{n}", String(d.value));
-              prevEl.hidden = false;
-            }
-          })
-          .catch(function () {});
-      }
       if (localStorage.getItem(FLAG)) markDone();
       btn.addEventListener("click", function () {
         if (btn.disabled) return;

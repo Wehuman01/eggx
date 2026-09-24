@@ -33,23 +33,31 @@ jobs:
       - name: Sync from AIHOT
         run: npm run sync:resets
 
+      - name: Freeze ended can't-wait rounds
+        run: npm run sync:impatient
+
       - name: Commit and push if content changed
         run: |
-          if git diff --quiet src/content/resets.ts; then
-            echo "No reset updates."
-            exit 0
-          fi
           git config user.name "eggx-sync-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/content/resets.ts
-          git commit -m "sync: codex resets from AIHOT"
-          # 竞态防护：检出与 push 之间若有别的推送进了 main（人工编辑或另一个
-          # sync），push 会被拒。rebase 到最新 main 后重试几次。
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push; then
-              exit 0
+          commit_and_push() {
+            # $1 = file, $2 = commit message
+            if git diff --quiet -- "$1"; then
+              echo "No updates for $1."
+              return 0
             fi
-            echo "Push attempt $attempt failed; retrying..."
-            sleep $((attempt * 10))
-          done
-          exit 1
+            git add -- "$1"
+            git commit -m "$2"
+            # 竞态防护：检出与 push 之间若有别的推送进了 main（人工编辑或另一个
+            # sync），push 会被拒。rebase 到最新 main 后重试几次。
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push; then
+                return 0
+              fi
+              echo "Push attempt $attempt failed; retrying..."
+              sleep $((attempt * 10))
+            done
+            return 1
+          }
+          commit_and_push src/content/resets.ts "sync: codex resets from AIHOT" || exit 1
+          commit_and_push src/content/impatient.json "sync: freeze ended can't-wait round counts" || exit 1
