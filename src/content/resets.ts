@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-09-26T06:14:02.108+08:00",
+  "checkedAt": "2026-09-26T09:32:38.153+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,6 +16,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "reset-2103637477760311522-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": "所有付费订阅",
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-26T08:07:13.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2103637477760311522",
+        "zh": "是的……我们已恢复运行，我们将为所有付费用户重置 Codex 和 ChatGPT work 的使用额度。对短暂的中断感到抱歉！（是的，当出现故障时我们有一个专门的备用 codex 来帮我们应对）",
+        "en": "we’ll reset usage limits for all paid users across codex and ChatGPT work"
+      }
+    ]
+  },
   {
     "id": "banked-2101352781219258527-1-1",
     "type": "card",
