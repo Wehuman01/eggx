@@ -213,6 +213,36 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "glm-hangzhou-coding-plan",
+    provider: "Z.ai",
+    kind: "temporary",
+    access: "application",
+    verified: true,
+    expiry: "2026-12-09",
+    url: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
+    source: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
+    actionUrl: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
+    lastVerified: "2026-09-26",
+    zh: {
+      name: "智谱·杭州全城 Coding 计划：在杭购卡季卡减 44%、年卡减 51%（至 12-09）",
+      description:
+        "智谱联合杭州市、上城区推出的城市级购卡补贴（组织方为浙江智谱新篇科技有限公司），活动期 2026-09-10 至 2026-12-09。个人限在杭工作人员或杭州高校在校生：在 BigModel 平台完成个人实名认证后提交表单申请，在职者上传杭州市社保参保证明（浙里办下载的原始 PDF），在校生上传学信网在线验证报告，审核通过后选购 GLM Coding Plan 季卡享 44% 综合减免、年卡享 51% 综合减免。注意这是购买折扣而非免费额度，需先付费购卡。",
+      limits:
+        "个人：季卡减 44%（Lite 354→198.24 元/季、Pro 1614→903.84 元/季、Max 3234→1811.04 元/季），年卡减 51%（Lite 1416→693.84 元/年、Pro 6456→3163.44 元/年、Max 12936→6338.64 元/年）；每人限 1 次，季卡/年卡二选一，整体减免金额达到上限后不再发放。企业（杭州市上城区主体）：年卡减 55%（标准版 3229.2 元/席位/年、高级版 6469.2 元/席位/年），单家减免上限 100 万元，仅支持年度套餐",
+      caveat:
+        "2026-09-26 依官方细则页核实：活动时间为 9 月 10 日至 12 月 9 日，额满即止。个人套餐一经购买并激活不支持退款、不支持转让、不支持按剩余周期折算退费；活动页按 IP 判断地域展示。社区流传的「审核约 1 小时」未见官方说明，审核时长以实际为准。",
+    },
+    en: {
+      name: "Zhipu Hangzhou City-Wide Coding Plan: 44% off quarterly, 51% off annual cards for Hangzhou-based users (through Dec 9)",
+      description:
+        "A city-level purchase subsidy jointly launched by Zhipu with the Hangzhou municipal and Shangcheng district governments (organized by Zhejiang Zhipu Xinbian Technology), running Sep 10 – Dec 9, 2026. Individuals must work in Hangzhou or study at a Hangzhou university: complete personal identity verification on BigModel and submit the application form with a Hangzhou social-insurance certificate (original PDF from the Zhejiang government app) for workers, or a CHSI online verification report for students; once approved, GLM Coding Plan quarterly cards get a 44% combined discount and annual cards 51%. Note this is a purchase discount, not free quota — you still pay for the plan.",
+      limits:
+        "Individuals: 44% off quarterly (Lite ¥354→198.24, Pro ¥1614→903.84, Max ¥3234→1811.04), 51% off annual (Lite ¥1416→693.84, Pro ¥6456→3163.44, Max ¥12936→6338.64); one redemption per person, quarterly or annual only, ends once the overall discount pool is exhausted. Enterprises (Shangcheng district entities): 55% off annual cards (Standard ¥3229.2/seat/year, Premium ¥6469.2/seat/year), capped at ¥1M per company, annual billing only",
+      caveat:
+        "Verified 2026-09-26 against the official rules page: the campaign runs Sep 10 – Dec 9 and ends once the discount pool is exhausted. Once activated, individual plans are non-refundable, non-transferable, and cannot be prorated; the activity page is shown based on IP geolocation. A community claim of 'about 1 hour review time' is not stated officially — actual review time may vary.",
+    },
+  },
+  {
     id: "opencode-zen-union-alpha",
     provider: "OpenCode",
     kind: "temporary",
