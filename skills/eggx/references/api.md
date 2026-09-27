@@ -68,7 +68,7 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 | `events[].confirmedAt` | 确认帖时间，≠ 精确执行时间 |
 | `events[].occurredOn` | 单独核实过的到账日，可能为 `null` |
 | `events[].scheduleFrom/Through` | 原帖预告的时间窗，可能为 `null` |
-| `events[].posts[]` | `stage`（`announce`/`confirm`）、`publishedAt`、原推链接 `url`、英文原文 `en` |
+| `events[].posts[]` | `stage`（`announce`/`confirm`/`note`，`note` = 定论后的补充说明帖）、`publishedAt`、原推链接 `url`、英文原文 `en` |
 | `intervalStats` | 历史重置间隔统计（天）；全员重置与发重置卡都计入，仅计已确认事件。`null` = 样本不足 |
 
 机器接口只含事实与英文原帖；中文译文仅出现在网页。数据来源 [AIHOT](https://aihot.news/codex-reset)，非 OpenAI 官方页面。

@@ -22,7 +22,14 @@ const POST_URL_PATTERN = /^https:\/\/x\.com\/thsottiaux\/status\/\d+$/;
 
 // AIHOT field values → eggx schema. Unknown values must fail loudly, never guess.
 const TYPE_MAP = { direct_reset: "reset", reset_credit: "card" };
-const STAGE_MAP = { "预告": "announce", "发卡预告": "announce", "确认完成": "confirm", "确认发卡": "confirm" };
+const STAGE_MAP = {
+  "预告": "announce",
+  "发卡预告": "announce",
+  "确认完成": "confirm",
+  "确认发卡": "confirm",
+  // 事件定论后的补充澄清帖（如「商业版账户也包含」），不改事件状态。
+  "补充说明": "note",
+};
 
 const HEADER = `// Codex 重置记录（Tibo @thsottiaux 公布的全员重置与重置卡发放）。
 // 本文件由 scripts/sync-resets.mjs 自动生成，请勿手改。数据来自 AIHOT 公开接口

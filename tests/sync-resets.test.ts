@@ -53,12 +53,13 @@ describe("mapAihotEvent", () => {
         posts: [
           { id: "1", stage: "发卡预告", publishedAt: "2026-09-04T07:12:09.000+08:00", text: "a", originalText: "a", url: "https://x.com/thsottiaux/status/1" },
           { id: "2", stage: "确认发卡", publishedAt: "2026-09-04T10:00:00.000+08:00", text: "b", originalText: "b", url: "https://x.com/thsottiaux/status/2" },
+          { id: "3", stage: "补充说明", publishedAt: "2026-09-04T11:00:00.000+08:00", text: "c", originalText: "c", url: "https://x.com/thsottiaux/status/3" },
         ],
       }),
     );
     expect(event.type).toBe("card");
     expect(event.scope).toBeNull();
-    expect(event.posts.map((p: { stage: string }) => p.stage)).toEqual(["announce", "confirm"]);
+    expect(event.posts.map((p: { stage: string }) => p.stage)).toEqual(["announce", "confirm", "note"]);
   });
 
   it("sorts posts ascending even when upstream sends them newest first", () => {

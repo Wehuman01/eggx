@@ -2,7 +2,7 @@ import type { Locale } from "./schema";
 
 export type ResetType = "reset" | "card";
 export type ResetStatus = "confirmed" | "announced";
-export type ResetPostStage = "announce" | "confirm";
+export type ResetPostStage = "announce" | "confirm" | "note";
 
 export interface ResetPost {
   stage: ResetPostStage;
@@ -45,7 +45,7 @@ export interface ResetSnapshot {
 
 const RESET_TYPES: readonly ResetType[] = ["reset", "card"];
 const RESET_STATUSES: readonly ResetStatus[] = ["confirmed", "announced"];
-const POST_STAGES: readonly ResetPostStage[] = ["announce", "confirm"];
+const POST_STAGES: readonly ResetPostStage[] = ["announce", "confirm", "note"];
 
 export function validateResetEvent(e: unknown): ResetEvent {
   if (!e || typeof e !== "object") {

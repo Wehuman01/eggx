@@ -315,7 +315,7 @@ export const GET: APIRoute = () => {
                 type: "object",
                 required: ["stage", "publishedAt", "url", "en"],
                 properties: {
-                  stage: { type: "string", enum: ["announce", "confirm"] },
+                  stage: { type: "string", enum: ["announce", "confirm", "note"] },
                   publishedAt: { type: "string" },
                   url: { type: "string" },
                   en: { type: "string" },
