@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-09-28T08:46:32.011+08:00",
+  "checkedAt": "2026-09-28T14:56:28.321+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -18,25 +18,6 @@ export const resets = validateResets(
 [
   {
     "id": "reset-2103963215885701493-1-1",
-    "type": "reset",
-    "status": "announced",
-    "scope": null,
-    "confirmedAt": null,
-    "occurredOn": null,
-    "scheduleFrom": null,
-    "scheduleThrough": null,
-    "posts": [
-      {
-        "stage": "announce",
-        "publishedAt": "2026-09-27T05:41:35.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2103963215885701493",
-        "zh": "下周会有更多重置。",
-        "en": "More resets coming next week"
-      }
-    ]
-  },
-  {
-    "id": "reset-2103963215885701493-1-2",
     "type": "reset",
     "status": "announced",
     "scope": null,
