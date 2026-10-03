@@ -60,12 +60,14 @@ jobs:
             exit 0
           fi
           # 竞态防护：检出与 push 之间若有别的推送进了 main（人工编辑或另一个
-          # sync），push 会被拒。rebase 到最新 main 后重试几次。
+          # sync），push 会被拒。rebase 到最新 main 后重试几次。rebase 中途
+          # 冲突会卡在 rebase-in-progress 状态，先 abort 掉再重试。
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push; then
               exit 0
             fi
             echo "Push attempt $attempt failed; retrying..."
+            git rebase --abort 2>/dev/null || true
             sleep $((attempt * 10))
           done
           exit 1

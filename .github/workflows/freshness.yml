@@ -1,0 +1,21 @@
+name: Freshness tripwire
+
+on:
+  schedule:
+    # 每 6 小时（:41 错开整点高峰）自查两条机器同步链路的数据新鲜度：
+    # 读仓库里 resets.ts / aweshare.ts 的 checkedAt，超过 48h 没推进就红。
+    # 独立成一个工作流是刻意的——它监控的就是 Sync 工作流本身，跑在里面
+    # 的话 Sync 死了它也跟着死（2026-09-30 起 resets 同步连红 33 次没人
+    # 发现，就是缺这个不在故障链上的哨兵）。零依赖，不装包不联网。
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check registry freshness
+        run: node scripts/check-freshness.mjs
