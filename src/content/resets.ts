@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-03T10:10:37.497+08:00",
+  "checkedAt": "2026-10-03T13:50:00.814+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,6 +16,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "reset-2106239435461579088-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "Pro",
+    "confirmedAt": "2026-10-03T12:26:28.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-03T12:26:28.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106239435461579088",
+        "zh": "全部修好了。",
+        "en": "All fixed."
+      }
+    ]
+  },
   {
     "id": "reset-2105843926221660585-1-1",
     "type": "reset",
@@ -39,6 +58,20 @@ export const resets = validateResets(
         "url": "https://x.com/thsottiaux/status/2106131810921136451",
         "zh": "全部重置已下发完成。尽情享用。",
         "en": "Reset all propagated. Enjoy."
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-03T12:01:28.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106233145163141249",
+        "zh": "看到一些报告说 Pro 500 没有像之前预期的那样获得重置。正在调查，并会补上。",
+        "en": "Seeing some reports that the Pro 500 didn’t get the reset as expected earlier. Investigating and will make up for it"
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-03T12:28:21.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106239912932692085",
+        "zh": "是的，没有，那是我的错，没能在上午10点把它完美地下发出去。下次这件事会规划得更好，抱歉。",
+        "en": "Yeah no, that was my bad for not propagating it at 10am quite perfectly. This is something that will be better planned next time, apologies."
       }
     ]
   },
