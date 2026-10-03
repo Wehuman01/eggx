@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-03T21:20:33.976+08:00",
+  "checkedAt": "2026-10-04T02:00:02.874+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
