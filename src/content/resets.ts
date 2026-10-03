@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-09-30T08:30:17.930+08:00",
+  "checkedAt": "2026-10-03T10:10:37.497+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,6 +16,51 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "reset-2105843926221660585-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-10-03T05:18:48.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-10-03T01:00:00.000+08:00",
+    "scheduleThrough": "2026-10-03T02:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-10-02T10:14:51.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2105843926221660585",
+        "zh": "全球重置将于明天太平洋时间上午10点落地，面向所有付费 ChatGPT 账户。",
+        "en": "Global reset landing tomorrow 10am PST for all paid ChatGPT accounts."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-03T05:18:48.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106131810921136451",
+        "zh": "全部重置已下发完成。尽情享用。",
+        "en": "Reset all propagated. Enjoy."
+      }
+    ]
+  },
+  {
+    "id": "banked-2105173168281506088-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-09-30T13:49:30.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-09-30T13:49:30.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2105173168281506088",
+        "zh": "是的，查一下邮件",
+        "en": "Yes, check email"
+      }
+    ]
+  },
   {
     "id": "reset-2103963215885701493-1-1",
     "type": "card",
