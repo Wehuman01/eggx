@@ -40,6 +40,7 @@ jobs:
         run: |
           git config user.name "eggx-sync-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          committed=0
           commit_only() {
             # $1 = file, $2 = commit message
             if git diff --quiet -- "$1"; then
@@ -48,12 +49,13 @@ jobs:
             fi
             git add -- "$1"
             git commit -m "$2"
+            committed=1
           }
           # 先提交完本轮全部产物再 push：git pull --rebase 要求工作区干净，
           # 任一产物没提交，rebase 就拒绝执行，同步整体卡死。
           commit_only src/content/resets.ts "sync: codex resets from AIHOT"
           commit_only src/content/impatient.json "sync: freeze ended can't-wait round counts"
-          if git diff --quiet && git diff --cached --quiet; then
+          if [ "$committed" -eq 0 ]; then
             echo "Nothing to push."
             exit 0
           fi
