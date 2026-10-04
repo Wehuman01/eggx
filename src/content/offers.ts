@@ -307,28 +307,28 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
-    expiry: "2026-09-30",
+    expiry: null,
     url: "https://qoder.cn",
-    source: "https://docs.qoder.cn/events/flashoffer",
+    source: "https://docs.qoder.cn/events/100credits",
     actionUrl: "https://qoder.cn",
-    lastVerified: "2026-09-24",
+    lastVerified: "2026-10-04",
     zh: {
-      name: "Qoder CN：Qwen3.8-Flash 免费用到 9 月 30 日 + 每日 100 Credits",
+      name: "Qoder CN：每日 100 Credits 免费领（Qwen3.8-Flash 免费档已于 9-30 结束）",
       description:
-        "阿里 Qoder CN 编程平台的限时福利（9 月 18 日 10:00 起）：Qwen3.8-Flash 计费系数从 0.1× 降到 0.0×，调用不扣 Credits，免费至 9 月 30 日 23:59:59，自动生效、无需领取，Credits 余额为 0 也能用；覆盖桌面端、IDE、JetBrains 插件、CLI、QoderWake、Cloud Agents、移动端与网页版。同期叠加每日 100 通用 Credits：每天 10:00 开放新一轮领取（窗口持续到次日 10:00），仅限 Qoder CN 桌面端在用量面板（礼物图标）主动领取，每笔 30 天有效、未到期的可叠加保留，错过不补。",
+        "阿里 Qoder CN 编程平台的每日福利（2026-09-18 10:00 起，结束时间官方『另行公告』）：每天 10:00 开放新一轮领取，每账号每轮 100 通用 Credits，仅限 Qoder CN 桌面端在用量面板（左下角礼物图标）主动领取，错过不补；每笔自领取之日起 30 天有效，未到期的可叠加保留。Credits 覆盖 Qoder CN 全家桶（桌面端、IDE、JetBrains 插件、CLI、QoderWake、Cloud Agents、移动端与网页版）。此前的 Qwen3.8-Flash 0.0× 计费免费档已于 09-30 23:59:59 按官方公告结束，结束后按届时公示系数计费。",
       limits:
-        "Qwen3.8-Flash 活动期内不扣 Credits（至 9 月 30 日 23:59:59，结束后按届时公示系数计费）；每日 100 Credits 每账号每轮限领一次、每笔 30 天有效、未领取不累计到下一轮；面向 Qoder CN 个人用户（体验/专业/高级/旗舰版及会员卡用户，免费与试用期用户均可），企业订阅用户不适用",
+        "每日 100 通用 Credits：每账号每轮限领一次，仅桌面端可领，每笔 30 天有效、未领取不累计到下一轮；面向 Qoder CN 个人用户（体验/专业/高级/旗舰版及会员卡用户，免费与试用期用户均可），企业订阅用户不适用",
       caveat:
-        "2026-09-24 核实 Qoder 官方文档活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：免费档期、计费系数 0.1×→0.0×、自动生效、每日 100 Credits 规则均与官方一致。09-18 收录时「国际版也有份」的说法来自公众号「数字生命Q」投稿，官方活动页仅写 Qoder CN，故限定为 Qoder CN。每日 Credits 活动官方未公布结束时间（『另行公告』）；本条 expiry 取 Flash 免费档截止 09-30，其后 Credits 活动是否延续以官方公告为准。高峰期官方提示响应可能变慢。",
+        "2026-09-24 核实官方活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：Flash 免费档、每日 100 Credits 规则均与官方一致。2026-10-04 复核 /events/100credits：活动仍 live、结束时间仍为『另行公告』，故 expiry 从原按 Flash 档设定的 09-30 改为 null；Flash 0.0× 档已按官方公告于 09-30 结束，本条目改为聚焦仍在进行的每日 Credits 活动。09-18 收录时「国际版也有份」的说法来自公众号投稿，官方活动页仅写 Qoder CN，仍限定为 Qoder CN。",
     },
     en: {
-      name: "Qoder CN: Qwen3.8-Flash free through Sep 30 + 100 daily Credits",
+      name: "Qoder CN: 100 free Credits daily (Qwen3.8-Flash free window ended Sep 30)",
       description:
-        "A limited-time perk on Alibaba's Qoder CN coding platform (from Sep 18, 10:00): Qwen3.8-Flash's billing multiplier drops from 0.1x to 0.0x — calls burn no Credits, free through Sep 30 23:59:59, effective automatically with no claim needed, usable even at a zero Credit balance; covers desktop, IDE, JetBrains plugin, CLI, QoderWake, Cloud Agents, mobile and web. Stacked on top: 100 general Credits per day — a new round opens daily at 10:00 (window lasts until the next day's 10:00), claimable only in the Qoder CN desktop app from the usage panel (gift icon); each grant lasts 30 days, unexpired grants stack, and missed rounds are not made up.",
+        "A daily perk on Alibaba's Qoder CN coding platform (from 2026-09-18 10:00, end date officially \"to be announced\"): a new claim round opens daily at 10:00, granting 100 general Credits per account per round, claimable only in the Qoder CN desktop app from the usage panel (gift icon, bottom-left); missed rounds are not made up. Each grant expires 30 days after it is claimed; unexpired grants stack. Credits work across the Qoder CN product family (desktop, IDE, JetBrains plugin, CLI, QoderWake, Cloud Agents, mobile, web). The earlier Qwen3.8-Flash 0.0x free-billing window ended on 09-30 23:59:59 per the official notice — calls are billed at the then-published multipliers afterwards.",
       limits:
-        "Qwen3.8-Flash costs zero Credits during the event (through Sep 30 23:59:59; billed at then-published rates afterwards); 100 daily Credits, one claim per account per round, each grant valid 30 days, unclaimed rounds don't carry over; for Qoder CN individual users (trial/pro/max/ultra and member-card tiers, free and trial users included), enterprise subscriptions excluded",
+        "100 general Credits daily: one claim per account per round, desktop app only, each grant valid 30 days, unclaimed rounds don't carry over; for Qoder CN individual users (trial/pro/max/ultra and member-card tiers, free and trial users included), enterprise subscriptions excluded",
       caveat:
-        "Verified 2026-09-24 against Qoder's official docs event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the free window, 0.1x→0.0x multiplier, auto-activation, and daily-100-Credits rules all match. The \"international edition included\" claim from the original Sep 18 submission (WeChat account 数字生命Q) is not on the official page, which covers Qoder CN only — the entry is scoped to Qoder CN accordingly. No end date is published for the daily-Credits event (\"to be announced\"); this entry's expiry follows the Flash free window (Sep 30), and whether the Credits event continues after that is up to official announcements. Qoder notes responses may be slow at peak times.",
+        "Verified 2026-09-24 against the official event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the Flash free window and the daily-100-Credits rules both matched. Re-checked 2026-10-04 on /events/100credits: the event is still live with the end still \"to be announced\", so expiry moved from the 09-30 set by the Flash window to null; the Flash 0.0x window ended on 09-30 as announced, and the entry now focuses on the still-running daily Credits event. The \"international edition included\" claim from the original Sep 18 submission is still not on the official page — scoped to Qoder CN.",
     },
   },
   {
@@ -451,27 +451,27 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
-    expiry: "2026-10-01",
+    expiry: null,
     url: "https://openrouter.ai/stealth/space-bunny-alpha",
     source: "https://openrouter.ai/stealth/space-bunny-alpha",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-09-24",
+    lastVerified: "2026-10-04",
     zh: {
-      name: "OpenRouter stealth/space-bunny-alpha 免费模型（至 10-01）",
+      name: "OpenRouter stealth/space-bunny-alpha 免费模型（$0，截止日未公布）",
       description:
         "OpenRouter 的零价格空格模型 space-bunny-alpha（Space Bunny Alpha）：匿名大模型、推理速度快、编码能力强、原生多模态输入，1M 上下文窗口。定价 prompt 与 completion 均为 $0，走 OpenRouter stealth/ 命名空间的零价格车道（与 stealth/union-alpha 同类），不带 :free 后缀、不占 :free 模型的每日共享配额。申请 OpenRouter API key 后可在任意 agent 中调用",
       limits: "定价 $0，不占 :free 每日配额；具体用量与限速官方未公布",
       caveat:
-        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。活动期约一周，为 2026-09-24 登记时按「一周」推算设定 expiry=2026-10-01——OpenRouter 官方未公布精确截止日，若提前下线以模型选择器实际展示为准（届时标 archived 归档）。",
+        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。2026-10-04 再次复核官方 API：模型仍在架、prompt/completion 定价仍为 $0，已超过登记时按「一周」推算的 expiry=2026-10-01（条目随之短暂进入过期区）；OpenRouter 未公布 stealth 车道的截止日，expiry 改回 null，下线以模型选择器实际展示为准（届时标 archived 归档）。",
     },
     en: {
-      name: "OpenRouter stealth/space-bunny-alpha Free Lane (through Oct 1)",
+      name: "OpenRouter stealth/space-bunny-alpha Free Lane ($0, no published end date)",
       description:
         "OpenRouter's zero-price stealth model space-bunny-alpha (Space Bunny Alpha): an anonymous large model with fast inference, strong coding capability and native multimodal input, in a 1M-token context window. Both prompt and completion are priced at $0; it runs on OpenRouter's stealth/ zero-price lane, carries no :free suffix and does not count against the shared daily :free cap. With an OpenRouter API key you can call it from any agent.",
       limits:
         "Priced at $0 and outside the :free daily quota; per-usage caps and rate limits not published",
       caveat:
-        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. The run is roughly a one-week limited campaign; expiry=2026-10-01 was set at registration from that one-week estimate — OpenRouter publishes no exact end date, so if the lane is pulled early the model selector is ground truth (mark archived then).",
+        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. Re-checked 2026-10-04 against the official API: the model is still live at $0 prompt/completion, past the expiry=2026-10-01 that registration had estimated from a one-week run (the entry briefly moved to the expired section meanwhile); OpenRouter publishes no end date for the stealth lane, so expiry is back to null — if the lane is pulled, the model selector is ground truth (mark archived then).",
     },
   },
   {
