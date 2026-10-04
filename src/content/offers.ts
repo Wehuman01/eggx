@@ -132,7 +132,7 @@ export const offers = validateRegistry([
     url: "https://zcode.z.ai/en",
     source: "https://docs.z.ai/devpack/notice/event-glm-5.3-flash",
     actionUrl: "https://zcode.z.ai/en",
-    lastVerified: "2026-09-24",
+    lastVerified: "2026-10-04",
     zh: {
       name: "ZCode 夜间免额度活动：GLM-5.3-Flash 每晚 23:00–09:00 零消耗（至 10-07）",
       description:
@@ -140,7 +140,7 @@ export const offers = validateRegistry([
       limits:
         "夜间窗口经 ZCode 用 GLM-5.3-Flash 不限量（需 ZCode ≥ 3.10，且 5 小时/周额度未耗尽）",
       caveat:
-        "周末节假日同样适用；仅限 GLM-5.3-Flash，GLM-5.3 照常扣额度；需付费 Coding Plan。2026-09-24 复核官方公告：活动结束日已从 09-20 延期至 10-07（官方原文 \"the campaign end date has been extended from September 20 to October 7\"），规则不变。此前条目中的「新人 5 天免费试用」在 09-24 复核时已从公告页移除、无法再核实，故删去。",
+        "周末节假日同样适用；仅限 GLM-5.3-Flash，GLM-5.3 照常扣额度；需付费 Coding Plan。2026-09-24 复核官方公告：活动结束日已从 09-20 延期至 10-07（官方原文 \"the campaign end date has been extended from September 20 to October 7\"），规则不变。此前条目中的「新人 5 天免费试用」在 09-24 复核时已从公告页移除、无法再核实，故删去。2026-10-04 复核官方公告页：活动期与规则未变（9 月 3 日至 10 月 7 日），公告页上仍无「每日登录赠送」类活动。",
     },
     en: {
       name: "ZCode Nightly Free Campaign: zero-quota GLM-5.3-Flash 23:00–09:00 nightly (through Oct 7)",
@@ -149,7 +149,37 @@ export const offers = validateRegistry([
       limits:
         "Nightly GLM-5.3-Flash via ZCode is unlimited (needs ZCode ≥ 3.10 and non-exhausted 5-hour/weekly quota)",
       caveat:
-        "Weekends and holidays included; GLM-5.3-Flash only — GLM-5.3 still burns quota; requires a paid Coding Plan. Re-verified 2026-09-24 against the official notice: the end date was extended from Sep 20 to Oct 7 (official wording \"the campaign end date has been extended from September 20 to October 7\"), rules unchanged. The 5-day new-user trial previously listed here was gone from the notice page at the Sep 24 re-check and could no longer be verified, so it has been removed.",
+        "Weekends and holidays included; GLM-5.3-Flash only — GLM-5.3 still burns quota; requires a paid Coding Plan. Re-verified 2026-09-24 against the official notice: the end date was extended from Sep 20 to Oct 7 (official wording \"the campaign end date has been extended from September 20 to October 7\"), rules unchanged. The 5-day new-user trial previously listed here was gone from the notice page at the Sep 24 re-check and could no longer be verified, so it has been removed. Re-verified 2026-10-04: the notice still reads Sep 3 – Oct 7 with unchanged rules, and no daily-login grant appears on it.",
+    },
+  },
+  {
+    id: "zcode-trust-patch-compensation",
+    provider: "Z.ai",
+    kind: "temporary",
+    access: "public",
+    verified: false,
+    expiry: "2026-10-07",
+    url: "https://zcode.z.ai/cn",
+    source: "https://finance.sina.com.cn/jjxw/2026-09-28/doc-initkhxe2993800.shtml",
+    actionUrl: "https://zcode.z.ai/cn",
+    lastVerified: "2026-10-04",
+    zh: {
+      name: "ZCode「Trust.patch」补偿：每日 1 亿 GLM-5.3-Flash Token 连发 10 天（9-28 至 10-07）",
+      description:
+        "智谱 ZCode 因「仓库快照上传」数据安全争议推出补偿方案（媒体称 Trust.patch/信任补丁，2026-09-28 10:30 起）：9 月 28 日至 10 月 7 日连续 10 天，每日面向全体用户发放 1 亿 GLM-5.3-Flash Token（每轮 10 万份名额），登录 ZCode 在客户端活动卡片领取、一天一轮；现有付费用户及一个月内回归的付费用户另获 4 张周额度重置卡 + 4 张 5 小时额度重置卡（回归权益窗口 1 个月）。",
+      limits:
+        "每日 1 亿 Token × 10 万份名额，一天一轮；8 张重置卡仅限现有付费用户及一个月内回归的付费用户，有效期 1 个月；token 使用范围与单份有效期官方未公布",
+      caveat:
+        "2026-10-04 核实：官方文档站（docs.z.ai）与 ZCode 更新日志均无此活动页（活动卡片在 ZCode 客户端内），故本条标社区来源（verified=false）。9-28 起点、每日 1 亿 Token × 10 万份、连续 10 天（9-28 至 10-07）、客户端活动卡片领取，均为新浪科技、搜狐、腾讯新闻、网易、凤凰网等多家媒体一致报道的官方方案口径；来源链接为新浪科技当日报道（已打开核实：9-28 至 10-7 发放十万份「1亿token」、面向全体用户、4+4 张重置卡细节一致）。活动结束日 10-07 为媒体报道口径，若延期或提前结束以客户端活动卡片实际展示为准。",
+    },
+    en: {
+      name: "ZCode \"Trust.patch\" compensation: 100M GLM-5.3-Flash tokens daily for 10 days (Sep 28 – Oct 7)",
+      description:
+        "Compensation plan from Zhipu's ZCode after the repository-snapshot upload controversy (dubbed Trust.patch by media, effective 2026-09-28 10:30): from Sep 28 through Oct 7, 100M GLM-5.3-Flash tokens are granted daily to all users (100,000 shares per round) — sign in to ZCode and claim from the in-client activity card, one round per day; existing paid users and paid users returning within a month additionally receive 4 weekly-quota reset cards + 4 five-hour reset cards (returning-user window: 1 month).",
+      limits:
+        "100M tokens daily × 100,000 shares per round, one round per day; the 8 reset cards are for existing paid users and paid users returning within a month, valid 1 month; token usage scope and per-grant validity not published",
+      caveat:
+        "Verified 2026-10-04: no campaign page exists on the official docs (docs.z.ai) or the ZCode changelog — the card lives inside the ZCode client, so this entry is community-sourced (verified=false). The Sep 28 start, daily 100M × 100k shares, 10-day run (Sep 28 – Oct 7), and in-client claim mechanics are consistent across Sina Tech, Sohu, Tencent News, NetEase and iFeng reports of the official plan; the source link is Sina Tech's same-day report (opened and checked: 100k shares of \"1亿token\" from Sep 28 to Oct 7 for all users, matching the 4+4 reset-card details). The Oct 7 end date follows media reports — if the campaign is extended or cut short, the in-client activity card is ground truth.",
     },
   },
   {
