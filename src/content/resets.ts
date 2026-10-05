@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-05T08:50:25.473+08:00",
+  "checkedAt": "2026-10-05T15:10:33.414+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,32 +16,6 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
-  {
-    "id": "reset-2106845241357824205-1-1",
-    "type": "reset",
-    "status": "announced",
-    "scope": null,
-    "confirmedAt": null,
-    "occurredOn": null,
-    "scheduleFrom": null,
-    "scheduleThrough": null,
-    "posts": [
-      {
-        "stage": "announce",
-        "publishedAt": "2026-10-05T04:33:43.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2106845241357824205",
-        "zh": "在接下来的 28 天里，我们每天要么发布一项对大多数 codex/work 用户来说明确有用且相关的改进，要么发放一次完整重置。",
-        "en": "Over the next 28 days, each day we’ll either ship one thing that is a clear improvement and relevant for most codex/work users or ship a full reset."
-      },
-      {
-        "stage": "announce",
-        "publishedAt": "2026-10-05T04:35:42.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2106845738814849339",
-        "zh": "我挑战你也这么做",
-        "en": "I challenge you to do the same"
-      }
-    ]
-  },
   {
     "id": "reset-2106239435461579088-1-1",
     "type": "reset",
