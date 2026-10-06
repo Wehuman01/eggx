@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-10-06T17:10:44.090Z",
+  "checkedAt": "2026-10-06T21:38:21.998Z",
   "count": 44
 };
 
@@ -273,12 +273,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T16:59:23.431Z",
+    "hubCheckAt": "2026-10-06T21:24:55.470Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 447270,
+    "usedDailyTokens": 4721992,
     "shareState": null
   },
   {
@@ -305,7 +305,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T16:59:13.370Z",
+    "hubCheckAt": "2026-10-06T21:24:53.482Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -337,7 +337,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T16:59:13.370Z",
+    "hubCheckAt": "2026-10-06T21:24:53.482Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -443,7 +443,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-10-06T17:00:54.033Z",
+    "degradedSince": "2026-10-06T20:18:54.807Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -458,7 +458,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-10-06T17:00:54.033Z",
+    "degradedSince": "2026-10-06T20:18:54.807Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -486,7 +486,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:06.287Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -501,7 +501,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:07.051Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -516,7 +516,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:07.507Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -531,7 +531,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:08.330Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -546,7 +546,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-23T01:41:41.825Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -561,7 +561,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:09.943Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -576,7 +576,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": null,
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -591,7 +591,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-24T02:50:52.079Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -606,7 +606,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": null,
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -621,7 +621,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": null,
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -636,7 +636,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:22.788Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -651,7 +651,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:23.212Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -666,7 +666,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:46.081Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -681,7 +681,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-09-17T09:05:55.876Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
