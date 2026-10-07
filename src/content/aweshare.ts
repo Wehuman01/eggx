@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-10-06T21:38:21.998Z",
+  "checkedAt": "2026-10-07T01:31:30.370Z",
   "count": 44
 };
 
@@ -273,12 +273,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T21:24:55.470Z",
+    "hubCheckAt": "2026-10-06T22:02:24.245Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 4721992,
+    "usedDailyTokens": 6927289,
     "shareState": null
   },
   {
@@ -305,7 +305,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T21:24:53.482Z",
+    "hubCheckAt": "2026-10-06T22:02:19.726Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -337,7 +337,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-06T21:24:53.482Z",
+    "hubCheckAt": "2026-10-06T22:02:19.726Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -443,7 +443,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-10-06T20:18:54.807Z",
+    "degradedSince": "2026-10-07T01:19:41.265Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -458,7 +458,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-10-06T20:18:54.807Z",
+    "degradedSince": "2026-10-07T01:19:41.265Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
