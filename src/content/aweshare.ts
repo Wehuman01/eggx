@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-10-08T01:55:22.488Z",
+  "checkedAt": "2026-10-08T08:56:18.650Z",
   "count": 44
 };
 
@@ -273,12 +273,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-08T01:42:58.888Z",
+    "hubCheckAt": "2026-10-08T08:51:20.336Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 23268,
+    "usedDailyTokens": 100705,
     "shareState": null
   },
   {
@@ -305,7 +305,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-08T01:42:54.222Z",
+    "hubCheckAt": "2026-10-08T08:51:16.127Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -337,7 +337,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-08T01:42:54.222Z",
+    "hubCheckAt": "2026-10-08T08:51:16.127Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
@@ -443,7 +443,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-10-08T00:49:47.973Z",
+    "degradedSince": "2026-10-08T07:19:21.728Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -458,7 +458,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-10-08T00:49:47.973Z",
+    "degradedSince": "2026-10-08T07:19:21.728Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
