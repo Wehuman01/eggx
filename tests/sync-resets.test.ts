@@ -62,6 +62,25 @@ describe("mapAihotEvent", () => {
     expect(event.posts.map((p: { stage: string }) => p.stage)).toEqual(["announce", "confirm", "note"]);
   });
 
+  it("maps every 进展 post of an in-progress event to a non-confirming note", () => {
+    const event = mapAihotEvent(
+      aihotEvent({
+        id: "banked-2107913674593644711-1-1",
+        type: "reset_credit",
+        status: "announced",
+        confirmedAt: null,
+        occurredOn: null,
+        posts: [
+          { id: "1", stage: "进展", publishedAt: "2026-10-08T03:19:17.000+08:00", text: "正在给所有付费账户加载一张重置卡。", originalText: "Loading a banked reset in everyone's paid accounts.", url: "https://x.com/thsottiaux/status/1" },
+          { id: "2", stage: "进展", publishedAt: "2026-10-08T03:19:33.000+08:00", text: "会在太平洋时间今天结束前到位。", originalText: "Will be there by EOD PST.", url: "https://x.com/thsottiaux/status/2" },
+        ],
+      }),
+    );
+    expect(event.status).toBe("announced");
+    expect(event.confirmedAt).toBeNull();
+    expect(event.posts.map((p: { stage: string }) => p.stage)).toEqual(["note", "note"]);
+  });
+
   it("sorts posts ascending even when upstream sends them newest first", () => {
     const event = mapAihotEvent(aihotEvent());
     const times = event.posts.map((p: { publishedAt: string }) => p.publishedAt);
