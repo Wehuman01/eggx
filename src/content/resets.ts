@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-08T10:00:21.365+08:00",
+  "checkedAt": "2026-10-08T17:00:26.364+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -19,9 +19,9 @@ export const resets = validateResets(
   {
     "id": "banked-2107913674593644711-1-1",
     "type": "card",
-    "status": "announced",
+    "status": "confirmed",
     "scope": "所有付费订阅",
-    "confirmedAt": null,
+    "confirmedAt": "2026-10-08T11:44:55.000+08:00",
     "occurredOn": null,
     "scheduleFrom": "2026-10-08T15:00:00.000+08:00",
     "scheduleThrough": "2026-10-08T15:00:00.000+08:00",
@@ -39,6 +39,13 @@ export const resets = validateResets(
         "url": "https://x.com/thsottiaux/status/2107913738791596286",
         "zh": "会在太平洋时间今天结束前到位。",
         "en": "Will be there by EOD PST."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-08T11:44:55.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2108040921044639779",
+        "zh": "已确认在所有账户中到账。",
+        "en": "Confirmed landed across all accounts."
       }
     ]
   },
