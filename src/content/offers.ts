@@ -218,11 +218,12 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
+    archived: true,
     expiry: null,
     url: "https://bigmodel.cn/activity/trial-card/D1FDY1XXYQ",
     source: "https://bigmodel.cn/activity/trial-card/D1FDY1XXYQ",
     actionUrl: "https://bigmodel.cn/activity/trial-card/D1FDY1XXYQ",
-    lastVerified: "2026-09-19",
+    lastVerified: "2026-10-08",
     zh: {
       name: "GLM Coding Plan 7 天体验卡",
       description:
@@ -230,7 +231,7 @@ export const offers = validateRegistry([
       limits:
         "该邀请含 3 张体验卡，先到先得，领完即止；每张 7 天有效，支持 GLM-5.3 与 GLM-5.3-Flash",
       caveat:
-        "邀请制分享链接，数量有限；体验卡的领取规则与适用范围以 bigmodel.cn 活动页为准。",
+        "体验卡已领完：2026-10-08 核实 3 张邀请卡全部发放完毕、邀请链接不再出卡，本条仅作归档。原记录：邀请制分享链接，数量有限；体验卡的领取规则与适用范围以 bigmodel.cn 活动页为准。",
     },
     en: {
       name: "GLM Coding Plan 7-Day Trial Card",
@@ -239,7 +240,7 @@ export const offers = validateRegistry([
       limits:
         "This invite carries 3 trial cards, first come first served; each card lasts 7 days and covers GLM-5.3 and GLM-5.3-Flash",
       caveat:
-        "Invite-based link with limited cards; claim rules and eligibility follow the bigmodel.cn activity page.",
+        "Trial cards exhausted: verified 2026-10-08 that all 3 invite cards have been claimed and the link no longer issues cards; archived. Original note: invite-based link with limited cards; claim rules and eligibility follow the bigmodel.cn activity page.",
     },
   },
   {
