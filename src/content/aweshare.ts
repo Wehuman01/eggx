@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-10-10T00:48:46.319Z",
+  "checkedAt": "2026-10-10T07:04:59.055Z",
   "count": 44
 };
 
@@ -130,7 +130,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-09T20:05:07.968Z",
+    "hubCheckAt": "2026-10-10T05:13:37.622Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 3,
@@ -146,12 +146,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-09T20:05:23.572Z",
+    "hubCheckAt": "2026-10-10T05:13:58.202Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 5,
     "dailyTokens": 50000000,
-    "usedDailyTokens": 8777460,
+    "usedDailyTokens": 12199829,
     "shareState": null
   },
   {
@@ -351,7 +351,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "online",
+    "status": "offline",
     "hubCheckAt": "2026-09-17T09:04:53.971Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -366,7 +366,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "online",
+    "status": "offline",
     "hubCheckAt": "2026-09-19T06:31:47.250Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -443,7 +443,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-10-10T00:35:53.820Z",
+    "degradedSince": "2026-10-10T05:57:54.632Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -458,7 +458,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-10-10T00:35:53.820Z",
+    "degradedSince": "2026-10-10T05:57:54.632Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
