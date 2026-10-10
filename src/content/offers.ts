@@ -392,6 +392,66 @@ export const offers = validateRegistry([
     },
   },
   {
+    id: "opencode-zen-free-rotation",
+    provider: "OpenCode",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    url: "https://opencode.ai/zen",
+    source: "https://opencode.ai/docs/zen",
+    actionUrl: "https://opencode.ai/auth",
+    lastVerified: "2026-10-10",
+    zh: {
+      name: "OpenCode Zen 免费车道（长期轮换）",
+      description:
+        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。下载 opencode 登录即用，免费车道无需充值、无需绑卡。当前阵容（2026-10-10 核实，共 13 款）：Step 5 Preview（新上架，官方 X 称免费一周、1M 上下文、多模态）、Space Bunny、LongCat 2.5 Preview、Exo、MiMo V2.6 Flash / V2.5、Ling 3.1 Flash / 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、Big Pickle、Muse Spark 1.3 Contributor、Jev 1.13。限时免费的新模型下架后，车道会补上下一批。",
+      limits:
+        "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
+      caveat:
+        "单个模型都是限时免费、到期即下架车道。免费期数据政策分三档（2026-10-10 依官方文档核实）：Space Bunny、LongCat 2.5 Preview、Step 5 Preview 供应商零留存、不用于训练；Big Pickle、Exo、MiMo 两款、Ling 两款免费期数据可能用于改进模型；Nemotron 两款走 NVIDIA 免费端点（试用性质，会记录用量但不关联身份，勿提交敏感数据）。Muse Spark 1.3 Contributor 免费期数据用于改进模型；Jev 免费档未给数据说明。",
+    },
+    en: {
+      name: "OpenCode Zen Free Lane (Rotating)",
+      description:
+        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Free models work in the opencode client right after sign-in — no top-up, no card. Current lineup (verified 2026-10-10, thirteen lanes): Step 5 Preview (new arrival, officially announced as free for a week with 1M context and multimodal input), Space Bunny, LongCat 2.5 Preview, Exo, MiMo V2.6 Flash / V2.5, Ling 3.1 Flash / 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, Big Pickle, Muse Spark 1.3 Contributor, and Jev 1.13. As one limited-time model leaves, the next batch lands.",
+      limits:
+        "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
+      caveat:
+        "Each model is individually limited-time free and leaves the lane when it ends. Free-period data policies come in three tiers (per the official docs, verified 2026-10-10): Space Bunny, LongCat 2.5 Preview, and Step 5 Preview ride zero-retention providers with no training use; Big Pickle, Exo, both MiMo lanes, and both Ling lanes may use free-period data to improve the model; both Nemotron lanes ride NVIDIA free endpoints (trial use, usage logged but not linked to identity — don't submit sensitive data). Muse Spark 1.3 Contributor's free-period data improves the model; Jev's free lane states no data policy.",
+    },
+  },
+  {
+    id: "opencode-zen-rotation-retirees",
+    provider: "OpenCode",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    archived: true,
+    expiry: null,
+    url: "https://opencode.ai/zen",
+    source: "https://opencode.ai/docs/zen",
+    actionUrl: "https://opencode.ai/auth",
+    lastVerified: "2026-10-10",
+    zh: {
+      name: "OpenCode Zen 免费车道：已下架的轮换模型（GLM 4.7、MiniMax M2.1、Union Alpha 等）",
+      description:
+        "OpenCode Zen 免费车道的历史轮换档：GLM 4.7、MiniMax M2.1、Union Alpha、Muse Spark 1.2 等先后限时免费，现已全部下架（部分转入付费档），不再可零价格调用。车道本身仍在营、持续补新——当前主推 Step 5 Preview（免费一周、1M 上下文、多模态），领取方式与现行阵容见「OpenCode Zen 免费车道（长期轮换）」条目。",
+      limits:
+        "历史各档在免费期内均为零价格调用，配额未公布；下架后模型转入付费档或直接退役",
+      caveat:
+        "历史归档条目（2026-10-10 整理）：所列模型已全部离开免费车道，本条仅作追溯。现行阵容、领取方式与数据政策以 opencode-zen-free-rotation 条目为准（当前主推 Step 5 Preview）。",
+    },
+    en: {
+      name: "OpenCode Zen free lane: retired rotation models (GLM 4.7, MiniMax M2.1, Union Alpha, etc.)",
+      description:
+        "Historical turns of OpenCode Zen's free lane: GLM 4.7, MiniMax M2.1, Union Alpha, and Muse Spark 1.2 all had limited-time free stints and have since left the lane (some moved to paid tiers) — no longer callable at price zero. The lane itself keeps running and restocking: the current headliner is Step 5 Preview (free for a week, 1M context, multimodal). See the OpenCode Zen Free Lane (Rotating) entry for how to claim it and the current lineup.",
+      limits:
+        "Each historical turn was zero-price during its free window with unpublished quotas; once a model leaves it either moves to a paid tier or retires",
+      caveat:
+        "Historical archive entry (compiled 2026-10-10): every model listed here has left the free lane; this entry exists for the record only. For the current lineup, claiming steps, and data policies, the opencode-zen-free-rotation entry is authoritative (currently headlined by Step 5 Preview).",
+    },
+  },
+  {
     id: "aihubmix",
     provider: "AIHubMix",
     kind: "long-term",
@@ -503,35 +563,6 @@ export const offers = validateRegistry([
         "Free routes never charge your balance; the official free tier is metered by list-price value of usage over a personal rolling 7x24-hour window from your first request — whether this campaign has its own allowance or draws on the free tier is not published; new accounts start at $0 with no sign-up credit; free-route prompts and responses may be retained by Token Harbor after you enable free models",
       caveat:
         "No separate end date is published for the :free route itself; the expiry of 2026-10-15 comes from the official FAQ's Haiku 5.5 Model Boost window and the official X post's free-for-a-week wording. Free-route terms: after enabling free models, prompts/responses may be retained by Token Harbor — don't send sensitive content. The :free catalogue rotates; once a lane leaves the list the route is gone. The Models page Free section is the source of truth.",
-    },
-  },
-  {
-    id: "opencode-zen-free-rotation",
-    provider: "OpenCode",
-    kind: "long-term",
-    access: "public",
-    verified: true,
-    url: "https://opencode.ai/zen",
-    source: "https://opencode.ai/docs/zen",
-    actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-10",
-    zh: {
-      name: "OpenCode Zen 免费车道（长期轮换）",
-      description:
-        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。下载 opencode 登录即用，免费车道无需充值、无需绑卡。当前阵容（2026-10-10 核实，共 13 款）：Step 5 Preview（新上架，官方 X 称免费一周、1M 上下文、多模态）、Space Bunny、LongCat 2.5 Preview、Exo、MiMo V2.6 Flash / V2.5、Ling 3.1 Flash / 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、Big Pickle、Muse Spark 1.3 Contributor、Jev 1.13。限时免费的新模型下架后，车道会补上下一批。",
-      limits:
-        "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
-      caveat:
-        "单个模型都是限时免费、到期即下架车道。免费期数据政策分三档（2026-10-10 依官方文档核实）：Space Bunny、LongCat 2.5 Preview、Step 5 Preview 供应商零留存、不用于训练；Big Pickle、Exo、MiMo 两款、Ling 两款免费期数据可能用于改进模型；Nemotron 两款走 NVIDIA 免费端点（试用性质，会记录用量但不关联身份，勿提交敏感数据）。Muse Spark 1.3 Contributor 免费期数据用于改进模型；Jev 免费档未给数据说明。",
-    },
-    en: {
-      name: "OpenCode Zen Free Lane (Rotating)",
-      description:
-        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Free models work in the opencode client right after sign-in — no top-up, no card. Current lineup (verified 2026-10-10, thirteen lanes): Step 5 Preview (new arrival, officially announced as free for a week with 1M context and multimodal input), Space Bunny, LongCat 2.5 Preview, Exo, MiMo V2.6 Flash / V2.5, Ling 3.1 Flash / 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, Big Pickle, Muse Spark 1.3 Contributor, and Jev 1.13. As one limited-time model leaves, the next batch lands.",
-      limits:
-        "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
-      caveat:
-        "Each model is individually limited-time free and leaves the lane when it ends. Free-period data policies come in three tiers (per the official docs, verified 2026-10-10): Space Bunny, LongCat 2.5 Preview, and Step 5 Preview ride zero-retention providers with no training use; Big Pickle, Exo, both MiMo lanes, and both Ling lanes may use free-period data to improve the model; both Nemotron lanes ride NVIDIA free endpoints (trial use, usage logged but not linked to identity — don't submit sensitive data). Muse Spark 1.3 Contributor's free-period data improves the model; Jev's free lane states no data policy.",
     },
   },
   {
