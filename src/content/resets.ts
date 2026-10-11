@@ -8,7 +8,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-10T15:10:14.625+08:00",
+  "checkedAt": "2026-10-11T06:10:22.166+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -16,6 +16,32 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "reset-2109045392684032299-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-10-11T12:01:09.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-10-11T15:00:00.000+08:00",
+    "scheduleThrough": "2026-10-11T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-10-11T06:16:20.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2109045392684032299",
+        "zh": "全球重置，今天结束前完成。",
+        "en": "Global reset by EOD."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-11T12:01:09.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2109132167112782291",
+        "zh": "重置已到手。全部下发完成。",
+        "en": "Put the reset in the bag. All propagated."
+      }
+    ]
+  },
   {
     "id": "banked-2107913674593644711-1-1",
     "type": "card",
