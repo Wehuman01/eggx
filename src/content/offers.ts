@@ -36,29 +36,29 @@ export const offers = validateRegistry([
     provider: "TypeSafe AI",
     kind: "temporary",
     access: "public",
-    verified: true,
+    verified: false,
     expiry: null,
     url: "https://typesafe.ai/",
     source: "https://x.com/typesafeai/status/2101786280946499671",
     actionUrl: "https://console.typesafe.ai/",
-    lastVerified: "2026-09-21",
+    lastVerified: "2026-10-11",
     zh: {
-      name: "TypeSafe AI 注册送 $5 额度（Jev 决策模型，约 1.2 亿 token）",
+      name: "TypeSafe AI：Jev 早期访问，注册送 $5 口径待确认（约 1.2 亿 token）",
       description:
-        "TypeSafe AI 于 2026-09-21（北京时间）官宣旗舰模型 Jev 全面开放、取消 waitlist，所有注册用户开局送 $5 额度（官方口径约 120 million tokens）。Jev（jev-1.13.0）是「System One」结构化决策模型：传入 state 与类型化问题（Choice 选项 / Score 打分 / Noul 是非判断），返回带概率与置信度的类型化结果，面向分类、路由、抽取、guardrails 等高频判断场景——它不生成文本，不是编码模型。注册走 Google OAuth 或邮箱验证码，在控制台拿 API key 即用；官方另有 Claude Code / Codex 可装的 agent skill，用 Jev 做 agent 技能路由。",
+        "TypeSafe AI 的旗舰模型 Jev（jev-1.13.0）是「System One」结构化决策模型：传入 state 与类型化问题（Choice 选项 / Score 打分 / Noul 是非判断），返回带概率与置信度的类型化结果，面向分类、路由、抽取、guardrails 等高频判断场景——它不生成文本，不是编码模型。2026-09-21 官方曾公告全面开放、取消 waitlist、所有注册用户开局送 $5（官方口径约 120 million tokens）；2026-10-11 复核：官网已改回 early access 口径、waitlist 并未取消，$5 送额在官网、博客、文档站、console 登录页均已不再提及——注册是否仍送 $5 需实际注册账号确认。注册走 Google OAuth 或邮箱验证码，在控制台拿 API key 即用；官方另有 Claude Code / Codex 可装的 agent skill，用 Jev 做 agent 技能路由。",
       limits:
-        "新注册账号一次性 $5（官方口径约 120 million tokens）；Jev 计费仅收输入 token，$42/Btok（$0.042/Mtok），输出免费；限速 250,000 tokens/s、1,200 请求/分；额度有效期与活动截止时间未公布",
+        "Jev 计费仅收输入 token，$42/Btok（$0.042/Mtok），输出免费；限速 250,000 tokens/s、1,200 请求/分；$5 送额当前无法从官方页面核实（需注册 console 实测），额度有效期与活动截止时间未公布",
       caveat:
-        "2026-09-21 核实：官方 X 公告原文「All users start with $5 in credit (~120 million tokens)」，文档定价页确认计费口径。第三方「每月 $5 免费用量」的说法与官方一次性口径冲突，未采纳。注意这不是编码模型羊毛——Jev 只做结构化决策，对编码工作流的价值在 agent 管线的路由与判断环节。公司 2026-09-16 刚在 Robinhood Crypto 上线 $TYPESAFE 代币，官方文档自述限速仍在动态调整，充值前自行斟酌。",
+        "2026-09-21 曾核实官方 X 公告「All users start with $5 in credit (~120 million tokens)」与文档定价页。2026-10-11 复核：官网仅剩 early access 与 $42/Btok 计价，官方博客原文「available today in early access」「bringing developers off the waitlist as quickly as we can」——全面开放与取消 waitlist 的口径已回退，$5 送额全站不再提及，typesafe.ai/pricing 404；第三方「每月 $5 免费用量」的说法与官方一次性口径冲突，未采纳。本条改标社区待确认（verified=false）：$5 是否仍到账需注册 console 实测。注意这不是编码模型羊毛——Jev 只做结构化决策，对编码工作流的价值在 agent 管线的路由与判断环节。公司 2026-09-16 刚在 Robinhood Crypto 上线 $TYPESAFE 代币，官方文档自述限速仍在动态调整，充值前自行斟酌。",
     },
     en: {
-      name: "TypeSafe AI: $5 signup credit (Jev decision model, ~120M tokens)",
+      name: "TypeSafe AI: Jev in early access, $5 signup credit unconfirmed (~120M tokens)",
       description:
-        "On 2026-09-21 (Beijing time) TypeSafe AI announced general availability of its flagship model Jev with the waitlist removed — every account starts with $5 in credit (officially ~120 million tokens). Jev (jev-1.13.0) is a 'System One' structured-decision model: you send a state plus typed questions (Choice / Score / Noul) and get typed answers with probabilities and confidence, aimed at classification, routing, extraction, and guardrail loops — it generates no text and is not a coding model. Sign up via Google OAuth or an email code, grab an API key in the console, and go; there is also an agent skill for Claude Code / Codex that routes agent skills through Jev.",
+        "TypeSafe AI's flagship model Jev (jev-1.13.0) is a 'System One' structured-decision model: you send a state plus typed questions (Choice / Score / Noul) and get typed answers with probabilities and confidence, aimed at classification, routing, extraction, and guardrail loops — it generates no text and is not a coding model. On 2026-09-21 the company announced general availability with the waitlist removed and $5 in credit for every new account (officially ~120 million tokens); re-verified 2026-10-11: the site is back to an early-access framing, the waitlist is not removed, and the $5 credit is no longer mentioned anywhere on the site, blog, docs, or console sign-in — whether new accounts still get $5 needs an actual signup to confirm. Sign up via Google OAuth or an email code, grab an API key in the console, and go; there is also an agent skill for Claude Code / Codex that routes agent skills through Jev.",
       limits:
-        "One-time $5 per new account (officially ~120 million tokens); Jev charges input tokens only at $42/Btok ($0.042/Mtok), output free; rate limits 250,000 tokens/s and 1,200 requests/min; credit validity and campaign end date unpublished",
+        "Jev charges input tokens only at $42/Btok ($0.042/Mtok), output free; rate limits 250,000 tokens/s and 1,200 requests/min; the $5 credit can no longer be confirmed from official pages (needs a console signup to test); credit validity and campaign end date unpublished",
       caveat:
-        "Verified 2026-09-21: official X post reads 'All users start with $5 in credit (~120 million tokens)' and the docs pricing page confirms the billing math. A third-party claim of '$5/month free usage' conflicts with the official one-time wording and was not adopted. Note this is not a coding-model freebie — Jev only makes structured decisions; its value to coding workflows is routing and judgment steps in agent pipelines. The company listed a $TYPESAFE token on Robinhood Crypto on 2026-09-16, docs say rate limits are still adjusting dynamically, so think twice before topping up.",
+        "Verified 2026-09-21: the official X post read 'All users start with $5 in credit (~120 million tokens)' and the docs pricing page confirmed the billing math. Re-verified 2026-10-11: the site now shows only early access and $42/Btok billing; the official blog reads 'available today in early access' and 'bringing developers off the waitlist as quickly as we can' — the GA/waitlist-removed framing has rolled back, the $5 credit is gone from every page, and typesafe.ai/pricing 404s. A third-party claim of '$5/month free usage' conflicts with the official one-time wording and was not adopted. Downgraded to community-unconfirmed (verified=false): whether $5 still lands needs a console signup to test. Note this is not a coding-model freebie — Jev only makes structured decisions; its value to coding workflows is routing and judgment steps in agent pipelines. The company listed a $TYPESAFE token on Robinhood Crypto on 2026-09-16, docs say rate limits are still adjusting dynamically, so think twice before topping up.",
     },
   },
   {
@@ -100,26 +100,26 @@ export const offers = validateRegistry([
     verified: true,
     expiry: null,
     url: "https://cline.bot/",
-    source: "https://x.com/cline/status/2099536235350086029",
+    source: "https://docs.cline.bot/getting-started/free-models.md",
     actionUrl: "https://cline.bot/",
-    lastVerified: "2026-09-20",
+    lastVerified: "2026-10-11",
     zh: {
-      name: "Cline Desktop 桌面端免费模型（DeepSeek-V4.1-Flash、Musespark-1.3）",
+      name: "Cline 免费模型（IDE/CLI 登录即用，名单轮换）",
       description:
-        "Cline 官方 2026-09-14 发布的开源桌面端 Cline Desktop，面向开放权重模型的原生界面（并行多智能体、插件/MCP 市场、技能等）。发布推文确认内置免费模型 DeepSeek-V4.1-Flash 与 Musespark-1.3，登录即用，也可配 ClinePass 订阅或自带 API key。macOS 与 Windows（beta）可下载。",
+        "Cline 为登录用户提供限时免费模型（官方文档专页原文「Limited-time free model promotions for users with a Cline account」）：模型选择器中带 FREE 标签、登录即用，无需充值绑卡，也可配 ClinePass 订阅或自带 API key。免费名单官方称会轮换（「The specific free models available may change over time」），当前官方口径的适用范围是 Cline IDE 插件与 CLI——2026-09-14 发布推文曾确认桌面端内置 DeepSeek-V4.1-Flash 与 Musespark-1.3，但 2026-10-11 复核时官方文档与首页已不再点名这两个型号，Desktop 端是否仍内置需装 app 看选择器。macOS 与 Windows（beta）可下载。",
       limits:
-        "免费模型在模型选择器中带 FREE 标签，登录即用，无需充值绑卡；官方未公布具体用量上限",
+        "免费模型在模型选择器中带 FREE 标签，登录即用，无需充值绑卡；官方明确免费模型仅限 Cline IDE Extension 与 CLI、不经 Cline API；当前名单与用量上限未公布，以应用内选择器为准",
       caveat:
-        "来自社区 issue 投稿，推文与官方博客已核实（2026-09-20）；投稿提到的 Kimi K3 未在官方渠道出现，未收录；官方未声明免费截止时间，下线以模型选择器实际展示为准。",
+        "来自社区 issue 投稿，2026-09-20 经推文与官方博客核实。2026-10-11 复核：官方文档专页（docs.cline.bot/getting-started/free-models.md）确认限时免费模型计划仍在，但全文未点名 DeepSeek-V4.1-Flash 与 Musespark-1.3，仅称名单会变；且专页写明「Free models are only available in the Cline IDE Extension and CLI」「Free model usage is not supported through the Cline API」。投稿提到的 Kimi K3 未在官方渠道出现，未收录；官方未声明免费截止时间，下线以模型选择器实际展示为准。",
     },
     en: {
-      name: "Cline Desktop Free Models (DeepSeek-V4.1-Flash, Musespark-1.3)",
+      name: "Cline Free Models (IDE/CLI after sign-in, rotating roster)",
       description:
-        "Cline's open-source desktop app announced 2026-09-14 — a native interface for open-weight models (parallel agents, a plugin/MCP marketplace, skills, and more). The launch tweet confirms built-in free models DeepSeek-V4.1-Flash and Musespark-1.3, usable right after sign-in; pair with a ClinePass subscription or bring your own API key. Available on macOS and Windows (beta).",
+        "Cline runs limited-time free model promotions for signed-in users (official docs page: \"Limited-time free model promotions for users with a Cline account\"): free models carry a FREE tag in the model selector and work right after sign-in — no top-up, no card; pair with a ClinePass subscription or bring your own API key. The roster rotates (\"The specific free models available may change over time\"), and the official scope today is the Cline IDE extension and CLI — the 2026-09-14 launch tweet confirmed DeepSeek-V4.1-Flash and Musespark-1.3 built into Desktop, but at the 2026-10-11 re-check neither model is named on the official docs or homepage anymore; whether Desktop still ships them needs an app install to see the selector. Available on macOS and Windows (beta).",
       limits:
-        "Free models carry a FREE tag in the model selector and work after sign-in, no top-up or card; no specific usage caps published",
+        "Free models carry a FREE tag in the model selector and work after sign-in, no top-up or card; officially scoped to the Cline IDE extension and CLI, not the Cline API; current roster and usage caps not published — the in-app selector is ground truth",
       caveat:
-        "Community-submitted via issue; verified against the tweet and official blog (2026-09-20). The submitter's Kimi K3 claim does not appear in official channels and was not included; no end date announced — the model selector is the source of truth.",
+        "Community-submitted via issue; verified against the tweet and official blog (2026-09-20). Re-checked 2026-10-11: the official docs page (docs.cline.bot/getting-started/free-models.md) confirms the limited-time free-model program is still running, but it names neither DeepSeek-V4.1-Flash nor Musespark-1.3, saying only that the roster changes; the page also states \"Free models are only available in the Cline IDE Extension and CLI\" and \"Free model usage is not supported through the Cline API\". The submitter's Kimi K3 claim does not appear in official channels and was not included; no end date announced — the model selector is the source of truth.",
     },
   },
   {
@@ -192,7 +192,7 @@ export const offers = validateRegistry([
     url: "https://zcode.z.ai/cn",
     source: "https://zcode.z.ai/cn/changelog",
     actionUrl: "https://zcode.z.ai/cn",
-    lastVerified: "2026-09-24",
+    lastVerified: "2026-10-11",
     zh: {
       name: "ZCode 周末计划：免费领体验额度",
       description:
@@ -253,7 +253,7 @@ export const offers = validateRegistry([
     url: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
     source: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
     actionUrl: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
-    lastVerified: "2026-09-26",
+    lastVerified: "2026-10-11",
     zh: {
       name: "智谱·杭州全城 Coding 计划：在杭购卡季卡减 44%、年卡减 51%（至 12-09）",
       description:
@@ -312,24 +312,24 @@ export const offers = validateRegistry([
     url: "https://qoder.cn",
     source: "https://docs.qoder.cn/events/100credits",
     actionUrl: "https://qoder.cn",
-    lastVerified: "2026-10-04",
+    lastVerified: "2026-10-11",
     zh: {
-      name: "Qoder CN：每日 100 Credits 免费领（Qwen3.8-Flash 免费档已于 9-30 结束）",
+      name: "Qoder CN：每日 100 Credits 免费领（Qwen3.8-Flash 免费档延长，结束日另行公告）",
       description:
-        "阿里 Qoder CN 编程平台的每日福利（2026-09-18 10:00 起，结束时间官方『另行公告』）：每天 10:00 开放新一轮领取，每账号每轮 100 通用 Credits，仅限 Qoder CN 桌面端在用量面板（左下角礼物图标）主动领取，错过不补；每笔自领取之日起 30 天有效，未到期的可叠加保留。Credits 覆盖 Qoder CN 全家桶（桌面端、IDE、JetBrains 插件、CLI、QoderWake、Cloud Agents、移动端与网页版）。此前的 Qwen3.8-Flash 0.0× 计费免费档已于 09-30 23:59:59 按官方公告结束，结束后按届时公示系数计费。",
+        "阿里 Qoder CN 编程平台的每日福利（2026-09-18 10:00 起，结束时间官方『另行公告』）：每天 10:00 开放新一轮领取，每账号每轮 100 通用 Credits，仅限 Qoder CN 桌面端在用量面板（左下角礼物图标）主动领取，错过不补；每笔自领取之日起 30 天有效，未到期的可叠加保留。Credits 覆盖 Qoder CN 全家桶（桌面端、IDE、JetBrains 插件、CLI、QoderWake、Cloud Agents、移动端与网页版）。Qwen3.8-Flash 0.0× 计费免费档原定 09-30 23:59:59 结束，官方已宣布延长：10 月 1 日起继续免费，结束时间将提前在活动页公告。",
       limits:
         "每日 100 通用 Credits：每账号每轮限领一次，仅桌面端可领，每笔 30 天有效、未领取不累计到下一轮；面向 Qoder CN 个人用户（体验/专业/高级/旗舰版及会员卡用户，免费与试用期用户均可），企业订阅用户不适用",
       caveat:
-        "2026-09-24 核实官方活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：Flash 免费档、每日 100 Credits 规则均与官方一致。2026-10-04 复核 /events/100credits：活动仍 live、结束时间仍为『另行公告』，故 expiry 从原按 Flash 档设定的 09-30 改为 null；Flash 0.0× 档已按官方公告于 09-30 结束，本条目改为聚焦仍在进行的每日 Credits 活动。09-18 收录时「国际版也有份」的说法来自公众号投稿，官方活动页仅写 Qoder CN，仍限定为 Qoder CN。",
+        "2026-09-24 核实官方活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：Flash 免费档、每日 100 Credits 规则均与官方一致。2026-10-04 复核 /events/100credits：活动仍 live、结束时间仍为『另行公告』，expiry 设为 null。2026-10-11 再次复核两个活动页：每日 100 Credits 仍 live、结束时间仍为『另行公告』；flashoffer 页明示 Flash 免费档「原定 9 月 30 日 23:59:59 结束，现已延长，10 月 1 日起继续免费」「结束时间将提前在本页公告」——09-30 结束的旧口径作废，expiry 维持 null。09-18 收录时「国际版也有份」的说法来自公众号投稿，官方活动页仅写 Qoder CN，仍限定为 Qoder CN。",
     },
     en: {
-      name: "Qoder CN: 100 free Credits daily (Qwen3.8-Flash free window ended Sep 30)",
+      name: "Qoder CN: 100 free Credits daily (Qwen3.8-Flash free window extended, end TBA)",
       description:
-        "A daily perk on Alibaba's Qoder CN coding platform (from 2026-09-18 10:00, end date officially \"to be announced\"): a new claim round opens daily at 10:00, granting 100 general Credits per account per round, claimable only in the Qoder CN desktop app from the usage panel (gift icon, bottom-left); missed rounds are not made up. Each grant expires 30 days after it is claimed; unexpired grants stack. Credits work across the Qoder CN product family (desktop, IDE, JetBrains plugin, CLI, QoderWake, Cloud Agents, mobile, web). The earlier Qwen3.8-Flash 0.0x free-billing window ended on 09-30 23:59:59 per the official notice — calls are billed at the then-published multipliers afterwards.",
+        "A daily perk on Alibaba's Qoder CN coding platform (from 2026-09-18 10:00, end date officially \"to be announced\"): a new claim round opens daily at 10:00, granting 100 general Credits per account per round, claimable only in the Qoder CN desktop app from the usage panel (gift icon, bottom-left); missed rounds are not made up. Each grant expires 30 days after it is claimed; unexpired grants stack. Credits work across the Qoder CN product family (desktop, IDE, JetBrains plugin, CLI, QoderWake, Cloud Agents, mobile, web). The Qwen3.8-Flash 0.0x free-billing window was originally set to end 09-30 23:59:59 but has been officially extended: it continues free from Oct 1, with the end date to be announced in advance on the event page.",
       limits:
         "100 general Credits daily: one claim per account per round, desktop app only, each grant valid 30 days, unclaimed rounds don't carry over; for Qoder CN individual users (trial/pro/max/ultra and member-card tiers, free and trial users included), enterprise subscriptions excluded",
       caveat:
-        "Verified 2026-09-24 against the official event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the Flash free window and the daily-100-Credits rules both matched. Re-checked 2026-10-04 on /events/100credits: the event is still live with the end still \"to be announced\", so expiry moved from the 09-30 set by the Flash window to null; the Flash 0.0x window ended on 09-30 as announced, and the entry now focuses on the still-running daily Credits event. The \"international edition included\" claim from the original Sep 18 submission is still not on the official page — scoped to Qoder CN.",
+        "Verified 2026-09-24 against the official event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the Flash free window and the daily-100-Credits rules both matched. Re-checked 2026-10-04 on /events/100credits: still live with the end \"to be announced\", so expiry moved to null. Re-checked 2026-10-11 on both pages: the daily 100 Credits event is still live with the end still \"to be announced\"; the flashoffer page states the Flash free window \"was originally set to end 23:59:59 on Sep 30, now extended, continuing free from Oct 1\" and \"the end date will be announced in advance on this page\" — the Sep-30-ended wording is retired, expiry stays null. The \"international edition included\" claim from the original Sep 18 submission is still not on the official page — scoped to Qoder CN.",
     },
   },
   {
@@ -337,12 +337,12 @@ export const offers = validateRegistry([
     provider: "Tencent WorkBuddy",
     kind: "temporary",
     access: "public",
-    verified: true,
+    verified: false,
     expiry: null,
     url: "https://www.workbuddy.ai/",
     source: "https://www.workbuddy.ai/",
     actionUrl: "https://www.workbuddy.ai/",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "WorkBuddy 国际版：Hy4 preview + DeepSeek V4.1 Flash 免费",
       description:
@@ -350,7 +350,7 @@ export const offers = validateRegistry([
       limits:
         "每日免费额度有限，触发限频需等待页面重置；Hy4 preview 不支持图像/视频等多模态任务（走其他模型正常扣积分）；国际版新用户注册送 350 积分",
       caveat:
-        "免费口径以官方计费页展示为准（2026-09-18 核实），官方未单独发布国际版公告。GitHub 一键登录有封号报告，建议邮箱注册。",
+        "免费口径以官方计费页展示为准（2026-09-18 核实），官方未单独发布国际版公告。2026-10-11 复核受限：官网为纯 JS 渲染、无法抓取正文（/changelog、/models、/billing 等路径 404）；官方文档（workbuddy.ai/docs/workbuddy/pricing）显示 Free 计划 100 credits/月 + 促销「30 credits / day」「all models available during the promotional period」，但未点名 Hy4 preview 与 DeepSeek V4.1 Flash 免费，也无「新用户 350 积分」口径——两个模型免费与 350 积分待人工登录页面核实，本条暂标社区待确认（verified=false）。GitHub 一键登录有封号报告，建议邮箱注册。",
     },
     en: {
       name: "WorkBuddy International: Hy4 preview + DeepSeek V4.1 Flash Free",
@@ -359,7 +359,7 @@ export const offers = validateRegistry([
       limits:
         "Daily free quota is rationed; hitting the rate limit waits for the on-page reset. Hy4 preview has no multimodal support (image/video tasks switch models and burn credits normally); international new users get 350 credits",
       caveat:
-        "The free terms follow the official billing page (verified 2026-09-18); there is no separate international announcement. GitHub one-click sign-in has ban reports; prefer email signup.",
+        "The free terms follow the official billing page (verified 2026-09-18); there is no separate international announcement. Re-check 2026-10-11 was limited: the website is a pure JS render whose body can't be fetched (/changelog, /models, /billing all 404); the official docs (workbuddy.ai/docs/workbuddy/pricing) show a Free plan of 100 credits/month plus a promotion of \"30 credits / day\" with \"all models available during the promotional period\", but neither Hy4 preview nor DeepSeek V4.1 Flash is named as free, and the \"350 credits for new users\" figure appears nowhere in the docs — the two free models and the 350 credits await a manual logged-in check, so this entry is temporarily community-unconfirmed (verified=false). GitHub one-click sign-in has ban reports; prefer email signup.",
     },
   },
   {
@@ -373,14 +373,14 @@ export const offers = validateRegistry([
     source: "https://www.scienceone.com.cn/portal/",
     actionUrl: "https://www.scienceone.com.cn/portal/",
     code: "DH26JYZ5684",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "磐石 SciencePro：新智元独家兑换码",
       description:
         "中科闻歌的 AI for Science 科研智能平台：深度研究（多智能体调研）、对话式科学计算、2.7 亿论文/专利文献库。新智元公众号发文送独家福利——注册后在平台内输入兑换码，领取独家福利积分，兑换的 token 直接到账。注意这是科研平台，不是编码工具。",
       limits: "积分/Token 到账数量未公布，以平台内实际到账为准",
       caveat:
-        "兑换码来自新智元公众号文章（2026-09-18 收录），属社区消息，未见官方公告；数量有限，领完即止，需注册平台账号。",
+        "兑换码来自新智元公众号文章（2026-09-18 收录），属社区消息，未见官方公告；数量有限，领完即止，需注册平台账号。2026-10-11 复核：门户可访问、平台运营中（站内「首届 AI4S 科研 Skill 大赛 9.4–10.23 火热进行中」）；兑换入口位于登录后应用内，无法公开核实，兑换码本身仍无法验证。",
     },
     en: {
       name: "Panshi SciencePro: Xinzhiyuan exclusive redemption code",
@@ -388,7 +388,7 @@ export const offers = validateRegistry([
         "An AI for Science research platform by Zhongke Wenge: deep research (multi-agent investigation), conversational scientific computing, and a 270M paper/patent library. Xinzhiyuan's WeChat article gives away an exclusive code — sign up, enter it in the platform, and the bonus credits (redeemable for tokens) land directly in your account. Note: this is a research platform, not a coding tool.",
       limits: "Credit/token amount not published; go by what actually lands in your account",
       caveat:
-        "The code comes from Xinzhiyuan's WeChat article (added 2026-09-18) — a community lead, no official announcement seen; limited quantity, first come first served, platform account required.",
+        "The code comes from Xinzhiyuan's WeChat article (added 2026-09-18) — a community lead, no official announcement seen; limited quantity, first come first served, platform account required. Re-checked 2026-10-11: the portal is reachable and the platform is operating (an on-site \"first AI4S Research Skill Contest, Sep 4 – Oct 23, in full swing\"); the redemption entry sits inside the logged-in app and can't be verified publicly, and the code itself remains unverifiable.",
     },
   },
   {
@@ -400,7 +400,7 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-10",
+    lastVerified: "2026-10-11",
     zh: {
       name: "OpenCode Zen 免费车道（长期轮换）",
       description:
@@ -460,7 +460,7 @@ export const offers = validateRegistry([
     url: "https://aihubmix.com",
     source: "https://docs.aihubmix.com/en/blogs/free-ai-models",
     actionUrl: "https://aihubmix.com/token",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "AIHubMix 免费模型",
       description:
@@ -487,7 +487,7 @@ export const offers = validateRegistry([
     url: "https://openrouter.ai",
     source: "https://openrouter.ai/docs/limits",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "OpenRouter 免费层",
       description:
@@ -516,14 +516,14 @@ export const offers = validateRegistry([
     url: "https://openrouter.ai/stealth/space-bunny-alpha",
     source: "https://openrouter.ai/stealth/space-bunny-alpha",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-10-04",
+    lastVerified: "2026-10-11",
     zh: {
       name: "OpenRouter stealth/space-bunny-alpha 免费模型（$0，截止日未公布）",
       description:
         "OpenRouter 的零价格空格模型 space-bunny-alpha（Space Bunny Alpha）：匿名大模型、推理速度快、编码能力强、原生多模态输入，1M 上下文窗口。定价 prompt 与 completion 均为 $0，走 OpenRouter stealth/ 命名空间的零价格车道（与 stealth/union-alpha 同类），不带 :free 后缀、不占 :free 模型的每日共享配额。申请 OpenRouter API key 后可在任意 agent 中调用",
       limits: "定价 $0，不占 :free 每日配额；具体用量与限速官方未公布",
       caveat:
-        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。2026-10-04 再次复核官方 API：模型仍在架、prompt/completion 定价仍为 $0，已超过登记时按「一周」推算的 expiry=2026-10-01（条目随之短暂进入过期区）；OpenRouter 未公布 stealth 车道的截止日，expiry 改回 null，下线以模型选择器实际展示为准（届时标 archived 归档）。",
+        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。2026-10-04 再次复核官方 API：模型仍在架、prompt/completion 定价仍为 $0，已超过登记时按「一周」推算的 expiry=2026-10-01（条目随之短暂进入过期区）；OpenRouter 未公布 stealth 车道的截止日，expiry 改回 null。2026-10-11 复核：/stealth/space-bunny-alpha 页面仍在且无结束公告（同页 union-alpha 已标「The free stealth period has ended」、ox-alpha 已揭晓为 GLM-5.3-Flash，可作对照）；但公共 /api/v1/models（458 个模型）已无任何 stealth/ 条目、单模型端点 404，$0 定价无法再经官方 API 复核，下线以页面是否出现结束公告为准（届时标 archived 归档）。",
     },
     en: {
       name: "OpenRouter stealth/space-bunny-alpha Free Lane ($0, no published end date)",
@@ -532,7 +532,7 @@ export const offers = validateRegistry([
       limits:
         "Priced at $0 and outside the :free daily quota; per-usage caps and rate limits not published",
       caveat:
-        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. Re-checked 2026-10-04 against the official API: the model is still live at $0 prompt/completion, past the expiry=2026-10-01 that registration had estimated from a one-week run (the entry briefly moved to the expired section meanwhile); OpenRouter publishes no end date for the stealth lane, so expiry is back to null — if the lane is pulled, the model selector is ground truth (mark archived then).",
+        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. Re-checked 2026-10-04 against the official API: still live at $0 prompt/completion, past the expiry=2026-10-01 estimated from a one-week run (the entry briefly moved to the expired section meanwhile); OpenRouter publishes no end date for the stealth lane, so expiry is back to null. Re-checked 2026-10-11: the /stealth/space-bunny-alpha page is still up with no end announcement (its sibling union-alpha now reads \"The free stealth period has ended\" and ox-alpha has been revealed as GLM-5.3-Flash, for contrast); but the public /api/v1/models (458 models) no longer lists any stealth/ entry and the single-model endpoint 404s, so the $0 price can no longer be re-verified via the official API — an end announcement on the page is the signal to mark archived.",
     },
   },
   {
@@ -545,7 +545,7 @@ export const offers = validateRegistry([
     url: "https://tokenharbor.ai",
     source: "https://tokenharbor.ai/models?category=free",
     actionUrl: "https://tokenharbor.ai",
-    lastVerified: "2026-10-10",
+    lastVerified: "2026-10-11",
     zh: {
       name: "Token Harbor：Claude Haiku 5.5 限时免费（官方称免费一周）",
       description:
@@ -553,7 +553,7 @@ export const offers = validateRegistry([
       limits:
         "免费路线不扣账户余额；官方免费档按模型列表价的等值用量计量、自首次请求起算 7×24 小时个人滚动窗口，本活动是独立额度还是占用免费档额度未公布；新账号注册无赠送金；免费路线的请求与响应在你启用免费模型后可能被 Token Harbor 保留",
       caveat:
-        "官方未单独公布 :free 路线的结束日，expiry 的 2026-10-15 取自官方 FAQ 的 Haiku 5.5 Model Boost 窗口与官方 X「免费一周」说法。免费路线条款：启用免费模型后 prompts/responses 可能被 Token Harbor 保留，勿发送敏感内容。:free 目录随时轮换，下架即失效，以 Models 页 Free 区为准。",
+        "官方未单独公布 :free 路线的结束日，expiry 的 2026-10-15 取自官方 FAQ 的 Haiku 5.5 Model Boost 窗口与官方 X「免费一周」说法。2026-10-11 复核 Models 页 Free 区：claude-haiku-5.5:free 仍在列（标注 Limited time），FAQ 的 2× Model Boost 窗口仍至 2026-10-15；官方 X 帖有登录墙，未直接核实。免费路线条款：启用免费模型后 prompts/responses 可能被 Token Harbor 保留，勿发送敏感内容。:free 目录随时轮换，下架即失效，以 Models 页 Free 区为准。",
     },
     en: {
       name: "Token Harbor: Claude Haiku 5.5 free for a limited time (officially one week)",
@@ -562,7 +562,7 @@ export const offers = validateRegistry([
       limits:
         "Free routes never charge your balance; the official free tier is metered by list-price value of usage over a personal rolling 7x24-hour window from your first request — whether this campaign has its own allowance or draws on the free tier is not published; new accounts start at $0 with no sign-up credit; free-route prompts and responses may be retained by Token Harbor after you enable free models",
       caveat:
-        "No separate end date is published for the :free route itself; the expiry of 2026-10-15 comes from the official FAQ's Haiku 5.5 Model Boost window and the official X post's free-for-a-week wording. Free-route terms: after enabling free models, prompts/responses may be retained by Token Harbor — don't send sensitive content. The :free catalogue rotates; once a lane leaves the list the route is gone. The Models page Free section is the source of truth.",
+        "No separate end date is published for the :free route itself; the expiry of 2026-10-15 comes from the official FAQ's Haiku 5.5 Model Boost window and the official X post's free-for-a-week wording. Re-checked 2026-10-11 on the Models page Free section: claude-haiku-5.5:free is still listed (tagged Limited time) and the FAQ's 2x Model Boost window still runs through 2026-10-15; the official X post is behind a login wall and was not directly verified. Free-route terms: after enabling free models, prompts/responses may be retained by Token Harbor — don't send sensitive content. The :free catalogue rotates; once a lane leaves the list the route is gone. The Models page Free section is the source of truth.",
     },
   },
   {
@@ -574,21 +574,21 @@ export const offers = validateRegistry([
     url: "https://aweshare.wehuman.top",
     source: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
     actionUrl: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "aweshare 社区 Hub",
       description:
-        "社区模型共享枢纽，发邮件到 peng@wehuman.top 即可申请。生产者暴露自己的后端（Ollama、vLLM 或 API 账号），消费者通过标准 OpenAI/Anthropic/Responses SDK 对接一个 URL 即可调用。现有 40+ 模型车道，代表如 hub/glm-5.3、hub/deepseek-v4-pro、hub/kimi-k3、hub/minimax-m3、jiyu2/gpt-5.6-luna、peng1/gpt-5.5-aihubmix、peng1/union-alpha-openrouter、leidell/mimo-v2.5 等。",
+        "社区模型共享枢纽，发邮件到 peng@wehuman.top 即可申请。生产者暴露自己的后端（Ollama、vLLM 或 API 账号），消费者通过标准 OpenAI/Anthropic/Responses SDK 对接一个 URL 即可调用。模型列表动态变化（官方 README 原话「别问本页，问 hub——列表会变」），代表车道如 hub/glm-5.3、hub/deepseek-v4-pro、hub/kimi-k3、hub/minimax-m3、jiyu2/gpt-5.6-luna、peng1/gpt-5.5-aihubmix、peng1/union-alpha-openrouter、leidell/mimo-v2.5 等，以 hub 实际为准。",
       limits:
         "并发与每日 token 预算由生产者设定；hub 全局消费者名额当前 10 个，生产者不设限",
-      caveat: "申请制：向 peng@wehuman.top 发送申请邮件。",
+      caveat: "申请制：向 peng@wehuman.top 发送申请邮件。2026-10-11 复核官方 README：邮件申请方式与「消费者名额当前 10 个、生产者不设限」仍准确；「40+ 模型车道」的固定数字官方页已无对应表述，改为动态口径。",
     },
     en: {
       name: "aweshare Community Hub",
       description:
-        "Community model-sharing hub — apply by emailing peng@wehuman.top. Producers expose their own backends (Ollama, vLLM, or API accounts); consumers call them through standard OpenAI/Anthropic/Responses SDKs against one URL. 40+ model lanes today, including hub/glm-5.3, hub/deepseek-v4-pro, hub/kimi-k3, hub/minimax-m3, jiyu2/gpt-5.6-luna, peng1/gpt-5.5-aihubmix, peng1/union-alpha-openrouter, and leidell/mimo-v2.5.",
+        "Community model-sharing hub — apply by emailing peng@wehuman.top. Producers expose their own backends (Ollama, vLLM, or API accounts); consumers call them through standard OpenAI/Anthropic/Responses SDKs against one URL. The model list changes constantly (official README: \"don't ask this page, ask the hub — the list will change\"), with representative lanes including hub/glm-5.3, hub/deepseek-v4-pro, hub/kimi-k3, hub/minimax-m3, jiyu2/gpt-5.6-luna, peng1/gpt-5.5-aihubmix, peng1/union-alpha-openrouter, and leidell/mimo-v2.5 — the hub is ground truth.",
       limits: "Producer-defined concurrency and daily token budgets; hub-wide consumer cap currently 10, producers unlimited",
-      caveat: "Application required: email peng@wehuman.top.",
+      caveat: "Application required: email peng@wehuman.top. Re-checked 2026-10-11 against the official README: the email route and the \"consumer cap currently 10, producers unlimited\" line still hold; the fixed \"40+ model lanes\" figure no longer appears officially, so the entry now uses dynamic wording.",
     },
   },
   {
@@ -599,7 +599,7 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://openai.com/form/codex-for-oss/",
     actionUrl: "https://openai.com/form/codex-for-oss/",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "Codex 开源维护者计划",
       description:
@@ -623,7 +623,7 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://claude.com/contact-sales/claude-for-oss",
     actionUrl: "https://claude.com/contact-sales/claude-for-oss",
-    lastVerified: "2026-09-19",
+    lastVerified: "2026-10-11",
     zh: {
       name: "Claude for Open Source 开源计划",
       description:
@@ -649,22 +649,22 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://developers.openai.com/community/students",
     actionUrl: "https://developers.openai.com/community/students",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "Codex 学生计划",
       description:
-        "美国/加拿大高校在读学生完成认证后，送 4 个月 ChatGPT Plus 账号，Codex 用量随 Plus 额度走。没有美高校邮的话，海鲜市场有代认证服务；代认证不参与绑卡，但领取优惠需要账号绑卡。",
-      limits: "认证学生送 4 个月 ChatGPT Plus 账号；需 ChatGPT 账号（Free/Go/Plus/Pro）",
+        "美国/加拿大高校在读学生完成认证后，获得 $100 ChatGPT credits 用于 Codex（授予后 12 个月有效）——官方页面已不再提供此前的 4 个月 ChatGPT Plus。没有美高校邮的话，海鲜市场有代认证服务；代认证不参与绑卡，但领取优惠需要账号绑卡。",
+      limits: "$100 Codex 额度，授予后 12 个月有效；限美国/加拿大 degree-granting 高校在读学生、领取时居住美/加；需 ChatGPT 账号",
       caveat:
-        "这是 Plus 订阅而非 API 额度；仅限美加在读且居住美加的学生。代认证需把账号交给第三方，违反 OpenAI 条款，有封号风险；领取优惠需要账号绑卡，找充值的话，4 个月 Plus 会挤掉本来套餐的时间，请自行权衡。",
+        "2026-10-11 核实官方页面：福利已从 4 个月 ChatGPT Plus 改为「$100 in ChatGPT credits to use in Codex」（授予后 12 个月有效），Plus 口径已从页面移除；资格仍限美加在读且居住美加。这是 API 额度而非订阅。代认证需把账号交给第三方，违反 OpenAI 条款，有封号风险；领取优惠需要账号绑卡，找充值的话会挤掉本来套餐的时间，请自行权衡。",
     },
     en: {
       name: "Codex for Students",
       description:
-        "Verified university students in the US and Canada get 4 months of ChatGPT Plus for free; Codex usage follows the Plus quota. Without a US/Canada school email, proxy-verification services exist on resale marketplaces; proxy verification doesn't involve card binding, but claiming the offer requires a card on the account.",
-      limits: "4 months of ChatGPT Plus per verified student; requires a ChatGPT account (Free/Go/Plus/Pro)",
+        "Verified university students in the US and Canada get $100 in ChatGPT credits to use in Codex, expiring 12 months after the grant date — the page no longer offers the previous 4 months of ChatGPT Plus. Without a US/Canada school email, proxy-verification services exist on resale marketplaces; proxy verification doesn't involve card binding, but claiming the offer requires a card on the account.",
+      limits: "$100 in Codex credits, expiring 12 months after grant; students enrolled at degree-granting universities in the US/Canada and residing there when claiming; requires a ChatGPT account",
       caveat:
-        "This is a Plus subscription, not API credits; limited to students enrolled in and residing in the US/Canada. Proxy verification hands your account to a third party and breaches OpenAI terms — ban risk is yours to weigh. Claiming requires a card on the account; if you go through a top-up service, the 4-month Plus window displaces the remaining time on your existing plan.",
+        "Verified 2026-10-11 against the official page: the benefit changed from 4 months of ChatGPT Plus to \"$100 in ChatGPT credits to use in Codex\" (valid 12 months after grant), and the Plus wording is gone from the page; eligibility is still US/Canada students enrolled and residing there. These are API credits, not a subscription. Proxy verification hands your account to a third party and breaches OpenAI terms — ban risk is yours to weigh. Claiming requires a card on the account; if you go through a top-up service, the credit window displaces the remaining time on your existing plan.",
     },
   },
   {
@@ -673,23 +673,26 @@ export const offers = validateRegistry([
     kind: "long-term",
     access: "application",
     verified: true,
+    archived: true,
     url: "https://platform.stepfun.com",
     source: "https://platform.stepfun.com/builder-program",
     actionUrl: "https://platform.stepfun.com/builder-program",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
-      name: "StepFun Builder 计划",
+      name: "StepFun Builder 计划（申请暂时暂停）",
       description:
-        "季度开发者计划：两分钟填表即可获得模型 API、Step Plan、AI Studio 与开发额度，另有工作坊和社区。教育认证通道支持学信材料。",
-      limits: "申请制；按季度滚动；优秀项目可升级至 Startup Program",
-      caveat: "接受个人申请，不需要商业计划书。",
+        "季度开发者计划：填表可获得模型 API、Step Plan、AI Studio 与开发额度，另有工作坊和社区；教育认证通道支持学信材料。当前申请已暂时暂停：2026-10-11 核实，官网三个申请按钮均禁用、悬停显示「暂时暂停」，页面仍保留计划介绍与 FAQ；计划按季度运转，预计下季重开（无官方日期）。",
+      limits: "申请制；按季度滚动；优秀项目可升级至 Startup Program。当前申请通道暂时暂停，恢复时间未公布",
+      caveat:
+        "申请通道暂时暂停，2026-10-11 核实已无法提交，本条转归档。证据：platform.stepfun.com/builder-program 页面的「申请加入」「立即申请」「申请教育认证」按钮在服务端渲染的 HTML 中均为禁用状态（aria-disabled），按钮悬停提示「暂时暂停」；页面无带日期的暂停公告，从「按季度运转、下一季 Builder 再一次出发」的措辞看预计下季重开，恢复后另行核实移回在架。原记录：接受个人申请，不需要商业计划书。",
     },
     en: {
-      name: "StepFun Builder Program",
+      name: "StepFun Builder Program (applications paused)",
       description:
-        "Quarterly builder program: a two-minute form gets you model API access, Step Plan, AI Studio, and development quota, plus workshops and community. A separate education-verification channel accepts Xuexin materials.",
-      limits: "Application-based; quarterly cycles; projects can graduate to the Startup Program",
-      caveat: "Individuals welcome; no business plan required.",
+        "Quarterly builder program: a form gets you model API access, Step Plan, AI Studio, and development quota, plus workshops and community; a separate education-verification channel accepts Xuexin materials. Applications are currently paused: verified 2026-10-11, all three application buttons on the official page are disabled with a \"temporarily paused\" tooltip, while the program intro and FAQ stay up; the program runs in quarterly cycles and is expected to return next quarter (no official date).",
+      limits: "Application-based; quarterly cycles; projects can graduate to the Startup Program. The application channel is paused for now; no resumption date published",
+      caveat:
+        "Applications are temporarily paused and submissions were confirmed impossible on 2026-10-11; this entry is archived. Evidence: on platform.stepfun.com/builder-program, the \"Apply\", \"Apply now\", and education-verification buttons are all disabled in the server-rendered HTML (aria-disabled) with a \"temporarily paused\" tooltip; no dated pause notice is published — from the \"quarterly cycles, next-quarter Builder sets off again\" wording a return next quarter is expected, to be re-verified and restored when it reopens. Original note: individuals welcome; no business plan required.",
     },
   },
   {
@@ -701,7 +704,7 @@ export const offers = validateRegistry([
     url: "https://education.github.com",
     source: "https://education.github.com/pack",
     actionUrl: "https://education.github.com/pack",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "GitHub 学生开发者包",
       description:
@@ -724,22 +727,22 @@ export const offers = validateRegistry([
     access: "application",
     verified: true,
     url: "https://zed.dev",
-    source: "https://github.com/zed-industries/zed",
+    source: "https://zed.dev/education",
     actionUrl: "https://zed.dev/download",
-    lastVerified: "2026-09-18",
+    lastVerified: "2026-10-11",
     zh: {
       name: "Zed",
       description:
-        "免费开源的高性能编辑器（主体 GPL-3.0，部分组件 Apache-2.0）。用学生邮箱认证即送每月 10 美元 AI 额度；非学生也不亏——内置 AI（Zeta）走订阅制，可搭配上面的免费平台，通过自定义 OpenAI 兼容 provider 接入。",
-      limits: "编辑器永久免费；学生认证后每月 $10 额度，其余用量取决于接入的平台",
-      caveat: "学生额度需学生邮箱认证；非学生无免费额度，需自接 provider。",
+        "免费开源的高性能编辑器（主体 GPL-3.0，部分组件 Apache-2.0）。学生福利在 zed.dev/education 申请：全球认证大学在校生（年满 18 岁、GitHub 账号满 30 天、学校邮箱验证）可免费用 Zed Pro 一年，含每月 $10 AI token 额度、无限 edit predictions 与实时多人协作，到期自动降级 Free。非学生也不亏——内置 AI（Zeta）走订阅制，可搭配上面的免费平台，通过自定义 OpenAI 兼容 provider 接入。",
+      limits: "编辑器永久免费；学生认证后 Zed Pro 免费用 12 个月（每月 $10 token 额度），到期自动降级 Free；其余用量取决于接入的平台",
+      caveat: "2026-10-11 核实：学生福利实际在 zed.dev/education（官方博客 2026-03-09「Introducing Zed for Education」），GitHub 仓库页无此信息，来源已更正；福利为 Zed Pro 一年（含 $10/月 token），不含 Claude Fable/Opus、GPT Pro 等模型；资格为全球认证大学在读、年满 18、GitHub 账号满 30 天。非学生无免费额度，需自接 provider。",
     },
     en: {
       name: "Zed",
       description:
-        "Free open-source high-performance editor (primarily GPL-3.0, with Apache-2.0 components). Verify a student email and get $10 of AI credit every month; everyone else pairs it with a free platform above via custom OpenAI-compatible providers — the built-in AI (Zeta) is subscription-based.",
-      limits: "Editor free forever; $10/month after student verification, other usage depends on the provider you connect",
-      caveat: "Student credit requires a student email; no free credits otherwise — bring your own provider.",
+        "Free open-source high-performance editor (primarily GPL-3.0, with Apache-2.0 components). The student offer lives at zed.dev/education: verified university students worldwide (18+, GitHub account older than 30 days, school-email verification) get Zed Pro free for one year, including $10/month in token credits, unlimited edit predictions, and real-time multiplayer collaboration, then auto-downgrade to Free. Everyone else pairs it with a free platform above via custom OpenAI-compatible providers — the built-in AI (Zeta) is subscription-based.",
+      limits: "Editor free forever; verified students get Zed Pro free for 12 months (with $10/month in token credits) before auto-downgrade; other usage depends on the provider you connect",
+      caveat: "Verified 2026-10-11: the student offer actually lives at zed.dev/education (official blog 2026-03-09 \"Introducing Zed for Education\"); the GitHub repo page carries none of this, so the source link is corrected. The benefit is one year of Zed Pro (with $10/month in tokens), excluding models like Claude Fable/Opus and GPT Pro; eligibility is enrollment at an accredited university worldwide, age 18+, GitHub account older than 30 days. No free credits for non-students — bring your own provider.",
     },
   },
 ]);
