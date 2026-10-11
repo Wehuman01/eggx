@@ -9,7 +9,7 @@
   </p>
   <p>
     <a href="https://eggx.wehuman.top/"><img src="https://img.shields.io/badge/website-eggx.wehuman.top-4a5d23?style=flat-square" alt="eggx.wehuman.top"></a>
-    <img src="https://img.shields.io/badge/license-MIT-22C55E?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/license-MPL--2.0-22C55E?style=flat-square" alt="License">
     <img src="https://img.shields.io/github/stars/wehuman01/eggx?style=flat-square" alt="GitHub stars">
   </p>
 </div>
@@ -69,4 +69,4 @@ aweskill install wehuman01/eggx --skill eggx
 
 ## License
 
-MIT.
+本项目基于 [MPL-2.0](./LICENSE) 授权。
