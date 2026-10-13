@@ -1,14 +1,21 @@
-// Sync Codex reset events from AIHOT's public API into src/content/resets.ts.
+// Refresh Chinese quotes from AIHOT's public API into src/content/resets-zh.ts.
 //
-// Contract with the upstream (aihot.news 公开使用规则): anonymous GET, conditional
-// request when we hold an ETag, no retry on 429 — exit non-zero and let the caller
-// (CI schedule or a human) come back later. AIHOT rescans every 15 minutes and
-// caches for 60 seconds, so any cadence at or above that is polite; this script
-// runs once per invocation and never polls.
+// Role since 2026-10-13: enrichment, not the primary feed. The primary source is
+// scripts/sync-codex-resets.mjs (codex-resets.com), whose entries carry only
+// Tibo's original English text. AIHOT's value is its AI translation of each post
+// (zh) plus a properly classified event model — but it stopped advancing its own
+// checkedAt on 2026-10-11 and used to burst-limit eggx's runner into 600s bans
+// (two anonymous GETs per pipeline run), so it no longer gates the page.
 //
-// Rights: facts (times, status, post links) come from public posts; `zh` quotes
-// are AIHOT's AI translations (© AIHOT, used non-commercially with attribution);
-// `en` quotes are Tibo's original posts. The generated file says this in its header.
+// This script makes exactly one conditional GET per run and never retries on 429:
+// a rate-limited or unchanged round simply leaves the translation table as it is,
+// and the page falls back to English quotes for entries without a translation.
+// Only a changed contract (schema drift, non-JSON, 5xx) fails loudly — that is a
+// real bug worth a red workflow, unlike transient throttling.
+//
+// Rights: the zh quotes are AIHOT's AI translations (© AIHOT, used
+// non-commercially with attribution per its public terms); the post ids and en
+// texts are facts from public posts. The generated file says this in its header.
 
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
@@ -16,7 +23,7 @@ import { pathToFileURL } from "node:url";
 const API_URL = "https://aihot.news/api/v1/codex-resets";
 const SOURCE_URL = "https://aihot.news/codex-reset";
 const CURATOR = "AIHOT";
-const CONTENT_FILE = new URL("../src/content/resets.ts", import.meta.url);
+const CONTENT_FILE = new URL("../src/content/resets-zh.ts", import.meta.url);
 const STATE_FILE = new URL("../.resets-sync.json", import.meta.url);
 const POST_URL_PATTERN = /^https:\/\/x\.com\/thsottiaux\/status\/\d+$/;
 
@@ -35,12 +42,13 @@ const STAGE_MAP = {
   "进展": "note",
 };
 
-const HEADER = `// Codex 重置记录（Tibo @thsottiaux 公布的全员重置与重置卡发放）。
-// 本文件由 scripts/sync-resets.mjs 自动生成，请勿手改。数据来自 AIHOT 公开接口
-// https://aihot.news/api/v1/codex-resets （上游每 15 分钟核验一次 Tibo 的公开帖）。
-// 时间、状态、推文链接为事实；zh 引文是 AIHOT 的 AI 翻译，译文著作权归 AIHOT，
-// 依其公开使用规则（非商业、署名、允许同步）收录；en 为 Tibo 原文，版权归原发帖人。
-// confirmedAt 是确认帖时间而非精确执行时间；occurredOn 是单独核实过的日期；时间均为北京时间 UTC+8。
+const HEADER = `// 中文引文富化表：AIHOT 的 AI 翻译（© AIHOT），按原推 ID 索引。
+// 本文件由 scripts/sync-quotes.mjs 每小时刷新，请勿手改。数据来自 AIHOT 公开接口
+// https://aihot.news/api/v1/codex-resets （上游每 15 分钟核验一次 Tibo 的公开帖；
+// 其自 2026-10-11 06:10 起停更，故本表只可能滞后、不会凭空多出条目）。
+// zh 译文著作权归 AIHOT，依其公开使用规则（非商业、署名、允许同步）收录；
+// en 为 Tibo 原文，版权归原发帖人。事件结构（类型/阶段/状态）以主源
+// scripts/sync-codex-resets.mjs 与冻结段为准，本表只提供中文引文。
 `;
 
 function requireString(value, label) {
@@ -97,19 +105,9 @@ export function mapAihotEvent(event) {
 }
 
 /** Best display/sort time: confirmation when present, else the latest post.
-    Same semantics as eventTime() in src/lib/resets.ts — the counter round keys
-    in sync-impatient.mjs are derived from it. */
+    Same semantics as eventTime() in src/lib/resets.ts. */
 export function eventTime(event) {
   return event.confirmedAt ?? event.posts[event.posts.length - 1].publishedAt;
-}
-
-export function buildSnapshot(payload) {
-  return {
-    checkedAt: requireString(payload.checkedAt, "payload.checkedAt"),
-    historyFrom: requireString(payload.historyFrom, "payload.historyFrom"),
-    source: SOURCE_URL,
-    curator: CURATOR,
-  };
 }
 
 export function buildEvents(payload) {
@@ -121,15 +119,30 @@ export function buildEvents(payload) {
     .sort((a, b) => eventTime(b).localeCompare(eventTime(a)));
 }
 
-export function renderModule(snapshot, events) {
+/** Translation table: source post id → zh. Keyed by the tweet id in the post URL
+    so the primary feed can look translations up without sharing a schema. */
+export function buildZhMap(events) {
+  const zh = {};
+  for (const event of events) {
+    for (const post of event.posts) {
+      zh[post.url.split("/status/")[1]] = post.zh;
+    }
+  }
+  return zh;
+}
+
+export function renderZhModule({ checkedAt, historyFrom, zh }) {
   return `${HEADER}
-import { validateResets, type ResetSnapshot } from "../lib/resets";
+import type { ResetSnapshot } from "../lib/resets";
 
-export const resetSnapshot: ResetSnapshot = ${JSON.stringify(snapshot, null, 2)};
+export const resetZhSnapshot: ResetSnapshot = {
+  "checkedAt": ${JSON.stringify(checkedAt)},
+  "historyFrom": ${JSON.stringify(historyFrom)},
+  "source": ${JSON.stringify(SOURCE_URL)},
+  "curator": ${JSON.stringify(CURATOR)}
+};
 
-export const resets = validateResets(
-${JSON.stringify(events, null, 2)}
-);
+export const resetZh: Record<string, string> = ${JSON.stringify(zh, null, 2)};
 `;
 }
 
@@ -141,19 +154,20 @@ async function main() {
     // First run (or CI): no cached ETag, do a plain GET.
   }
   const headers = {
-    "user-agent": "eggx-sync/1.0 (+https://eggx.wehuman.top; non-commercial sync from AIHOT)",
+    "user-agent": "eggx-sync/1.0 (+https://eggx.wehuman.top; non-commercial quote sync from AIHOT)",
   };
   if (state.etag) headers["if-none-match"] = state.etag;
 
-  const response = await fetch(API_URL, { headers });
+  const response = await fetch(API_URL, { headers, signal: AbortSignal.timeout(20_000) });
   if (response.status === 304) {
-    console.log(`AIHOT unchanged since last sync (checkedAt ${state.checkedAt}).`);
+    console.log(`AIHOT unchanged since last quote sync (checkedAt ${state.checkedAt}).`);
     return;
   }
   if (response.status === 429) {
+    // Transient throttling must not gate the page: leave the table as it is.
+    // The page falls back to English quotes for entries without a translation.
     const retryAfter = response.headers.get("retry-after") ?? "unknown";
-    console.error(`AIHOT rate limited (Retry-After: ${retryAfter}). Run again later.`);
-    process.exitCode = 1;
+    console.log(`AIHOT rate limited (Retry-After: ${retryAfter}); translations left as they are.`);
     return;
   }
   if (!response.ok) {
@@ -163,27 +177,28 @@ async function main() {
   }
 
   const payload = await response.json();
-  const snapshot = buildSnapshot(payload);
+  const checkedAt = requireString(payload.checkedAt, "payload.checkedAt");
+  const historyFrom = requireString(payload.historyFrom, "payload.historyFrom");
   const events = buildEvents(payload);
-  const rendered = renderModule(snapshot, events);
+  const zhMap = buildZhMap(events);
+  const rendered = renderZhModule({ checkedAt, historyFrom, zh: zhMap });
 
   const current = await readFile(CONTENT_FILE, "utf8").catch(() => "");
   if (rendered === current) {
-    console.log(`No content change (${events.length} events, checkedAt ${snapshot.checkedAt}).`);
+    console.log(`No translation change (${Object.keys(zhMap).length} posts, checkedAt ${checkedAt}).`);
   } else {
     await writeFile(CONTENT_FILE, rendered);
-    console.log(`Wrote src/content/resets.ts: ${events.length} events, checkedAt ${snapshot.checkedAt}.`);
+    console.log(`Wrote src/content/resets-zh.ts: ${Object.keys(zhMap).length} posts, checkedAt ${checkedAt}.`);
   }
 
   await writeFile(
     STATE_FILE,
-    `${JSON.stringify({ etag: response.headers.get("etag"), checkedAt: snapshot.checkedAt }, null, 2)}\n`,
+    `${JSON.stringify({ etag: response.headers.get("etag"), checkedAt }, null, 2)}\n`,
   );
 }
 
 // Only run the sync when executed directly — the module also gets imported
-// for its pure helpers (tests, sync-impatient.mjs), and an import must never
-// fire network requests.
+// for its pure helpers (tests), and an import must never fire network requests.
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
   main();
 }

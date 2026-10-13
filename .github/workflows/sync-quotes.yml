@@ -1,0 +1,57 @@
+name: Sync codex quotes
+
+on:
+  schedule:
+    # 每小时 :53 刷新中文引文富化表（GitHub 按UTC触发）。与主同步（:23）错开
+    # 半小时，也错开整点高峰。AIHOT 自 2026-10-13 起只提供中文引文富化
+    # （© AIHOT），不再是主源；本工作流失败不影响页面——缺译文的条目回退
+    # 显示英文原文。脚本对 429/304 一律跳过（exit 0），只有契约变更才红。
+    - cron: "53 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-quotes
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh Chinese quotes from AIHOT
+        run: npm run sync:quotes
+
+      - name: Commit and push if content changed
+        run: |
+          if git diff --quiet src/content/resets-zh.ts; then
+            echo "No quote updates."
+            exit 0
+          fi
+          git config user.name "eggx-sync-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/resets-zh.ts
+          git commit -m "sync: Chinese quotes from AIHOT"
+          # 竞态防护：检出与 push 之间若有别的推送进了 main（人工编辑或另一个
+          # sync），push 会被拒。rebase 到最新 main 后重试几次。
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 10))
+          done
+          exit 1

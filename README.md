@@ -44,7 +44,7 @@ eggx 同时为人类和 Agent 设计：内容双语（中文默认，[`/en/`](ht
 - [`/agent/`](https://eggx.wehuman.top/agent/) — Agent 接入指南（Skill / API / RSS）
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — Agent 使用指南
 - [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — 全部在架羊毛（JSON）
-- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex 重置记录（JSON；2026-06 前历史一次性回填自 codex-resets.com）
+- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex 重置记录（JSON；实时同步自 codex-resets.com，2026-10-11 前的历史分两段冻结留存）
 - [`/api/v1/aweshare.json`](https://eggx.wehuman.top/api/v1/aweshare.json) — aweshare hub 共享模型可用性（JSON，每小时快照）
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS 订阅
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — 完整 API 说明
@@ -58,7 +58,7 @@ aweskill install wehuman01/eggx --skill eggx
 ## 数据来源与致谢
 
 - **aweshare 模型可用性**（[追踪页](https://eggx.wehuman.top/aweshare/)）— 每小时快照我们运营的 [aweshare](https://github.com/wehuman01/aweshare) 共享 hub：哪些模型可用、支持什么协议、每日共享额度还剩多少。只公开别名/协议/状态/额度；接入凭邀请码。
-- **Codex 重置监控**（[追踪页](https://eggx.wehuman.top/codex-reset/)）— 追踪 Tibo（@thsottiaux）在 X 上公开宣布的 Codex 全员重置与重置卡发放。数据由定时任务自动同步自 [AIHOT](https://aihot.news/codex-reset) 的公开接口：时间、类型等事实来自公开推文，每条都链回原始推文；中文引文为 AIHOT 的 AI 翻译，译文著作权归 AIHOT，英文原帖版权归原作者所有。
+- **Codex 重置监控**（[追踪页](https://eggx.wehuman.top/codex-reset/)）— 追踪 Tibo（@thsottiaux）在 X 上公开宣布的 Codex 全员重置与重置卡发放。实时数据由定时任务每小时同步自 [codex-resets.com](https://codex-resets.com/) 的公开接口（免费使用、展示处署名）：时间、类型等事实来自公开推文，每条都链回原始推文；中文引文来自 [AIHOT](https://aihot.news/codex-reset) 的 AI 翻译（译文著作权归 AIHOT，每小时刷新、缺失时回退英文原文），英文原帖版权归原作者所有。2026-10-11 及以前的历史分两段冻结留存（2026-06-12 起来自 AIHOT，2026-06 前回填自 codex-resets.com、eggx 自译）。
 - 非 OpenAI 官方页面，仅供信息参考；是否重置、何时重置由 OpenAI 决定。
 - **UI 风格** — 站点的糖果贴纸视觉（奶油纸底、墨线描边、硬投影、Baloo 2 圆体）参考了 [codex-resets.com](https://codex-resets.com/)；布局与代码仍是 eggx 自己的。
 

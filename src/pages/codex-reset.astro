@@ -41,6 +41,12 @@ function primaryPost(event: (typeof events)[number]) {
   return event.posts.find((p) => p.stage === "confirm") ?? event.posts[event.posts.length - 1];
 }
 
+/** The Chinese rendering when the translation table has caught up with the live
+    feed, else Tibo's original English — never an empty box. */
+function quoteOf(post: { zh: string | null; en: string }) {
+  return post.zh ?? post.en;
+}
+
 const groups: { label: string; events: typeof events }[] = [];
 for (const event of events) {
   const label = monthFmt.format(new Date(eventTime(event)));
@@ -117,7 +123,7 @@ const historySummary = ui.historySummaryTemplate
               </p>
             )}
             <blockquote class="reset-quote">
-              {primaryPost(latestReset).zh}
+              {quoteOf(primaryPost(latestReset))}
               <footer>
                 <a href={primaryPost(latestReset).url} rel="noopener" target="_blank">{ui.sourcePostLabel}</a>
               </footer>
@@ -213,7 +219,7 @@ const historySummary = ui.historySummaryTemplate
                     </p>
                   )}
                   <blockquote class="reset-quote reset-quote-row">
-                    {post.zh}
+                    {quoteOf(post)}
                     <footer>
                       <a href={post.url} rel="noopener" target="_blank">{ui.sourcePostLabel}</a>
                     </footer>
@@ -230,18 +236,19 @@ const historySummary = ui.historySummaryTemplate
       <h2>{ui.methodHeading}</h2>
       <ul>
         <li>
-          <strong>来源</strong> — 只记录 Tibo（@thsottiaux）在 X 上的公开宣布；
-          中文引文为 AI 翻译（整理自
-          <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a
-          >），点「原推」查看英文原文。2026-06-12 之前的历史一次性回填自
-          <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a
-          >（依其条款署名），该段中文引文为 eggx 自译，时间为公告时间、无单独核实的执行日期。
+          <strong>来源</strong> — 只记录 Tibo（@thsottiaux）在 X 上的公开宣布。实时数据整理自
+          <a href={allResetSnapshot.source} rel="noopener" target="_blank">codex-resets.com</a
+          >（依其条款署名），引文为英文原文，其中中文引文来自
+          <a href="https://aihot.news/codex-reset" rel="noopener" target="_blank">AIHOT</a
+          > 的 AI 翻译（© AIHOT）；点「原推」查看英文原文。2026-10-11 及以前的历史分两段冻结留存：
+          2026-06-12 起来自 AIHOT（中文引文为其 AI 翻译，含确认帖与单独核实的执行日期），
+          2026-06 前回填自 codex-resets.com（eggx 自译，时间为公告时间、无单独核实的执行日期）。
         </li>
         <li>
           <strong>口径</strong> — 「全员重置」指所有付费账户的 Codex 额度被清零；
           「发重置卡」指向账户发放可自助使用的重置卡。两类事件都计入
-          「最近一次」与间隔统计，且仅计已确认的事件。确认时间是 Tibo 确认推文的发布时间，
-          不是精确执行时间。
+          「最近一次」与间隔统计，且仅计已确认的事件。实时段「已确认」指信源已了结该重置
+          （待执行的公告单独标「已预告」）；冻结段取 Tibo 确认推文的发布时间。两者都不是精确执行时间。
         </li>
         <li>
           <strong>间隔统计</strong> — 按确认日期去重后（同日多轮只计一天）
@@ -253,18 +260,18 @@ const historySummary = ui.historySummaryTemplate
           任何基于历史间隔的推断仅供参考。
         </li>
         <li>
-          <strong>更新</strong> — 定时任务每小时自动同步上游并重建本页；上游
-          （AIHOT）约每 15 分钟核验一次 Tibo 的公开帖，核验至 {checkedAt}。
+          <strong>更新</strong> — 定时任务每小时自动同步上游并重建本页；实时上游
+          codex-resets.com 持续跟踪 Tibo 的公开帖，本次核验至 {checkedAt}。
         </li>
       </ul>
     </section>
 
     <p class="reset-footnote">
-      快照核验至 {checkedAt} · 数据整理自
-      <a href={allResetSnapshot.source} rel="noopener" target="_blank">AIHOT</a>
-      · 2026-06 前历史回填自
-      <a href="https://codex-resets.com" rel="noopener" target="_blank">codex-resets.com</a>
-      · 非 OpenAI 官方页面
+      快照核验至 {checkedAt} · 实时整理自
+      <a href={allResetSnapshot.source} rel="noopener" target="_blank">codex-resets.com</a>
+      · 中文引文译自
+      <a href="https://aihot.news/codex-reset" rel="noopener" target="_blank">AIHOT</a>
+      · 2026-10-11 前历史冻结留存 · 非 OpenAI 官方页面
     </p>
   </div>
 

@@ -26,9 +26,64 @@ describe("content registry", () => {
     expect(resetSnapshot.source.startsWith("https://")).toBe(true);
     expect(Number.isNaN(Date.parse(resetSnapshot.checkedAt))).toBe(false);
   });
+
+  it("keeps the live feed sourced from codex-resets.com with fresh check times", () => {
+    // The live segment is the codex-resets.com feed; AIHOT history is frozen in
+    // resets-aihot-era.ts and only enriches Chinese quotes from 2026-10-13 on.
+    expect(resetSnapshot.curator).toBe("codex-resets.com");
+  });
 });
 
 describe("validateResets", () => {
+  it("accepts a null zh — live entries fall back to en until translated", () => {
+    const [event] = validateResets([
+      {
+        id: "live-1",
+        type: "reset",
+        status: "announced",
+        confirmedAt: null,
+        occurredOn: null,
+        scheduleFrom: null,
+        scheduleThrough: null,
+        posts: [
+          {
+            stage: "announce",
+            publishedAt: "2026-10-13T09:03:59.000+08:00",
+            url: "https://x.com/thsottiaux/status/2109812360596865224",
+            zh: null,
+            en: "Global reset landing by EOD PST time. Enjoy",
+          },
+        ],
+      },
+    ]);
+    expect(event.posts[0].zh).toBeNull();
+  });
+
+  it("rejects a zh that is neither string nor null", () => {
+    expect(() =>
+      validateResets([
+        {
+          id: "x",
+          type: "reset",
+          status: "announced",
+          confirmedAt: null,
+          occurredOn: null,
+          scheduleFrom: null,
+          scheduleThrough: null,
+          posts: [
+            {
+              stage: "announce",
+              publishedAt: "2026-10-13T09:03:59.000+08:00",
+              url: "https://x.com/thsottiaux/status/1",
+              zh: 42,
+              en: "a",
+            },
+          ],
+        },
+      ]),
+    ).toThrow(/zh must be a string or null/);
+  });
+
   it("rejects non-array input", () => {
     expect(() => validateResets({} as unknown[])).toThrow();
   });

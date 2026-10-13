@@ -20,7 +20,11 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 | 文件 | 谁写 | 说明 |
 | --- | --- | --- |
 | `src/content/offers.ts` | **人工维护** | 羊毛注册表，本 skill 的主战场。导出时经 `validateRegistry` 校验，字段错误会在 build/test 时直接抛错 |
-| `src/content/resets.ts` | 机器同步 | Codex 重置记录，来自 AIHOT 公开接口，**不要手改** |
+| `src/content/resets.ts` | 机器同步 | Codex 重置记录实时段，来自 codex-resets.com 公开接口，**不要手改** |
+| `src/content/resets-aihot-era.ts` | 冻结 | Codex 重置记录 AIHOT 时代段（2026-06-12 → 2026-10-11），**不要手改** |
+| `src/content/resets-backfill.ts` | 冻结 | Codex 重置记录 2026-06 前回填段，**不要手改** |
+| `src/content/resets-zh.ts` | 机器同步 | 中文引文富化表（AIHOT 的 AI 翻译），**不要手改** |
+| `src/content/resets-cycles.json` | 机器同步 | 已确认重置周期档（impatient 计数用），**不要手改** |
 | `src/content/aweshare.ts` | 机器同步 | aweshare hub 目录快照，**不要手改** |
 
 页面、API（`offers.json` 等）、RSS、llms.txt 全部由 build 从这三个注册表生成——没有单独的“发布内容”步骤，改数据即改站点。
@@ -48,7 +52,9 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 
 ### 同步快照
 
-- `npm run sync:resets` — 无需任何凭证，从 AIHOT 拉取。
+- `npm run sync:codex-resets` — 无需任何凭证，从 codex-resets.com 拉取实时段与周期档。
+- `npm run sync:quotes` — 无需任何凭证，从 AIHOT 刷新中文引文富化表（429/304 时跳过，不阻断页面）。
+- `npm run sentinel:resets` — 用 AIHOT 交叉核对实时段是否漏事件。
 - `npm run sync:aweshare` — 需要 `.env.aweshare`（git-ignored，含 `AWESHARE_CONSUMER_TOKEN`）；没有 token 就跳过本地同步，CI 每小时会带 secret 自动跑。
 - 本地跑脚本只改文件，不提交；CI 里由 bot 自动 commit & push（`sync:` 前缀是它的专用前缀，人工提交不要用）。
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { mapAihotEvent, buildSnapshot, buildEvents, renderModule } from "../scripts/sync-resets.mjs";
+import { mapAihotEvent, buildEvents, buildZhMap, renderZhModule } from "../scripts/sync-quotes.mjs";
 
 function aihotEvent(overrides = {}) {
   return {
@@ -99,32 +99,35 @@ describe("mapAihotEvent", () => {
   });
 });
 
-describe("buildSnapshot and buildEvents", () => {
-  it("keeps upstream check times and attaches the AIHOT attribution", () => {
+describe("buildEvents", () => {
+  it("keeps the payload's events, newest first", () => {
     const payload = { checkedAt: "2026-09-18T09:09:37.303+08:00", historyFrom: "2026-06-12T00:00:00.000+08:00", events: [aihotEvent()] };
-    expect(buildSnapshot(payload)).toEqual({
-      checkedAt: "2026-09-18T09:09:37.303+08:00",
-      historyFrom: "2026-06-12T00:00:00.000+08:00",
-      source: "https://aihot.news/codex-reset",
-      curator: "AIHOT",
-    });
     expect(buildEvents(payload)).toHaveLength(1);
   });
 
   it("rejects empty payloads", () => {
     expect(() => buildEvents({ events: [] })).toThrow(/non-empty/);
-    expect(() => buildSnapshot({ checkedAt: "", historyFrom: "x" })).toThrow(/checkedAt/);
   });
 });
 
-describe("renderModule", () => {
-  it("emits the attribution header and the validateResets wrapper", () => {
-    const snapshot = buildSnapshot({ checkedAt: "2026-09-18T09:09:37.303+08:00", historyFrom: "2026-06-12T00:00:00.000+08:00" });
-    const rendered = renderModule(snapshot, [mapAihotEvent(aihotEvent())]);
-    expect(rendered).toMatch(/^\/\/ Codex 重置记录/);
+describe("buildZhMap and renderZhModule", () => {
+  it("keys translations by source post id so the primary feed can look them up", () => {
+    const zhMap = buildZhMap(buildEvents({ events: [aihotEvent()] }));
+    expect(zhMap).toEqual({
+      "2098685367058612394": "重置已全部推送完成。好梦。",
+      "2098612714704891959": "当然，一次重置也将在今天午夜前落地。",
+    });
+  });
+
+  it("emits the AIHOT attribution header and the translation table", () => {
+    const rendered = renderZhModule({
+      checkedAt: "2026-10-11T06:10:22.166+08:00",
+      historyFrom: "2026-06-12T00:00:00.000+08:00",
+      zh: { "2098685367058612394": "重置已全部推送完成。好梦。" },
+    });
     expect(rendered).toMatch(/译文著作权归 AIHOT/);
-    expect(rendered).toMatch(/import \{ validateResets/);
-    expect(rendered).toMatch(/export const resets = validateResets\(/);
-    expect(rendered).toContain('"id": "reset-2098612714704891959-1-1"');
+    expect(rendered).toMatch(/"checkedAt": "2026-10-11T06:10:22.166\+08:00"/);
+    expect(rendered).toMatch(/export const resetZh: Record<string, string>/);
+    expect(rendered).toContain('"2098685367058612394": "重置已全部推送完成。好梦。"');
   });
 });

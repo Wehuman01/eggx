@@ -24,3 +24,6 @@ npm-debug.log*
 .DS_Store
 # Sync state (ETag cache for scripts/sync-resets.mjs)
 .resets-sync.json
+
+# Sync state (ETag cache for scripts/sync-codex-resets.mjs)
+.codex-resets-sync.json

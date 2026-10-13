@@ -1,11 +1,11 @@
 import { jsonResponse } from "../../../lib/api";
 import { byTimeDesc, confirmedResetDates, intervalsInDays, summarizeIntervals } from "../../../lib/resets";
-import { allResets, allResetSnapshot, backfillSnapshot } from "../../../content/resets-all";
+import { allResets, allResetSnapshot, backfillSnapshot, aihotEraSnapshot } from "../../../content/resets-all";
 
 // This endpoint is machine-readable and publicly redistributed, so it carries facts
-// and Tibo's original English quotes only. AIHOT's Chinese translations (live feed)
-// and eggx's own backfill translations stay on the web pages, which attribute the
-// curators. The backfill segment's provenance is exposed via `data.backfill`.
+// and Tibo's original English quotes only. Chinese translations stay on the web
+// pages, which attribute the curators (AIHOT for the AI translations, eggx itself
+// for the backfill segment). Each segment's provenance is exposed under `data`.
 function toPublicEvent(event: (typeof allResets)[number]) {
   return {
     ...event,
@@ -20,6 +20,7 @@ export const GET = () => {
     data: {
       snapshot: allResetSnapshot,
       backfill: backfillSnapshot,
+      aihotEra: aihotEraSnapshot,
       intervalStats: summary,
       events: byTimeDesc(allResets).map(toPublicEvent),
     },

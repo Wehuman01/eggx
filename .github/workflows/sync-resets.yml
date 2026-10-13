@@ -3,8 +3,9 @@ name: Sync codex resets
 on:
   schedule:
     # 每小时 :23 同步一次（GitHub 按UTC触发）。避开整点高峰——GitHub 官方文档
-    # 明确说 cron 高峰期（尤其整点）会大幅延迟。上游 AIHOT 每 15 分钟核验一次、
-    # 响应缓存 60 秒，每小时拉一次远低于其限流线。
+    # 明确说 cron 高峰期（尤其整点）会大幅延迟。主源 codex-resets.com 的响应带
+    # CDN 缓存（s-maxage=300）与 ETag，每小时一次条件请求远在其缓存策略之内；
+    # 中文引文富化跑在独立工作流（sync-quotes.yml，:53），互不阻断。
     - cron: "23 * * * *"
   workflow_dispatch:
 
@@ -30,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Sync from AIHOT
-        run: npm run sync:resets
+      - name: Sync live resets from codex-resets.com
+        run: npm run sync:codex-resets
 
       - name: Freeze ended can't-wait rounds
         run: npm run sync:impatient
@@ -53,7 +54,8 @@ jobs:
           }
           # 先提交完本轮全部产物再 push：git pull --rebase 要求工作区干净，
           # 任一产物没提交，rebase 就拒绝执行，同步整体卡死。
-          commit_only src/content/resets.ts "sync: codex resets from AIHOT"
+          commit_only src/content/resets.ts "sync: codex resets from codex-resets.com"
+          commit_only src/content/resets-cycles.json "sync: codex reset cycle list"
           commit_only src/content/impatient.json "sync: freeze ended can't-wait round counts"
           if [ "$committed" -eq 0 ]; then
             echo "Nothing to push."
@@ -72,7 +74,8 @@ jobs:
           done
           exit 1
 
-      # 哨兵放在提交之后：报警时本轮 AIHOT 数据已入库，只把「上游疑似停更」
-      # 变成醒目的 workflow 失败；哨兵自身拉不动 codex-resets.com 时跳过（exit 0）。
-      - name: Cross-check fallback sentinel (codex-resets.com)
+      # 哨兵放在提交之后：报警时本轮数据已入库，只把「主源疑似漏事件」变成醒目
+      # 的 workflow 失败；哨兵自身拉不动 AIHOT 时跳过（exit 0）。AIHOT 自
+      # 2026-10-13 起是独立的第二信源，不再是主源——详见脚本头注释。
+      - name: Cross-check coverage against AIHOT (second source)
         run: npm run sentinel:resets

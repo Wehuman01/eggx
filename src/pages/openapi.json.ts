@@ -166,7 +166,7 @@ export const GET: APIRoute = () => {
         get: {
           summary: "List tracked Codex resets and reset cards announced by Tibo (@thsottiaux)",
           description:
-            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the verified Beijing-time stamp. Includes the upstream check time and historical gap statistics across confirmed resets and reset-card grants. History before 2026-06-12 was backfilled in one pass from codex-resets.com (announcement times only; provenance in data.backfill) and merged with the live feed. Chinese translations are available on the web page only. Not an official OpenAI feed; synced automatically from the upstream curator.",
+            "Static curated snapshot: events sorted newest first, each with source post links (x.com), original English quotes, confirmation status, and the Beijing-time stamp. Includes the live feed's check time, per-segment provenance (data.snapshot / data.backfill / data.aihotEra), and historical gap statistics across confirmed resets and reset-card grants. The live feed syncs hourly from codex-resets.com (free with a link-back); history up to 2026-10-11 is frozen in two segments — the AIHOT era since 2026-06-12 and a one-pass codex-resets.com backfill before that (announcement times only). Chinese translations are available on the web page only. Not an official OpenAI feed.",
           responses: {
             "200": {
               description: "Reset events and interval statistics",

@@ -6,60 +6,35 @@ import {
   fetchRoundCount,
 } from "../scripts/sync-impatient.mjs";
 
-function resetEvent(overrides = {}) {
-  return {
-    id: "e1",
-    type: "reset",
-    status: "confirmed",
-    scope: null,
-    confirmedAt: null,
-    occurredOn: null,
-    scheduleFrom: null,
-    scheduleThrough: null,
-    posts: [
-      { stage: "announce", publishedAt: "2026-09-20T00:48:38.000+08:00", url: "https://x.com/thsottiaux/status/1", zh: "a", en: "a" },
-      { stage: "confirm", publishedAt: "2026-09-23T02:23:37.000+08:00", url: "https://x.com/thsottiaux/status/2", zh: "b", en: "b" },
-    ],
-    ...overrides,
-  };
-}
-
-const cycleOf = (date: string, overrides = {}) =>
-  resetEvent({ ...overrides, posts: resetEvent().posts.map((p) => ({ ...p, publishedAt: p.publishedAt.replace("2026-09-23", date) })) });
-
 describe("endedRoundsToFreeze", () => {
   it("freezes ended per-cycle rounds, oldest first", () => {
-    const events = [cycleOf("2026-09-29"), cycleOf("2026-09-23")];
-    expect(endedRoundsToFreeze(events, new Set())).toEqual([
+    expect(endedRoundsToFreeze(["2026-09-23", "2026-09-29"], new Set())).toEqual([
       { cycle: "2026-09-23", key: cycleKey("2026-09-23") },
     ]);
   });
 
   it("never freezes the newest confirmed cycle — it is still live", () => {
-    const events = [cycleOf("2026-09-23")];
-    expect(endedRoundsToFreeze(events, new Set())).toEqual([]);
+    expect(endedRoundsToFreeze(["2026-09-23"], new Set())).toEqual([]);
   });
 
   it("skips known cycles and the pre-keying era", () => {
-    const events = [cycleOf("2026-09-29"), cycleOf("2026-09-23"), cycleOf("2026-09-10")];
-    expect(endedRoundsToFreeze(events, new Set(["2026-09-23"]))).toEqual([]);
-    expect(endedRoundsToFreeze(events, new Set())).toEqual([
+    const cycles = ["2026-09-10", "2026-09-23", "2026-09-29"];
+    expect(endedRoundsToFreeze(cycles, new Set(["2026-09-23"]))).toEqual([]);
+    expect(endedRoundsToFreeze(cycles, new Set())).toEqual([
       { cycle: "2026-09-23", key: cycleKey("2026-09-23") },
     ]);
   });
 
-  it("ignores announced events entirely — only confirmed ones are rounds", () => {
-    const events = [cycleOf("2026-09-29"), resetEvent({ id: "e2", status: "announced" })];
-    expect(endedRoundsToFreeze(events, new Set())).toEqual([]);
+  it("takes the newest cycle as current regardless of input order", () => {
+    // 10-08 sits in the middle of the input but is still the newest → it is the
+    // live round; only 10-07 (older, unfrozen) gets frozen.
+    expect(
+      endedRoundsToFreeze(["2026-10-03", "2026-10-08", "2026-10-07"], new Set(["2026-10-03"])),
+    ).toEqual([{ cycle: "2026-10-07", key: cycleKey("2026-10-07") }]);
   });
 
-  it("collapses same-day rounds into one cycle", () => {
-    const events = [cycleOf("2026-09-29"), cycleOf("2026-09-23"), cycleOf("2026-09-23", { id: "e2", type: "card" })];
-    expect(endedRoundsToFreeze(events, new Set())).toHaveLength(1);
-  });
-
-  it("returns nothing when no reset was ever confirmed", () => {
-    expect(endedRoundsToFreeze([resetEvent({ id: "e2", status: "announced" })], new Set())).toEqual([]);
+  it("returns nothing when no cycle was ever confirmed", () => {
+    expect(endedRoundsToFreeze([], new Set())).toEqual([]);
   });
 });
 

@@ -53,7 +53,9 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 {
   "schemaVersion": "2.0",
   "data": {
-    "snapshot": { "checkedAt": "...", "historyFrom": "...", "source": "https://aihot.news/codex-reset", "curator": "AIHOT" },
+    "snapshot": { "checkedAt": "...", "historyFrom": "...", "source": "https://codex-resets.com", "curator": "codex-resets.com" },
+    "backfill": { "checkedAt": "...", "historyFrom": "2025-09-17T00:00:00.000+08:00", "source": "https://codex-resets.com", "curator": "codex-resets.com" },
+    "aihotEra": { "checkedAt": "...", "historyFrom": "2026-06-12T00:00:00.000+08:00", "source": "https://aihot.news/codex-reset", "curator": "AIHOT" },
     "intervalStats": { "count": 18, "min": 2, "median": 5, "max": 27 },
     "events": [ /* ResetEvent[]，最新在前 */ ]
   }
@@ -62,16 +64,17 @@ Base URL：`https://eggx.wehuman.top`（镜像 `https://wehuman01.github.io/eggx
 
 | 字段 | 说明 |
 | --- | --- |
-| `snapshot.checkedAt` | 上游策展方（AIHOT）最后一次核验时间，北京时间 |
+| `snapshot.checkedAt` | 实时段上游（codex-resets.com）生成该响应的时间，北京时间；每小时同步，停滞超过 48h 即同步链路异常 |
+| `snapshot.source` / `backfill` / `aihotEra` | 三段出处：实时段（codex-resets.com）、2026-06 前回填段（codex-resets.com，eggx 自译）、AIHOT 时代段（2026-06-12 → 2026-10-11 冻结） |
 | `events[].type` | `reset` = 全员重置；`card` = 发重置卡（发卡 ≠ 额度恢复） |
-| `events[].status` | `confirmed` = 有确认帖；`announced` = 仅预告 |
-| `events[].confirmedAt` | 确认帖时间，≠ 精确执行时间 |
+| `events[].status` | `confirmed` = 信源已了结该重置（实时段）或有确认帖（冻结段）；`announced` = 仅预告 |
+| `events[].confirmedAt` | 确认帖时间（仅冻结段有），≠ 精确执行时间 |
 | `events[].occurredOn` | 单独核实过的到账日，可能为 `null` |
 | `events[].scheduleFrom/Through` | 原帖预告的时间窗，可能为 `null` |
 | `events[].posts[]` | `stage`（`announce`/`confirm`/`note`，`note` = 定论后的补充说明帖）、`publishedAt`、原推链接 `url`、英文原文 `en` |
 | `intervalStats` | 历史重置间隔统计（天）；全员重置与发重置卡都计入，仅计已确认事件。`null` = 样本不足 |
 
-机器接口只含事实与英文原帖；中文译文仅出现在网页。数据来源 [AIHOT](https://aihot.news/codex-reset)，非 OpenAI 官方页面。
+机器接口只含事实与英文原帖；中文译文仅出现在网页。实时数据来源 [codex-resets.com](https://codex-resets.com/)（免费使用、展示处署名），中文译文来自 [AIHOT](https://aihot.news/codex-reset) 的 AI 翻译；非 OpenAI 官方页面。
 
 ## `aweshare.json`
 

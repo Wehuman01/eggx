@@ -44,7 +44,7 @@ eggx is built for humans and agents alike: bilingual content (Chinese default, E
 - [`/agent/`](https://eggx.wehuman.top/agent/) — agent access guide (Skill / API / RSS)
 - [`/llms.txt`](https://eggx.wehuman.top/llms.txt) — guide for agents
 - [`/api/v1/offers.json`](https://eggx.wehuman.top/api/v1/offers.json) — all active offers (JSON)
-- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex reset log (JSON)
+- [`/api/v1/codex-resets.json`](https://eggx.wehuman.top/api/v1/codex-resets.json) — Codex reset log (JSON; live feed from codex-resets.com, history frozen in two segments)
 - [`/api/v1/aweshare.json`](https://eggx.wehuman.top/api/v1/aweshare.json) — aweshare hub shared-model availability (JSON, hourly snapshot)
 - [`/feed.xml`](https://eggx.wehuman.top/feed.xml) — RSS feed
 - [`/openapi.json`](https://eggx.wehuman.top/openapi.json) — full API description
@@ -58,7 +58,7 @@ aweskill install wehuman01/eggx --skill eggx
 ## Sources & credits
 
 - **aweshare model availability** ([tracking page](https://eggx.wehuman.top/en/aweshare/)) — an hourly snapshot of the [aweshare](https://github.com/wehuman01/aweshare) hub we operate: which shared models are usable, their wire protocols, and remaining shared daily budgets. Public fields only (alias/protocol/status/budget); access is by invite.
-- **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. Data is synced automatically from the public API of [AIHOT](https://aihot.news/codex-reset): facts such as times and types come from the public posts themselves, every entry links back to the original post, the Chinese quote renderings are AIHOT's AI translations (translation rights remain with AIHOT), and the English originals are credited to their author.
+- **Codex reset tracker** ([tracking page](https://eggx.wehuman.top/en/codex-reset/)) — tracks Codex full resets and reset cards publicly announced by Tibo (@thsottiaux) on X. The live feed is synced hourly from the public API of [codex-resets.com](https://codex-resets.com/) (free to use with a link-back): facts such as times and types come from the public posts themselves, every entry links back to the original post, and Chinese quote renderings come from [AIHOT](https://aihot.news/codex-reset)'s AI translations (translation rights remain with AIHOT; refreshed hourly, with English originals as the fallback), while the English originals are credited to their author. History up to 2026-10-11 is frozen in two segments (from AIHOT since 2026-06-12; backfilled from codex-resets.com and translated by eggx before 2026-06).
 - Not an official OpenAI page; for information only. Whether and when resets happen is entirely OpenAI's call.
 - **UI style** — the candy-sticker look (cream paper, chunky ink outlines, hard offset shadows, Baloo 2) is inspired by [codex-resets.com](https://codex-resets.com/); the layout and code remain eggx's own.
 

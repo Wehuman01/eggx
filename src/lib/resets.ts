@@ -10,8 +10,9 @@ export interface ResetPost {
   publishedAt: string;
   /** Link to the original @thsottiaux post on X. */
   url: string;
-  /** Chinese rendering (AIHOT translation). */
-  zh: string;
+  /** Chinese rendering (AIHOT translation). Null on live-feed entries the
+      translation table has not caught up with — pages fall back to `en`. */
+  zh: string | null;
   /** Tibo's original English text. */
   en: string;
 }
@@ -77,16 +78,19 @@ export function validateResetEvent(e: unknown): ResetEvent {
     if (!POST_STAGES.includes(post.stage as ResetPostStage)) {
       throw new Error(`Invalid post stage: ${post.stage}`);
     }
-    for (const field of ["publishedAt", "url", "zh", "en"] as const) {
+    for (const field of ["publishedAt", "url", "en"] as const) {
       if (typeof post[field] !== "string" || (post[field] as string).length === 0) {
         throw new Error(`ResetPost.${field} must be a non-empty string (${obj.id})`);
       }
+    }
+    if (post.zh !== null && typeof post.zh !== "string") {
+      throw new Error(`ResetPost.zh must be a string or null (${obj.id})`);
     }
     return {
       stage: post.stage as ResetPostStage,
       publishedAt: post.publishedAt as string,
       url: post.url as string,
-      zh: post.zh as string,
+      zh: (post.zh as string | null) ?? null,
       en: post.en as string,
     };
   });

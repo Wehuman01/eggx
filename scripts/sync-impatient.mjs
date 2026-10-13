@@ -3,11 +3,18 @@
 // The live counter sits on abacus (a free third-party service); each reset
 // cycle gets its own key — codex-reset-impatient-<Beijing date of the latest
 // confirmed reset>, exactly what the codex-reset page embeds at build time.
-// When a newer confirmed reset shows up (same AIHOT data sync:resets uses),
-// the previous round is over: this script reads its final count from abacus
-// and records it, so the history survives independently of the third party.
+// When a newer confirmed reset shows up, the previous round is over: this script
+// reads its final count from abacus and records it, so the history survives
+// independently of the third party.
 //
-// Runs in CI right after sync:resets and before the site rebuild, so the
+// Which cycles exist comes from src/content/resets-cycles.json — an accumulator
+// written by scripts/sync-codex-resets.mjs (seeded with the frozen segments'
+// confirmed dates and grown with every live sync). Reading a local file instead
+// of re-fetching the feed keeps this script network-free apart from abacus
+// itself: the old design double-fetched AIHOT in the same CI run as the primary
+// sync, which tripped its burst limiter and killed the whole pipeline's commit.
+//
+// Runs in CI right after the primary sync and before the site rebuild, so the
 // frozen value lands in the same deploy that switches the page to the new
 // cycle key. Rounds missing because abacus was down are simply skipped —
 // the page shows nothing for them — and picked up on a later run. A 404
@@ -19,10 +26,9 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
-import { buildEvents, eventTime } from "./sync-resets.mjs";
 
-const API_URL = "https://aihot.news/api/v1/codex-resets";
 const ABACUS_BASE = "https://abacus.jasoncameron.dev";
+const CYCLES_FILE = new URL("../src/content/resets-cycles.json", import.meta.url);
 const CONTENT_FILE = new URL("../src/content/impatient.json", import.meta.url);
 // Keep in sync with src/lib/impatient.ts (which the script cannot import).
 const PER_CYCLE_KEYING_SINCE = "2026-09-23";
@@ -31,22 +37,21 @@ export function cycleKey(cycle) {
   return `codex-reset-impatient-${cycle}`;
 }
 
-/** Ended, not-yet-frozen per-cycle rounds: distinct Beijing dates of
-    confirmed events that are older than the newest confirmed cycle (that one
-    is still live) and young enough to have a per-cycle key. */
-export function endedRoundsToFreeze(events, knownCycles) {
-  const confirmed = events.filter((event) => event.status === "confirmed");
-  if (confirmed.length === 0) return [];
-  const currentCycle = eventTime(confirmed[0]).slice(0, 10);
-  const cycles = new Set(confirmed.map((event) => eventTime(event).slice(0, 10)));
-  return [...cycles]
+/** Ended, not-yet-frozen per-cycle rounds: confirmed cycle dates older than the
+    newest one (that one is still live) and young enough to have a per-cycle key. */
+export function endedRoundsToFreeze(cycles, knownCycles) {
+  if (!Array.isArray(cycles) || cycles.length === 0) return [];
+  const sorted = [...cycles].sort();
+  const currentCycle = sorted[sorted.length - 1];
+  return sorted
     .filter((cycle) => cycle >= PER_CYCLE_KEYING_SINCE && cycle < currentCycle && !knownCycles.has(cycle))
-    .sort()
     .map((cycle) => ({ cycle, key: cycleKey(cycle) }));
 }
 
 export async function fetchRoundCount(namespace, key) {
-  const response = await fetch(`${ABACUS_BASE}/get/${namespace}/${key}`);
+  const response = await fetch(`${ABACUS_BASE}/get/${namespace}/${key}`, {
+    signal: AbortSignal.timeout(20_000),
+  });
   if (response.status === 404) return 0;
   if (!response.ok) throw new Error(`abacus HTTP ${response.status}`);
   const data = await response.json();
@@ -63,19 +68,8 @@ async function main() {
   const snapshot = JSON.parse(await readFile(CONTENT_FILE, "utf8"));
   const knownCycles = new Set(snapshot.rounds.map((round) => round.cycle).filter(Boolean));
 
-  // One polite anonymous GET per run — same contract as sync-resets
-  // (AIHOT rescans every 15 minutes and caches for 60 seconds).
-  const response = await fetch(API_URL, {
-    headers: { "user-agent": "eggx-sync/1.0 (+https://eggx.wehuman.top; non-commercial sync from AIHOT)" },
-  });
-  if (!response.ok) {
-    console.error(`AIHOT returned HTTP ${response.status}.`);
-    process.exitCode = 1;
-    return;
-  }
-  const events = buildEvents(await response.json());
-
-  const pending = endedRoundsToFreeze(events, knownCycles);
+  const { cycles } = JSON.parse(await readFile(CYCLES_FILE, "utf8"));
+  const pending = endedRoundsToFreeze(cycles, knownCycles);
   if (pending.length === 0) {
     console.log("No ended rounds to freeze.");
     return;

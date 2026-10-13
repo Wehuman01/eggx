@@ -8,7 +8,10 @@
 | `npm run check` | astro check 类型检查（含 offers.ts schema 校验） |
 | `npm test` | vitest 全量测试 |
 | `npm run build` | 构建到 `dist/`（验证产物用；线上由 CI 构建） |
-| `npm run sync:resets` | 从 AIHOT 同步 Codex 重置记录到 `src/content/resets.ts`，无需凭证 |
+| `npm run sync:codex-resets` | 从 codex-resets.com 同步实时段到 `src/content/resets.ts` 并维护周期档，无需凭证 |
+| `npm run sync:quotes` | 从 AIHOT 刷新中文引文富化表 `src/content/resets-zh.ts`，无需凭证（429/304 跳过） |
+| `npm run sync:impatient` | 冻结已结束的「等不及了」轮次计数到 `impatient.json`，读本地周期档 |
+| `npm run sentinel:resets` | 用 AIHOT 交叉核对实时段是否漏事件，失败即工作流红 |
 | `npm run sync:aweshare` | 拉取 aweshare hub 目录快照到 `src/content/aweshare.ts`，需 `.env.aweshare` |
 
 ## CI / 部署链路
@@ -23,12 +26,13 @@ push to main
 ```
 
 - deploy 由 CI 成功触发（`workflow_run` gate），CI 红了不会部署。**线上没更新时第一件事：看 CI 是不是红了。**
-- 两条定时 sync（每小时）由 bot 以 `sync:` 前缀自动 commit & push，同样走这条链路自动部署。
+- 三条定时 sync（每小时：resets :23、quotes :53、aweshare :13）由 bot 以 `sync:` 前缀自动 commit & push，同样走这条链路自动部署。
 - deploy 也会镜像发布到 `https://wehuman01.github.io/eggx/`（路径相同）。
 
 ## sync 环境配置
 
-- `sync:resets`：零配置，读 AIHOT 公开接口。
+- `sync:codex-resets`：零配置，读 codex-resets.com 公开接口（带 ETag 条件请求；429 时跳过本轮，由 freshness 哨兵负责报警）。
+- `sync:quotes`：零配置，读 AIHOT 公开接口。它只提供中文引文富化，失败不阻断页面——缺译文的条目回退显示英文原文。
 - `sync:aweshare`：读 `.env.aweshare`（git-ignored）。需要的变量：`AWESHARE_CONSUMER_TOKEN`（只读 consumer token，身份 `eggx`）与可选 `AWESHARE_HUB_URL`（默认 `https://aweshare.wehuman.top`）。本地没有 token 就不跑这条——CI 每小时带 secret 自动同步。
 - 脚本设计为**一次调用一次请求**，失败会大声报错而不是猜映射。本地跑完只改文件，是否提交由人决定。
 

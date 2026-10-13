@@ -1,0 +1,1105 @@
+// Codex 重置记录 · AIHOT 时代段（2026-06-12 → 2026-10-11，已冻结）。
+// 本文件原是 scripts/sync-resets.mjs 的实时输出；2026-10-13 主源切换为
+// codex-resets.com 时整体冻结（git mv 自 resets.ts，事件内容未改），作为历史留存：
+// AIHOT 上游自 2026-10-11 06:10 起停更，无法再作为实时源。
+// 数据当初来自 AIHOT 公开接口 https://aihot.news/api/v1/codex-resets
+// （上游每 15 分钟核验一次 Tibo 的公开帖）。
+// 时间、状态、推文链接为事实；zh 引文是 AIHOT 的 AI 翻译，译文著作权归 AIHOT，
+// 依其公开使用规则（非商业、署名、允许同步）收录；en 为 Tibo 原文，版权归原发帖人。
+// confirmedAt 是确认帖时间而非精确执行时间；occurredOn 是单独核实过的日期；时间均为北京时间 UTC+8。
+// 实时数据见 resets.ts（codex-resets.com）；此后事件的中文引文富化见表 resets-zh.ts。
+
+import { validateResets, type ResetSnapshot } from "../lib/resets";
+
+export const aihotEraSnapshot: ResetSnapshot = {
+  "checkedAt": "2026-10-11T06:10:22.166+08:00",
+  "historyFrom": "2026-06-12T00:00:00.000+08:00",
+  "source": "https://aihot.news/codex-reset",
+  "curator": "AIHOT"
+};
+
+export const resetsAihotEra = validateResets(
+[
+  {
+    "id": "reset-2109045392684032299-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-10-11T12:01:09.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-10-11T15:00:00.000+08:00",
+    "scheduleThrough": "2026-10-11T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-10-11T06:16:20.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2109045392684032299",
+        "zh": "全球重置，今天结束前完成。",
+        "en": "Global reset by EOD."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-11T12:01:09.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2109132167112782291",
+        "zh": "重置已到手。全部下发完成。",
+        "en": "Put the reset in the bag. All propagated."
+      }
+    ]
+  },
+  {
+    "id": "banked-2107913674593644711-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-10-08T11:44:55.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-10-08T15:00:00.000+08:00",
+    "scheduleThrough": "2026-10-08T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-08T03:19:17.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2107913674593644711",
+        "zh": "正在给所有付费账户加载一张重置卡。",
+        "en": "Loading a banked reset in everyone's paid accounts."
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-08T03:19:33.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2107913738791596286",
+        "zh": "会在太平洋时间今天结束前到位。",
+        "en": "Will be there by EOD PST."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-08T11:44:55.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2108040921044639779",
+        "zh": "已确认在所有账户中到账。",
+        "en": "Confirmed landed across all accounts."
+      }
+    ]
+  },
+  {
+    "id": "reset-2107676072871600470-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-10-07T11:35:09.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-07T11:35:09.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2107676072871600470",
+        "zh": "因此……重置已经处理完毕。尽情享用！",
+        "en": "Therefore ... the reset has been processed. Enjoy!"
+      }
+    ]
+  },
+  {
+    "id": "reset-2106239435461579088-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "Pro",
+    "confirmedAt": "2026-10-03T12:26:28.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-03T12:26:28.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106239435461579088",
+        "zh": "全部修好了。",
+        "en": "All fixed."
+      }
+    ]
+  },
+  {
+    "id": "reset-2105843926221660585-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-10-03T05:18:48.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-10-03T01:00:00.000+08:00",
+    "scheduleThrough": "2026-10-03T02:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-10-02T10:14:51.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2105843926221660585",
+        "zh": "全球重置将于明天太平洋时间上午10点落地，面向所有付费 ChatGPT 账户。",
+        "en": "Global reset landing tomorrow 10am PST for all paid ChatGPT accounts."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-10-03T05:18:48.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106131810921136451",
+        "zh": "全部重置已下发完成。尽情享用。",
+        "en": "Reset all propagated. Enjoy."
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-03T12:01:28.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106233145163141249",
+        "zh": "看到一些报告说 Pro 500 没有像之前预期的那样获得重置。正在调查，并会补上。",
+        "en": "Seeing some reports that the Pro 500 didn’t get the reset as expected earlier. Investigating and will make up for it"
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-10-03T12:28:21.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2106239912932692085",
+        "zh": "是的，没有，那是我的错，没能在上午10点把它完美地下发出去。下次这件事会规划得更好，抱歉。",
+        "en": "Yeah no, that was my bad for not propagating it at 10am quite perfectly. This is something that will be better planned next time, apologies."
+      }
+    ]
+  },
+  {
+    "id": "banked-2105173168281506088-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-09-30T13:49:30.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-09-30T13:49:30.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2105173168281506088",
+        "zh": "是的，查一下邮件",
+        "en": "Yes, check email"
+      }
+    ]
+  },
+  {
+    "id": "reset-2103963215885701493-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": "2026-09-30",
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-27T05:41:35.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2103963215885701493",
+        "zh": "下周会有更多重置。",
+        "en": "More resets coming next week"
+      }
+    ]
+  },
+  {
+    "id": "reset-2103637477760311522-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-09-27T02:17:54.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-26T08:07:13.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2103637477760311522",
+        "zh": "我们将重置所有付费用户在 Codex 和 ChatGPT Work 上的用量额度。",
+        "en": "we’ll reset usage limits for all paid users across codex and ChatGPT work"
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-09-27T02:17:54.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2103911959544610829",
+        "zh": "重置已全部生效。",
+        "en": "Resets all propagated."
+      }
+    ]
+  },
+  {
+    "id": "banked-2101352781219258527-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": "Plus、Pro、Business",
+    "confirmedAt": null,
+    "occurredOn": "2026-09-23",
+    "scheduleFrom": "2026-09-22T15:00:00.000+08:00",
+    "scheduleThrough": "2026-09-23T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-20T00:48:38.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2101352781219258527",
+        "zh": "好吧。不过它周二还是会来的。",
+        "en": "OK fine. But it’s also still coming in Tuesday"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-22T12:31:32.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2102254445082116335",
+        "zh": "马上就周二了，我答应过周二会有一次重置。",
+        "en": "We are almost Tuesday and I promised a reset for Tuesday."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-23T02:23:37.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2102463847714247142",
+        "zh": "我们正在为所有 Plus、Pro 和 Business 用户的账户载入一张重置卡。",
+        "en": "We are loading a banked reset into all accounts of our Plus, Pro and Business users."
+      }
+    ]
+  },
+  {
+    "id": "reset-2098612714704891959-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-09-12T16:09:17.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-09-12T15:00:00.000+08:00",
+    "scheduleThrough": "2026-09-12T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-12T11:20:36.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2098612714704891959",
+        "zh": "当然，一次重置也会在今天午夜前落地。",
+        "en": "And of course, a reset is also landing by midnight today."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-09-12T16:09:17.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2098685367058612394",
+        "zh": "所有重置已下发完毕。",
+        "en": "Reset all propagated."
+      }
+    ]
+  },
+  {
+    "id": "banked-2097752790177370535-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-10T02:23:34.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2097752790177370535",
+        "zh": "所有在受影响的时间窗口内使用过重置卡的人都会再获得一张。",
+        "en": "Everyone who used one in the affected time window is getting another one"
+      }
+    ]
+  },
+  {
+    "id": "reset-2097043464538264003-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-09-08T12:05:53.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-09-08T09:00:00.000+08:00",
+    "scheduleThrough": "2026-09-08T10:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-08T03:24:57.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2097043464538264003",
+        "zh": "我们将对所有付费订阅的用量做一次全球重置。",
+        "en": "We will do a global reset of the usage for all paid subscriptions"
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-09-08T12:05:53.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2097174560412246215",
+        "zh": "所有人的用量额度都已重置。",
+        "en": "All reset for everyone."
+      }
+    ]
+  },
+  {
+    "id": "banked-2095979536043401428-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": "Plus、Pro、Business",
+    "confirmedAt": null,
+    "occurredOn": "2026-09-05",
+    "scheduleFrom": "2026-09-05T15:00:00.000+08:00",
+    "scheduleThrough": "2026-09-05T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-05T04:57:17.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2095979536043401428",
+        "zh": "我们给你准备了一张重置卡作为补偿。它会在今天结束前到账；如果你在太平洋时间晚上 8 点前创建账号，你也同样能拿到。",
+        "en": "we've got you covered with a banked reset. Lands by end of day"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-05T08:39:25.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2096035437299237298",
+        "zh": "我们今天也会为所有 Plus、Pro 和 Business 用户发放完整的重置卡，今天结束前到账。",
+        "en": "we will do the full banked reset today too for all Plus, Pro and Business users. Lands end of day."
+      }
+    ]
+  },
+  {
+    "id": "banked-2095651088502591861-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": "2026-09-04",
+    "scheduleFrom": "2026-09-04T10:12:09.000+08:00",
+    "scheduleThrough": "2026-09-04T10:12:09.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-09-04T07:12:09.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2095651088502591861",
+        "zh": "你每有一天无法在已付费的 ChatGPT 套餐中使用 Astra，我们就送出一张重置卡，从今天开始；第一张会在约 3 小时后到账。",
+        "en": "We will give one banked reset for every day you don't have access to Astra on your paid ChatGPT plan, starting today."
+      }
+    ]
+  },
+  {
+    "id": "reset-2094143054039183573-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-08-31T10:34:27.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-31T09:00:00.000+08:00",
+    "scheduleThrough": "2026-08-31T10:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-31T03:19:46.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2094143054039183573",
+        "zh": "是的（确认明天还会再有一次重置）。",
+        "en": "Yes"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-31T03:24:37.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2094144275957350900",
+        "zh": "你的 Codex 和 ChatGPT Work 重置将在太平洋时间下午 6 点落地。",
+        "en": "Your Codex and ChatGPT Work reset will land at 6pm PST."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-31T10:34:27.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2094252447271366730",
+        "zh": "为此我们刚刚为 ChatGPT Work 和 Codex 的所有付费订阅重置了用量额度。",
+        "en": "we have now reset usage for all paid subscriptions for ChatGPT Work and Codex."
+      }
+    ]
+  },
+  {
+    "id": "reset-2093801758665715784-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-30T05:30:00.000+08:00",
+    "scheduleThrough": "2026-08-30T06:30:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-30T04:43:34.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2093801758665715784",
+        "zh": "我们正在为 Codex 和 ChatGPT Work 的所有付费用户重置用量。……不用说，我们正在重置用量额度，希望你们度过一个非常愉快的周六！",
+        "en": "We are reseting usage for all paid users of Codex and ChatGPT Work."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-30T04:43:53.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2093801838504186008",
+        "zh": "将于 2:30pm PST 落地。",
+        "en": "Landing 2:30pm PST"
+      }
+    ]
+  },
+  {
+    "id": "reset-2093014447833116908-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-08-28T00:35:05.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-28T00:35:05.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2093014447833116908",
+        "zh": "全新的我，还有面向所有 ChatGPT Work 和 Codex 用户的全新用量额度。",
+        "en": "Brand new me and brand new usage for all ChatGPT Work and Codex users."
+      }
+    ]
+  },
+  {
+    "id": "reset-2092316228497063958-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-08-26T02:20:36.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-26T02:20:36.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2092316228497063958",
+        "zh": "倒也不算随机，但确实如此。",
+        "en": "Not so random, but yes"
+      }
+    ]
+  },
+  {
+    "id": "reset-2091407991736332689-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "business",
+    "confirmedAt": "2026-08-24T08:46:51.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-24T05:00:00.000+08:00",
+    "scheduleThrough": "2026-08-24T06:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-23T14:11:36.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2091407991736332689",
+        "zh": "作为明天部分修复的一部分，我们还将对全部付费订阅的用量进行一次完全重置。",
+        "en": "As part of some of the fixes tomorrow, we will also do a full reset of the usage for all paid subscriptions."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-23T14:29:05.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2091412393368945027",
+        "zh": "重置将在明天约 14pm PST 落地。",
+        "en": "Reset will land around 14pm PST tomorrow."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-23T14:32:27.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2091413240337326588",
+        "zh": "（我）说的是下午2点，显然。",
+        "en": "Meant 2pm obviously"
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-24T08:46:51.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2091688655828246890",
+        "zh": "重置已经推送到各个账号。",
+        "en": "Reset has been propagated to accounts"
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-08-24T10:09:04.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2091709346371838240",
+        "zh": "确实包含商业版账户，商业版账户也大约 5 分钟后就会全部完成。",
+        "en": "It does include business accounts! Just checked and it was still propagating, but should be all done in 5 minutes for business accounts too."
+      }
+    ]
+  },
+  {
+    "id": "banked-2090766694897619318-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-08-22T08:50:36.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-22T11:00:00.000+08:00",
+    "scheduleThrough": "2026-08-22T12:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-21T19:43:19.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2090766694897619318",
+        "zh": "今天白天，我们将为每一位 Codex 和 ChatGPT Work 用户发放一张重置卡（BANKED reset），你可以随意选择什么时候使用。",
+        "en": "during the day we will credit every Codex and ChatGPT Work user with a BANKED reset that you can use at your own leisure"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-22T07:40:34.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2090947196107764189",
+        "zh": "重置卡会在太平洋时间晚上 8 点前到账，面向 ChatGPT Work 和 Codex 的所有付费用户。",
+        "en": "The banked reset will be there by 8pm PST. For all paid users of ChatGPT Work and Codex."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-22T08:50:36.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2090964822422949999",
+        "zh": "重置卡已到账，我再说一遍，重置卡已到账。",
+        "en": "The banked reset has landed, I repeat, the banked reset has landed."
+      }
+    ]
+  },
+  {
+    "id": "reset-2087706104814023111-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-13T10:01:37.000+08:00",
+    "scheduleThrough": "2026-08-13T10:01:37.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-13T09:01:37.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2087706104814023111",
+        "zh": "大家好好享受一次重置吧。大约一小时内就会到账。",
+        "en": "Enjoy a nice reset everyone. Landing in the next hour or so"
+      }
+    ]
+  },
+  {
+    "id": "reset-2086189414292865249-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-08-11T08:27:44.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-08-10T15:00:00.000+08:00",
+    "scheduleThrough": "2026-08-11T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-08-09T04:34:50.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2086189414292865249",
+        "zh": "我会在周一再做一次“表演性”的重置。",
+        "en": "I'll do another performative reset on Monday"
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-11T08:27:44.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2086972802457063486",
+        "zh": "搞定了。",
+        "en": "It is done."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-11T08:28:16.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2086972933566857393",
+        "zh": "所有付费 ChatGPT Work 和 Codex 用户的用量额度已重置。",
+        "en": "Usage limits have been reset for all paid ChatGPT Work and Codex users."
+      }
+    ]
+  },
+  {
+    "id": "reset-2086188036493344823-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-08-09T04:29:22.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-09T04:29:22.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2086188036493344823",
+        "zh": "我已经为 ChatGPT Work 和 Codex 的所有付费用户重置了用量额度。",
+        "en": "I have reset usage limits for all paid users of ChatGPT Work and Codex."
+      }
+    ]
+  },
+  {
+    "id": "reset-2083395449814229287-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-08-01T11:32:37.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-08-01T11:32:37.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2083395449814229287",
+        "zh": "我已经重置了 Codex 和 ChatGPT Work 的用量额度。",
+        "en": "I have reset usage limits for Codex and ChatGPT Work."
+      }
+    ]
+  },
+  {
+    "id": "reset-2082317452755751098-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-29T12:09:02.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-29T12:09:02.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2082317452755751098",
+        "zh": "我已经为所有 ChatGPT Work 和 Codex 用户重置了用量额度。",
+        "en": "I've reset usage limits for all ChatGPT Work and Codex users."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-29T13:42:35.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2082340992871760182",
+        "zh": "回到 100% 了！",
+        "en": "back to 100%!"
+      }
+    ]
+  },
+  {
+    "id": "reset-2081940052154933696-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-07-28T11:09:23.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-28T11:09:23.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2081940052154933696",
+        "zh": "所有 Codex 和 ChatGPT Work 付费用户的用量额度已重置。",
+        "en": "The usage limits have been reset for all paid users of Codex and ChatGPT Work."
+      }
+    ]
+  },
+  {
+    "id": "reset-2081096447718723984-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-26T03:17:12.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-26T03:17:12.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2081096447718723984",
+        "zh": "我们已为所有 Codex 和 ChatGPT Work 用户重置了用量额度。",
+        "en": "We have reset usage limits for all Codex and ChatGPT Work users."
+      }
+    ]
+  },
+  {
+    "id": "reset-2079609157934886975-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-22T01:47:15.000+08:00",
+    "scheduleThrough": "2026-07-22T01:47:15.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-22T00:47:15.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2079609157934886975",
+        "zh": "新的一天，为 Codex 和 ChatGPT Work 的付费用户再次重置用量。将在接下来一小时内到账。",
+        "en": "New day, new usage reset for paid users of Codex and ChatGPT Work. Lands in the next hour."
+      }
+    ]
+  },
+  {
+    "id": "reset-2078320950488297917-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": "所有付费订阅",
+    "confirmedAt": "2026-07-18T11:28:22.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-18T11:28:22.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2078320950488297917",
+        "zh": "为所有付费用户的 Codex 和 ChatGPT Work 重置用量额度，尽情享受吧。",
+        "en": "Enjoy reset usage limits for all paid users for Codex and ChatGPT Work."
+      },
+      {
+        "stage": "note",
+        "publishedAt": "2026-07-18T11:54:58.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2078327646170337398",
+        "zh": "确认了。",
+        "en": "Confirmed"
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-18T11:58:44.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2078328592308818117",
+        "zh": "而现在 100%",
+        "en": "And now 100%"
+      }
+    ]
+  },
+  {
+    "id": "reset-2077607697487188198-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-16T12:17:09.000+08:00",
+    "scheduleThrough": "2026-07-16T12:17:09.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-16T12:14:09.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2077607697487188198",
+        "zh": "又给我们的 Codex 和 ChatGPT Work 用户来了一次重置……几分钟后你们应该就能拿回那甜美的 100% 每周用量额度了。",
+        "en": "Another reset for our Codex and ChatGPT Work users."
+      }
+    ]
+  },
+  {
+    "id": "reset-2077114635308986427-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-15T03:34:54.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2077114635308986427",
+        "zh": "我们再次为所有人重置用量额度。",
+        "en": "We are once again resetting the usage limits for all."
+      }
+    ]
+  },
+  {
+    "id": "banked-2076418567143408112-2-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-14T02:29:31.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-13T15:00:00.000+08:00",
+    "scheduleThrough": "2026-07-14T15:00:00.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-13T05:28:59.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2076418567143408112",
+        "zh": "明天我们将庆祝 700 万活跃用户里程碑，并为所有 ChatGPT Work 和 Codex 用户发放第一张重置卡。",
+        "en": "Tomorrow we will celebrate our 7M active users milestone and grant the first banked reset across all of our ChatGPT Work and Codex users."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-14T02:29:31.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2076735790567338203",
+        "zh": "为庆祝这一里程碑，我们已为每个人的账号添加了一张重置卡。",
+        "en": "We have added a banked reset to everyone's account to celebrate the milestone."
+      }
+    ]
+  },
+  {
+    "id": "banked-2076418567143408112-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-13T05:28:59.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-13T05:28:59.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2076418567143408112",
+        "zh": "为 50 万 ChatGPT Work 和 Codex 用户添加了一张重置卡。",
+        "en": "Added a banked reset to 500k users of ChatGPT Work and Codex."
+      }
+    ]
+  },
+  {
+    "id": "reset-2076365965915467978-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-13T02:59:57.000+08:00",
+    "scheduleThrough": "2026-07-13T02:59:57.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-13T01:59:57.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2076365965915467978",
+        "zh": "我们达到了 600 万活跃用户，并将在接下来一小时内落地一次用量额度重置。",
+        "en": "We hit 6M active users, and are landing a usage reset in the next hour"
+      }
+    ]
+  },
+  {
+    "id": "reset-2075452680760443190-1-2",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-11T22:51:08.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-11T14:24:25.000+08:00",
+    "scheduleThrough": "2026-07-11T14:24:25.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-10T13:30:53.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075452680760443190",
+        "zh": "我们将在未来 24 小时内再次重置 ChatGPT Work 和 Codex 的速率限制（两次）。",
+        "en": "we will reset the rate limits again (twice) across ChatGPT Work and Codex over the next 24 hours."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-11T01:59:43.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075641131002700120",
+        "zh": "今天晚些时候还会再来一次。",
+        "en": "And another one will come later in the day."
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-11T13:54:25.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075820987833274448",
+        "zh": "隆重推出……又一次面向我们所有 ChatGPT Work 和 Codex 用户的用量额度重置。应该会在接下来 30 分钟内到账。",
+        "en": "Introducing... another usage limit reset for all our ChatGPT Work and Codex users. Should land over next 30 minutes."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-11T22:51:08.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075956058942820790",
+        "zh": "我们自动应用了这些重置，原因有两个。",
+        "en": "We applied the resets automatically"
+      }
+    ]
+  },
+  {
+    "id": "reset-2075452680760443190-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-11T01:59:43.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-11T13:30:53.000+08:00",
+    "scheduleThrough": "2026-07-11T13:30:53.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-10T13:30:53.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075452680760443190",
+        "zh": "我们将在未来 24 小时内再次重置 ChatGPT Work 和 Codex 的速率限制（两次）。",
+        "en": "we will reset the rate limits again (twice) across ChatGPT Work and Codex over the next 24 hours."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-11T01:59:43.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075641131002700120",
+        "zh": "我们已经重置了 Codex 和 ChatGPT Work 的用量额度。",
+        "en": "We have reset usage limits across Codex and ChatGPT Work."
+      }
+    ]
+  },
+  {
+    "id": "reset-2075296200761418073-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-07-10T06:24:11.000+08:00",
+    "scheduleThrough": "2026-07-10T06:24:11.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-10T03:09:06.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075296200761418073",
+        "zh": "今天下午会有一次重置。",
+        "en": "Reset will be coming this afternoon"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-07-10T05:24:11.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2075330198887940337",
+        "zh": "尽情享受 ChatGPT Work 和 Codex 用量额度的完整重置吧。正在接下来的一小时内逐步生效。",
+        "en": "Enjoy a full reset of your usage limits for ChatGPT Work and Codex. Propagating in the next hour."
+      }
+    ]
+  },
+  {
+    "id": "banked-2072608196993188002-1-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-07-02T17:07:56.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-07-02T17:07:56.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2072608196993188002",
+        "zh": "应该已经在你的小猪存钱罐里了。这是面向所有人的。",
+        "en": "Should be in your little piggy bank. It is for everyone."
+      }
+    ]
+  },
+  {
+    "id": "banked-2071383430634344902-1-1",
+    "type": "card",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-06-29T08:01:08.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2071383430634344902",
+        "zh": "如果你恰好在几个小时前用掉了你之前的重置卡，而且并没有用完你的用量，不用担心：在我们结束调查后，你会获得更多手动重置。",
+        "en": "you will get more manual resets after we conclude the investigation"
+      },
+      {
+        "stage": "announce",
+        "publishedAt": "2026-06-30T07:39:41.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2071740419030053227",
+        "zh": "我们还会在你的重置银行里额外存入一张重置卡，供你在接下来的 24 小时内自己使用。",
+        "en": "we will credit one additional reset into your bank for your own usage over the next 24 hours"
+      }
+    ]
+  },
+  {
+    "id": "reset-2071740419030053227-1-1",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": "2026-06-30T08:39:41.000+08:00",
+    "scheduleThrough": "2026-06-30T08:39:41.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-06-30T07:39:41.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2071740419030053227",
+        "zh": "Codex 用量额度将在接下来一小时内再次完全重置。",
+        "en": "Codex usage limits will be fully reset again in the next hour"
+      }
+    ]
+  },
+  {
+    "id": "reset-2071381664853319742-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-06-29T07:54:07.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-06-29T07:54:07.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2071381664853319742",
+        "zh": "我已经重置了所有人的 Codex 用量额度。",
+        "en": "I have reset everyone's Codex usage limits."
+      }
+    ]
+  },
+  {
+    "id": "reset-2070653282440405046-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-06-28T05:47:54.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-06-27T10:39:48.000+08:00",
+    "scheduleThrough": "2026-06-27T10:39:48.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-06-27T07:39:48.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2070653282440405046",
+        "zh": "我们将为所有 Codex 用户免费送上一次用量重置。应该会在接下来几个小时内显示在你们的账户中。",
+        "en": "We are giving all Codex users a usage reset on the house. Should be showing in your accounts in the next few hours."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-06-28T05:47:54.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2070987512261029923",
+        "zh": "我们还是把用量重置了，因为我们能这么做，但我们找不到这里有任何坏掉的地方。",
+        "en": "Still did reset the usage because we can, but we can't find anything that is broken here."
+      }
+    ]
+  },
+  {
+    "id": "banked-2067399435009622521-2-1",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-06-18T08:10:10.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-06-18T08:10:10.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2067399435009622521",
+        "zh": "而且你还额外获得一张存入重置卡库的重置卡，可以随时按自己的节奏使用。",
+        "en": "But you are also getting one into the reset bank to use at your own leisure."
+      }
+    ]
+  },
+  {
+    "id": "reset-2066956441173323943-1-1",
+    "type": "reset",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": "2026-06-18T08:10:10.000+08:00",
+    "occurredOn": null,
+    "scheduleFrom": "2026-06-18T02:49:52.000+08:00",
+    "scheduleThrough": "2026-06-18T02:49:52.000+08:00",
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-06-17T02:49:52.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2066956441173323943",
+        "zh": "给我们 24 小时，来重置所有套餐的 Codex 速率限制。",
+        "en": "Give us 24 hours to reset the Codex rate limits across all plans."
+      },
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-06-18T08:10:10.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2067399435009622521",
+        "zh": "我们偷偷搞了一次双重重置。不仅送你一次完整重置，我们请客。",
+        "en": "We did a sneaky double reset. Not only do you get a full reset on us."
+      }
+    ]
+  }
+]
+);
