@@ -337,9 +337,9 @@ const historySummary = ui.historySummaryTemplate
     })();
   </script>
   {/* 「等不及了」按钮：可连点，每次点击即时 +1（abacus 的 hit 一次只加一，连点
-      无法合并批量）；全局计数来自免费的第三方计数器，加载失败降级为「—」并提示
-      不可用。标签页可见时每 30s 轮询一次，计数上涨说明有别人在点，飘一个不带国家
-      的远程粒子。所有动画尊重 prefers-reduced-motion。 */}
+      无法合并批量）；全局计数来自免费的第三方计数器，读取失败自动重试几次，
+      仍失败才降级为「—」并提示不可用。标签页可见时每 30s 轮询一次，计数上涨
+      说明有别人在点，飘一个不带国家的远程粒子。所有动画尊重 prefers-reduced-motion。 */}
   <script is:inline>
     (function () {
       var cfgEl = document.getElementById("eggx-impatient");
@@ -423,13 +423,28 @@ const historySummary = ui.historySummaryTemplate
         });
       }
 
-      function fetchCount() {
-        fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
+      /** abacus 托管在 fly.io，国内网络下连接偶尔超时；读取重试几次，仍失败才
+          交给调用方降级，避免一瞬的网络抖动就亮「计数暂时不可用」。 */
+      function getJson(url, retriesLeft) {
+        return fetch(url)
           .then(function (r) {
             // 新周期还没有人点过，key 不存在，abacus 返回 404——读作 0，不算故障。
             if (r.status === 404) return { value: 0 };
-            return r.ok ? r.json() : null;
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json();
           })
+          .catch(function (error) {
+            if (retriesLeft <= 0) throw error;
+            return new Promise(function (resolve) {
+              setTimeout(resolve, 1000);
+            }).then(function () {
+              return getJson(url, retriesLeft - 1);
+            });
+          });
+      }
+
+      function fetchCount() {
+        getJson(cfg.base + "/get/" + cfg.ns + "/" + cfg.key, 3)
           .then(function (d) {
             if (d && typeof d.value === "number") {
               if (lastCount !== null && d.value > lastCount) burst(true);

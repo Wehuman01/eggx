@@ -338,11 +338,11 @@ const historySummary = ui.historySummaryTemplate
   </script>
   {/* "Can't wait" button: repeatable — every click is an immediate +1 (abacus's
       hit adds exactly one, so rapid clicks cannot be batched into a single
-      request). The global tally comes from a free third-party counter; on
-      failure it degrades to "—" plus the unavailable hint. While the tab is
-      visible the count is re-fetched every 30s, and a rising count means
-      somebody else is clicking — spawn one country-less remote burst. All
-      motion respects prefers-reduced-motion. */}
+      request). The global tally comes from a free third-party counter; a failed
+      read is retried a few times before it degrades to "—" plus the unavailable
+      hint. While the tab is visible the count is re-fetched every 30s, and a
+      rising count means somebody else is clicking — spawn one country-less
+      remote burst. All motion respects prefers-reduced-motion. */}
   <script is:inline>
     (function () {
       var cfgEl = document.getElementById("eggx-impatient");
@@ -428,14 +428,31 @@ const historySummary = ui.historySummaryTemplate
         });
       }
 
-      function fetchCount() {
-        fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
+      /** abacus is hosted on fly.io, where connections from mainland China
+          occasionally time out; retry the read a few times before letting the
+          caller degrade, so a momentary network blip does not flash the
+          unavailable hint. */
+      function getJson(url, retriesLeft) {
+        return fetch(url)
           .then(function (r) {
             // Fresh cycle: nobody has clicked yet, so the key does not exist and
             // abacus answers 404 — that reads as zero, not as an outage.
             if (r.status === 404) return { value: 0 };
-            return r.ok ? r.json() : null;
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json();
           })
+          .catch(function (error) {
+            if (retriesLeft <= 0) throw error;
+            return new Promise(function (resolve) {
+              setTimeout(resolve, 1000);
+            }).then(function () {
+              return getJson(url, retriesLeft - 1);
+            });
+          });
+      }
+
+      function fetchCount() {
+        getJson(cfg.base + "/get/" + cfg.ns + "/" + cfg.key, 3)
           .then(function (d) {
             if (d && typeof d.value === "number") {
               if (lastCount !== null && d.value > lastCount) burst(true);
