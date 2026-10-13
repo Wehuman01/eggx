@@ -122,6 +122,38 @@ const historySummary = ui.historySummaryTemplate
                 </span>
               </p>
             )}
+            <div class="impatient-row">
+              <div class="impatient-action">
+                <button
+                  type="button"
+                  class="btn btn-impatient"
+                  id="impatient-btn"
+                  aria-label={ui.impatientAction}
+                >
+                  <span class="impatient-emoji" aria-hidden="true">🙏</span>
+                  <span class="impatient-label" data-impatient-label>{ui.impatientAction}</span>
+                  <span class="impatient-count-slot">
+                    <span
+                      class="impatient-count"
+                      data-impatient-count
+                      role="status"
+                      aria-live="polite"
+                      aria-atomic="true"
+                      aria-label={ui.impatientUnavailableAria}>—</span
+                    >
+                  </span>
+                </button>
+                <span class="impatient-bursts" data-impatient-bursts aria-hidden="true"></span>
+              </div>
+              <span class="impatient-meta">
+                <span class="impatient-hint" data-impatient-hint>{ui.impatientHint}</span>
+                {prevRound && (
+                  <span class="impatient-prev">
+                    {ui.impatientPrevTemplate.replace("{n}", String(prevRound.final))}
+                  </span>
+                )}
+              </span>
+            </div>
             <blockquote class="reset-quote">
               {quoteOf(primaryPost(latestReset))}
               <footer>
@@ -151,18 +183,6 @@ const historySummary = ui.historySummaryTemplate
           <p class="stat-line" data-intervals>{intervalsText}</p>
         )}
         <p class="reset-note">{ui.estimateNote}</p>
-        <div class="impatient-row">
-          <button type="button" class="btn btn-impatient" id="impatient-btn">{ui.impatientAction}</button>
-          <span class="impatient-meta">
-            <span class="impatient-count" data-impatient-count hidden></span>
-            <span class="impatient-hint" data-impatient-hint>{ui.impatientHint}</span>
-            {prevRound && (
-              <span class="impatient-prev">
-                {ui.impatientPrevTemplate.replace("{n}", String(prevRound.final))}
-              </span>
-            )}
-          </span>
-        </div>
         <a
           class="btn btn-primary offer-action"
           href="https://x.com/thsottiaux"
@@ -287,9 +307,12 @@ const historySummary = ui.historySummaryTemplate
       base: "https://abacus.jasoncameron.dev",
       ns: "eggx-wehuman",
       key: `codex-reset-impatient-${impatientCycle}`,
-      doneLabel: ui.impatientDone,
-      countTemplate: ui.impatientCountTemplate,
+      locale: "zh-CN",
+      pollMs: 30_000,
+      countAriaTemplate: ui.impatientCountAriaTemplate,
       unavailableLabel: ui.impatientUnavailable,
+      unavailableAria: ui.impatientUnavailableAria,
+      pool: ui.impatientPool,
     })}
   />
   {/* The static HTML carries build-day "N 天前" values; recompute at view time
@@ -313,59 +336,158 @@ const historySummary = ui.historySummaryTemplate
       });
     })();
   </script>
-  {/* "等不及了" counter: one increment per browser per reset cycle (both the
-      localStorage flag and the counter key are keyed to the latest confirmed
-      reset), global count from a free third-party counter service; degraded
-      state stays honest. */}
+  {/* 「等不及了」按钮：可连点，每次点击即时 +1（abacus 的 hit 一次只加一，连点
+      无法合并批量）；全局计数来自免费的第三方计数器，加载失败降级为「—」并提示
+      不可用。标签页可见时每 30s 轮询一次，计数上涨说明有别人在点，飘一个不带国家
+      的远程粒子。所有动画尊重 prefers-reduced-motion。 */}
   <script is:inline>
     (function () {
       var cfgEl = document.getElementById("eggx-impatient");
       var btn = document.getElementById("impatient-btn");
       var countEl = document.querySelector("[data-impatient-count]");
       var hintEl = document.querySelector("[data-impatient-hint]");
-      if (!cfgEl || !btn || !countEl) return;
+      var burstsEl = document.querySelector("[data-impatient-bursts]");
+      if (!cfgEl || !btn || !countEl || !burstsEl) return;
       var cfg = JSON.parse(cfgEl.textContent || "{}");
-      var FLAG = "eggx-impatient-" + cfg.key;
+      var nf = new Intl.NumberFormat(cfg.locale || "zh-CN");
+      var reduceMotion =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var pool = cfg.pool || [];
+      var lastCount = null;
+      var pollTimer = null;
+      var defaultHint = hintEl ? hintEl.textContent : "";
+
       function setHint(text) {
         if (hintEl && text) hintEl.textContent = text;
       }
+
+      function showUnavailable() {
+        // 偶发的轮询失败不清掉已知计数：「—」只在从未拿到过数值时出现。
+        if (lastCount === null) {
+          countEl.textContent = "—";
+          countEl.setAttribute("aria-label", cfg.unavailableAria);
+        }
+        setHint(cfg.unavailableLabel);
+      }
+
       function renderCount(n) {
-        countEl.textContent = cfg.countTemplate.replace("{n}", String(n));
-        countEl.hidden = false;
+        setHint(defaultHint);
+        var text = nf.format(n);
+        if (countEl.textContent !== text) {
+          countEl.textContent = text;
+          countEl.setAttribute("aria-label", cfg.countAriaTemplate.replace("{n}", text));
+          // 计数位数变化会让按钮宽度跳动：首次渲染后钉住最小宽度。
+          if (!countEl.style.minWidth) {
+            var w = parseFloat(getComputedStyle(countEl).width);
+            if (w > 0) countEl.style.minWidth = w + "px";
+          }
+          if (lastCount !== null && n > lastCount && !reduceMotion) {
+            countEl.classList.remove("is-bump");
+            void countEl.offsetWidth;
+            countEl.classList.add("is-bump");
+          }
+        }
+        lastCount = n;
       }
-      function markDone() {
-        btn.disabled = true;
-        btn.textContent = cfg.doneLabel;
+
+      function haptic() {
+        try {
+          if (typeof navigator.vibrate === "function") navigator.vibrate(14);
+        } catch (e) {
+          /* 震动不可用时静默跳过 */
+        }
       }
-      fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
-        .then(function (r) {
-          // 新周期还没有人点过，key 不存在，abacus 返回 404——读作 0，不算故障。
-          if (r.status === 404) return { value: 0 };
-          return r.ok ? r.json() : null;
-        })
-        .then(function (d) {
-          if (d && typeof d.value === "number") renderCount(d.value);
-          else setHint(cfg.unavailableLabel);
-        })
-        .catch(function () {
-          setHint(cfg.unavailableLabel);
+
+      function pulse() {
+        btn.classList.remove("is-pleading");
+        void btn.offsetWidth;
+        btn.classList.add("is-pleading");
+      }
+
+      function burst(remote) {
+        if (reduceMotion) return;
+        var from = remote ? ["🙏"] : pool;
+        var text = from[Math.floor(Math.random() * from.length)];
+        if (!text) return;
+        var el = document.createElement("span");
+        el.className = "impatient-burst" + (remote ? " impatient-burst--remote" : "");
+        el.textContent = text;
+        el.style.setProperty("--burst-x", Math.round(Math.random() * 64 - 48) + "px");
+        el.style.setProperty("--burst-y", -58 - Math.round(Math.random() * 42) + "px");
+        el.style.setProperty("--burst-rotate", Math.round(Math.random() * 28 - 14) + "deg");
+        el.style.setProperty("--burst-size", 18 + Math.round(Math.random() * 6) + "px");
+        burstsEl.appendChild(el);
+        while (burstsEl.childElementCount > 12) burstsEl.firstElementChild.remove();
+        el.addEventListener("animationend", function () {
+          el.remove();
         });
-      if (localStorage.getItem(FLAG)) markDone();
+      }
+
+      function fetchCount() {
+        fetch(cfg.base + "/get/" + cfg.ns + "/" + cfg.key)
+          .then(function (r) {
+            // 新周期还没有人点过，key 不存在，abacus 返回 404——读作 0，不算故障。
+            if (r.status === 404) return { value: 0 };
+            return r.ok ? r.json() : null;
+          })
+          .then(function (d) {
+            if (d && typeof d.value === "number") {
+              if (lastCount !== null && d.value > lastCount) burst(true);
+              renderCount(d.value);
+            } else {
+              showUnavailable();
+            }
+          })
+          .catch(showUnavailable);
+      }
+
+      function startPolling() {
+        if (pollTimer || document.hidden) return;
+        pollTimer = setInterval(fetchCount, cfg.pollMs || 30000);
+      }
+
+      function stopPolling() {
+        if (pollTimer) {
+          clearInterval(pollTimer);
+          pollTimer = null;
+        }
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          stopPolling();
+        } else {
+          fetchCount();
+          startPolling();
+        }
+      });
+
       btn.addEventListener("click", function () {
-        if (btn.disabled) return;
+        haptic();
+        pulse();
+        burst(false);
         fetch(cfg.base + "/hit/" + cfg.ns + "/" + cfg.key)
           .then(function (r) {
             return r.ok ? r.json() : null;
           })
           .then(function (d) {
             if (d && typeof d.value === "number") renderCount(d.value);
-            localStorage.setItem(FLAG, "1");
-            markDone();
+            else setHint(cfg.unavailableLabel);
           })
           .catch(function () {
             setHint(cfg.unavailableLabel);
           });
       });
+
+      btn.addEventListener("animationend", function (e) {
+        if (e.target === btn) btn.classList.remove("is-pleading");
+      });
+      countEl.addEventListener("animationend", function () {
+        countEl.classList.remove("is-bump");
+      });
+
+      fetchCount();
+      startPolling();
     })();
   </script>
 </BaseLayout>

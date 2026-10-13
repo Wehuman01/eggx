@@ -89,13 +89,15 @@ export interface UIStrings {
   historySummaryTemplate: string;
   monthSummaryTemplate: string;
   impatientAction: string;
-  impatientDone: string;
-  impatientCountTemplate: string;
   impatientHint: string;
   impatientPrevTemplate: string;
   impatientRoundTemplate: string;
   impatientLegacyTemplate: string;
   impatientUnavailable: string;
+  impatientCountAriaTemplate: string;
+  impatientUnavailableAria: string;
+  /** Click-burst particle pool. */
+  impatientPool: string[];
   agentTitle: string;
   agentBlurb: string;
   siteDescription: string;
@@ -214,13 +216,14 @@ const zh: UIStrings = {
   historySummaryTemplate: "自 {from} 以来共 {total} 条记录：全员重置 {resets} 次 · 发重置卡 {cards} 次",
   monthSummaryTemplate: "{n} 条记录",
   impatientAction: "等不及了",
-  impatientDone: "已记下了",
-  impatientCountTemplate: "{n} 人等不及了",
-  impatientHint: "同一浏览器限点一次 · 仅供一乐",
-  impatientPrevTemplate: "上一轮 {n} 人等不及了",
-  impatientRoundTemplate: "该轮 {n} 人等不及了",
-  impatientLegacyTemplate: "2026-09-23 前各轮合计 {n} 人等不及了（旧计数未按轮次拆分）",
+  impatientHint: "可以连点 · 仅供一乐",
+  impatientPrevTemplate: "上一轮 {n} 次点击",
+  impatientRoundTemplate: "该轮 {n} 次点击",
+  impatientLegacyTemplate: "分轮计数前的各轮合计 {n} 次点击（旧计数未按轮次拆分）",
   impatientUnavailable: "计数暂时不可用",
+  impatientCountAriaTemplate: "本轮已有 {n} 次点击",
+  impatientUnavailableAria: "计数暂不可用",
+  impatientPool: ["+1", "🙏", "等不及", "🔄"],
   agentTitle: "Agent 接入",
   agentBlurb:
     "把 eggx 接进你的 Agent：Skill、REST API、RSS、llms.txt — 全部匿名只读，无需 API Key。",
@@ -344,13 +347,15 @@ const en: UIStrings = {
   historySummaryTemplate: "{total} records since {from}: {resets} full resets · {cards} reset cards",
   monthSummaryTemplate: "{n} records",
   impatientAction: "Can't wait",
-  impatientDone: "Counted",
-  impatientCountTemplate: "{n} can't wait",
-  impatientHint: "One click per browser · just for fun",
-  impatientPrevTemplate: "Last round: {n} couldn't wait",
-  impatientRoundTemplate: "{n} couldn't wait this round",
-  impatientLegacyTemplate: "{n} couldn't wait in total across rounds before 2026-09-23 (legacy counter, not split per round)",
+  impatientHint: "Click as much as you like · just for fun",
+  impatientPrevTemplate: "Last round: {n} clicks",
+  impatientRoundTemplate: "{n} clicks this round",
+  impatientLegacyTemplate:
+    "{n} clicks in total across rounds before per-cycle counting (legacy counter, not split per round)",
   impatientUnavailable: "Counter unavailable",
+  impatientCountAriaTemplate: "{n} clicks since the last reset",
+  impatientUnavailableAria: "Count unavailable",
+  impatientPool: ["+1", "🙏", "pls", "🔄"],
   agentTitle: "Agent access",
   agentBlurb:
     "Wire eggx into your agent: Skill, REST API, RSS, llms.txt — all anonymous, read-only, no API key.",

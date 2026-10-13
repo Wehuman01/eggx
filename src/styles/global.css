@@ -1267,7 +1267,7 @@ h3 {
   margin-top: 2rem;
 }
 
-/* --- "Can't wait" counter --- */
+/* --- "Can't wait" button --- */
 
 .impatient-row {
   display: flex;
@@ -1277,7 +1277,13 @@ h3 {
   margin-top: 1rem;
 }
 
+.impatient-action {
+  position: relative;
+  display: inline-flex;
+}
+
 .btn-impatient {
+  gap: 0.5rem;
   background: var(--moss-soft);
   color: var(--ink);
 }
@@ -1286,9 +1292,30 @@ h3 {
   background: var(--mint);
 }
 
-.btn-impatient[disabled] {
-  opacity: 0.6;
-  cursor: default;
+.btn-impatient.is-pleading {
+  animation: impatient-pulse 280ms ease;
+}
+
+.impatient-label {
+  white-space: nowrap;
+}
+
+.impatient-count-slot {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* min-width is pinned by the script after the first render so a growing digit
+   count cannot shift the button's width. */
+.impatient-count {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--moss);
+  font-variant-numeric: tabular-nums;
+}
+
+.impatient-count.is-bump {
+  animation: impatient-bump 300ms ease;
 }
 
 .impatient-meta {
@@ -1296,12 +1323,6 @@ h3 {
   flex-direction: column;
   gap: 0.125rem;
   min-width: 0;
-}
-
-.impatient-count {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--moss);
 }
 
 .impatient-hint {
@@ -1312,6 +1333,80 @@ h3 {
 .impatient-prev {
   font-size: 0.75rem;
   color: var(--muted);
+}
+
+/* Click bursts fly up out of the button; each particle's direction comes from
+   the --burst-* custom properties the script sets on it. */
+.impatient-bursts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.impatient-burst {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  font-size: var(--burst-size, 20px);
+  line-height: 1;
+  white-space: nowrap;
+  animation: impatient-burst 700ms ease-out forwards;
+}
+
+.impatient-burst--remote {
+  opacity: 0.85;
+  animation-duration: 900ms;
+}
+
+@keyframes impatient-pulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes impatient-bump {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes impatient-burst {
+  0% {
+    transform: translate(-50%, 0) rotate(0deg) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--burst-x, 0px)), var(--burst-y, -60px))
+      rotate(var(--burst-rotate, 0deg)) scale(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-impatient.is-pleading,
+  .impatient-count.is-bump,
+  .impatient-burst {
+    animation: none;
+  }
+
+  .impatient-burst {
+    display: none;
+  }
 }
 
 .reset-footnote {
