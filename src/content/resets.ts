@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-15T13:56:01.719+08:00",
+  "checkedAt": "2026-10-15T17:42:49.859+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -22,9 +22,9 @@ export const resetSnapshot: ResetSnapshot = {
 export const resets = validateResets(
 [
   {
-    "id": "2110595554036400151",
+    "id": "2110618732666257557",
     "type": "reset",
-    "status": "announced",
+    "status": "confirmed",
     "scope": null,
     "confirmedAt": null,
     "occurredOn": null,
@@ -32,11 +32,11 @@ export const resets = validateResets(
     "scheduleThrough": null,
     "posts": [
       {
-        "stage": "announce",
-        "publishedAt": "2026-10-15T12:56:07.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2110595554036400151",
+        "stage": "confirm",
+        "publishedAt": "2026-10-15T14:28:13.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2110618732666257557",
         "zh": null,
-        "en": "Landing within the next 2 hours"
+        "en": "Done and dusted"
       }
     ]
   },
