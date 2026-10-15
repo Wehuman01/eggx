@@ -1,0 +1,191 @@
+#!/usr/bin/python3
+"""eggx 重置事件快路径轮询器（本机常驻工具，CI 不运行）。
+
+仓库里的这份是权威版本；本机安装副本在 ~/.local/bin/eggx-reset-poller，
+由 launchd 常驻任务（~/Library/LaunchAgents/top.wehuman.eggx-reset-poller.plist）
+每 5 分钟执行一次。改了这里之后同步到本机：
+
+    cp scripts/local/eggx-reset-poller ~/.local/bin/
+    launchctl kickstart -k gui/$(id -u)/top.wehuman.eggx-reset-poller
+
+为什么存在：eggx 的 codex 重置同步由 GitHub Actions 每小时 cron 触发，而
+GitHub 的定时派发经常延迟几十分钟到十几小时（事件触发不堵，只堵 cron）。
+本脚本每 5 分钟观察上游 codex-resets.com 公开 API，一旦"页面会显示的内容"
+发生变化，立刻触发仓库里的 Sync codex resets 工作流，把页面追上上游的时间
+从"等下一轮不知何时到来的 cron"压到 10 分钟以内。
+
+设计约束：
+- 只观察 sync 脚本真正消费的两处：/resets 列表与 /status 的待执行公告；
+  用投影签名判断变没变——上游每次请求都重新生成的 meta.generated_at 不参与
+  签名，所以不会误触发。
+- 不带自己的凭证：直接调 gh，复用本机已有的 GitHub 登录（钥匙串）。
+- 状态与日志都在 eggx 仓库之外（~/.local/state/eggx-reset-poller/），
+  本目录只放工具本身。
+- 只是快路径：每小时 cron 仍是兜底，本脚本任何失败都可以被它覆盖。
+
+卸载：
+  launchctl bootout gui/$(id -u)/top.wehuman.eggx-reset-poller
+  rm ~/Library/LaunchAgents/top.wehuman.eggx-reset-poller.plist
+  rm ~/.local/bin/eggx-reset-poller
+  rm -rf ~/.local/state/eggx-reset-poller
+"""
+
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+
+RESETS_URL = "https://codex-resets.com/api/v1/resets?limit=100"
+STATUS_URL = "https://codex-resets.com/api/v1/status"
+WORKFLOW = "sync-resets.yml"
+REPO = "Wehuman01/eggx"
+
+POLL_SECONDS = 300  # 与上游 CDN 的 s-maxage=300 对齐；调整须同步改 plist 的 StartInterval
+
+STATE_DIR = Path.home() / ".local" / "state" / "eggx-reset-poller"
+STATE_FILE = STATE_DIR / "state.json"
+LOG_FILE = STATE_DIR / "poller.log"
+LOG_LIMIT = 2_000_000
+
+USER_AGENT = "eggx-reset-poller/1.0 (+https://eggx.wehuman.top; local change detector)"
+
+GH_CANDIDATES = (
+    "/opt/homebrew/bin/gh",  # Apple Silicon Homebrew
+    "/usr/local/bin/gh",  # Intel Homebrew / 手动安装
+    str(Path.home() / ".local" / "bin" / "gh"),
+)
+
+
+def find_gh():
+    for candidate in GH_CANDIDATES:
+        if os.access(candidate, os.X_OK):
+            return candidate
+    found = shutil.which("gh")
+    if found:
+        return found
+    raise SystemExit("gh CLI not found; install it from https://cli.github.com and run `gh auth login`")
+
+
+def log(message):
+    stamp = datetime.now().astimezone().isoformat(timespec="seconds")
+    try:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        if LOG_FILE.exists() and LOG_FILE.stat().st_size > LOG_LIMIT:
+            LOG_FILE.write_text("--- log truncated ---\n", encoding="utf-8")
+        with LOG_FILE.open("a", encoding="utf-8") as handle:
+            handle.write("%s %s\n" % (stamp, message))
+    except OSError:
+        pass
+
+
+def fetch(url, etag, attempts=3):
+    """GET，带条件请求。返回 (status, payload|None, etag)；304 时 payload 为 None。
+    瞬时网络错误重试几次：常驻任务漏检一轮就要多等 5 分钟，而重试几乎免费。"""
+    headers = {"User-Agent": USER_AGENT}
+    if etag:
+        headers["If-None-Match"] = etag
+    last_error = None
+    for attempt in range(attempts):
+        request = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return response.status, json.load(response), response.headers.get("ETag")
+        except urllib.error.HTTPError as error:
+            if error.code == 304:
+                return 304, None, etag
+            last_error = "%s: HTTP %s" % (url, error.code)
+        except OSError as error:
+            last_error = "%s: %s" % (url, error)
+        if attempt + 1 < attempts:
+            time.sleep(2 * (attempt + 1))
+    raise OSError(last_error)
+
+
+def sha(entries):
+    return hashlib.sha256(json.dumps(entries, separators=(",", ":")).encode()).hexdigest()
+
+
+def resets_signature(payload):
+    return sha([
+        [entry.get("id"), entry.get("announced_at"), entry.get("reset_type"), entry.get("text")]
+        for entry in payload.get("data", [])
+    ])
+
+
+def status_signature(payload):
+    scheduled = payload.get("data", {}).get("scheduled_reset")
+    if not scheduled:
+        return "none"
+    return sha([
+        scheduled.get("id"), scheduled.get("announced_at"),
+        scheduled.get("reset_type"), scheduled.get("text"),
+    ])
+
+
+def load_state():
+    try:
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def save_state(state):
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
+
+
+def trigger_workflow(gh):
+    result = subprocess.run(
+        [gh, "workflow", "run", WORKFLOW, "-R", REPO],
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    return result.returncode == 0, (result.stderr or result.stdout).strip()
+
+
+def main():
+    state = load_state()
+    try:
+        resets_status, resets_payload, resets_etag = fetch(RESETS_URL, state.get("resets_etag"))
+        status_status, status_payload, status_etag = fetch(STATUS_URL, state.get("status_etag"))
+    except (OSError, ValueError) as error:
+        log("upstream fetch failed: %s" % error)
+        return 0  # 下一轮重试；彻底失联由 cron 兜底、哨兵报警
+
+    new_state = dict(state)
+    new_state["resets_etag"] = resets_etag
+    new_state["status_etag"] = status_etag
+    if resets_status != 304:
+        new_state["resets_sig"] = resets_signature(resets_payload)
+    if status_status != 304:
+        new_state["status_sig"] = status_signature(status_payload)
+
+    changed = (
+        new_state.get("resets_sig") != state.get("resets_sig")
+        or new_state.get("status_sig") != state.get("status_sig")
+    )
+    if not changed:
+        save_state(new_state)
+        log("no change")
+        return 0
+
+    ok, detail = trigger_workflow(find_gh())
+    if ok:
+        save_state(new_state)
+        log("change detected -> triggered %s in %s" % (WORKFLOW, REPO))
+    else:
+        # 不保存新签名：下一轮会重新发现这次变更并重试触发，gh 登录恢复后自愈
+        log("change detected but trigger failed: %s" % detail)
+        log("hint: if this repeats, run `gh auth login` (gh token may have expired)")
+    return 0
+
+
+if __name__ == "__main__":
+    main()
