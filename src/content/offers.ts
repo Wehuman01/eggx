@@ -100,26 +100,26 @@ export const offers = validateRegistry([
     verified: true,
     expiry: null,
     url: "https://cline.bot/",
-    source: "https://docs.cline.bot/getting-started/free-models.md",
+    source: "https://docs.cline.bot/getting-started/free-models",
     actionUrl: "https://cline.bot/",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-10-21",
     zh: {
       name: "Cline 免费模型（IDE/CLI 登录即用，名单轮换）",
       description:
-        "Cline 为登录用户提供限时免费模型（官方文档专页原文「Limited-time free model promotions for users with a Cline account」）：模型选择器中带 FREE 标签、登录即用，无需充值绑卡，也可配 ClinePass 订阅或自带 API key。免费名单官方称会轮换（「The specific free models available may change over time」），当前官方口径的适用范围是 Cline IDE 插件与 CLI——2026-09-14 发布推文曾确认桌面端内置 DeepSeek-V4.1-Flash 与 Musespark-1.3，但 2026-10-11 复核时官方文档与首页已不再点名这两个型号，Desktop 端是否仍内置需装 app 看选择器。macOS 与 Windows（beta）可下载。",
+        "Cline 为有账号的用户轮换提供限时免费模型，模型选择器会以 FREE 标识，额度用完后可切换付费方式。官方文档目前列出两种入口：Cline（usage-billing）与促销期间的 ClinePass；均可在 IDE 插件和 CLI 中使用。具体模型和免费额度会轮换，以客户端选择器为准。",
       limits:
-        "免费模型在模型选择器中带 FREE 标签，登录即用，无需充值绑卡；官方明确免费模型仅限 Cline IDE Extension 与 CLI、不经 Cline API；当前名单与用量上限未公布，以应用内选择器为准",
+        "免费模型带 FREE 标签，适用于 Cline IDE Extension 与 CLI，不支持通过 Cline API 调用；模型名单与用量上限未公布，以应用内选择器为准",
       caveat:
-        "来自社区 issue 投稿，2026-09-20 经推文与官方博客核实。2026-10-11 复核：官方文档专页（docs.cline.bot/getting-started/free-models.md）确认限时免费模型计划仍在，但全文未点名 DeepSeek-V4.1-Flash 与 Musespark-1.3，仅称名单会变；且专页写明「Free models are only available in the Cline IDE Extension and CLI」「Free model usage is not supported through the Cline API」。投稿提到的 Kimi K3 未在官方渠道出现，未收录；官方未声明免费截止时间，下线以模型选择器实际展示为准。",
+        "来自社区 issue 投稿，2026-09-20 经推文与官方博客核实。2026-10-21 复核官方文档：免费活动仍在，模型名单轮换；IDE 与 CLI 均支持 Cline 和 ClinePass 入口，Cline API 不支持免费模型。官方说明免费使用数据可能用于改进模型；未公布截止时间或固定额度。投稿提到的 Kimi K3 未在官方渠道出现，未收录。",
     },
     en: {
       name: "Cline Free Models (IDE/CLI after sign-in, rotating roster)",
       description:
-        "Cline runs limited-time free model promotions for signed-in users (official docs page: \"Limited-time free model promotions for users with a Cline account\"): free models carry a FREE tag in the model selector and work right after sign-in — no top-up, no card; pair with a ClinePass subscription or bring your own API key. The roster rotates (\"The specific free models available may change over time\"), and the official scope today is the Cline IDE extension and CLI — the 2026-09-14 launch tweet confirmed DeepSeek-V4.1-Flash and Musespark-1.3 built into Desktop, but at the 2026-10-11 re-check neither model is named on the official docs or homepage anymore; whether Desktop still ships them needs an app install to see the selector. Available on macOS and Windows (beta).",
+        "Cline rotates limited-time free model promotions for account holders; free models carry a FREE tag in the selector. The official docs list both Cline (usage-billing) and ClinePass as access routes during promotions, through the IDE extension and CLI. Models and quotas change; use the in-app selector as the current list.",
       limits:
-        "Free models carry a FREE tag in the model selector and work after sign-in, no top-up or card; officially scoped to the Cline IDE extension and CLI, not the Cline API; current roster and usage caps not published — the in-app selector is ground truth",
+        "FREE-tagged models work through the Cline IDE Extension and CLI, with Cline and ClinePass as promotion providers; not available through the Cline API; current roster and usage caps are unpublished",
       caveat:
-        "Community-submitted via issue; verified against the tweet and official blog (2026-09-20). Re-checked 2026-10-11: the official docs page (docs.cline.bot/getting-started/free-models.md) confirms the limited-time free-model program is still running, but it names neither DeepSeek-V4.1-Flash nor Musespark-1.3, saying only that the roster changes; the page also states \"Free models are only available in the Cline IDE Extension and CLI\" and \"Free model usage is not supported through the Cline API\". The submitter's Kimi K3 claim does not appear in official channels and was not included; no end date announced — the model selector is the source of truth.",
+        "Community-submitted via issue; verified against the tweet and official blog (2026-09-20). Re-checked 2026-10-21: the official docs confirm the limited-time program is live and rotating, and list Cline and ClinePass as providers for the IDE extension and CLI. Free usage may be used to improve model performance; API access is excluded. The submitter's Kimi K3 claim does not appear in official channels and was not included; no end date or fixed quota is announced.",
     },
   },
   {
@@ -312,7 +312,7 @@ export const offers = validateRegistry([
     url: "https://qoder.cn",
     source: "https://docs.qoder.cn/events/100credits",
     actionUrl: "https://qoder.cn",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-10-21",
     zh: {
       name: "Qoder CN：每日 100 Credits 免费领（Qwen3.8-Flash 免费档延长，结束日另行公告）",
       description:
@@ -320,7 +320,7 @@ export const offers = validateRegistry([
       limits:
         "每日 100 通用 Credits：每账号每轮限领一次，仅桌面端可领，每笔 30 天有效、未领取不累计到下一轮；面向 Qoder CN 个人用户（体验/专业/高级/旗舰版及会员卡用户，免费与试用期用户均可），企业订阅用户不适用",
       caveat:
-        "2026-09-24 核实官方活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：Flash 免费档、每日 100 Credits 规则均与官方一致。2026-10-04 复核 /events/100credits：活动仍 live、结束时间仍为『另行公告』，expiry 设为 null。2026-10-11 再次复核两个活动页：每日 100 Credits 仍 live、结束时间仍为『另行公告』；flashoffer 页明示 Flash 免费档「原定 9 月 30 日 23:59:59 结束，现已延长，10 月 1 日起继续免费」「结束时间将提前在本页公告」——09-30 结束的旧口径作废，expiry 维持 null。09-18 收录时「国际版也有份」的说法来自公众号投稿，官方活动页仅写 Qoder CN，仍限定为 Qoder CN。",
+        "2026-09-24 核实官方活动页（docs.qoder.cn/events/flashoffer 与 /events/100credits）：Flash 免费档、每日 100 Credits 规则均与官方一致。2026-10-04、10-11 复核：每日 100 Credits 仍 live，结束时间『另行公告』；Flash 免费档原定 9 月 30 日结束，现已延长，自 10 月 1 日继续免费。2026-10-21 再核官方活动页，规则与未公布截止日仍未变，expiry 保持 null。09-18 收录时「国际版也有份」的说法来自公众号投稿，官方活动页仅写 Qoder CN，仍限定为 Qoder CN。",
     },
     en: {
       name: "Qoder CN: 100 free Credits daily (Qwen3.8-Flash free window extended, end TBA)",
@@ -329,37 +329,67 @@ export const offers = validateRegistry([
       limits:
         "100 general Credits daily: one claim per account per round, desktop app only, each grant valid 30 days, unclaimed rounds don't carry over; for Qoder CN individual users (trial/pro/max/ultra and member-card tiers, free and trial users included), enterprise subscriptions excluded",
       caveat:
-        "Verified 2026-09-24 against the official event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the Flash free window and the daily-100-Credits rules both matched. Re-checked 2026-10-04 on /events/100credits: still live with the end \"to be announced\", so expiry moved to null. Re-checked 2026-10-11 on both pages: the daily 100 Credits event is still live with the end still \"to be announced\"; the flashoffer page states the Flash free window \"was originally set to end 23:59:59 on Sep 30, now extended, continuing free from Oct 1\" and \"the end date will be announced in advance on this page\" — the Sep-30-ended wording is retired, expiry stays null. The \"international edition included\" claim from the original Sep 18 submission is still not on the official page — scoped to Qoder CN.",
+        "Verified 2026-09-24 against the official event pages (docs.qoder.cn/events/flashoffer and /events/100credits): the Flash free window and daily-100-Credits rules matched. Re-checked 2026-10-04 and 10-11: daily 100 Credits remained live with the end date to be announced; Qwen3.8-Flash free billing was extended from Oct 1. Re-checked 2026-10-21: the official event pages still show the same rules and no end date, so expiry remains null. The \"international edition included\" claim from the original Sep 18 submission is still not on the official page — scoped to Qoder CN.",
     },
   },
   {
     id: "workbuddy-intl-free",
     provider: "Tencent WorkBuddy",
-    kind: "temporary",
+    kind: "long-term",
     access: "public",
-    verified: false,
+    verified: true,
     expiry: null,
     url: "https://www.workbuddy.ai/",
-    source: "https://www.workbuddy.ai/",
+    source: "https://www.workbuddy.ai/pricing/",
     actionUrl: "https://www.workbuddy.ai/",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-10-21",
     zh: {
-      name: "WorkBuddy 国际版：Hy4 preview + DeepSeek V4.1 Flash 免费",
+      name: "WorkBuddy Free：新用户 250 Credits，每月 100 + 每日活跃奖励",
       description:
-        "腾讯的 AI 办公工作台，国际版（workbuddy.ai）内置 Claude、GPT、Gemini、混元、DeepSeek 等模型，免翻墙可用。当前 Hy4 preview 与 DeepSeek V4.1 Flash 两个模型免费使用：Hy4 preview 是 8 月 28 日开源的腾讯混元 770B MoE 模型（1M 上下文，Terminal Bench 2.1 得分 85.4）；DeepSeek V4.1 Flash 是 9 月 10 日发布的轻量旗舰（552B MoE）。国内版同期为限时折扣（DeepSeek 0.03 倍率、Hy4 闲时免费），国际版更宽松。",
+        "WorkBuddy 官方 Free 计划为 $0/月，面向 AI 办公与编程任务，支持自动模型路由、代码补全和自动化任务。官网列出新用户注册奖励 250 welcome credits；Free 计划另含每月 100 credits、每日活跃奖励 30 credits、5,000 次代码补全和 3 个自动化任务。",
       limits:
-        "每日免费额度有限，触发限频需等待页面重置；Hy4 preview 不支持图像/视频等多模态任务（走其他模型正常扣积分）；国际版新用户注册送 350 积分",
+        "Free：$0/月；新用户 250 welcome credits；每月 100 credits + 每日活跃奖励 30 credits；5,000 次代码补全、3 个自动化任务。官网未公布 credits 到 token 的换算、模型级限额或 Free 计划截止日",
       caveat:
-        "免费口径以官方计费页展示为准（2026-09-18 核实），官方未单独发布国际版公告。2026-10-11 复核受限：官网为纯 JS 渲染、无法抓取正文（/changelog、/models、/billing 等路径 404）；官方文档（workbuddy.ai/docs/workbuddy/pricing）显示 Free 计划 100 credits/月 + 促销「30 credits / day」「all models available during the promotional period」，但未点名 Hy4 preview 与 DeepSeek V4.1 Flash 免费，也无「新用户 350 积分」口径——两个模型免费与 350 积分待人工登录页面核实，本条暂标社区待确认（verified=false）。GitHub 一键登录有封号报告，建议邮箱注册。",
+        "2026-10-21 核实 WorkBuddy 官方定价页（workbuddy.ai/pricing）：Free 计划及其 credits、代码补全和自动化任务额度均按页面更新。此前条目中的 Hy4 preview / DeepSeek V4.1 Flash 指定免费、350 新人积分说法无法由当前官方定价页支持，已移除；具体免费模型及 credits 使用边界以账号内显示为准。",
     },
     en: {
-      name: "WorkBuddy International: Hy4 preview + DeepSeek V4.1 Flash Free",
+      name: "WorkBuddy Free: 250 welcome Credits, 100 monthly + daily activity rewards",
       description:
-        "Tencent's AI office workbench — the international edition (workbuddy.ai) ships Claude, GPT, Gemini, Hunyuan, and DeepSeek models. Hy4 preview and DeepSeek V4.1 Flash are currently free there: Hy4 preview is Tencent Hunyuan's open-source 770B MoE released Aug 28 (1M context, 85.4 on Terminal Bench 2.1); DeepSeek V4.1 Flash is the lightweight flagship released Sep 10 (552B MoE). The domestic edition only discounts in the same window (0.03x DeepSeek rate, off-peak Hy4) — the international one is more generous.",
+        "WorkBuddy's official Free plan costs $0/month and covers office and coding tasks, with automatic model routing, code completion, and automated tasks. The pricing page lists 250 welcome credits for new users; the Free plan also includes 100 credits/month, a 30-credit daily active reward, 5,000 code completions, and 3 automated tasks.",
       limits:
-        "Daily free quota is rationed; hitting the rate limit waits for the on-page reset. Hy4 preview has no multimodal support (image/video tasks switch models and burn credits normally); international new users get 350 credits",
+        "Free: $0/month; 250 welcome credits for new users; 100 credits/month plus a 30-credit daily active reward; 5,000 code completions and 3 automated tasks. Credit-to-token conversion, model-level limits, and an end date are unpublished",
       caveat:
-        "The free terms follow the official billing page (verified 2026-09-18); there is no separate international announcement. Re-check 2026-10-11 was limited: the website is a pure JS render whose body can't be fetched (/changelog, /models, /billing all 404); the official docs (workbuddy.ai/docs/workbuddy/pricing) show a Free plan of 100 credits/month plus a promotion of \"30 credits / day\" with \"all models available during the promotional period\", but neither Hy4 preview nor DeepSeek V4.1 Flash is named as free, and the \"350 credits for new users\" figure appears nowhere in the docs — the two free models and the 350 credits await a manual logged-in check, so this entry is temporarily community-unconfirmed (verified=false). GitHub one-click sign-in has ban reports; prefer email signup.",
+        "Verified 2026-10-21 against WorkBuddy's official pricing page (workbuddy.ai/pricing): the Free plan and its listed credit, completion, and task allowances match. The former claims of specific free Hy4 preview / DeepSeek V4.1 Flash models and 350 new-user credits are not supported by the current official pricing page and have been removed; exact free models and credit boundaries follow the signed-in account.",
+    },
+  },
+  {
+    id: "inception-new-account-tokens",
+    provider: "Inception",
+    kind: "temporary",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://www.inceptionlabs.ai/models",
+    source: "https://docs.inceptionlabs.ai/get-started",
+    actionUrl: "https://platform.inceptionlabs.ai",
+    lastVerified: "2026-10-21",
+    zh: {
+      name: "Inception API：新账号 1 亿免费 Tokens（Mercury 3 等）",
+      description:
+        "Inception 官方为新账号提供 1 亿免费 tokens，无需先填支付信息。官方 API Quick Start 确认可用 Mercury 3，并支持通过 OpenAI 兼容接口接入相应编码 Agent。Free 计划宣传可访问所有模型，但具体赠额可用模型仍需按各模型接入条件判断。",
+      limits:
+        "每个新账号获 1 亿 tokens；Mercury 3 有官方 Quick Start 接入示例；免费额度有效期、速率与模型级适用范围未公布；无需先填写支付信息",
+      caveat:
+        "2026-10-21 核实官方 Quick Start 与 Models 文档：Mercury 3 是明确记录的新账号接入模型，支持 chat completions 与 tool calling。Mercury Voice 目前仅向 enterprise customers 开放；Mercury Decide 使用独立的 v1/decisions 接口，官网标注 Contact sales，赠额是否适用未明确。Mercury 2 与 Mercury 2.5 不对新用户开放。因此目前能确认 1 亿赠额可用 Mercury 3，其它模型不作保证。",
+    },
+    en: {
+      name: "Inception API: 100M free tokens for new accounts (Mercury 3 and more)",
+      description:
+        "Inception grants 100 million free tokens to new accounts without requiring payment details upfront. Its API Quick Start confirms Mercury 3 and shows how to use it through the OpenAI-compatible API with supported coding agents. The Free plan says \"access all models,\" but model-specific access requirements still apply.",
+      limits:
+        "100M tokens per new account; Mercury 3 has an official Quick Start; expiry, rate limits, and model eligibility are unpublished; no payment details required to start",
+      caveat:
+        "Verified 2026-10-21 against Inception's official Quick Start and Models docs: Mercury 3 is the confirmed new-account route and supports chat completions and tool calling. Mercury Voice is currently available only to enterprise customers; Mercury Decide uses a separate v1/decisions endpoint and is marked \"Contact sales\" on the models page, with no confirmation that the signup grant covers it. Mercury 2 and Mercury 2.5 are unavailable to new users. The 100M grant is confirmed for Mercury 3; other models are not guaranteed.",
     },
   },
   {
@@ -400,24 +430,24 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-10-21",
     zh: {
-      name: "OpenCode Zen 免费车道（长期轮换）",
+      name: "OpenCode Zen 免费模型（长期轮换）",
       description:
-        "OpenCode Zen 的免费车道长期在营、模型滚动轮换：GLM 4.7、MiniMax M2.1、Union Alpha 等先后免费上架又下架，任一时刻通常都有数款模型可零价格调用。下载 opencode 登录即用，免费车道无需充值、无需绑卡。当前阵容（2026-10-10 核实，共 13 款）：Step 5 Preview（新上架，官方 X 称免费一周、1M 上下文、多模态）、Space Bunny、LongCat 2.5 Preview、Exo、MiMo V2.6 Flash / V2.5、Ling 3.1 Flash / 3.0 Flash Fin、Nemotron 3.5 Lightning / 3 Ultra、Big Pickle、Muse Spark 1.3 Contributor、Jev 1.13。限时免费的新模型下架后，车道会补上下一批。",
+        "OpenCode Zen 长期轮换零价格模型。2026-10-21 官方名单列出 14 款：Big Pickle、GLM-5.3-Flash、DeepSeek V4.1 Flash、MiniMax M3.1 Flash、Beam、LL Alpha、LongCat 2.5 Preview、Exo、MiMo-V2.6-Flash、MiMo-V2.5、Nemotron 3 Ultra、Nemotron 3.5 Lightning、Nemotron 3.5 Super VL、Jev 1.13。登录 OpenCode 使用；官方未公布单模型额度。各模型免费期可能随时结束并轮换。",
       limits:
         "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
       caveat:
-        "单个模型都是限时免费、到期即下架车道。免费期数据政策分三档（2026-10-10 依官方文档核实）：Space Bunny、LongCat 2.5 Preview、Step 5 Preview 供应商零留存、不用于训练；Big Pickle、Exo、MiMo 两款、Ling 两款免费期数据可能用于改进模型；Nemotron 两款走 NVIDIA 免费端点（试用性质，会记录用量但不关联身份，勿提交敏感数据）。Muse Spark 1.3 Contributor 免费期数据用于改进模型；Jev 免费档未给数据说明。",
+        "2026-10-21 依官方文档核实：每个模型均为限时免费。Big Pickle、LL Alpha、Exo、MiMo 两款的免费期数据可能用于改进模型；LL Alpha 保留 30 天。Nemotron 三款走 NVIDIA 试用端点，会记录用量并用于改进产品，官方建议勿提交个人或机密数据。Beam 不用于训练但保留数据 30 天；Jev 免费档的数据政策未说明。其余模型按官方页面列出的供应商策略处理。",
     },
     en: {
       name: "OpenCode Zen Free Lane (Rotating)",
       description:
-        "OpenCode Zen's free lane runs year-round with rotating models: GLM 4.7, MiniMax M2.1, and Union Alpha have all taken a free turn and left; at any moment several models are callable at price zero. Free models work in the opencode client right after sign-in — no top-up, no card. Current lineup (verified 2026-10-10, thirteen lanes): Step 5 Preview (new arrival, officially announced as free for a week with 1M context and multimodal input), Space Bunny, LongCat 2.5 Preview, Exo, MiMo V2.6 Flash / V2.5, Ling 3.1 Flash / 3.0 Flash Fin, Nemotron 3.5 Lightning / 3 Ultra, Big Pickle, Muse Spark 1.3 Contributor, and Jev 1.13. As one limited-time model leaves, the next batch lands.",
+        "OpenCode Zen maintains a rotating zero-price model lane. Its official lineup on 2026-10-21 lists 14 models: Big Pickle, GLM-5.3-Flash, DeepSeek V4.1 Flash, MiniMax M3.1 Flash, Beam, LL Alpha, LongCat 2.5 Preview, Exo, MiMo-V2.6-Flash, MiMo-V2.5, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Nemotron 3.5 Super VL, and Jev 1.13. Sign in to use them in OpenCode; per-model quotas are unpublished and the free models may rotate at any time.",
       limits:
         "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
       caveat:
-        "Each model is individually limited-time free and leaves the lane when it ends. Free-period data policies come in three tiers (per the official docs, verified 2026-10-10): Space Bunny, LongCat 2.5 Preview, and Step 5 Preview ride zero-retention providers with no training use; Big Pickle, Exo, both MiMo lanes, and both Ling lanes may use free-period data to improve the model; both Nemotron lanes ride NVIDIA free endpoints (trial use, usage logged but not linked to identity — don't submit sensitive data). Muse Spark 1.3 Contributor's free-period data improves the model; Jev's free lane states no data policy.",
+        "Re-checked 2026-10-21 against official docs: each free model is limited-time. During free access, data from Big Pickle, LL Alpha, Exo, and both MiMo models may be used to improve the models; LL Alpha retains data for 30 days. The three Nemotron free endpoints log usage and may use it to improve NVIDIA products; do not submit personal or confidential data. Beam is not used for training but retains data for 30 days. The Jev free lane has no published data policy. See the official docs for current provider-specific terms.",
     },
   },
   {
@@ -431,24 +461,24 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-10",
+    lastVerified: "2026-10-21",
     zh: {
       name: "OpenCode Zen 免费车道：已下架的轮换模型（GLM 4.7、MiniMax M2.1、Union Alpha 等）",
       description:
-        "OpenCode Zen 免费车道的历史轮换档：GLM 4.7、MiniMax M2.1、Union Alpha、Muse Spark 1.2 等先后限时免费，现已全部下架（部分转入付费档），不再可零价格调用。车道本身仍在营、持续补新——当前主推 Step 5 Preview（免费一周、1M 上下文、多模态），领取方式与现行阵容见「OpenCode Zen 免费车道（长期轮换）」条目。",
+        "OpenCode Zen 免费车道的历史轮换档：GLM 4.7、MiniMax M2.1、Union Alpha、Muse Spark 1.2 等先后限时免费，现已全部下架（部分转入付费档），不再可零价格调用。车道本身仍在营并持续补新；现行阵容、领取方式与数据政策见「OpenCode Zen 免费模型（长期轮换）」条目。",
       limits:
         "历史各档在免费期内均为零价格调用，配额未公布；下架后模型转入付费档或直接退役",
       caveat:
-        "历史归档条目（2026-10-10 整理）：所列模型已全部离开免费车道，本条仅作追溯。现行阵容、领取方式与数据政策以 opencode-zen-free-rotation 条目为准（当前主推 Step 5 Preview）。",
+        "历史归档条目（2026-10-21 整理）：所列模型已全部离开免费车道，本条仅作追溯。现行阵容、领取方式与数据政策以 opencode-zen-free-rotation 条目为准。",
     },
     en: {
       name: "OpenCode Zen free lane: retired rotation models (GLM 4.7, MiniMax M2.1, Union Alpha, etc.)",
       description:
-        "Historical turns of OpenCode Zen's free lane: GLM 4.7, MiniMax M2.1, Union Alpha, and Muse Spark 1.2 all had limited-time free stints and have since left the lane (some moved to paid tiers) — no longer callable at price zero. The lane itself keeps running and restocking: the current headliner is Step 5 Preview (free for a week, 1M context, multimodal). See the OpenCode Zen Free Lane (Rotating) entry for how to claim it and the current lineup.",
+        "Historical turns of OpenCode Zen's free lane: GLM 4.7, MiniMax M2.1, Union Alpha, and Muse Spark 1.2 all had limited-time free stints and have since left the lane (some moved to paid tiers) — no longer callable at price zero. The lane itself keeps running and restocking. See the OpenCode Zen Free Models (Rotating) entry for how to claim current models and review their data policies.",
       limits:
         "Each historical turn was zero-price during its free window with unpublished quotas; once a model leaves it either moves to a paid tier or retires",
       caveat:
-        "Historical archive entry (compiled 2026-10-10): every model listed here has left the free lane; this entry exists for the record only. For the current lineup, claiming steps, and data policies, the opencode-zen-free-rotation entry is authoritative (currently headlined by Step 5 Preview).",
+        "Historical archive entry (compiled 2026-10-21): every model listed here has left the free lane; this entry exists for the record only. The opencode-zen-free-rotation entry is authoritative for the current lineup, claiming steps, and data policies.",
     },
   },
   {
@@ -504,6 +534,64 @@ export const offers = validateRegistry([
         ":free models: 20 requests/min; 50 requests/day without top-up, 1000/day after 10 lifetime credits (account-wide, shared across all free models); no limit published for stealth/union-alpha",
       caveat:
         "Daily cap is shared across every :free model on the account; stealth/union-alpha carries no :free suffix and does not count against it.",
+    },
+  },
+  {
+    id: "vercel-ai-gateway-free-monthly",
+    provider: "Vercel",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    url: "https://vercel.com/ai-gateway",
+    source: "https://vercel.com/docs/ai-gateway/pricing",
+    actionUrl: "https://vercel.com/ai-gateway",
+    lastVerified: "2026-10-21",
+    zh: {
+      name: "Vercel AI Gateway：每月 $5 免费模型额度",
+      description:
+        "Vercel 每个 team 账号的 AI Gateway 免费层每月含 $5 模型调用额度，首次发起 AI Gateway 请求后开始计入。可接入支持该网关的编码 Agent，按模型供应商公开价格扣额度。",
+      limits:
+        "每个 Vercel team 每月 $5；仅适用于 Free Tier eligible models，且各模型有较低速率限制；免费额度从首次请求开始",
+      caveat:
+        "2026-10-21 核实官方定价文档：免费层仅开放部分模型，不含完整目录；超出模型速率限制会返回 429。购买 AI Gateway credits 后账号转为付费层，之后不再获得每月 $5 免费额度。",
+    },
+    en: {
+      name: "Vercel AI Gateway: $5 monthly free model credit",
+      description:
+        "Every Vercel team account receives $5 of AI Gateway model usage each month. The allowance starts after the first AI Gateway request and is charged at the model provider's listed rates. The gateway can connect to supported coding agents.",
+      limits:
+        "$5 per Vercel team each month; limited to Free Tier eligible models, with lower per-model rate limits; starts on the first request",
+      caveat:
+        "Verified 2026-10-21 against the official pricing docs: the free tier covers a subset of models, not the full catalog, and requests can receive 429 rate-limit responses. Purchasing AI Gateway credits moves the team to the paid tier and ends the monthly $5 free credit.",
+    },
+  },
+  {
+    id: "freebuff-coding-agent-free-plan",
+    provider: "Freebuff",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    url: "https://freebuff.com/",
+    source: "https://freebuff.com/plans",
+    actionUrl: "https://freebuff.com/",
+    lastVerified: "2026-10-21",
+    zh: {
+      name: "Freebuff 免费 Coding Agent：每日补充 30 小时配额",
+      description:
+        "Freebuff 提供桌面端、网页端与终端 Coding Agent 免费计划，官方列明 $0/月、无需绑卡，每日补充 30 小时模型使用配额，每个 session 内不限消息数。",
+      limits:
+        "每日补充 30 模型小时，按模型倍率消耗：官方估算 MiMo V2.6 Flash Slow 30 小时、Flash Fast 15 小时、DeepSeek V4.1 Flash 10 小时或 Claude Haiku 5.5 2 小时；不用绑卡",
+      caveat:
+        "2026-10-21 核实官方计划页：上述小时数为单一模型使用的估算，不可相加；模型倍率和限额可能调整，页面注明 fair-use 限制，session 可能暂停或停止。Freebuff 以文本广告支持免费使用，具体模型可用性可能因地区而异。截止日期未公布。",
+    },
+    en: {
+      name: "Freebuff Free Coding Agent: 30 model-hours replenished daily",
+      description:
+        "Freebuff offers free coding agents for desktop, web, and terminal. Its official plan is $0/month, requires no card, replenishes 30 hours of model usage daily, and allows unlimited messages within each session.",
+      limits:
+        "30 model-hours replenished daily, consumed at model-specific rates: the plan estimates 30 hours on MiMo V2.6 Flash Slow, 15 on Flash Fast, 10 on DeepSeek V4.1 Flash, or 2 on Claude Haiku 5.5; no card required",
+      caveat:
+        "Verified 2026-10-21 against the official plans page: model-hour estimates are alternatives and cannot be added together. Model rates and allowances may change; fair-use limits can pause or stop a session. Freebuff funds free usage with text ads, and model availability may vary by region. No end date published.",
     },
   },
   {
