@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-25T11:39:51.914+08:00",
+  "checkedAt": "2026-10-25T14:03:25.165+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,25 +21,6 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
-  {
-    "id": "2114200291319124163",
-    "type": "reset",
-    "status": "announced",
-    "scope": null,
-    "confirmedAt": null,
-    "occurredOn": null,
-    "scheduleFrom": null,
-    "scheduleThrough": null,
-    "posts": [
-      {
-        "stage": "announce",
-        "publishedAt": "2026-10-25T11:40:04.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2114200291319124163",
-        "zh": null,
-        "en": "By midnight PST"
-      }
-    ]
-  },
   {
     "id": "observed-2113492502355562875",
     "type": "reset",
