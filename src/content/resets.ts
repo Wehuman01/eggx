@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-26T14:22:11.749+08:00",
+  "checkedAt": "2026-10-26T15:03:02.028+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -22,9 +22,9 @@ export const resetSnapshot: ResetSnapshot = {
 export const resets = validateResets(
 [
   {
-    "id": "2114588174249071102",
+    "id": "observed-2114588174249071102",
     "type": "reset",
-    "status": "announced",
+    "status": "confirmed",
     "scope": null,
     "confirmedAt": null,
     "occurredOn": null,
@@ -32,11 +32,11 @@ export const resets = validateResets(
     "scheduleThrough": null,
     "posts": [
       {
-        "stage": "announce",
-        "publishedAt": "2026-10-26T13:21:22.000+08:00",
+        "stage": "confirm",
+        "publishedAt": "2026-10-26T15:00:00.000+08:00",
         "url": "https://x.com/thsottiaux/status/2114588174249071102",
         "zh": null,
-        "en": "Day 21/ Wonder what happens the remaining seven days. But today is a reset."
+        "en": "Codex usage limits have been reset. Check your limits."
       }
     ]
   },
