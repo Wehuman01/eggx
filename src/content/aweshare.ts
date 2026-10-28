@@ -9,12 +9,27 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-10-28T08:27:05.082Z",
-  "count": 38
+  "checkedAt": "2026-10-28T15:59:27.986Z",
+  "count": 39
 };
 
 export const aweshareOfferings = validateAweshareCatalog(
 [
+  {
+    "producer": "houzhihoujue",
+    "alias": "houzhihoujue/minicpm-ocr",
+    "protocols": [
+      "openai-chat"
+    ],
+    "status": "online",
+    "hubCheckAt": null,
+    "degradedSince": null,
+    "maxConcurrencyPerUser": 1,
+    "maxConcurrentUsers": 1,
+    "dailyTokens": 100000000000,
+    "usedDailyTokens": 0,
+    "shareState": null
+  },
   {
     "producer": "houzhihoujue",
     "alias": "houzhihoujue/qwen3.8-27b",
@@ -99,12 +114,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-28T02:57:57.721Z",
+    "hubCheckAt": "2026-10-28T15:49:17.151Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 3,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 941837,
+    "usedDailyTokens": 8615662,
     "shareState": null
   },
   {
@@ -115,12 +130,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-28T02:57:52.871Z",
+    "hubCheckAt": "2026-10-28T15:49:24.965Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 5,
     "dailyTokens": 20000000,
-    "usedDailyTokens": 2668192,
+    "usedDailyTokens": 7976805,
     "shareState": null
   },
   {
@@ -131,7 +146,7 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-27T05:49:08.867Z",
+    "hubCheckAt": "2026-10-28T10:52:25.619Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
@@ -147,12 +162,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-27T05:48:53.350Z",
+    "hubCheckAt": "2026-10-28T10:55:31.506Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 2000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 2135482,
     "shareState": null
   },
   {
@@ -178,12 +193,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-27T16:57:06.595Z",
+    "hubCheckAt": "2026-10-28T14:44:50.462Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 3,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 5980323,
+    "usedDailyTokens": 19089603,
     "shareState": null
   },
   {
@@ -270,7 +285,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": "2026-10-28T07:29:59.815Z",
+    "degradedSince": "2026-10-28T14:39:48.654Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -285,7 +300,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": "2026-10-28T07:29:59.815Z",
+    "degradedSince": "2026-10-28T14:39:48.654Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -300,7 +315,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-03T04:34:38.066Z",
-    "degradedSince": "2026-10-28T07:29:59.815Z",
+    "degradedSince": "2026-10-28T14:39:48.654Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -315,7 +330,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     ],
     "status": "degraded",
     "hubCheckAt": "2026-09-03T15:42:04.000Z",
-    "degradedSince": "2026-10-28T07:29:59.815Z",
+    "degradedSince": "2026-10-28T14:39:48.654Z",
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 3,
     "dailyTokens": 1000000,
@@ -359,12 +374,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": null,
+    "hubCheckAt": "2026-10-28T10:35:39.990Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 1,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 196746,
     "shareState": null
   },
   {
