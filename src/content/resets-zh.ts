@@ -9,7 +9,7 @@
 import type { ResetSnapshot } from "../lib/resets";
 
 export const resetZhSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-28T14:20:09.248+08:00",
+  "checkedAt": "2026-10-28T21:30:25.555+08:00",
   "historyFrom": "2026-06-12T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -18,6 +18,7 @@ export const resetZhSnapshot: ResetSnapshot = {
 export const resetZh: Record<string, string> = {
   "2115273064481218829": "开个玩笑，今天是重置。",
   "2115273253711409208": "太平洋时间午夜前落地。",
+  "2115330127886463244": "搞定了。",
   "2114588174249071102": "但今天是一次重置。",
   "2114200291319124163": "太平洋时间午夜前",
   "2114237083652882932": "已经全部推送完成。",
