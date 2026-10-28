@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-28T08:30:06.644+08:00",
+  "checkedAt": "2026-10-28T10:43:36.240+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,6 +21,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "2115273253711409208",
+    "type": "reset",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-10-28T10:43:38.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2115273253711409208",
+        "zh": null,
+        "en": "Lands by midnight PST."
+      }
+    ]
+  },
   {
     "id": "observed-2114588174249071102",
     "type": "reset",
