@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-28T12:36:54.375+08:00",
+  "checkedAt": "2026-10-28T13:15:04.038+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -22,7 +22,7 @@ export const resetSnapshot: ResetSnapshot = {
 export const resets = validateResets(
 [
   {
-    "id": "2115273253711409208",
+    "id": "2115273064481218829",
     "type": "reset",
     "status": "announced",
     "scope": null,
@@ -33,10 +33,10 @@ export const resets = validateResets(
     "posts": [
       {
         "stage": "announce",
-        "publishedAt": "2026-10-28T10:43:38.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2115273253711409208",
+        "publishedAt": "2026-10-28T10:42:53.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2115273064481218829",
         "zh": null,
-        "en": "Lands by midnight PST."
+        "en": "Day 23/ Much requested iCloud Main &amp; Calendar plugins. Just kidding, today is a reset. Still much requested though!"
       }
     ]
   },
