@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-10-29T21:17:19.225+08:00",
+  "checkedAt": "2026-10-30T02:59:15.888+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
