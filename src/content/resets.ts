@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-01T07:27:59.336+08:00",
+  "checkedAt": "2026-11-01T08:45:14.134+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -22,9 +22,9 @@ export const resetSnapshot: ResetSnapshot = {
 export const resets = validateResets(
 [
   {
-    "id": "2116405414921384099",
+    "id": "2116692529970311254",
     "type": "card",
-    "status": "announced",
+    "status": "confirmed",
     "scope": null,
     "confirmedAt": null,
     "occurredOn": null,
@@ -32,11 +32,11 @@ export const resets = validateResets(
     "scheduleThrough": null,
     "posts": [
       {
-        "stage": "announce",
-        "publishedAt": "2026-10-31T13:42:26.000+08:00",
-        "url": "https://x.com/thsottiaux/status/2116405414921384099",
+        "stage": "confirm",
+        "publishedAt": "2026-11-01T08:43:20.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2116692529970311254",
         "zh": null,
-        "en": "Day 26/ You can now easily switch between multiple accounts on mobile, and coming soon to desktop too. Next two days will be resets… banked… do with this what you may 👀."
+        "en": "Banked 1/2"
       }
     ]
   },
