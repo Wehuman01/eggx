@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-02T06:50:37.909+08:00",
+  "checkedAt": "2026-11-02T07:51:41.659+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,6 +21,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "2117035794678546764",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-11-02T07:27:20.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2117035794678546764",
+        "zh": null,
+        "en": "Day 28/ Banked 2/2"
+      }
+    ]
+  },
   {
     "id": "2116692529970311254",
     "type": "card",
