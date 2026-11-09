@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-11-08T23:42:12.318Z",
+  "checkedAt": "2026-11-09T06:21:46.799Z",
   "count": 40
 };
 
