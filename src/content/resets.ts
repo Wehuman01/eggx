@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-13T04:51:10.003+08:00",
+  "checkedAt": "2026-11-13T06:01:19.536+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,6 +21,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "2120999993079451919",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-11-13T05:59:39.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2120999993079451919",
+        "zh": null,
+        "en": "We shipped some good updates to dots today and the banked reset has been activated and should land in everyones accounts sometime soon!"
+      }
+    ]
+  },
   {
     "id": "2117035794678546764",
     "type": "card",
