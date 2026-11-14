@@ -600,27 +600,27 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
+    archived: true,
     expiry: null,
     url: "https://openrouter.ai/stealth/space-bunny-alpha",
     source: "https://openrouter.ai/stealth/space-bunny-alpha",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
-      name: "OpenRouter stealth/space-bunny-alpha 免费模型（$0，截止日未公布）",
+      name: "OpenRouter stealth/space-bunny-alpha 免费模型（$0，免费期已结束）",
       description:
-        "OpenRouter 的零价格空格模型 space-bunny-alpha（Space Bunny Alpha）：匿名大模型、推理速度快、编码能力强、原生多模态输入，1M 上下文窗口。定价 prompt 与 completion 均为 $0，走 OpenRouter stealth/ 命名空间的零价格车道（与 stealth/union-alpha 同类），不带 :free 后缀、不占 :free 模型的每日共享配额。申请 OpenRouter API key 后可在任意 agent 中调用",
+        "OpenRouter 的零价格空格模型 space-bunny-alpha（Space Bunny Alpha）：匿名大模型、推理速度快、编码能力强、原生多模态输入，1M 上下文窗口，2026-09-23 上线时走 stealth/ 命名空间的零价格车道（与 stealth/union-alpha 同类），不带 :free 后缀、不占 :free 模型的每日共享配额。现已揭晓为 MiniMax M3.1 Flash，免费期结束。",
       limits: "定价 $0，不占 :free 每日配额；具体用量与限速官方未公布",
       caveat:
-        "2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0。2026-10-04 再次复核官方 API：模型仍在架、prompt/completion 定价仍为 $0，已超过登记时按「一周」推算的 expiry=2026-10-01（条目随之短暂进入过期区）；OpenRouter 未公布 stealth 车道的截止日，expiry 改回 null。2026-10-11 复核：/stealth/space-bunny-alpha 页面仍在且无结束公告（同页 union-alpha 已标「The free stealth period has ended」、ox-alpha 已揭晓为 GLM-5.3-Flash，可作对照）；但公共 /api/v1/models（458 个模型）已无任何 stealth/ 条目、单模型端点 404，$0 定价无法再经官方 API 复核，下线以页面是否出现结束公告为准（届时标 archived 归档）。",
+        "活动提前结束，2026-11-14 核实已失效，本条仅作归档。证据：官方 stealth 页面现已标注「The free stealth period has ended; use MiniMax M3.1 Flash at https://openrouter.ai/minimax/minimax-m3.1-flash」，模型身份也揭晓为 MiniMax M3.1 Flash（2026-09-23 发布）；同车道的 union-alpha 同样已结束免费期并揭晓为 Unbiased Pareto。原记录：2026-09-24 经 OpenRouter /api/v1/models 官方数据核实该模型真实在架且定价为 0；2026-10-04 与 10-11 复核时页面仍在且公共 /api/v1/models 已无任何 stealth/ 条目、单模型端点 404，$0 定价无法再经官方 API 复核。",
     },
     en: {
-      name: "OpenRouter stealth/space-bunny-alpha Free Lane ($0, no published end date)",
+      name: "OpenRouter stealth/space-bunny-alpha Free Lane ($0, free period ended)",
       description:
-        "OpenRouter's zero-price stealth model space-bunny-alpha (Space Bunny Alpha): an anonymous large model with fast inference, strong coding capability and native multimodal input, in a 1M-token context window. Both prompt and completion are priced at $0; it runs on OpenRouter's stealth/ zero-price lane, carries no :free suffix and does not count against the shared daily :free cap. With an OpenRouter API key you can call it from any agent.",
-      limits:
-        "Priced at $0 and outside the :free daily quota; per-usage caps and rate limits not published",
+        "OpenRouter's zero-price stealth model space-bunny-alpha (Space Bunny Alpha): an anonymous large model with fast inference, strong coding capability and native multimodal input, in a 1M-token context window. It launched on 2026-09-23 on OpenRouter's stealth/ zero-price lane (alongside stealth/union-alpha), carried no :free suffix and did not count against the shared daily :free cap. It has since been revealed as MiniMax M3.1 Flash and its free period has ended.",
+      limits: "Priced at $0 and outside the :free daily quota; per-usage caps and rate limits not published",
       caveat:
-        "Verified 2026-09-24 against OpenRouter's official /api/v1/models data — the model exists and is priced at 0. Re-checked 2026-10-04 against the official API: still live at $0 prompt/completion, past the expiry=2026-10-01 estimated from a one-week run (the entry briefly moved to the expired section meanwhile); OpenRouter publishes no end date for the stealth lane, so expiry is back to null. Re-checked 2026-10-11: the /stealth/space-bunny-alpha page is still up with no end announcement (its sibling union-alpha now reads \"The free stealth period has ended\" and ox-alpha has been revealed as GLM-5.3-Flash, for contrast); but the public /api/v1/models (458 models) no longer lists any stealth/ entry and the single-model endpoint 404s, so the $0 price can no longer be re-verified via the official API — an end announcement on the page is the signal to mark archived.",
+        "The offer ended early and was confirmed dead on 2026-11-14; this entry is archived. Evidence: the official stealth page now reads 'The free stealth period has ended; use MiniMax M3.1 Flash at https://openrouter.ai/minimax/minimax-m3.1-flash', and the model is revealed as MiniMax M3.1 Flash (released 2026-09-23); its sibling union-alpha has likewise ended its free period and is revealed as Unbiased Pareto. Original record: verified against OpenRouter's official /api/v1/models data on 2026-09-24 — the model existed and was priced at 0; at the 2026-10-04 and 10-11 re-checks the page was still up while the public /api/v1/models no longer listed any stealth/ entry and the single-model endpoint 404'd, so the $0 price could no longer be re-verified via the official API.",
     },
   },
   {
