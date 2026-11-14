@@ -518,23 +518,24 @@ export const offers = validateRegistry([
     url: "https://openrouter.ai",
     source: "https://openrouter.ai/docs/limits",
     actionUrl: "https://openrouter.ai",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "OpenRouter 免费层",
       description:
-        "支持匿名访问的模型网关：约 20 个 :free 模型轮换供应，另有 stealth/union-alpha 零价格车道——与 OpenCode Zen 免费车同名的 Union Alpha，定价 0、262K 上下文、支持图像输入，申请 API key 后可在任意 agent 中调用。",
+        "支持匿名访问的模型网关：:free 模型轮换供应（2026-11-14 官方 API 在架 14 个 :free 模型，含 ling-3.2-flash、ernie-5.5-flash-preview、inkling-2-small、lfm-3-1.7b、particle-1、flint-v1.0、nemotron 三款、dots-3-note-preview、north-mini-code、gemma-4 两款，另有 google/lyria-3 两个零价多模态与 openrouter/free 路由器）。另有 stealth/ 零价格车道（union-alpha、space-bunny-alpha），两条车道的免费期均已结束，分别揭晓为 Unbiased Pareto 与 MiniMax M3.1 Flash。",
       limits:
-        ":free 模型 20 请求/分；未充值 50 请求/日，累计充值 10 美元后 1000 请求/日（账户级、所有免费模型共享）；stealth/union-alpha 官方未公布限额",
-      caveat: "每日配额在账户下所有 :free 模型间共享；stealth/union-alpha 不带 :free 后缀、不占该配额。",
+        ":free 模型 20 请求/分；未充值 50 请求/日，累计充值 10 美元后 1000 请求/日（账户级、所有免费模型共享）；stealth 车道免费期已结束",
+      caveat:
+        "每日配额在账户下所有 :free 模型间共享。2026-11-14 复核官方 /api/v1/models：在架 :free 模型为 14 个（此前记录的「约 20 个」已轮换），零价条目另含 google/lyria-3-pro-preview、google/lyria-3-clip-preview 与 openrouter/free 路由器；公共模型列表已无任何 stealth/ 条目，stealth/union-alpha 与 stealth/space-bunny-alpha 两个页面均在正文标注「The free stealth period has ended」，因此本条不再把 stealth 车道列为可领的零价格入口。",
     },
     en: {
       name: "OpenRouter Free Tier",
       description:
-        "Anonymous-access model gateway with a rotating set of :free models (about 20 today) plus the stealth/union-alpha zero-price lane — the same Union Alpha as OpenCode Zen's free lane, priced at 0 with a 262K context and image input, callable from any agent with an API key.",
+        "Anonymous-access model gateway with a rotating set of :free models (14 :free models live on the official API as of 2026-11-14, including ling-3.2-flash, ernie-5.5-flash-preview, inkling-2-small, lfm-3-1.7b, particle-1, flint-v1.0, three Nemotron models, dots-3-note-preview, north-mini-code, and two gemma-4 variants, plus zero-priced google/lyria-3 entries and the openrouter/free router). It also has a stealth/ zero-price lane (union-alpha, space-bunny-alpha), but both lanes' free periods have ended, revealing Unbiased Pareto and MiniMax M3.1 Flash respectively.",
       limits:
-        ":free models: 20 requests/min; 50 requests/day without top-up, 1000/day after 10 lifetime credits (account-wide, shared across all free models); no limit published for stealth/union-alpha",
+        ":free models: 20 requests/min; 50 requests/day without top-up, 1000/day after 10 lifetime credits (account-wide, shared across all free models); the stealth lane's free period has ended",
       caveat:
-        "Daily cap is shared across every :free model on the account; stealth/union-alpha carries no :free suffix and does not count against it.",
+        "The daily cap is shared across every :free model on the account. Re-checked 2026-11-14 against the official /api/v1/models: 14 :free models are live (the previously recorded 'about 20' has rotated), zero-priced entries also include google/lyria-3-pro-preview, google/lyria-3-clip-preview, and the openrouter/free router; the public model list no longer contains any stealth/ entry, and both stealth/union-alpha and stealth/space-bunny-alpha now state in their body text that 'The free stealth period has ended', so this entry no longer lists the stealth lane as a claimable zero-price route.",
     },
   },
   {
