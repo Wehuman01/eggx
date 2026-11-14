@@ -687,20 +687,24 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://openai.com/form/codex-for-oss/",
     actionUrl: "https://openai.com/form/codex-for-oss/",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Codex 开源维护者计划",
       description:
-        "OpenAI 面向开源维护者的资助计划：入选者获 6 个月 ChatGPT Pro（含 Codex）、用于项目维护与自动化等工作流的 API 额度，以及视情况开放的 Codex Security。",
-      limits: "申请制、滚动评审；可自荐或提名他人",
-      caveat: "需要一个活跃维护中的开源项目。",
+        "OpenAI 面向开源维护者的资助计划：入选者获 6 个月 ChatGPT Pro（含 Codex）、用于项目维护与自动化等工作流的 API 额度，以及视情况开放的 Codex Security。官方另称该计划由 Codex Open Source Fund（100 万美元）支撑。",
+      limits:
+        "申请制、滚动评审；可自荐或提名他人；官方未公布固定名额与截止日。Codex Open Source Fund 规模 100 万美元",
+      caveat:
+        "需要一个活跃维护中的开源项目。2026-11-14 复核官方申请页：入选福利三项（6 个月 ChatGPT Pro、API credits、Codex Security 的 conditional access）未变，官方页面新增/保留了 Codex Open Source Fund（100 万美元）的表述，据此补入。",
     },
     en: {
       name: "Codex for Open Source",
       description:
-        "OpenAI program for open-source maintainers: selected maintainers receive 6 months of ChatGPT Pro (which includes Codex), API credits for review/automation/release workflows, and conditional access to Codex Security.",
-      limits: "Application-based, reviewed on a rolling basis; self-apply or nominate another maintainer",
-      caveat: "Requires an actively maintained open-source project.",
+        "OpenAI program for open-source maintainers: selected maintainers receive 6 months of ChatGPT Pro (which includes Codex), API credits for review/automation/release workflows, and conditional access to Codex Security. The company also says the program is backed by the Codex Open Source Fund ($1 million).",
+      limits:
+        "Application-based, reviewed on a rolling basis; self-apply or nominate another maintainer; no fixed quota or end date published. The Codex Open Source Fund is $1 million",
+      caveat:
+        "Requires an actively maintained open-source project. Re-checked 2026-11-14 against the official application page: the three benefits (6 months of ChatGPT Pro, API credits, conditional access to Codex Security) are unchanged, and the page now also carries the Codex Open Source Fund ($1 million) wording, which this entry now records.",
     },
   },
   {
