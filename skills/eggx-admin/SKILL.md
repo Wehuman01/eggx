@@ -72,9 +72,12 @@ eggx 只回答一个问题：**现在有什么可以领的免费 AI 编码额度
 ```bash
 npm run check   # astro check，含 offers.ts 的 schema 校验
 npm test        # vitest 全量，含 API/页面/skill 一致性测试
+node scripts/check-freshness.mjs   # 新鲜度哨兵：核对在架条目的 lastVerified 是否超 30 天
 ```
 
-两道都过才算完成。拿不准页面效果时再跑 `npm run dev` 本地看，或 `npm run build` 验证产物。
+三道都过才算完成。拿不准页面效果时再跑 `npm run dev` 本地看，或 `npm run build` 验证产物。
+
+第三条检查的是**人工维护的登记表本身有没有发臭**——前两条只管代码对不对，不管内容新不新。2026-10-21 之后整整 24 天没人动 `offers.ts`，线上挂着过时的免费额度（Claude Max 20x 早已改成 Claude Ultra、Inception 在关停倒计时、OpenCode Zen 的免费名单换了两轮血），而当时没有任何告警，因为哨兵只盯机器同步的两份文件。改了 `lastVerified` 之外的内容，记得一并把日期刷到今天。
 
 ## 硬性规则
 

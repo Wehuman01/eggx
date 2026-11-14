@@ -2,11 +2,18 @@ name: Freshness tripwire
 
 on:
   schedule:
-    # 每 6 小时（:41 错开整点高峰）自查两条机器同步链路的数据新鲜度：
-    # 读仓库里 resets.ts / aweshare.ts 的 checkedAt，超过 48h 没推进就红。
+    # 每 6 小时（:41 错开整点高峰）自查数据新鲜度：
+    # ① 机器同步的两份注册表（resets.ts / aweshare.ts）读 checkedAt，
+    #    超过 48h 没推进就红；
+    # ② 人工维护的羊毛登记表（offers.ts）读每条在架条目的 lastVerified，
+    #    超过 30 天没复核就红——2026-10-21 之后 24 天没人动目录，
+    #    线上挂着过时的免费额度而没人报警，这就是第②项的由来。
     # 独立成一个工作流是刻意的——它监控的就是 Sync 工作流本身，跑在里面
     # 的话 Sync 死了它也跟着死（2026-09-30 起 resets 同步连红 33 次没人
     # 发现，就是缺这个不在故障链上的哨兵）。零依赖，不装包不联网。
+    #
+    # 注意：这道工作流红了**不拦发布**——deploy 只挂在 CI 与三个 Sync
+    # 工作流上（见 deploy.yml 的 workflow_run 列表），所以它只报警。
     - cron: "41 */6 * * *"
   workflow_dispatch:
 

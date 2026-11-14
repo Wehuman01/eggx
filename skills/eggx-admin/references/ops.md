@@ -55,6 +55,8 @@ push to main
 | `npm run check` 报 offers.ts 校验错误 | 按 `src/lib/schema.ts` 的报错信息修字段，报错自带条目 id 与字段路径 |
 | `sync:aweshare` 本地报无 token | 正常——缺 `.env.aweshare`，交给 CI 同步即可 |
 | sync 工作流 push 被拒 | bot 自带 rebase 重试（竞态防护）；连续失败才需要人工看 Actions 日志 |
+| Freshness tripwire 报 `Stale offer: <id>` | 在架条目的 `lastVerified` 超过 30 天没复核：去官方页重核一遍，把 `lastVerified` 刷到今天。**这道红灯不拦发布**（deploy 不挂在 freshness 工作流上），但目录会持续发臭 |
+| Freshness tripwire 报 `Broken offer: <id>` | 在架条目缺 `lastVerified`，登记表的硬伤，补上核实日期 |
 | 想立即重新部署 | deploy workflow 支持 `workflow_dispatch` 手动触发，但优先修复根因再触发 |
 
 ## 提交信息约定
