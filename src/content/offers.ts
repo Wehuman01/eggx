@@ -461,24 +461,24 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
-      name: "OpenCode Zen 免费车道：已下架的轮换模型（GLM 4.7、MiniMax M2.1、Union Alpha 等）",
+      name: "OpenCode Zen 免费车道：已下架的轮换模型（GLM 4.7、MiniMax M2.1、Union Alpha、LL Alpha、Exo 等）",
       description:
-        "OpenCode Zen 免费车道的历史轮换档：GLM 4.7、MiniMax M2.1、Union Alpha、Muse Spark 1.2 等先后限时免费，现已全部下架（部分转入付费档），不再可零价格调用。车道本身仍在营并持续补新；现行阵容、领取方式与数据政策见「OpenCode Zen 免费模型（长期轮换）」条目。",
+        "OpenCode Zen 免费车道的历史轮换档：GLM 4.7、MiniMax M2.1、Union Alpha、Muse Spark 1.2、LL Alpha、Exo 等先后限时免费，现已全部下架（部分转入付费档），不再可零价格调用。车道本身仍在营并持续补新；现行阵容、领取方式与数据政策见「OpenCode Zen 免费模型（长期轮换）」条目。",
       limits:
         "历史各档在免费期内均为零价格调用，配额未公布；下架后模型转入付费档或直接退役",
       caveat:
-        "历史归档条目（2026-10-21 整理）：所列模型已全部离开免费车道，本条仅作追溯。现行阵容、领取方式与数据政策以 opencode-zen-free-rotation 条目为准。",
+        "历史归档条目（2026-10-21 整理，2026-11-14 补记）：所列模型已全部离开免费车道，本条仅作追溯。2026-11-14 复核官方名单时确认 LL Alpha 与 Exo 也已移出，补入本条；OpenRouter 的 stealth 车道（union-alpha、space-bunny-alpha）同样已结束免费期并分别揭晓为 Unbiased Pareto 与 MiniMax M3.1 Flash。现行阵容、领取方式与数据政策以 opencode-zen-free-rotation 条目为准。",
     },
     en: {
-      name: "OpenCode Zen free lane: retired rotation models (GLM 4.7, MiniMax M2.1, Union Alpha, etc.)",
+      name: "OpenCode Zen free lane: retired rotation models (GLM 4.7, MiniMax M2.1, Union Alpha, LL Alpha, Exo, etc.)",
       description:
-        "Historical turns of OpenCode Zen's free lane: GLM 4.7, MiniMax M2.1, Union Alpha, and Muse Spark 1.2 all had limited-time free stints and have since left the lane (some moved to paid tiers) — no longer callable at price zero. The lane itself keeps running and restocking. See the OpenCode Zen Free Models (Rotating) entry for how to claim current models and review their data policies.",
+        "Historical turns of OpenCode Zen's free lane: GLM 4.7, MiniMax M2.1, Union Alpha, Muse Spark 1.2, LL Alpha, and Exo all had limited-time free stints and have since left the lane (some moved to paid tiers) — no longer callable at price zero. The lane itself keeps running and restocking. See the OpenCode Zen Free Models (Rotating) entry for how to claim current models and review their data policies.",
       limits:
         "Each historical turn was zero-price during its free window with unpublished quotas; once a model leaves it either moves to a paid tier or retires",
       caveat:
-        "Historical archive entry (compiled 2026-10-21): every model listed here has left the free lane; this entry exists for the record only. The opencode-zen-free-rotation entry is authoritative for the current lineup, claiming steps, and data policies.",
+        "Historical archive entry (compiled 2026-10-21, updated 2026-11-14): every model listed here has left the free lane; this entry exists for the record only. The 2026-11-14 re-check of the official lineup confirmed that LL Alpha and Exo have also moved out and added them here; OpenRouter's stealth lane (union-alpha, space-bunny-alpha) has likewise ended its free period, revealing Unbiased Pareto and MiniMax M3.1 Flash respectively. The opencode-zen-free-rotation entry is authoritative for the current lineup, claiming steps, and data policies.",
     },
   },
   {
