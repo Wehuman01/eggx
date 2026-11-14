@@ -899,4 +899,34 @@ export const offers = validateRegistry([
         "Verified 2026-11-14 against kiro.dev/students and its Terms (updated 2026-09-08). The school list follows the page dropdown — the official program expanded to 133 schools in Sep 2026 and added 41 more on 2026-10-28, and the visible list is weighted toward US/Canadian/European/Singaporean/Korean institutions; unlisted schools can submit an interest form. Failed verification can be appealed through the SheerID support form. This is an eligibility-based student benefit, distinct from the individual Kiro Free tier and the startup Kiro Startup Credits entry.",
     },
   },
+  {
+    id: "kiro-startup-credits",
+    provider: "Kiro",
+    kind: "temporary",
+    access: "application",
+    verified: true,
+    expiry: "2026-12-31",
+    url: "https://kiro.dev/startups/",
+    source: "https://kiro.dev/startups/terms/",
+    actionUrl: "https://aws.amazon.com/startups/credits/kiro",
+    lastVerified: "2026-11-14",
+    zh: {
+      name: "Kiro Startup Credits：合格初创免费领最多一年 Kiro Pro+（至 12-31）",
+      description:
+        "Kiro 面向早期到 A 轮初创的限时促销：申请通过即获最多一年的 Kiro Pro+ 等值 credits，分 Starter / Growth / Scale 三档。需 AWS 账号、AWS Account ID，以及与创业公司域名一致的企业邮箱；申请期 2026-04-07 至 2026-12-31，滚动评审。credits 审批通过后直接存入对应 AWS 账号、发放即激活，发放 1 年后过期；用尽后账号自动转标准 Kiro Pro+ 计费。使用时必须以 AWS IAM Identity Center 登录 Kiro，用 Builder ID 或社交登录（GitHub、Google）拿不到 startup credits。",
+      limits:
+        "最多 1 年 Kiro Pro+ credits，三档 Starter / Growth / Scale（各档用户数上限见官方页）；需 AWS 账号 + 匹配域名企业邮箱、年满 18；credits 发放后 1 年过期、用尽自动转标准 Pro+ 计费；每 startup 限一次，不可转让/退款；须以 IAM Identity Center 登录",
+      caveat:
+        "2026-11-14 依 kiro.dev/startups 与其 Terms（更新 2026-07-24）核实：申请期 2026-04-07 至 12-31。官方排除地区：阿根廷、白俄罗斯、巴西、中国-GCR、古巴、法国、德国、伊朗、意大利、墨西哥、朝鲜、波兰、俄罗斯、西班牙、叙利亚、克里米亚、所谓顿涅茨克人民共和国（DNR）、所谓卢甘斯克人民共和国（LNR）、阿联酋；官方注明大多数有 AWS 计费的国家/地区均支持。持有 AWS Activate credits 的初创不合格（反之 Activate credits 可用于付费 Kiro）。面向公司而非个人，与 Kiro Free 及 Kiro for Students 是不同条目。",
+    },
+    en: {
+      name: "Kiro Startup Credits: up to a year of Kiro Pro+ free for eligible startups (through Dec 31)",
+      description:
+        "Kiro's limited-time offer for early-stage to Series A startups: approved applicants receive up to one year of Kiro Pro+ equivalent credits, in Starter / Growth / Scale tiers. Requires an AWS account, an AWS Account ID, and a business email matching the startup's domain; applications run 2026-04-07 to 2026-12-31 on a rolling basis. Credits are deposited directly to the AWS account on approval and activate on provisioning, expiring one year after issuance; once used up, the account automatically switches to standard Kiro Pro+ billing. You must sign in to Kiro with AWS IAM Identity Center to redeem them — Builder ID or social logins (GitHub, Google) do not get startup credits.",
+      limits:
+        "Up to 1 year of Kiro Pro+ credits across Starter / Growth / Scale tiers (per-tier user caps are on the official page); AWS account + matching-domain business email, 18+; credits expire 1 year after issuance and auto-switch to standard Pro+ billing when exhausted; one per startup, non-transferable/non-refundable; must sign in with IAM Identity Center",
+      caveat:
+        "Verified 2026-11-14 against kiro.dev/startups and its Terms (updated 2026-07-24): applications open 2026-04-07 through 12-31. Official excluded locations: Argentina, Belarus, Brazil, China-GCR, Cuba, France, Germany, Iran, Italy, Mexico, North Korea, Poland, Russia, Spain, Syria, Crimea, the so-called Donetsk People's Republic region (DNR), the so-called Luhansk People's Republic region (LNR), and the United Arab Emirates; the official text says most countries/regions where AWS billing is available are supported. Startups holding AWS Activate credits are ineligible (the reverse does not hold — Activate credits can pay for Kiro). This is company-facing, distinct from Kiro Free and Kiro for Students.",
+    },
+  },
 ]);
