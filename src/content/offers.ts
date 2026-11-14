@@ -574,24 +574,24 @@ export const offers = validateRegistry([
     url: "https://freebuff.com/",
     source: "https://freebuff.com/plans",
     actionUrl: "https://freebuff.com/",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Freebuff 免费 Coding Agent：每日补充 30 小时配额",
       description:
-        "Freebuff 提供桌面端、网页端与终端 Coding Agent 免费计划，官方列明 $0/月、无需绑卡，每日补充 30 小时模型使用配额，每个 session 内不限消息数。",
+        "Freebuff 提供桌面端、网页端与终端 Coding Agent 免费计划，官方列明 $0/月、无需绑卡，每日补充 30 小时模型使用配额，每个 session 内不限消息数。用量按小时计，一个 session 为一小时，该小时内消息不限；每日额度按本地时区午夜重置，未用完不结转。",
       limits:
-        "每日补充 30 模型小时，按模型倍率消耗：官方估算 MiMo V2.6 Flash Slow 30 小时、Flash Fast 15 小时、DeepSeek V4.1 Flash 10 小时或 Claude Haiku 5.5 2 小时；不用绑卡",
+        "每日补充 30 模型小时、session 内消息不限、不用绑卡；官方 Free 档按模型给出的每日折算：DeepSeek V4.1 Flash 15 小时 或 DeepSeek V4.1 Flash Fast 10 小时；模型小时表另列 DeepSeek V4.1 Flash Fast、DeepSeek V4.1 Flash、GPT-6 Luna、Muse Spark 1.3、Claude Haiku 5.5（100k 上下文）、Muse Ember、Beam 1.0、Nemotron 3.5 Lightning、Glyph Cluster，促销档为 GPT-6.1 Terra、DeepSeek V4.1 Flash Slow、Solar Pro 4、Solar Mini 4；官方另注明「2026-11-03 之前创建的账号保留其原有模型直至下线」",
       caveat:
-        "2026-10-21 核实官方计划页：上述小时数为单一模型使用的估算，不可相加；模型倍率和限额可能调整，页面注明 fair-use 限制，session 可能暂停或停止。Freebuff 以文本广告支持免费使用，具体模型可用性可能因地区而异。截止日期未公布。",
+        "2026-10-21 核实官方计划页：条目原先引用的 MiMo V2.6 Flash Slow 30 小时、Flash Fast 15 小时、DeepSeek V4.1 Flash 10 小时、Claude Haiku 5.5 2 小时等数字已全部过时——2026-11-14 复核时官方页面不再列 MiMo 系列，模型小时表改为 DeepSeek V4.1 Flash / Flash Fast、GPT-6 Luna、Muse Spark 1.3、Claude Haiku 5.5、Muse Ember、Beam 1.0、Nemotron 3.5 Lightning、Glyph Cluster，促销档为 GPT-6.1 Terra、DeepSeek V4.1 Flash Slow、Solar Pro 4、Solar Mini 4；Free 档卡片给出的每日口径为 DeepSeek V4.1 Flash 15 小时或 Flash Fast 10 小时。官方说明每个模型的每日时长是单模型使用的估算、不可相加，促销档为临时口径，beta 期间模型成本与用量可能变动。Fair-use 限制可能暂停或终止 session；Freebuff 以文本广告支持免费使用，模型可用性可能因地区而异；截止日期未公布。",
     },
     en: {
       name: "Freebuff Free Coding Agent: 30 model-hours replenished daily",
       description:
-        "Freebuff offers free coding agents for desktop, web, and terminal. Its official plan is $0/month, requires no card, replenishes 30 hours of model usage daily, and allows unlimited messages within each session.",
+        "Freebuff offers free coding agents for desktop, web, and terminal. Its official plan is $0/month, requires no card, replenishes 30 hours of model usage daily, and allows unlimited messages within each session. Usage is measured in hours: a session lasts an hour with unlimited messages inside it; daily hours reset at midnight in your local timezone and unused daily hours do not roll over.",
       limits:
-        "30 model-hours replenished daily, consumed at model-specific rates: the plan estimates 30 hours on MiMo V2.6 Flash Slow, 15 on Flash Fast, 10 on DeepSeek V4.1 Flash, or 2 on Claude Haiku 5.5; no card required",
+        "30 model-hours replenished daily, unlimited messages per session, no card required; the official Free tier's per-day figures are 15 hours on DeepSeek V4.1 Flash or 10 hours on DeepSeek V4.1 Flash Fast; the per-model hours table also lists DeepSeek V4.1 Flash Fast, DeepSeek V4.1 Flash, GPT-6 Luna, Muse Spark 1.3, Claude Haiku 5.5 (100k context), Muse Ember, Beam 1.0, Nemotron 3.5 Lightning, and Glyph Cluster, with a promotional tier of GPT-6.1 Terra, DeepSeek V4.1 Flash Slow, Solar Pro 4, and Solar Mini 4; the page also notes that accounts created before November 3 keep their other models until those are retired",
       caveat:
-        "Verified 2026-10-21 against the official plans page: model-hour estimates are alternatives and cannot be added together. Model rates and allowances may change; fair-use limits can pause or stop a session. Freebuff funds free usage with text ads, and model availability may vary by region. No end date published.",
+        "Verified 2026-10-21 against the official plans page: the MiMo V2.6 Flash Slow 30h / Flash Fast 15h / DeepSeek V4.1 Flash 10h / Claude Haiku 5.5 2h figures previously listed here are all outdated — at the 2026-11-14 re-check the page no longer lists any MiMo model, and the hours table now covers DeepSeek V4.1 Flash / Flash Fast, GPT-6 Luna, Muse Spark 1.3, Claude Haiku 5.5, Muse Ember, Beam 1.0, Nemotron 3.5 Lightning, and Glyph Cluster, with a promotional tier of GPT-6.1 Terra, DeepSeek V4.1 Flash Slow, Solar Pro 4, and Solar Mini 4; the Free card itself quotes 15 hours on DeepSeek V4.1 Flash or 10 on Flash Fast per day. The official text says the per-model hours are alternatives for using one model and cannot be added together, promotional prices are temporary, and model costs and allowances may change during beta. Fair-use limits can pause or stop a session; Freebuff funds free usage with text ads, and model availability may vary by region. No end date published.",
     },
   },
   {
