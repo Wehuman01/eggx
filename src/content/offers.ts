@@ -929,4 +929,34 @@ export const offers = validateRegistry([
         "Verified 2026-11-14 against kiro.dev/startups and its Terms (updated 2026-07-24): applications open 2026-04-07 through 12-31. Official excluded locations: Argentina, Belarus, Brazil, China-GCR, Cuba, France, Germany, Iran, Italy, Mexico, North Korea, Poland, Russia, Spain, Syria, Crimea, the so-called Donetsk People's Republic region (DNR), the so-called Luhansk People's Republic region (LNR), and the United Arab Emirates; the official text says most countries/regions where AWS billing is available are supported. Startups holding AWS Activate credits are ineligible (the reverse does not hold — Activate credits can pay for Kiro). This is company-facing, distinct from Kiro Free and Kiro for Students.",
     },
   },
+  {
+    id: "google-antigravity-free",
+    provider: "Google Antigravity",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://antigravity.google/",
+    source: "https://antigravity.google/docs/models",
+    actionUrl: "https://antigravity.google/download",
+    lastVerified: "2026-11-14",
+    zh: {
+      name: "Google Antigravity：免费 Individual 档（无限 Tab/Command 补全，每周额度）",
+      description:
+        "Google Antigravity 是 agent-first 的软件开发平台（Antigravity App / CLI / IDE / IDE 扩展 / SDK）。Individual 免费档 $0/月、无需订阅：访问多种 agent 模型、无限 Tab completions、无限 Command requests、basic weekly rate limits。官方 Plans 文档对未订阅 Pro/Ultra 的账户描述为「a meaningful quota, refreshed weekly」并受周限额约束——免费档是每周刷新（5 小时刷新是 Pro/Ultra 的口径），且官方不公布任何具体数字。免费档当前可用模型：Gemini 3.8 Flash、Gemini 4 Hydrogen，以及 Claude Sonnet 4.6、Claude Opus 4.6、GPT-OSS-120B——后三者官方标注 2026-11-18 移除，届时免费档仅剩 Gemini 模型。",
+      limits:
+        "Individual $0/月；无限 Tab completions 与 Command requests；agent 额度按周刷新（官方称「a meaningful quota, refreshed weekly」，未公布具体数字）；免费档模型：Gemini 3.8 Flash、Gemini 4 Hydrogen，及（至 2026-11-18）Claude Sonnet 4.6 / Claude Opus 4.6 / GPT-OSS-120B；不支持 BYOK；18+、受地区限制",
+      caveat:
+        "2026-11-14 依 antigravity.google/pricing、/docs/plans、/docs/models、/docs/faq 核实。三条硬信息：① Claude Sonnet 4.6 / Claude Opus 4.6 / GPT-OSS-120B 官方标注 2026-11-18 从各档移除（原定 11-02，已推迟），此后免费档仅剩 Gemini 3.8 Flash 与 Gemini 4 Hydrogen；Claude 5.5 系列始终不在免费档，需非试用的付费 Google AI Pro。② 免费档没有 5 小时刷新，只有每周刷新（Pro/Ultra 是 5 小时刷新且仍受周限额），官方不公布任何请求数或 token 数。③ 关键：官方 FAQ 明确用第三方软件/工具/服务访问 Antigravity（点名 Claude Code、OpenClaw、OpenCode）违反服务条款、可致停权封号；CLI 无头模式 agy -p 仅限直接脚本与 CI，不支持包进第三方 coding agent 或自动轮换账号，要接第三方 agent 官方建议改用 Gemini Enterprise 或 Google AI Studio API key。Gemini 4 Argon 可在 eligible premium devices 的 Pro 试用下使用，但学生或设备促销的 Pro 试用不解锁 Claude 5.5。",
+    },
+    en: {
+      name: "Google Antigravity: free Individual plan (unlimited Tab/Command completions, weekly quota)",
+      description:
+        "Google Antigravity is an agent-first software development platform (Antigravity App / CLI / IDE / IDE extensions / SDK). The Individual free plan costs $0/month and needs no subscription: access to a variety of agent models, unlimited Tab completions, unlimited Command requests, and basic weekly rate limits. Google's Plans docs describe accounts not on Pro/Ultra as getting 'a meaningful quota, refreshed weekly' under a weekly rate limit — note the free tier refreshes WEEKLY (the 5-hour refresh is a Pro/Ultra thing) and Google publishes no concrete numbers. Models available on the free tier right now: Gemini 3.8 Flash, Gemini 4 Hydrogen, plus Claude Sonnet 4.6, Claude Opus 4.6, and GPT-OSS-120B — the last three are officially removed on 2026-11-18, after which only Gemini models remain. 18+ with regional restrictions.",
+      limits:
+        "Individual $0/month; unlimited Tab completions and Command requests; agent quota refreshes weekly ('a meaningful quota, refreshed weekly', no numbers published); free-tier models: Gemini 3.8 Flash, Gemini 4 Hydrogen, and (until 2026-11-18) Claude Sonnet 4.6 / Claude Opus 4.6 / GPT-OSS-120B; no BYOK; 18+, region-restricted",
+      caveat:
+        "Verified 2026-11-14 against antigravity.google/pricing, /docs/plans, /docs/models, and /docs/faq. Three hard facts: (1) Claude Sonnet 4.6, Claude Opus 4.6, and GPT-OSS-120B are officially removed from all tiers on 2026-11-18 (originally 11-02, postponed), leaving only Gemini 3.8 Flash and Gemini 4 Hydrogen on the free tier; the Claude 5.5 models are never on the free tier and require a non-trial paid Google AI Pro. (2) The free tier has no 5-hour refresh, only weekly; Pro/Ultra get the 5-hour refresh (still under a weekly cap), and Google publishes no concrete request or token counts. (3) Key: the official FAQ states that using third-party software, tools, or services to access Antigravity (it names Claude Code, OpenClaw, and OpenCode) violates the Terms of Service and can get your account suspended or terminated; CLI headless mode (agy -p) is for direct scripting and CI only, not for wrapping inside third-party coding agents or automating account switching, and for third-party agents Google recommends Gemini Enterprise or a Google AI Studio API key. Gemini 4 Argon is available on a Pro trial with eligible premium devices, but student or device-promo Pro trials do not unlock Claude 5.5.",
+    },
+  },
 ]);
