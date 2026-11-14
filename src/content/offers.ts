@@ -430,24 +430,24 @@ export const offers = validateRegistry([
     url: "https://opencode.ai/zen",
     source: "https://opencode.ai/docs/zen",
     actionUrl: "https://opencode.ai/auth",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
-      name: "OpenCode Zen 免费模型（长期轮换）",
+      name: "OpenCode Zen 免费模型（长期轮换，14 款）",
       description:
-        "OpenCode Zen 长期轮换零价格模型。2026-10-21 官方名单列出 14 款：Big Pickle、GLM-5.3-Flash、DeepSeek V4.1 Flash、MiniMax M3.1 Flash、Beam、LL Alpha、LongCat 2.5 Preview、Exo、MiMo-V2.6-Flash、MiMo-V2.5、Nemotron 3 Ultra、Nemotron 3.5 Lightning、Nemotron 3.5 Super VL、Jev 1.13。登录 OpenCode 使用；官方未公布单模型额度。各模型免费期可能随时结束并轮换。",
+        "OpenCode Zen 长期轮换零价格模型。2026-11-14 官方名单列出 14 款：Big Pickle、Iceman Free、Inkling 2 Small Free、GLM-5.3-Flash Free、DeepSeek V4.1 Flash Free、MiniMax M3.1 Flash Free、Beam Free、Flint 40B Free、LongCat 2.5 Free、MiMo-V2.6-Flash Free、Nemotron 3 Ultra Free、Nemotron 3.5 Lightning Free、Nemotron 3.5 Super VL Free、Jev 1.13 Free。登录 OpenCode 使用；官方未公布单模型额度。各模型免费期可能随时结束并轮换。",
       limits:
-        "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布",
+        "opencode 客户端内登录即用，免费模型无需充值、无需绑卡；只有取 API key 在第三方 agent 中调用时才需绑定支付信息（余额低于 $5 自动充值 $20，可手动关闭）；免费模型的具体配额未公布；LongCat 2.5 Free 官方另标限 100 请求/日",
       caveat:
-        "2026-10-21 依官方文档核实：每个模型均为限时免费。Big Pickle、LL Alpha、Exo、MiMo 两款的免费期数据可能用于改进模型；LL Alpha 保留 30 天。Nemotron 三款走 NVIDIA 试用端点，会记录用量并用于改进产品，官方建议勿提交个人或机密数据。Beam 不用于训练但保留数据 30 天；Jev 免费档的数据政策未说明。其余模型按官方页面列出的供应商策略处理。",
+        "2026-10-21 依官方文档核实：每个模型均为限时免费。Big Pickle、LL Alpha、Exo、MiMo 两款的免费期数据可能用于改进模型；LL Alpha 保留 30 天。Nemotron 三款走 NVIDIA 试用端点，会记录用量并用于改进产品，官方建议勿提交个人或机密数据。Beam 不用于训练但保留数据 30 天；Jev 免费档的数据政策未说明。其余模型按官方页面列出的供应商策略处理。2026-11-14 复核：LL Alpha 与 Exo 已从免费名单移除，新增 Iceman Free、Inkling 2 Small Free、Flint 40B Free、LongCat 2.5 Free；原 MiMo-V2.5 档已无独立免费条目，改为 MiMo-V2.6-Flash Free。官方对多数条目写明「available on OpenCode for a limited time」；Big Pickle 官方原文「Big Pickle is a stealth model that's free on OpenCode for a limited time」；LongCat 2.5 Free 官方原文「free on OpenCode for a limited time, with a limit of 100 requests per day」，并注明「Hosted in China. Prompts and other inputs are not used for training or retained」。",
     },
     en: {
-      name: "OpenCode Zen Free Lane (Rotating)",
+      name: "OpenCode Zen Free Lane (Rotating, 14 models)",
       description:
-        "OpenCode Zen maintains a rotating zero-price model lane. Its official lineup on 2026-10-21 lists 14 models: Big Pickle, GLM-5.3-Flash, DeepSeek V4.1 Flash, MiniMax M3.1 Flash, Beam, LL Alpha, LongCat 2.5 Preview, Exo, MiMo-V2.6-Flash, MiMo-V2.5, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Nemotron 3.5 Super VL, and Jev 1.13. Sign in to use them in OpenCode; per-model quotas are unpublished and the free models may rotate at any time.",
+        "OpenCode Zen maintains a rotating zero-price model lane. Its official lineup on 2026-11-14 lists 14 models: Big Pickle, Iceman Free, Inkling 2 Small Free, GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free, MiniMax M3.1 Flash Free, Beam Free, Flint 40B Free, LongCat 2.5 Free, MiMo-V2.6-Flash Free, Nemotron 3 Ultra Free, Nemotron 3.5 Lightning Free, Nemotron 3.5 Super VL Free, and Jev 1.13 Free. Sign in to use them in OpenCode; per-model quotas are unpublished and the free models may rotate at any time.",
       limits:
-        "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published",
+        "In the opencode client, free models need no top-up and no card after sign-in; billing details are only required to take an API key for calling Zen from other agents (auto-reload adds $20 under a $5 balance; can be disabled); per-model free quotas not published; LongCat 2.5 Free is separately capped at 100 requests per day",
       caveat:
-        "Re-checked 2026-10-21 against official docs: each free model is limited-time. During free access, data from Big Pickle, LL Alpha, Exo, and both MiMo models may be used to improve the models; LL Alpha retains data for 30 days. The three Nemotron free endpoints log usage and may use it to improve NVIDIA products; do not submit personal or confidential data. Beam is not used for training but retains data for 30 days. The Jev free lane has no published data policy. See the official docs for current provider-specific terms.",
+        "Re-checked 2026-10-21 against official docs: each free model is limited-time. During free access, data from Big Pickle, LL Alpha, Exo, and both MiMo models may be used to improve the models; LL Alpha retains data for 30 days. The three Nemotron free endpoints log usage and may use it to improve NVIDIA products; do not submit personal or confidential data. Beam is not used for training but retains data for 30 days. The Jev free lane has no published data policy. See the official docs for current provider-specific terms. Re-checked 2026-11-14: LL Alpha and Exo have left the free lineup, and Iceman Free, Inkling 2 Small Free, Flint 40B Free, and LongCat 2.5 Free have joined; the old MiMo-V2.5 lane is gone, replaced by MiMo-V2.6-Flash Free. Most entries now read 'available on OpenCode for a limited time'; the official line for Big Pickle is 'Big Pickle is a stealth model that's free on OpenCode for a limited time'; for LongCat 2.5 Free it is 'free on OpenCode for a limited time, with a limit of 100 requests per day', plus 'Hosted in China. Prompts and other inputs are not used for training or retained'.",
     },
   },
   {
