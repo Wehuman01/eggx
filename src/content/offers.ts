@@ -398,27 +398,28 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: false,
+    archived: true,
     expiry: null,
     url: "https://www.scienceone.com.cn/portal/",
     source: "https://www.scienceone.com.cn/portal/",
     actionUrl: "https://www.scienceone.com.cn/portal/",
     code: "DH26JYZ5684",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
-      name: "磐石 SciencePro：新智元独家兑换码",
+      name: "磐石 SciencePro：新智元独家兑换码（入口已不可查）",
       description:
-        "中科闻歌的 AI for Science 科研智能平台：深度研究（多智能体调研）、对话式科学计算、2.7 亿论文/专利文献库。新智元公众号发文送独家福利——注册后在平台内输入兑换码，领取独家福利积分，兑换的 token 直接到账。注意这是科研平台，不是编码工具。",
+        "中科闻歌的 AI for Science 科研智能平台：深度研究（多智能体调研）、对话式科学计算、2.7 亿论文/专利文献库。新智元公众号发文送独家福利——注册后在平台内输入兑换码，领取独家福利积分，兑换的 token 直接到账。平台现已改名为 ScienceOra。注意这是科研平台，不是编码工具。",
       limits: "积分/Token 到账数量未公布，以平台内实际到账为准",
       caveat:
-        "兑换码来自新智元公众号文章（2026-09-18 收录），属社区消息，未见官方公告；数量有限，领完即止，需注册平台账号。2026-10-11 复核：门户可访问、平台运营中（站内「首届 AI4S 科研 Skill 大赛 9.4–10.23 火热进行中」）；兑换入口位于登录后应用内，无法公开核实，兑换码本身仍无法验证。",
+        "活动提前失效，2026-11-14 核实已无法核实，本条仅作归档。证据：门户首页已改名为 ScienceOra（页脚「©2026 ScienceOra」），站内不再出现兑换码 DH26JYZ5684 的兑换入口，兑换方式无法公开核实；此前的「首届 AI4S 科研 Skill 大赛 9.4–10.23」也已过期。原记录：兑换码来自新智元公众号文章（2026-09-18 收录），属社区消息，未见官方公告；数量有限，领完即止，需注册平台账号。",
     },
     en: {
-      name: "Panshi SciencePro: Xinzhiyuan exclusive redemption code",
+      name: "Panshi SciencePro: Xinzhiyuan exclusive redemption code (entry point no longer verifiable)",
       description:
-        "An AI for Science research platform by Zhongke Wenge: deep research (multi-agent investigation), conversational scientific computing, and a 270M paper/patent library. Xinzhiyuan's WeChat article gives away an exclusive code — sign up, enter it in the platform, and the bonus credits (redeemable for tokens) land directly in your account. Note: this is a research platform, not a coding tool.",
+        "An AI for Science research platform by Zhongke Wenge: deep research (multi-agent investigation), conversational scientific computing, and a 270M paper/patent library. Xinzhiyuan's WeChat article gave away an exclusive code — sign up, enter it in the platform, and the bonus credits (redeemable for tokens) land directly in your account. The platform now brands itself as ScienceOra. Note: this is a research platform, not a coding tool.",
       limits: "Credit/token amount not published; go by what actually lands in your account",
       caveat:
-        "The code comes from Xinzhiyuan's WeChat article (added 2026-09-18) — a community lead, no official announcement seen; limited quantity, first come first served, platform account required. Re-checked 2026-10-11: the portal is reachable and the platform is operating (an on-site \"first AI4S Research Skill Contest, Sep 4 – Oct 23, in full swing\"); the redemption entry sits inside the logged-in app and can't be verified publicly, and the code itself remains unverifiable.",
+        "The offer became unverifiable and was confirmed dead on 2026-11-14; this entry is archived. Evidence: the portal home page has been rebranded to ScienceOra (footer: '©2026 ScienceOra'), the redemption entry for code DH26JYZ5684 no longer appears anywhere on the site, and the redemption route can no longer be checked publicly; the earlier 'first AI4S Research Skill Contest, Sep 4 – Oct 23' has also expired. Original record: the code came from Xinzhiyuan's WeChat article (added 2026-09-18) — a community lead with no official announcement; limited quantity, first come first served, platform account required.",
     },
   },
   {
