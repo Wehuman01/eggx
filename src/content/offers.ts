@@ -102,7 +102,7 @@ export const offers = validateRegistry([
     url: "https://cline.bot/",
     source: "https://docs.cline.bot/getting-started/free-models",
     actionUrl: "https://cline.bot/",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Cline 免费模型（IDE/CLI 登录即用，名单轮换）",
       description:
@@ -192,7 +192,7 @@ export const offers = validateRegistry([
     url: "https://zcode.z.ai/cn",
     source: "https://zcode.z.ai/cn/changelog",
     actionUrl: "https://zcode.z.ai/cn",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "ZCode 周末计划：免费领体验额度",
       description:
@@ -253,7 +253,7 @@ export const offers = validateRegistry([
     url: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
     source: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
     actionUrl: "https://docs.bigmodel.cn/cn/coding-plan/hangzhou-rules",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "智谱·杭州全城 Coding 计划：在杭购卡季卡减 44%、年卡减 51%（至 12-09）",
       description:
@@ -312,7 +312,7 @@ export const offers = validateRegistry([
     url: "https://qoder.cn",
     source: "https://docs.qoder.cn/events/100credits",
     actionUrl: "https://qoder.cn",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Qoder CN：每日 100 Credits 免费领（Qwen3.8-Flash 免费档延长，结束日另行公告）",
       description:
@@ -490,7 +490,7 @@ export const offers = validateRegistry([
     url: "https://aihubmix.com",
     source: "https://docs.aihubmix.com/en/blogs/free-ai-models",
     actionUrl: "https://aihubmix.com/token",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "AIHubMix 免费模型",
       description:
@@ -545,7 +545,7 @@ export const offers = validateRegistry([
     url: "https://vercel.com/ai-gateway",
     source: "https://vercel.com/docs/ai-gateway/pricing",
     actionUrl: "https://vercel.com/ai-gateway",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Vercel AI Gateway：每月 $5 免费模型额度",
       description:
@@ -662,7 +662,7 @@ export const offers = validateRegistry([
     url: "https://aweshare.wehuman.top",
     source: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
     actionUrl: "https://github.com/wehuman01/aweshare/blob/main/docs/community-hub/README_cn.md",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "aweshare 社区 Hub",
       description:
@@ -737,7 +737,7 @@ export const offers = validateRegistry([
     verified: true,
     source: "https://developers.openai.com/community/students",
     actionUrl: "https://developers.openai.com/community/students",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Codex 学生计划",
       description:
@@ -792,7 +792,7 @@ export const offers = validateRegistry([
     url: "https://education.github.com",
     source: "https://education.github.com/pack",
     actionUrl: "https://education.github.com/pack",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "GitHub 学生开发者包",
       description:
@@ -817,7 +817,7 @@ export const offers = validateRegistry([
     url: "https://zed.dev",
     source: "https://zed.dev/education",
     actionUrl: "https://zed.dev/download",
-    lastVerified: "2026-10-11",
+    lastVerified: "2026-11-14",
     zh: {
       name: "Zed",
       description:
