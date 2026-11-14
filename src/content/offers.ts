@@ -839,4 +839,34 @@ export const offers = validateRegistry([
       caveat: "Verified 2026-10-11: the student offer actually lives at zed.dev/education (official blog 2026-03-09 \"Introducing Zed for Education\"); the GitHub repo page carries none of this, so the source link is corrected. The benefit is one year of Zed Pro (with $10/month in tokens), excluding models like Claude Fable/Opus and GPT Pro; eligibility is enrollment at an accredited university worldwide, age 18+, GitHub account older than 30 days. No free credits for non-students — bring your own provider.",
     },
   },
+  {
+    id: "kiro-free-tier",
+    provider: "Kiro",
+    kind: "long-term",
+    access: "public",
+    verified: true,
+    expiry: null,
+    url: "https://kiro.dev/pricing/",
+    source: "https://kiro.dev/pricing/",
+    actionUrl: "https://app.kiro.dev/",
+    lastVerified: "2026-11-14",
+    zh: {
+      name: "Kiro Free：每月 50 credits，开源权重模型 + Claude Sonnet",
+      description:
+        "Kiro 是 AWS 的 agentic AI 工程系统，形态有 IDE、CLI、Web、移动端与 Kiro Crew，主打 spec 驱动开发。官方 Free 计划 $0/月、永久有效、无需 AWS 账号（GitHub / Google / AWS Builder ID / IAM Identity Center 任一登录），含每月 50 credits。官方 models 表标 Free 可用的模型为 Claude Sonnet 4.6、Claude Sonnet 4.5、Claude Sonnet 4.0、Auto、DeepSeek 3.2、MiniMax M2.5、MiniMax M2.1、GLM-5、Qwen3 Coder Next（定价页只写「Open-weight models and Claude Sonnet 4.5」，models 表更全）。1 credit = 一次 prompt 对应的工作量，Auto 是 1.0× 基线，Sonnet 4.6 是 1.3×、Qwen3 Coder Next 仅 0.05×，最小计到 0.01 credit；未用完的 credits 不结转。",
+      limits:
+        "每月 50 credits，重置不结转；免费层模型：Claude Sonnet 4.6 / 4.5 / 4.0、Auto、DeepSeek 3.2、MiniMax M2.5 / M2.1、GLM-5、Qwen3 Coder Next；免 AWS 账号；Enterprise 与 AWS GovCloud(US) 无 Free 层",
+      caveat:
+        "2026-11-14 依 kiro.dev/pricing、/docs/models、/faq 核实。首升优惠：2026-11-01 起首次从 Free 升级到付费档，当月剩余天数按比例免费并额外给 500 个 12 个月有效的 trial credits（官方博客 kiro.dev/blog/kiros-new-free-trial-gives-you-500-extra-credits），需绑卡、仅限首次升级，降级回 Free 后未用 trial credits 可结转但只能花在免费层模型上。Kiro 可能对经社交登录 / Builder ID 的 Free 层内容用于服务改进（文档里可 opt out；经 IAM Identity Center / 企业 IdP 的付费用户不用）。经第三方自动化框架把请求路由到 Kiro 原生界面之外不被允许。学生身份见 Kiro for Students 条目，创业公司见 Kiro Startup Credits 条目。",
+    },
+    en: {
+      name: "Kiro Free: 50 credits/month on open-weight models and Claude Sonnet",
+      description:
+        "Kiro is AWS's agentic AI engineering system, available as an IDE, CLI, Web, mobile app, and Kiro Crew, built around spec-driven development. The official Free plan costs $0/month, is perpetual, and needs no AWS account — sign in with GitHub, Google, AWS Builder ID, or IAM Identity Center — and includes 50 credits per month. The official models table marks these as available on Free: Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Sonnet 4.0, Auto, DeepSeek 3.2, MiniMax M2.5, MiniMax M2.1, GLM-5, and Qwen3 Coder Next (the pricing page only says 'open-weight models and Claude Sonnet 4.5', so the models table is the fuller list). One credit is the work behind one prompt: Auto is the 1.0x baseline, Sonnet 4.6 is 1.3x, Qwen3 Coder Next only 0.05x, and metering goes down to 0.01 credit; unused credits do not roll over.",
+      limits:
+        "50 credits/month, no rollover; free-tier models: Claude Sonnet 4.6 / 4.5 / 4.0, Auto, DeepSeek 3.2, MiniMax M2.5 / M2.1, GLM-5, Qwen3 Coder Next; sign-in with no AWS account; no Free tier for Enterprise or AWS GovCloud (US)",
+      caveat:
+        "Verified 2026-11-14 against kiro.dev/pricing, /docs/models, and /faq. First-upgrade promotion: from 2026-11-01, a first upgrade from Free to a paid tier makes the rest of that month free and adds 500 trial credits valid for 12 months (official blog: kiro.dev/blog/kiros-new-free-trial-gives-you-500-extra-credits) — it needs a card on file, applies only to the first upgrade, and after downgrading to Free the unused trial credits carry over but can only be spent on free-tier models. Kiro may use Free-tier content from social-login / Builder-ID users for service improvement (opt-out in the docs; paid users via IAM Identity Center or an enterprise IdP are excluded). Routing requests outside Kiro's native interfaces through third-party automation harnesses is not permitted. Students have a separate Kiro for Students entry; startups have a separate Kiro Startup Credits entry.",
+    },
+  },
 ]);
