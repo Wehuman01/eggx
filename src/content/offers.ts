@@ -368,28 +368,28 @@ export const offers = validateRegistry([
     kind: "temporary",
     access: "public",
     verified: true,
-    expiry: null,
+    expiry: "2026-12-28",
     url: "https://www.inceptionlabs.ai/models",
     source: "https://docs.inceptionlabs.ai/get-started",
     actionUrl: "https://platform.inceptionlabs.ai",
-    lastVerified: "2026-10-21",
+    lastVerified: "2026-11-14",
     zh: {
-      name: "Inception API：新账号 1 亿免费 Tokens（Mercury 3 等）",
+      name: "Inception API：新账号 1 亿免费 Tokens（Mercury 3 等，平台 12-28 关停）",
       description:
-        "Inception 官方为新账号提供 1 亿免费 tokens，无需先填支付信息。官方 API Quick Start 确认可用 Mercury 3，并支持通过 OpenAI 兼容接口接入相应编码 Agent。Free 计划宣传可访问所有模型，但具体赠额可用模型仍需按各模型接入条件判断。",
+        "Inception 官方为新账号提供 1 亿免费 tokens，无需先填支付信息。官方 API Quick Start 确认可用 Mercury 3，并支持通过 OpenAI 兼容接口接入相应编码 Agent。Free 计划宣传可访问所有模型，但具体赠额可用模型仍需按各模型接入条件判断。官方同时公告整个 Mercury API 正在关停，服务保留至 2026-12-28。",
       limits:
-        "每个新账号获 1 亿 tokens；Mercury 3 有官方 Quick Start 接入示例；免费额度有效期、速率与模型级适用范围未公布；无需先填写支付信息",
+        "每个新账号获 1 亿 tokens；Mercury 3 有官方 Quick Start 接入示例；免费额度有效期、速率与模型级适用范围未公布；无需先填写支付信息；平台官方公告 Mercury API 关停，服务保留至 2026-12-28，此后不再提供访问",
       caveat:
-        "2026-10-21 核实官方 Quick Start 与 Models 文档：Mercury 3 是明确记录的新账号接入模型，支持 chat completions 与 tool calling。Mercury Voice 目前仅向 enterprise customers 开放；Mercury Decide 使用独立的 v1/decisions 接口，官网标注 Contact sales，赠额是否适用未明确。Mercury 2 与 Mercury 2.5 不对新用户开放。因此目前能确认 1 亿赠额可用 Mercury 3，其它模型不作保证。",
+        "2026-10-21 核实官方 Quick Start 与 Models 文档：Mercury 3 是明确记录的新账号接入模型，支持 chat completions 与 tool calling。Mercury Voice 目前仅向 enterprise customers 开放；Mercury Decide 使用独立的 v1/decisions 接口，官网标注 Contact sales，赠额是否适用未明确。Mercury 2 与 Mercury 2.5 不对新用户开放。因此目前能确认 1 亿赠额可用 Mercury 3，其它模型不作保证。2026-11-14 复核：1 亿赠额仍在，但官方文档顶部横幅已写明「The Mercury API is winding down and will remain available through December 28, 2026」，官方说明页补充「after that date you will no longer have access to the service or to any data submitted to the platform」——据此把 expiry 定为 2026-12-28，到期自动进过期区。",
     },
     en: {
-      name: "Inception API: 100M free tokens for new accounts (Mercury 3 and more)",
+      name: "Inception API: 100M free tokens for new accounts (Mercury 3 and more; platform shuts down Dec 28)",
       description:
-        "Inception grants 100 million free tokens to new accounts without requiring payment details upfront. Its API Quick Start confirms Mercury 3 and shows how to use it through the OpenAI-compatible API with supported coding agents. The Free plan says \"access all models,\" but model-specific access requirements still apply.",
+        "Inception grants 100 million free tokens to new accounts without requiring payment details upfront. Its API Quick Start confirms Mercury 3 and shows how to use it through the OpenAI-compatible API with supported coding agents. The Free plan says 'access all models,' but model-specific access requirements still apply. The company has also announced that the entire Mercury API is winding down and remains available through 2026-12-28.",
       limits:
-        "100M tokens per new account; Mercury 3 has an official Quick Start; expiry, rate limits, and model eligibility are unpublished; no payment details required to start",
+        "100M tokens per new account; Mercury 3 has an official Quick Start; expiry, rate limits, and model eligibility are unpublished; no payment details required to start; the platform's official notice says the Mercury API is winding down and remains available through 2026-12-28, after which there is no further access",
       caveat:
-        "Verified 2026-10-21 against Inception's official Quick Start and Models docs: Mercury 3 is the confirmed new-account route and supports chat completions and tool calling. Mercury Voice is currently available only to enterprise customers; Mercury Decide uses a separate v1/decisions endpoint and is marked \"Contact sales\" on the models page, with no confirmation that the signup grant covers it. Mercury 2 and Mercury 2.5 are unavailable to new users. The 100M grant is confirmed for Mercury 3; other models are not guaranteed.",
+        "Verified 2026-10-21 against Inception's official Quick Start and Models docs: Mercury 3 is the confirmed new-account route and supports chat completions and tool calling. Mercury Voice is currently available only to enterprise customers; Mercury Decide uses a separate v1/decisions endpoint and is marked 'Contact sales' on the models page, with no confirmation that the signup grant covers it. Mercury 2 and Mercury 2.5 are unavailable to new users. The 100M grant is confirmed for Mercury 3; other models are not guaranteed. Re-checked 2026-11-14: the 100M grant is still offered, but the docs banner now reads 'The Mercury API is winding down and will remain available through December 28, 2026', and the support page adds that after that date there is no longer access to the service or to any data submitted to the platform — hence expiry is set to 2026-12-28 and the entry retires automatically on that date.",
     },
   },
   {
