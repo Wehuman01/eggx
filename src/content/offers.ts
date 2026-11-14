@@ -869,4 +869,34 @@ export const offers = validateRegistry([
         "Verified 2026-11-14 against kiro.dev/pricing, /docs/models, and /faq. First-upgrade promotion: from 2026-11-01, a first upgrade from Free to a paid tier makes the rest of that month free and adds 500 trial credits valid for 12 months (official blog: kiro.dev/blog/kiros-new-free-trial-gives-you-500-extra-credits) — it needs a card on file, applies only to the first upgrade, and after downgrading to Free the unused trial credits carry over but can only be spent on free-tier models. Kiro may use Free-tier content from social-login / Builder-ID users for service improvement (opt-out in the docs; paid users via IAM Identity Center or an enterprise IdP are excluded). Routing requests outside Kiro's native interfaces through third-party automation harnesses is not permitted. Students have a separate Kiro for Students entry; startups have a separate Kiro Startup Credits entry.",
     },
   },
+  {
+    id: "kiro-students",
+    provider: "Kiro",
+    kind: "long-term",
+    access: "application",
+    verified: true,
+    expiry: null,
+    url: "https://kiro.dev/students/",
+    source: "https://kiro.dev/students/",
+    actionUrl: "https://app.kiro.dev/",
+    lastVerified: "2026-11-14",
+    zh: {
+      name: "Kiro for Students：每月 1000 credits 免费用一年",
+      description:
+        "Kiro 面向认证高校在读学生的免费计划：经 SheerID 验证学籍后，连续 12 个月每月 1000 credits，覆盖 IDE、CLI、Web 与 Kiro Crew。无需信用卡；年满 18；每人只能验证一次；用学校邮箱验证时需提供姓名、出生日期与学校（不必用大学邮箱注册账号）。credits 不逐月结转，福利期内不能加购 credit，到期后账号自动降回 Kiro Free 层，工作与项目不受影响。学校以官方下拉名单为准，不在列的可提交 interest form。",
+      limits:
+        "每月 1000 credits × 连续 12 个月；SheerID 验证、年满 18、每人一次；每月额度用满即在下一周期重置；福利期内不可加购 credit、不结转；一年后自动降级 Free",
+      caveat:
+        "2026-11-14 依 kiro.dev/students 与其 Terms（更新 2026-09-08）核实。学校名单以页面下拉为准，官方在 2026-09 扩至 133 所、2026-10-28 再增加 41 所，可见名单以美/加/欧/新/韩等海外高校为主；不在列的可提交 interest form。验证失败可经 SheerID 支持表单申诉。这是学生身份福利，与面向个人的 Kiro Free 层、面向创业公司的 Kiro Startup Credits 是不同条目。",
+    },
+    en: {
+      name: "Kiro for Students: 1000 credits/month free for a year",
+      description:
+        "Kiro's free plan for verified university students: after SheerID student verification, 1000 credits per month for 12 consecutive months across the IDE, CLI, Web, and Kiro Crew. No credit card; 18+; verification is one-time; you do not need to register with a university email, but verification requires your university email, name, and date of birth. Credits do not roll over month to month, add-on credits are not available during the benefit period, and after one year the account auto-downgrades to the Kiro Free tier with your code, specs, and projects intact. The school list follows the official dropdown; unlisted schools can submit an interest form.",
+      limits:
+        "1000 credits/month × 12 consecutive months; SheerID verification, 18+, one-time; monthly allowance resets each cycle; no top-ups or rollover during the benefit period; auto-downgrade to Free after one year",
+      caveat:
+        "Verified 2026-11-14 against kiro.dev/students and its Terms (updated 2026-09-08). The school list follows the page dropdown — the official program expanded to 133 schools in Sep 2026 and added 41 more on 2026-10-28, and the visible list is weighted toward US/Canadian/European/Singaporean/Korean institutions; unlisted schools can submit an interest form. Failed verification can be appealed through the SheerID support form. This is an eligibility-based student benefit, distinct from the individual Kiro Free tier and the startup Kiro Startup Credits entry.",
+    },
+  },
 ]);
