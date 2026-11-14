@@ -959,4 +959,34 @@ export const offers = validateRegistry([
         "Verified 2026-11-14 against antigravity.google/pricing, /docs/plans, /docs/models, and /docs/faq. Three hard facts: (1) Claude Sonnet 4.6, Claude Opus 4.6, and GPT-OSS-120B are officially removed from all tiers on 2026-11-18 (originally 11-02, postponed), leaving only Gemini 3.8 Flash and Gemini 4 Hydrogen on the free tier; the Claude 5.5 models are never on the free tier and require a non-trial paid Google AI Pro. (2) The free tier has no 5-hour refresh, only weekly; Pro/Ultra get the 5-hour refresh (still under a weekly cap), and Google publishes no concrete request or token counts. (3) Key: the official FAQ states that using third-party software, tools, or services to access Antigravity (it names Claude Code, OpenClaw, and OpenCode) violates the Terms of Service and can get your account suspended or terminated; CLI headless mode (agy -p) is for direct scripting and CI only, not for wrapping inside third-party coding agents or automating account switching, and for third-party agents Google recommends Gemini Enterprise or a Google AI Studio API key. Gemini 4 Argon is available on a Pro trial with eligible premium devices, but student or device-promo Pro trials do not unlock Claude 5.5.",
     },
   },
+  {
+    id: "google-ai-pro-students",
+    provider: "Google",
+    kind: "temporary",
+    access: "application",
+    verified: true,
+    expiry: "2026-12-31",
+    url: "https://gemini.google/students/",
+    source: "https://gemini.google/students/",
+    actionUrl: "https://gemini.google/students/",
+    lastVerified: "2026-11-14",
+    zh: {
+      name: "Google AI Pro 学生版：美国大学生免费一年（兑换至 12-31）",
+      description:
+        "Google 面向美国认证高校在读学生的免费方案：完成学生认证后可领 1 年 Google AI Pro，含 Gemini 4 倍用量上限、5 TB 存储、Gemini Spark 与 Gemini Omni；资格需每年重新验证以保持权益。注册需绑定有效支付方式，试用结束后若未取消，Google AI Pro 将自动按 $19.99/月 扣费。",
+      limits:
+        "免费 1 年 Google AI Pro（Gemini 4 倍用量、5 TB 存储、Gemini Spark、Gemini Omni）；限美国 18+ 认证高校在读学生；兑换截止 2026-12-31；注册需绑定有效支付方式，到期自动转 $19.99/月",
+      caveat:
+        "2026-11-14 依 gemini.google/students 官方页核实。官方原文「Redeem until December 31, 2026. Valid form of payment required at sign-up. Unless cancelled earlier, Google AI Pro will automatically charge $19.99/month after the trial ends.」——领了就要绑卡，不记得取消会直接扣费。官方同时写明 2025 年用过 AI Pro 试用的学生、只要重新验证资格也可参加，且资格须每年复验。学生 Pro 试用不解锁 Antigravity 的 Claude 5.5 系列（那需要非试用的付费 Pro）。这是美国限定、且面向 Google 生态（含 Antigravity、Gemini CLI）的学生福利，与已收录的 OpenAI Codex 学生计划、GitHub 学生包、Zed 学生计划同类但不同家。",
+    },
+    en: {
+      name: "Google AI Pro for Students: free for one year for US college students (redeem by Dec 31)",
+      description:
+        "Google's free offer for verified US college students: after student verification you get one year of Google AI Pro, including 4x higher Gemini usage limits, 5 TB of storage, Gemini Spark, and Gemini Omni; eligibility must be re-verified each year to keep access. Sign-up requires a valid form of payment, and unless cancelled earlier, Google AI Pro automatically charges $19.99/month after the trial ends.",
+      limits:
+        "One free year of Google AI Pro (4x Gemini usage limits, 5 TB storage, Gemini Spark, Gemini Omni); limited to verified US college students aged 18+; redeem by 2026-12-31; a valid payment method is required at sign-up, and the plan converts to $19.99/month afterwards",
+      caveat:
+        "Verified 2026-11-14 against the official gemini.google/students page. The official text reads: 'Redeem until December 31, 2026. Valid form of payment required at sign-up. Unless cancelled earlier, Google AI Pro will automatically charge $19.99/month after the trial ends.' — claiming binds a card, and forgetting to cancel means real charges. The page also says students whose 2025 AI Pro trial has expired can qualify, and that eligibility must be verified each year to maintain access. The student Pro trial does not unlock the Claude 5.5 models in Antigravity (that needs a non-trial paid Pro). This is a US-only student benefit covering Google's ecosystem (including Antigravity and the Gemini CLI), the same shape as the OpenAI Codex student program, GitHub student pack, and Zed student plan but from a different vendor.",
+    },
+  },
 ]);
