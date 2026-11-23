@@ -9,58 +9,12 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-11-23T01:39:53.797Z",
-  "count": 40
+  "checkedAt": "2026-11-23T10:43:29.377Z",
+  "count": 22
 };
 
 export const aweshareOfferings = validateAweshareCatalog(
 [
-  {
-    "producer": "houzhihoujue",
-    "alias": "houzhihoujue/minicpm-ocr",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "offline",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 1,
-    "dailyTokens": 100000000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "houzhihoujue",
-    "alias": "houzhihoujue/qwen3.8-27b",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "offline",
-    "hubCheckAt": "2026-10-30T13:35:06.583Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 1,
-    "dailyTokens": 10000000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "hsh2",
-    "alias": "hsh2/step-3.7-flash",
-    "protocols": [
-      "anthropic",
-      "openai-chat"
-    ],
-    "status": "offline",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 2,
-    "dailyTokens": 1000000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
   {
     "producer": "hub",
     "alias": "hub/agnes-2.5-flash",
@@ -68,28 +22,27 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-20T08:19:06.930Z",
+    "hubCheckAt": "2026-11-23T10:40:16.188Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 572,
     "shareState": null
   },
   {
     "producer": "hub",
-    "alias": "hub/glm-5.3",
+    "alias": "hub/deepseek-flash-sense",
     "protocols": [
-      "anthropic",
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-22T20:36:40.061Z",
+    "hubCheckAt": "2026-11-23T10:40:17.180Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
+    "maxConcurrentUsers": 1,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 449374,
+    "usedDailyTokens": 68,
     "shareState": null
   },
   {
@@ -100,12 +53,43 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-22T20:36:40.061Z",
+    "hubCheckAt": "2026-11-23T10:40:19.756Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 5,
     "dailyTokens": 20000000,
-    "usedDailyTokens": 424065,
+    "usedDailyTokens": 424121,
+    "shareState": null
+  },
+  {
+    "producer": "hub",
+    "alias": "hub/glm-5.3-sense",
+    "protocols": [
+      "openai-chat"
+    ],
+    "status": "online",
+    "hubCheckAt": "2026-11-23T10:40:47.124Z",
+    "degradedSince": null,
+    "maxConcurrencyPerUser": 1,
+    "maxConcurrentUsers": 1,
+    "dailyTokens": 10000000,
+    "usedDailyTokens": 0,
+    "shareState": null
+  },
+  {
+    "producer": "hub",
+    "alias": "hub/glm-5.4",
+    "protocols": [
+      "anthropic",
+      "openai-chat"
+    ],
+    "status": "online",
+    "hubCheckAt": "2026-11-23T10:40:23.807Z",
+    "degradedSince": null,
+    "maxConcurrencyPerUser": 1,
+    "maxConcurrentUsers": 3,
+    "dailyTokens": 10000000,
+    "usedDailyTokens": 46,
     "shareState": null
   },
   {
@@ -116,11 +100,26 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-19T13:25:28.848Z",
+    "hubCheckAt": "2026-11-23T10:40:26.466Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 5000000,
+    "usedDailyTokens": 350,
+    "shareState": null
+  },
+  {
+    "producer": "hub",
+    "alias": "hub/kimi-k3-sense",
+    "protocols": [
+      "openai-chat"
+    ],
+    "status": "online",
+    "hubCheckAt": "2026-11-23T09:55:47.493Z",
+    "degradedSince": null,
+    "maxConcurrencyPerUser": 1,
+    "maxConcurrentUsers": 1,
+    "dailyTokens": 10000000,
     "usedDailyTokens": 0,
     "shareState": null
   },
@@ -132,12 +131,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-19T13:25:28.848Z",
+    "hubCheckAt": "2026-11-23T10:40:29.939Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 2000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 354,
     "shareState": null
   },
   {
@@ -148,12 +147,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-22T18:04:09.221Z",
+    "hubCheckAt": "2026-11-23T08:14:45.316Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 3,
     "dailyTokens": 5000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 250,
     "shareState": null
   },
   {
@@ -174,48 +173,17 @@ export const aweshareOfferings = validateAweshareCatalog(
   },
   {
     "producer": "hub",
-    "alias": "hub/step-5-preview",
+    "alias": "hub/sensenova-6.8-flash",
     "protocols": [
-      "anthropic",
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-22T17:59:12.395Z",
+    "hubCheckAt": "2026-11-23T10:40:34.646Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
+    "maxConcurrentUsers": 1,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 3664656,
-    "shareState": null
-  },
-  {
-    "producer": "hub",
-    "alias": "hub/deepseek-v4-flash",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "degraded",
-    "hubCheckAt": "2026-11-22T17:48:34.344Z",
-    "degradedSince": "2026-11-22T17:48:38.617Z",
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 2,
-    "dailyTokens": 10000000,
-    "usedDailyTokens": 172616,
-    "shareState": null
-  },
-  {
-    "producer": "hub",
-    "alias": "hub/glm-5.2",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "degraded",
-    "hubCheckAt": "2026-11-22T17:48:33.863Z",
-    "degradedSince": "2026-11-22T17:48:38.617Z",
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 2,
-    "dailyTokens": 5000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 310,
     "shareState": null
   },
   {
@@ -224,13 +192,29 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-chat"
     ],
-    "status": "degraded",
-    "hubCheckAt": "2026-11-22T17:48:33.863Z",
-    "degradedSince": "2026-11-22T17:48:38.617Z",
+    "status": "online",
+    "hubCheckAt": "2026-11-23T10:40:47.125Z",
+    "degradedSince": null,
     "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 2,
+    "maxConcurrentUsers": 1,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 282,
+    "shareState": null
+  },
+  {
+    "producer": "hub",
+    "alias": "hub/step-5-preview",
+    "protocols": [
+      "anthropic",
+      "openai-chat"
+    ],
+    "status": "online",
+    "hubCheckAt": "2026-11-23T10:40:49.687Z",
+    "degradedSince": null,
+    "maxConcurrencyPerUser": 1,
+    "maxConcurrentUsers": 3,
+    "dailyTokens": 10000000,
+    "usedDailyTokens": 3664708,
     "shareState": null
   },
   {
@@ -240,12 +224,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-responses"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-22T07:22:16.742Z",
+    "hubCheckAt": "2026-11-23T10:40:55.042Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 36,
     "shareState": null
   },
   {
@@ -255,177 +239,27 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-responses"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-22T07:22:29.886Z",
+    "hubCheckAt": "2026-11-23T10:40:59.082Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 36,
     "shareState": null
   },
   {
-    "producer": "leidell",
-    "alias": "leidell/mimo-v2.5",
+    "producer": "peng1",
+    "alias": "peng1/glm-5.3-flash-wb",
     "protocols": [
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-09-01T08:35:53.778Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "leidell",
-    "alias": "leidell/mimo-v2.5-pro",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-09-02T03:22:14.328Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "leidell",
-    "alias": "leidell/minimax-m2.7",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-29T11:21:10.282Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "leidell",
-    "alias": "leidell/minimax-m3",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-30T12:03:56.094Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "leidell",
-    "alias": "leidell/step-3.7-flash",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "degraded",
-    "hubCheckAt": "2026-09-03T04:34:38.066Z",
-    "degradedSince": "2026-11-23T01:29:04.647Z",
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "leidell",
-    "alias": "leidell/step-router-v1",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "degraded",
-    "hubCheckAt": "2026-09-03T15:42:04.000Z",
-    "degradedSince": "2026-11-23T01:29:04.647Z",
-    "maxConcurrencyPerUser": 2,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "mini2",
-    "alias": "mini2/qwen3.5-0.8b",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "offline",
-    "hubCheckAt": "2026-10-30T12:03:57.054Z",
+    "hubCheckAt": "2026-11-23T10:41:13.983Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/cohere-north-mini-code-openrouter",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-24T01:13:51.448Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 1,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/deepseek-v4.1-flash-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-31T02:03:12.676Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/deepseek-v4.1-flash-wb",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-22T04:20:24.943Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/glm-5.3-flash-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 50,
     "shareState": null
   },
   {
@@ -435,117 +269,57 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-responses"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-14T17:37:46.513Z",
+    "hubCheckAt": "2026-11-23T10:41:04.116Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 10000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 10423,
     "shareState": null
   },
   {
     "producer": "peng1",
-    "alias": "peng1/gpt-6.1-sol",
+    "alias": "peng1/gpt-6.2-sol",
     "protocols": [
       "openai-responses"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-13T15:10:09.905Z",
+    "hubCheckAt": "2026-11-23T10:41:10.209Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 24,
     "shareState": null
   },
   {
     "producer": "peng1",
-    "alias": "peng1/hy3-wb",
+    "alias": "peng1/hy4flash-free-wb",
     "protocols": [
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-22T07:22:51.535Z",
+    "hubCheckAt": "2026-11-23T10:41:13.983Z",
     "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "maxConcurrencyPerUser": 2,
+    "maxConcurrentUsers": 4,
+    "dailyTokens": 1000000000,
+    "usedDailyTokens": 118,
     "shareState": null
   },
   {
     "producer": "peng1",
-    "alias": "peng1/hy4-preview-wb",
+    "alias": "peng1/mimo-v2.6-pro-wb",
     "protocols": [
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-22T07:22:52.898Z",
+    "hubCheckAt": "2026-11-23T10:41:14.169Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/kimi-k2.8-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/kimi-k3-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/kimi-k3-wb",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-10-22T07:22:58.594Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/minimax-m3.1-flash-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "maxConcurrentUsers": 2,
+    "dailyTokens": 10000000,
+    "usedDailyTokens": 44,
     "shareState": null
   },
   {
@@ -555,12 +329,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-24T01:13:48.845Z",
+    "hubCheckAt": "2026-11-23T10:41:18.548Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 1,
     "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 72,
     "shareState": null
   },
   {
@@ -570,57 +344,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-10-24T01:13:55.924Z",
+    "hubCheckAt": "2026-11-23T10:41:18.764Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
     "maxConcurrentUsers": 1,
     "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/qwen3.8-flash-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/qwen3.8-max-q",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": null,
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
-    "shareState": null
-  },
-  {
-    "producer": "peng1",
-    "alias": "peng1/step-5-preview-wb",
-    "protocols": [
-      "openai-chat"
-    ],
-    "status": "online",
-    "hubCheckAt": "2026-11-01T06:51:06.826Z",
-    "degradedSince": null,
-    "maxConcurrencyPerUser": 1,
-    "maxConcurrentUsers": 3,
-    "dailyTokens": 1000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 72,
     "shareState": null
   }
 ]
