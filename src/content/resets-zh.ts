@@ -9,7 +9,7 @@
 import type { ResetSnapshot } from "../lib/resets";
 
 export const resetZhSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-23T06:50:32.420+08:00",
+  "checkedAt": "2026-11-23T11:10:45.270+08:00",
   "historyFrom": "2026-04-15T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
