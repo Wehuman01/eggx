@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-24T20:37:42.622+08:00",
+  "checkedAt": "2026-11-25T07:02:03.365+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,6 +21,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "2125299248782778588",
+    "type": "card",
+    "status": "confirmed",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "confirm",
+        "publishedAt": "2026-11-25T02:43:21.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2125299248782778588",
+        "zh": null,
+        "en": "To all the ChatGPT Business teams out there. We have two small things for you, a banked reset and fast mode at no extra charge through Dec 31. Have fun!"
+      }
+    ]
+  },
   {
     "id": "2120999993079451919",
     "type": "card",
