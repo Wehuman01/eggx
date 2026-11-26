@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-11-25T22:29:30.449Z",
+  "checkedAt": "2026-11-26T05:00:05.961Z",
   "count": 22
 };
 
@@ -223,7 +223,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "online",
+    "status": "offline",
     "hubCheckAt": "2026-11-23T10:40:55.042Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -238,7 +238,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "online",
+    "status": "offline",
     "hubCheckAt": "2026-11-23T10:40:59.082Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
