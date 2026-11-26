@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-11-26T05:00:05.961Z",
+  "checkedAt": "2026-11-26T15:11:33.184Z",
   "count": 22
 };
 
@@ -22,12 +22,12 @@ export const aweshareOfferings = validateAweshareCatalog(
       "openai-chat"
     ],
     "status": "online",
-    "hubCheckAt": "2026-11-23T10:40:16.188Z",
+    "hubCheckAt": "2026-11-26T09:14:12.993Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 0,
+    "usedDailyTokens": 3489561,
     "shareState": null
   },
   {
@@ -223,7 +223,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-11-23T10:40:55.042Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
@@ -238,7 +238,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "protocols": [
       "openai-responses"
     ],
-    "status": "offline",
+    "status": "online",
     "hubCheckAt": "2026-11-23T10:40:59.082Z",
     "degradedSince": null,
     "maxConcurrencyPerUser": 1,
