@@ -9,7 +9,7 @@
 import type { ResetSnapshot } from "../lib/resets";
 
 export const resetZhSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-26T13:30:16.523+08:00",
+  "checkedAt": "2026-11-26T23:50:39.951+08:00",
   "historyFrom": "2026-04-15T00:00:00.000+08:00",
   "source": "https://aihot.news/codex-reset",
   "curator": "AIHOT"
@@ -17,6 +17,7 @@ export const resetZhSnapshot: ResetSnapshot = {
 
 export const resetZh: Record<string, string> = {
   "2125784147889393806": "作为对这次错误致歉的一点小心意，我们将为 Go、Plus、Pro 和 Business 的所有用户增加一张可留存的重置卡。",
+  "2125853628250599730": "Banked 重置已上线",
   "2125299248782778588": "我们为你们准备了两样小东西：一张储备重置卡，以及截至 12 月 31 日不额外收费的快速模式。",
   "2120410480204525936": "对我来说，周四很有 Codex 的感觉。也许也是发放一张预留重置卡的好时机。",
   "2120999993079451919": "我们今天为 dots 发布了一些不错的更新，banked 重置卡已经激活，应该很快会到每个人的账户里！",
