@@ -13,7 +13,7 @@
 import { validateResets, type ResetSnapshot } from "../lib/resets";
 
 export const resetSnapshot: ResetSnapshot = {
-  "checkedAt": "2026-11-26T09:49:54.000+08:00",
+  "checkedAt": "2026-11-26T10:51:26.836+08:00",
   "historyFrom": "2026-10-11T12:01:09.000+08:00",
   "source": "https://codex-resets.com",
   "curator": "codex-resets.com"
@@ -21,6 +21,25 @@ export const resetSnapshot: ResetSnapshot = {
 
 export const resets = validateResets(
 [
+  {
+    "id": "2125784147889393806",
+    "type": "card",
+    "status": "announced",
+    "scope": null,
+    "confirmedAt": null,
+    "occurredOn": null,
+    "scheduleFrom": null,
+    "scheduleThrough": null,
+    "posts": [
+      {
+        "stage": "announce",
+        "publishedAt": "2026-11-26T10:50:10.000+08:00",
+        "url": "https://x.com/thsottiaux/status/2125784147889393806",
+        "zh": null,
+        "en": "We made a billing mistake at launch of GPT-6.2 that incorrectly discounted GPT-6.2 Astra and Sol usage for most users. \n\nWe’ve fixed this now, so the same work will use more of your plan’s usage allowance. Comparing to last week, you will reach your limits 40% faster on GPT-6.2 Astra and 25% faster on Sol. You should still see these go further in usage compared to 6 Astra and 6.1 Sol. Other models weren’t affected, and we won’t charge you for the difference on past usage.\n\nAs a small token to apologize for the mistake, we’ll be adding one banked reset for everyone on Go, Plus, Pro, and Business."
+      }
+    ]
+  },
   {
     "id": "2125299248782778588",
     "type": "card",
