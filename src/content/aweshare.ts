@@ -9,7 +9,7 @@ import { validateAweshareCatalog, type AweshareSnapshot } from "../lib/aweshare"
 
 export const aweshareSnapshot: AweshareSnapshot = {
   "hubUrl": "https://aweshare.wehuman.top",
-  "checkedAt": "2026-11-26T15:11:33.184Z",
+  "checkedAt": "2026-11-26T23:52:13.145Z",
   "count": 22
 };
 
@@ -27,7 +27,7 @@ export const aweshareOfferings = validateAweshareCatalog(
     "maxConcurrencyPerUser": 2,
     "maxConcurrentUsers": 2,
     "dailyTokens": 1000000000,
-    "usedDailyTokens": 3489561,
+    "usedDailyTokens": 0,
     "shareState": null
   },
   {
